@@ -34,7 +34,7 @@ public class BaseApplication extends Application {
         }
 
 
-        ErrorReport.getInstance().init(this);
+        // ErrorReport.getInstance().init(this);
 
 
     }

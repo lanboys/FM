@@ -13,6 +13,9 @@ import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.ImageLoaderManager;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
+import com.bing.lan.fm.ui.gank.adapter.MeiZhiAdapter;
+import com.jude.easyrecyclerview.EasyRecyclerView;
+import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -24,9 +27,10 @@ import butterknife.BindView;
  *
  */
 public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
-        implements IGankContract.IGankView {
+        implements IGankContract.IGankView ,RecyclerArrayAdapter.OnLoadMoreListener {
 
     @BindView(R.id.recyclerView_gank)
+    EasyRecyclerView rcyclerView;
     RecyclerView mRecyclerView;
     // @BindView(listView)
     // AsymmetricGridView mListView;
@@ -48,54 +52,10 @@ public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
         mPresenter.onStart();
     }
 
+
     @Override
     protected void initViewAndData(Intent intent) {
         initRecyclerView();
-    }
-
-    // private void initListview(List<GankBean.ResultsBean> data) {
-    //     // Choose your own preferred column width
-    //
-    //     mListView.setRequestedColumnWidth(AppUtil.dip2px(60));
-    //     final List<AsymmetricItem> items = new ArrayList<>();
-    //
-    //     // initialize your items array
-    //     BaseListAdapter adapter = new BaseListAdapter<GankBean.ResultsBean>(getContext()) {
-    //         @Override
-    //         protected int getItemLayoutId(int itemViewType) {
-    //             return R.layout.item_gank_meizi;
-    //         }
-    //
-    //         @Override
-    //         protected BaseViewHolder createViewHolder(int itemViewType, View itemView) {
-    //             return new BaseViewHolder(itemView) {
-    //                 @BindView(R.id.iv_girl)
-    //                 ImageView mImageView;
-    //
-    //
-    //                 @Override
-    //                 public void fillData(GankBean.ResultsBean data, int position) {
-    //
-    //                     ImageLoaderManager.loadImage(mImageView, data.getUrl());
-    //                 }
-    //             };
-    //         }
-    //     };
-    //
-    //     // ListAdapter  adapter1 = new ListAdapter(getActivity(), listView, items);
-    //
-    //     adapter.setDataAndRefresh(data);
-    //     AsymmetricGridViewAdapter asymmetricAdapter =
-    //             new AsymmetricGridViewAdapter<>(getActivity(), mListView, adapter);
-    //     mListView.setAdapter(asymmetricAdapter);
-    // }
-
-    @Override
-    public void updateGank(List<GankBean.ResultsBean> data) {
-        mRecyclerView.setAdapter(new GankRecyclerViewAdapter(AppUtil.getAppContext(),
-                R.layout.item_gank_meizi, data));
-        // initListview(  data);
-
     }
 
     private void initRecyclerView() {
@@ -109,8 +69,26 @@ public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
 
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
+        rcyclerView.setLayoutManager(staggeredGridLayoutManager);
+    }
 
-        mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+    @Override
+    public void updateGank(List<GankBean.ResultsBean> data) {
+        // mRecyclerView.setAdapter(new GankRecyclerViewAdapter(AppUtil.getAppContext(),
+        //         R.layout.item_gank_meizi, data));
+        // initListview(  data);
+
+        MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(getContext());
+        meiZhiAdapter.setMore(R.layout.load_more_layout,this);
+        meiZhiAdapter.setNoMore(R.layout.no_more_layout);
+        meiZhiAdapter.setError(R.layout.error_layout);
+
+        rcyclerView.setAdapterWithProgress(meiZhiAdapter);
+    }
+
+    @Override
+    public void onLoadMore() {
+
     }
 
     static class GankRecyclerViewAdapter extends CommonAdapter<GankBean.ResultsBean> {
