@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/top" layout="@layout/titlebar_top" />
+    <ScrollView android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@id/vip_rights_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip">
+                <include android:id="@id/vip_card" android:layout_width="wrap_content" android:layout_height="wrap_content" layout="@layout/view_vip_card" />
+                <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:layout_gravity="right" android:id="@id/member_detail_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="会员详情" android:drawableRight="@drawable/arrow_action_member" android:drawablePadding="2.0dip" />
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="20.0dip" android:layout_marginBottom="8.0dip">
+                <TextView android:layout_gravity="center_vertical" android:id="@id/textView3" android:background="#ff9a9a9a" android:layout_width="30.0dip" android:layout_height="1.0px" android:layout_marginLeft="106.0dip" />
+                <TextView android:textSize="20.0sp" android:textColor="#ff323232" android:gravity="center_horizontal" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="会员权益" android:layout_weight="1.0" />
+                <TextView android:layout_gravity="center_vertical" android:id="@id/textView4" android:background="#ff9a9a9a" android:layout_width="30.0dip" android:layout_height="1.0px" android:layout_marginRight="106.0dip" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

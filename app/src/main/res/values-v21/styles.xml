@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!--  requires API level 21  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!--系统状态栏不写 默认为透明 requires API level 21 -->
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--这个并不是透明-->
+        <!--<item name="android:statusBarColor">#f109dd</item>-->
+    </style>
+</resources>

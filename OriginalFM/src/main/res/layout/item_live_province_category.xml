@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:minHeight="39.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="14.0sp" android:textColor="@color/live_text_dark" android:gravity="center" android:id="@id/item" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="7.5dip" android:text="@string/Inner_Mongolia" android:layout_centerInParent="true" />
+</RelativeLayout>

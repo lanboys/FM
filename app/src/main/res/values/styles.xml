@@ -1,0 +1,24 @@
+<resources>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <!-- toolbar color -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- 非系统 Status bar(不设置,默认为黑色)(在 api19时和沉浸式一起出现),系统 Status bar 在api21时,默认是透明,可以修改,api21 以下不能修改 -->
+        <!-- 代码中修改 getWindow().setStatusBarColor(Color.TRANSPARENT) -->
+        <!--<item name="colorPrimaryDark">#08ef08</item>-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+</resources>

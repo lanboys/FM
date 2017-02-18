@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/kf5_top_layout" android:background="@color/xima_title" android:layout_width="fill_parent" android:layout_height="@dimen/xima_titleheight_50dp" android:layout_alignParentTop="true">
+        <ImageView android:id="@id/kf5_return_img" android:visibility="visible" android:layout_width="50.0dip" android:layout_height="wrap_content" android:src="@drawable/btn_orange_back_selector" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:contentDescription="@null" android:layout_alignParentStart="true" />
+        <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@android:color/black" android:gravity="center" android:id="@id/kf5_right_text_view" android:padding="@dimen/kf5_dimen_4dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/kf5_dimen_12dp" android:text="@string/kf5_btn_submit" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_marginEnd="@dimen/kf5_dimen_12dp" android:layout_alignParentEnd="true" />
+        <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@android:color/black" android:id="@id/kf5_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/kf5_home_feedback_button" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <View android:id="@id/kf5_deliver" android:background="@color/kf5_line_deliver_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/kf5_top_layout" />
+    <EditText android:textSize="@dimen/kf5_text_size_18" android:textColor="@color/kf5_et_content_text_color" android:textColorHint="@color/kf5_et_hint_text_color" android:gravity="start|top|center" android:id="@id/kf5_feed_back_content_et" android:background="@android:color/white" android:padding="@dimen/kf5_dimen_16dp" android:focusable="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:hint="@string/kf5_edittext_hint" android:layout_above="@id/bottom_layout" android:layout_below="@id/kf5_deliver" />
+    <LinearLayout android:orientation="vertical" android:id="@id/bottom_layout" android:background="@android:color/white" android:padding="@dimen/kf5_dimen_8dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <ImageView android:id="@id/kf5_feed_back_choice_img" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/kf5_choice_img_source" android:contentDescription="@null" />
+        <LinearLayout android:orientation="vertical" android:id="@id/kf5_feed_back_image_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_4dp" />
+    </LinearLayout>
+</RelativeLayout>

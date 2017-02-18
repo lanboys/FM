@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/associate_list_item_album" android:background="@drawable/bg_list_selector" android:paddingLeft="20.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/cover" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="20.0dip" android:layout_centerVertical="true" />
+    <RelativeLayout android:id="@id/rl_search_suggest" android:paddingTop="5.0dip" android:paddingBottom="5.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_toLeftOf="@id/category" android:layout_toRightOf="@id/cover">
+        <TextView android:textSize="@dimen/text_size_16" android:textColor="@color/text_dark" android:ellipsize="end" android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+        <TextView android:textSize="@dimen/text_size_11" android:textColor="@color/text_color_gray" android:ellipsize="end" android:id="@id/subtitle" android:paddingTop="4.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="共102集" android:singleLine="true" android:layout_below="@id/title" android:layout_alignLeft="@id/title" />
+    </RelativeLayout>
+    <TextView android:textSize="@dimen/text_size_12" android:textColor="@color/text_light" android:ellipsize="end" android:id="@id/category" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/size_space_default" android:maxLines="1" android:singleLine="true" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <View android:id="@id/border" android:background="@color/border" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="40.0dip" android:layout_alignParentBottom="true" />
+</RelativeLayout>

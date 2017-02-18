@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/card_mask" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:src="@drawable/vip_card_mask" />
+    <LinearLayout android:orientation="vertical" android:id="@id/card_layout" android:background="#fff0f0f0" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/card_mask">
+        <include android:id="@id/vip_card" android:layout_width="fill_parent" android:layout_height="183.0dip" android:layout_marginLeft="43.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="43.0dip" layout="@layout/view_vip_card" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/card_mask_last" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="80.0dip" android:layout_alignBottom="@id/card_layout">
+        <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/vip_card_mask" />
+        <View android:background="#fff0f0f0" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </LinearLayout>
+</RelativeLayout>

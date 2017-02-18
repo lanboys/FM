@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:background="@drawable/kf5_user_search_bg" android:padding="@dimen/kf5_dimen_8dp" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/kf5_serch_reminder_layout" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/kf5_img_search" android:contentDescription="@null" />
+            <TextView android:textSize="18.0sp" android:textColor="#ff818181" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:text="@string/kf5_search" android:layout_marginStart="4.0dip" />
+        </LinearLayout>
+        <RelativeLayout android:id="@id/kf5_search_layout_content" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <EditText android:textSize="@dimen/kf5_text_l_size" android:id="@id/kf5_search_content_edittext" android:background="@null" android:padding="@dimen/kf5_dimen_2dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/kf5_search_hint" android:singleLine="true" android:imeOptions="actionSearch" />
+            <ImageView android:id="@id/kf5_img_delete_content" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/kf5_content_delete" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

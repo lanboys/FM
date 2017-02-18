@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include android:id="@id/head_layout" layout="@layout/titlebar_top" />
+    <ScrollView android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:id="@id/content_root" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <View android:id="@id/horizontal_divider" android:layout_width="fill_parent" android:layout_height="1.0px" />
+            <View android:layout_width="fill_parent" android:layout_height="10.0dip" />
+            <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:id="@id/ly_app_icons" android:background="@color/white" android:paddingTop="40.0dip" android:paddingBottom="28.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:id="@id/ly_xmly_icon" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/iv_xmyl_icon" android:saveEnabled="true" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip" android:src="@drawable/ting" android:scaleType="centerCrop" android:adjustViewBounds="false" app:corner_radius="5.0dip" />
+                    <TextView android:textSize="15.0sp" android:textColor="@color/sso_authorize_permissions_title_text_color" android:ellipsize="end" android:gravity="center" android:id="@id/tv_xmly_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/app_name" android:maxLines="1" />
+                </LinearLayout>
+                <ImageView android:id="@id/iv_arrow" android:layout_width="35.0dip" android:layout_height="20.0dip" android:layout_marginTop="18.0dip" android:src="@drawable/sso_icon_arrow" android:scaleType="fitXY" />
+                <LinearLayout android:orientation="vertical" android:id="@id/ly_third_app_icon" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/iv_third_app_icon" android:saveEnabled="true" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip" android:src="@drawable/sso_third_app_logo_default" android:scaleType="centerCrop" android:adjustViewBounds="false" app:corner_radius="5.0dip" />
+                    <TextView android:textSize="15.0sp" android:textColor="@color/sso_authorize_permissions_title_text_color" android:ellipsize="end" android:gravity="center" android:id="@id/tv_third_app_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:maxLines="1" />
+                </LinearLayout>
+            </LinearLayout>
+            <View android:background="#ffe8e8e8" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" />
+            <RelativeLayout android:gravity="center_vertical" android:id="@id/ly_user_info" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginTop="1.0dip">
+                <ImageView android:id="@id/iv_user_icon" android:layout_width="30.0dip" android:layout_height="fill_parent" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:src="@drawable/ting" android:scaleType="centerCrop" android:layout_alignParentLeft="true" />
+                <RelativeLayout android:gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_toRightOf="@id/iv_user_icon">
+                    <TextView android:textSize="15.0sp" android:textColor="@color/sso_authorize_change_account_text_color" android:gravity="center_vertical" android:id="@id/tv_change_account" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="2.0dip" android:text="@string/sso_authorize_change_account" android:layout_alignParentRight="true" />
+                    <TextView android:textSize="14.0sp" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/tv_user_nick" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginRight="2.0dip" android:maxLines="1" android:layout_toLeftOf="@id/tv_change_account" android:layout_alignParentLeft="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <LinearLayout android:orientation="vertical" android:id="@id/ll_permissions" android:paddingLeft="15.0dip" android:paddingRight="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="13.0sp" android:textColor="@color/sso_authorize_permissions_title_text_color" android:id="@id/tv_permissions_title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="@string/sso_authorize_permissions" android:maxLines="1" />
+                <LinearLayout android:orientation="vertical" android:id="@id/ll_permissions_content" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" />
+            </LinearLayout>
+            <Button android:textSize="16.0sp" android:textColor="@color/white" android:id="@id/btn_sso_authorize" android:background="@drawable/login_highlight_btn_bg" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginLeft="15.0dip" android:layout_marginTop="30.0dip" android:layout_marginRight="15.0dip" android:layout_marginBottom="50.0dip" android:text="@string/sso_btn_authorize" android:layout_centerHorizontal="true" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

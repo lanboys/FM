@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:background="@drawable/round_bg_white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:background="@drawable/hint_free_flow_dialog_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/rl_dialog_content" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="15.0sp" android:textColor="@color/text_color" android:gravity="top|left|center" android:id="@id/msg_tv" android:paddingTop="60.0dip" android:clickable="false" android:longClickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:minHeight="70.0dip" android:text="@string/sure_to_open" android:maxLines="12" android:lineSpacingMultiplier="1.2" />
+        <TextView android:textSize="16.0sp" android:textColor="@color/white" android:gravity="center" android:id="@id/freeflow_goto" android:background="@drawable/semicircle_rectangle_orange" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="35.0dip" android:layout_marginLeft="80.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="80.0dip" android:text="@string/open_free_flow_service" />
+        <View android:id="@id/btn_border" android:background="@color/border" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginTop="45.0dip" />
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/btn_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <Button android:textSize="16.0sp" android:textColor="@color/text_color" android:id="@id/neutral_btn" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="否" android:maxLines="1" android:layout_weight="1.0" style="@style/round_bottom_btn_left_bg" />
+            <View android:id="@id/btn_separator_border_2" android:background="@color/border" android:layout_width="1.0px" android:layout_height="fill_parent" />
+            <Button android:textSize="16.0sp" android:textColor="@color/text_color" android:id="@id/ok_btn" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="是" android:maxLines="1" android:layout_weight="1.0" style="@style/round_bottom_btn_right_bg" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView android:id="@id/freeflow_close" android:paddingLeft="16.0dip" android:paddingTop="8.0dip" android:paddingRight="8.0dip" android:paddingBottom="16.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/free_flow_dialog_close" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+</RelativeLayout>

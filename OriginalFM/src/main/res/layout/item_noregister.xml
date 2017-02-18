@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="left|center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="50.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/noregister_image" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:src="@drawable/ssh_shouji" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip">
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+            <TextView android:textSize="16.0dip" android:textColor="@color/black" android:id="@id/noregister_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="西瓜" />
+            <TextView android:textSize="12.0dip" android:textColor="@color/tab_text_color" android:id="@id/noregister_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="\ 15301666703" />
+        </LinearLayout>
+        <ImageButton android:id="@id/isinvite_btn" android:background="@drawable/follow_btn_on" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</LinearLayout>

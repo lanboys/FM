@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/bg_live_pop" android:layout_width="110.0dip" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListView android:id="@id/lv_live_giftnum_select" android:layout_width="fill_parent" android:layout_height="wrap_content" android:divider="#00000000" />
+    <View android:layout_width="fill_parent" android:layout_height="10.0dip" />
+</LinearLayout>

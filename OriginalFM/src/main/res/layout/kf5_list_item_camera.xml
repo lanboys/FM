@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kf5sdk.image.view.SquareFrameLayout android:background="#ff343535" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="14.0sp" android:textColor="#ffcdcece" android:gravity="center_horizontal" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/kf5_tip_take_photo" android:drawableTop="@drawable/kf5_asy" android:drawablePadding="10.0dip" />
+</com.kf5sdk.image.view.SquareFrameLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center" android:orientation="vertical" android:background="@drawable/round_bg_white" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="20.0dip">
+        <TextView android:textSize="15.0sp" android:textColor="@color/orange_new" android:gravity="center" android:id="@id/title_tv" android:layout_width="fill_parent" android:layout_height="50.0dip" />
+        <View android:id="@id/title_border" android:background="@color/border" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_below="@id/title_tv" />
+        <ListView android:id="@android:id/list" android:paddingBottom="3.0dip" android:scrollbars="none" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="wrap_content" android:cacheColorHint="@color/transparent" android:divider="@color/border" android:dividerHeight="1.0px" android:layout_below="@id/title_border" android:footerDividersEnabled="false" />
+    </RelativeLayout>
+</FrameLayout>

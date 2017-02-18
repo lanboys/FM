@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/title_bar" layout="@layout/titlebar_top" />
+    <com.ximalaya.ting.android.view.StickyNavLayout android:orientation="vertical" android:id="@id/album_stickynav" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/title_bar">
+        <RelativeLayout android:id="@id/id_stickynavlayout_topview" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <com.ximalaya.ting.android.view.AlbumViewPagerIndicator android:id="@id/id_stickynavlayout_indicator" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="50.0dip" />
+        <View android:background="#ffe8e8e8" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <com.ximalaya.ting.android.view.MyViewPager android:id="@id/id_stickynavlayout_viewpager" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </com.ximalaya.ting.android.view.StickyNavLayout>
+    <FrameLayout android:id="@id/fra_container_new" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/title_bar" />
+</RelativeLayout>

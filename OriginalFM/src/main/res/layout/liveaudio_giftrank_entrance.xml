@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/giftRankLl" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/rankIv" android:visibility="gone" android:layout_width="23.0dip" android:layout_height="23.0dip" android:layout_marginTop="2.0dip" android:layout_marginRight="6.0dip" android:src="@drawable/live_ic_topfans" />
+    <RelativeLayout android:id="@id/firstRl" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/firstAvatar" android:layout_width="25.0dip" android:layout_height="25.0dip" android:scaleType="centerCrop" makeramen:corner_radius="25.0dip" makeramen:round_background="true"
+          xmlns:makeramen="http://schemas.android.com/apk/res/com.ximalaya.ting.android" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="13.0dip" android:layout_marginBottom="-2.0dip" android:src="@drawable/live_ic_badge_top1" android:layout_alignBottom="@id/firstAvatar" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/secondRl" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="7.0dip">
+        <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/secondAvatar" android:layout_width="25.0dip" android:layout_height="25.0dip" android:scaleType="centerCrop" makeramen:corner_radius="25.0dip" makeramen:round_background="true"
+          xmlns:makeramen="http://schemas.android.com/apk/res/com.ximalaya.ting.android" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="13.0dip" android:layout_marginBottom="-2.0dip" android:src="@drawable/live_ic_badge_top2" android:layout_alignBottom="@id/secondAvatar" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/thirdRl" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="7.0dip">
+        <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/thirdAvatar" android:layout_width="25.0dip" android:layout_height="25.0dip" android:scaleType="centerCrop" makeramen:corner_radius="25.0dip" makeramen:round_background="true"
+          xmlns:makeramen="http://schemas.android.com/apk/res/com.ximalaya.ting.android" />
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="13.0dip" android:layout_marginBottom="-2.0dip" android:src="@drawable/live_ic_badge_top3" android:layout_alignBottom="@id/thirdAvatar" />
+    </RelativeLayout>
+    <TextView android:textSize="13.0sp" android:textColor="@color/white" android:gravity="center" android:layout_gravity="center_vertical" android:id="@id/rank_text" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="粉丝榜" android:drawableRight="@drawable/arrow_white_right" android:drawablePadding="5.0dip" />
+    <ImageView android:id="@id/giftRankArrorIv" android:visibility="gone" android:layout_width="7.0dip" android:layout_height="12.0dip" android:layout_marginLeft="5.0dip" android:layout_marginTop="6.0dip" android:layout_marginRight="10.0dip" android:src="@drawable/arrow_gray_right" />
+</LinearLayout>

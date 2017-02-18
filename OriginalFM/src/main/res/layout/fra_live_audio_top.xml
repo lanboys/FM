@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/live_audio_top_layout" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/status_space" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_alignParentTop="true" android:contentDescription="@string/title_bar_contentDescription" />
+    <ViewStub android:id="@id/playStateFl" android:layout="@layout/fra_live_ppt_play" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentTop="true" />
+    <include android:id="@id/timingVs" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:layout_marginBottom="10.0dip" android:layout_below="@id/status_space" layout="@layout/layout_live_play_timing" />
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/timingVs" layout="@layout/liveaudio_annoucement_marquee" />
+</RelativeLayout>

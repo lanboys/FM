@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/album_radio_selected_2" />
+    <corners android:topLeftRadius="4.0dip" android:topRightRadius="4.0dip" android:bottomLeftRadius="4.0dip" android:bottomRightRadius="4.0dip" />
+    <padding android:left="@dimen/bg_btn_padding_left" android:top="7.0dip" android:right="@dimen/bg_btn_padding_right" android:bottom="7.0dip" />
+</shape>

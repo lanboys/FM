@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="@dimen/carlink_title_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="0.0px" android:layout_marginLeft="@dimen/common_half_margin" android:layout_marginRight="@dimen/common_half_margin" android:layout_weight="1.0">
+        <ImageView android:id="@id/logo" android:layout_width="@dimen/carlink_main_side_menu_width" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/common_half_margin" android:src="@drawable/title_logo" android:scaleType="fitCenter" />
+        <TextView android:textSize="@dimen/first_title" android:textColor="@color/first_title" android:gravity="center" android:id="@id/back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/common_margin" android:text="@string/go_back" android:drawableLeft="@drawable/myspin_carlink_top_btn_back" />
+        <TextView android:gravity="center" android:id="@id/title" android:layout_width="0.0px" android:layout_height="fill_parent" android:layout_weight="1.0" />
+        <ImageView android:id="@id/go_play" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginRight="@dimen/common_half_margin" android:src="@drawable/myspin_carlink_top_btn_playing" />
+    </LinearLayout>
+    <View android:background="@color/carlink_divider" android:layout_width="fill_parent" android:layout_height="1.0px" />
+</LinearLayout>

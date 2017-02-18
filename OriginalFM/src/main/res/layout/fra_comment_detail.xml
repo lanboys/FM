@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:emotion="http://schemas.android.com/apk/res-auto">
+    <include android:id="@id/title" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height" layout="@layout/titlebar_top" />
+    <include android:id="@id/detail" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/title" layout="@layout/item_album_common_comment" />
+    <TextView android:gravity="center_vertical" android:id="@id/tv_all_reply" android:background="@color/white" android:paddingLeft="12.0dip" android:layout_width="fill_parent" android:layout_height="44.0dip" android:layout_marginTop="10.0dip" android:text="@string/all_reply" android:layout_below="@id/detail" />
+    <com.ximalaya.ting.android.framework.view.refreshload.RefreshLoadMoreListView android:id="@id/lv_reply" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="50.0dip" android:divider="@null" android:dividerHeight="0.0dip" android:layout_below="@id/tv_all_reply" />
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <View android:background="@drawable/bg_tab_gradient" android:layout_width="fill_parent" android:layout_height="4.0dip" />
+        <include android:id="@id/bottom_bar" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_above="@id/view_emotion" layout="@layout/layout_write_comment" />
+        <com.ximalaya.ting.android.view.EmotionSelector android:id="@id/view_emotion" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" emotion:show_emotion_bar="false" emotion:show_input="false" emotion:max_line="10" emotion:max_char="140" emotion:emotion_icon="@array/emotion_icons" emotion:emotion_name="@array/emotion_names" />
+    </LinearLayout>
+    <View android:id="@id/overlay" android:background="#6c000000" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/carlink_bg_black" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:orientation="vertical" android:id="@id/album_info_bar" android:layout_width="@dimen/carlink_album_side_width" android:layout_height="fill_parent" android:layout_below="@id/carlink_content_title_bar" android:layout_alignParentLeft="true">
+        <LinearLayout android:orientation="horizontal" android:id="@id/l_cover" android:background="@drawable/myspin_nav_img_current" android:layout_width="fill_parent" android:layout_height="90.0dip" android:layout_marginTop="@dimen/common_half_margin">
+            <ImageView android:id="@id/cover" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="20.0dip" android:layout_marginTop="-5.0dip" android:layout_marginRight="10.0dip" android:src="@drawable/image_default_145" android:scaleType="fitCenter" />
+        </LinearLayout>
+        <TextView android:textSize="@dimen/first_title" android:textColor="@color/navi_normal" android:gravity="top|center" android:id="@id/album_title" android:background="@drawable/myspin_nav_img_line" android:paddingLeft="@dimen/common_half_margin" android:paddingTop="@dimen/common_half_margin" android:paddingBottom="@dimen/common_half_margin" android:layout_width="fill_parent" android:layout_height="fill_parent" android:maxLines="2" android:layout_below="@id/l_cover" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@id/album_detail" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_toRightOf="@id/album_info_bar" android:layout_below="@id/carlink_content_title_bar" android:layout_alignParentRight="true" />
+    <include android:layout_gravity="top" android:id="@id/carlink_content_title_bar" android:layout_width="fill_parent" android:layout_height="@dimen/carlink_title_bar_height" layout="@layout/myspin_layout_title_bar" />
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="#00000000" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:background="#ffffffff" android:clickable="true" android:layout_width="fill_parent" android:layout_height="300.0dip" android:layout_alignParentBottom="true">
+        <TextView android:textSize="12.0sp" android:textColor="#ffffffff" android:gravity="left|center" android:id="@id/album_count" android:background="#fff86442" android:paddingLeft="10.0dip" android:layout_width="fill_parent" android:layout_height="25.0dip" android:text="@string/album_selected" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/create_album" android:background="@drawable/item_bg_selector" android:layout_width="fill_parent" android:layout_height="60.0dip">
+            <ImageView android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="5.0dip" android:layout_marginBottom="5.0dip" android:src="@drawable/create_album" android:scaleType="fitCenter" />
+            <TextView android:textSize="16.0sp" android:textColor="#fff86442" android:gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="5.0dip" android:text="@string/album_create" />
+        </LinearLayout>
+        <View android:background="@color/item_border_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <com.ximalaya.ting.android.framework.view.refreshload.RefreshLoadMoreListView android:id="@id/listview" android:paddingBottom="@dimen/bottom_bar_height" android:scrollbars="none" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:listSelector="@drawable/item_bg_selector" android:divider="@color/transparent" android:dividerHeight="1.0dip" android:overScrollMode="always" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/rl_top_bar" android:background="#ff2f3031" android:paddingTop="@dimen/statu_height" android:clickable="true" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/back_btn" android:clickable="true" android:layout_width="@dimen/title_bar_button_width" android:layout_height="fill_parent" android:src="@drawable/icon_rec_back" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:contentDescription="返回" />
+    <TextView android:textSize="18.0sp" android:textColor="#ffffffff" android:ellipsize="marquee" android:gravity="center" android:id="@id/title_tv" android:layout_width="wrap_content" android:layout_height="fill_parent" android:maxWidth="150.0dip" android:text="录音" android:singleLine="true" android:drawablePadding="5.0dip" android:layout_above="@id/prompt" android:layout_centerInParent="true" android:layout_centerHorizontal="true" />
+    <ImageView android:id="@id/next_img" android:visibility="visible" android:clickable="true" android:layout_width="@dimen/title_bar_button_width" android:layout_height="fill_parent" android:src="@drawable/rec_btn_help" android:scaleType="centerInside" android:layout_alignParentRight="true" />
+</RelativeLayout>

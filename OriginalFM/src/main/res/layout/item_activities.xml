@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/iv_bg" android:layout_width="fill_parent" android:layout_height="150.0dip" android:src="@drawable/focus_img_nonet" android:scaleType="centerCrop" />
+    <ImageView android:id="@id/iv_hot_flag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_hot_flag" android:layout_alignParentTop="true" />
+    <RelativeLayout android:background="#9a000000" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <TextView android:textSize="14.0sp" android:textColor="@color/white" android:ellipsize="end" android:id="@id/tv_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="123" android:maxLines="1" android:layout_alignParentLeft="true" />
+        <TextView android:textSize="14.0sp" android:textColor="@color/hot_activity_text_color" android:id="@id/tv_status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="活动中" android:drawableLeft="@drawable/ic_activity_in" android:drawablePadding="2.0dip" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</RelativeLayout>

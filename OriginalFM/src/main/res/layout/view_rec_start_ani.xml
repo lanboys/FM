@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:background="@drawable/bg_start_rec_ani" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="60.0sp" android:textColor="#ffffffff" android:id="@id/time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" />
+    <TextView android:textSize="15.0sp" android:textColor="#ffffffff" android:id="@id/word" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3 秒后开始" />
+</LinearLayout>

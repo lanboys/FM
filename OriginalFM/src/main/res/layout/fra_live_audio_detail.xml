@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.handmark.pulltorefresh.library.PullToRefreshScrollView android:id="@id/live_audio_detail_sv" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent" ptr:ptrHeaderBackground="#00000000" ptr:ptrHeaderTextColor="@color/white" ptr:ptrDrawable="@drawable/white_ptr_rotate"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ptr="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/scroll_child" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <View android:id="@id/status_space" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_alignParentTop="true" android:contentDescription="@string/title_bar_contentDescription" />
+        <FrameLayout android:id="@id/detail_top" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/status_space" />
+        <FrameLayout android:id="@id/detail_bottom" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/detail_top" />
+    </RelativeLayout>
+</com.handmark.pulltorefresh.library.PullToRefreshScrollView>

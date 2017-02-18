@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:id="@id/layout_bg_coupon" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="15.0dip" android:layout_below="@id/layout_album_tips">
+        <View android:id="@id/bg_coupon_description" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="64.0dip" android:layout_marginLeft="12.0dip" android:layout_weight="1.25" />
+        <View android:id="@id/bg_coupon_value" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="64.0dip" android:layout_marginRight="12.0dip" android:layout_weight="1.0" android:layout_toRightOf="@id/bg_coupon_description" android:layout_below="@id/layout_album_tips" />
+    </LinearLayout>
+    <TextView android:textSize="11.0sp" android:textColor="@color/color_fc5832" android:gravity="center_vertical" android:id="@id/tv_ticket_type" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="64.0dip" android:layout_marginLeft="26.0dip" android:text="@string/coupon" android:ems="1" android:layout_alignTop="@id/layout_bg_coupon" />
+    <View android:id="@id/line_divider" android:background="@color/color_fc5832" android:visibility="gone" android:layout_width="1.0px" android:layout_height="45.0dip" android:layout_marginLeft="7.0dip" android:layout_marginTop="9.0dip" android:layout_toRightOf="@id/tv_ticket_type" android:layout_alignTop="@id/layout_bg_coupon" />
+    <TextView android:textSize="15.0sp" android:textColor="@color/color_fc5832" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/tv_ticket_content" android:visibility="gone" android:layout_width="135.0dip" android:layout_height="64.0dip" android:layout_marginLeft="19.0dip" android:maxLines="2" android:layout_toRightOf="@id/tv_ticket_type" android:layout_alignTop="@id/layout_bg_coupon" />
+    <TextView android:textSize="16.0sp" android:textColor="@color/white" android:gravity="center_vertical" android:id="@id/tv_ticket_click_tip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="64.0dip" android:layout_marginRight="22.0dip" android:text="立即领券" android:ems="2" android:layout_alignTop="@id/layout_bg_coupon" android:layout_alignParentRight="true" />
+    <LinearLayout android:gravity="center_horizontal" android:paddingRight="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="100.0dip" android:layout_toLeftOf="@id/tv_ticket_click_tip" android:layout_alignTop="@id/layout_bg_coupon">
+        <TextView android:textSize="38.0sp" android:textColor="@color/white" android:gravity="center_vertical" android:id="@id/tv_ticket_value" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="64.0dip" android:text="100" />
+        <TextView android:textSize="12.0sp" android:textColor="@color/white" android:id="@id/tv_ticket_value_tag" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="喜点" />
+    </LinearLayout>
+</merge>

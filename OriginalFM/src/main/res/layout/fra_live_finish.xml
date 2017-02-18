@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/finishBackRl" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center" android:id="@id/participationTv_layout" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_toLeftOf="@id/finish_top_diver">
+        <TextView android:textSize="15.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/participation_st" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/live_over" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="20.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/participationTv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/live_participation" android:layout_below="@id/participation_st" android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <View android:id="@id/finish_top_diver" android:layout_width="1.0px" android:layout_height="wrap_content" android:layout_alignTop="@id/participationTv_layout" android:layout_alignBottom="@id/participationTv_layout" android:layout_centerHorizontal="true" />
+    <RelativeLayout android:id="@id/finish_play_back_layout" android:background="@drawable/bg_live_compose_start" android:paddingLeft="25.0dip" android:paddingTop="10.0dip" android:paddingRight="25.0dip" android:paddingBottom="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_toRightOf="@id/finish_top_diver" android:layout_alignTop="@id/participationTv_layout">
+        <ImageView android:id="@id/live_play_back" android:background="@drawable/live_btn_replay" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginLeft="10.0dip" />
+        <TextView android:textColor="@color/white" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:text="收听回放" android:maxLines="1" android:layout_toRightOf="@id/live_play_back" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_below="@id/participationTv_layout">
+        <TextView android:textSize="14.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/listenBackBt" android:background="@drawable/live_audio_listenback" android:layout_width="86.0dip" android:layout_height="34.0dip" />
+    </LinearLayout>
+</RelativeLayout>

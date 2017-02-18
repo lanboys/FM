@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/header" android:background="@drawable/live_super_gift_header_selector" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="30.0dip" android:layout_centerHorizontal="true">
+        <com.ximalaya.ting.android.framework.view.RoundedImageView android:id="@id/super_gift_avatar" android:layout_width="30.0dip" android:layout_height="30.0dip" android:scaleType="centerCrop" android:layout_alignParentLeft="true" app:corner_radius="15.0dip" app:pressdown_shade="true" />
+        <TextView android:textSize="13.0sp" android:textColor="@color/white" android:ellipsize="end" android:id="@id/super_gift_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:maxWidth="70.0dip" android:singleLine="true" android:layout_toRightOf="@id/super_gift_avatar" android:layout_centerVertical="true" />
+        <TextView android:textSize="13.0sp" android:textColor="#ff0375f7" android:id="@id/super_gift_send_tip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:singleLine="true" android:layout_toRightOf="@id/super_gift_name" android:layout_centerVertical="true" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff0375f7" android:id="@id/super_gift_send_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:singleLine="true" android:layout_toRightOf="@id/super_gift_send_tip" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <com.ximalaya.ting.android.view.giftpop.SuperGiftView android:id="@id/super_view" android:layout_width="250.0dip" android:layout_height="250.0dip" android:layout_below="@id/header" android:layout_centerHorizontal="true" />
+</merge>

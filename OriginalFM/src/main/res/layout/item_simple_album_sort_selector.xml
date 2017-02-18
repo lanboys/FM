@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textColor="#ffff8f19" android:gravity="center_vertical" android:id="@id/tv_thief_listen_tip" android:background="@color/color_fff8f0" android:paddingLeft="96.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="52.0dip" android:layout_marginBottom="10.0dip" android:text="您还有一个免费听特权没有行使哦～" />
+    <ImageView android:id="@id/iv_thief_listen_tip" android:visibility="gone" android:layout_width="79.0dip" android:layout_height="52.0dip" android:layout_marginLeft="7.0dip" android:src="@drawable/icon_thief_listen_title" />
+    <ImageView android:id="@id/iv_thief_listen_tip_arrow" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="52.0dip" android:layout_marginRight="15.0dip" android:src="@drawable/arrow_light_orange_right" android:layout_alignParentRight="true" />
+    <TextView android:textSize="13.0sp" android:textColor="@color/text_light" android:gravity="left|center" android:id="@id/sound_count" android:background="@color/white" android:paddingLeft="12.0dip" android:layout_width="fill_parent" android:layout_height="49.0dip" android:layout_below="@id/tv_thief_listen_tip" />
+    <TextView android:textSize="13.0sp" android:textColor="@color/text_dark" android:gravity="center_vertical" android:id="@id/sort" android:layout_width="wrap_content" android:layout_height="49.0dip" android:layout_marginRight="15.0dip" android:text="@string/sort" android:drawableLeft="@drawable/ic_album_sort_asc" android:drawablePadding="5.0dip" android:layout_alignTop="@id/sound_count" android:layout_alignParentRight="true" />
+</RelativeLayout>

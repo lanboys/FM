@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ximalaya.ting.android.fragment.liveaudio.grandson.RelativeLayoutForPPTLive android:id="@id/pageRl" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.ximalaya.ting.android.view.NoScrollViewPager android:id="@id/pager" android:background="@color/color_b3000000" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_centerHorizontal="true" android:overScrollMode="never" />
+    <ImageView android:id="@id/live_ppt_mask" android:background="@drawable/live_bg_mask_ppt" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ImageView android:id="@id/menuIv" android:padding="10.0dip" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/liveaudio_seeall" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/fullScreenIv" android:padding="10.0dip" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/liveaudio_fullscreen" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+    <TextView android:textSize="10.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/pagerIndexTv" android:background="@drawable/live_audio_play_index_back" android:paddingLeft="5.0dip" android:paddingRight="5.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="16.0dip" android:layout_marginTop="12.0dip" android:layout_marginRight="10.0dip" android:text="10/13" android:layout_alignParentRight="true" />
+</com.ximalaya.ting.android.fragment.liveaudio.grandson.RelativeLayoutForPPTLive>

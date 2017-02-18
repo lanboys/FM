@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/add_music" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip" android:layout_marginBottom="10.0dip" android:src="@drawable/rec_btn_music_add" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+    <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:id="@id/music_duration" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00" android:layout_toRightOf="@id/add_music" android:layout_alignBottom="@id/add_music" />
+    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:ellipsize="end" android:id="@id/music_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="歌名" android:width="200.0dip" android:singleLine="true" android:layout_toRightOf="@id/add_music" android:layout_above="@id/music_duration" />
+    <ImageView android:id="@id/play_and_pause" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:src="@drawable/rec_btn_music_play" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+</RelativeLayout>

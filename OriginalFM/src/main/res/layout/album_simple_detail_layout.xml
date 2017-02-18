@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:background="@drawable/other_user_detail_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:paddingBottom="65.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ImageView android:layout_gravity="right" android:id="@id/close_anchor_detail" android:padding="10.0dip" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginRight="15.0dip" android:src="@drawable/close_btn_selector" />
+        <ImageView android:layout_gravity="center_horizontal" android:id="@id/header_img" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginRight="30.0dip" android:src="@drawable/image_album_cover_default" android:scaleType="centerCrop" />
+        <TextView android:textSize="14.0sp" android:textColor="@color/text_medium" android:ellipsize="end" android:gravity="left|center" android:id="@id/intro_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="30.0dip" android:maxLength="150" android:lineSpacingExtra="15.0px" />
+        <TextView android:textSize="15.0sp" android:textColor="@color/text_dark" android:autoLink="all" android:id="@id/more_intro" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="30.0dip" android:text="@string/more_intro" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="208" android:drawable="@drawable/live_empty_bg" />
+    <item android:duration="66" android:drawable="@drawable/live_img_circle_00" />
+    <item android:duration="66" android:drawable="@drawable/live_img_circle_01" />
+    <item android:duration="66" android:drawable="@drawable/live_img_circle_02" />
+    <item android:duration="67" android:drawable="@drawable/live_img_circle_03" />
+    <item android:duration="67" android:drawable="@drawable/live_img_circle_04" />
+    <item android:duration="67" android:drawable="@drawable/live_img_circle_05" />
+    <item android:duration="67" android:drawable="@drawable/live_img_circle_06" />
+    <item android:duration="67" android:drawable="@drawable/live_img_circle_07" />
+    <item android:duration="592" android:drawable="@drawable/live_empty_bg" />
+</animation-list>

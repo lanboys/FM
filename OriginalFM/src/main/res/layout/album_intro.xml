@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/album_intro_container" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/top_bar" layout="@layout/titlebar_top" />
+    <ScrollView android:id="@id/album_intro_bar" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/top_bar">
+        <LinearLayout android:orientation="vertical" android:id="@id/bg" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center_vertical" android:id="@id/ly_activity" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:layout_marginBottom="30.0dip">
+                <TextView android:textSize="14.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="参与活动：" />
+                <TextView android:textSize="13.0sp" android:textColor="#fff86442" android:gravity="center" android:id="@id/activity" android:background="@drawable/semicircle_rectangle_orange_line" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="25.0dip" android:layout_marginLeft="10.0dip" android:lines="1" />
+            </LinearLayout>
+            <TextView android:textSize="24.0sp" android:textStyle="bold" android:textColor="#ff333333" android:id="@id/tv_track_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="15.0dip" android:layout_marginRight="20.0dip" android:lineSpacingExtra="6.0dip" />
+            <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:id="@id/play_num_and_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="10.0dip" android:layout_marginBottom="26.0dip" android:layout_centerVertical="true" />
+            <TextView android:textSize="18.0sp" android:textColor="#ff666666" android:id="@id/short_intro" android:layout_width="fill_parent" android:layout_height="wrap_content" android:lineSpacingExtra="15.0dip" />
+            <ViewStub android:id="@id/view_stub_webview" android:layout="@layout/webview_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

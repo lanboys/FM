@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/bg_list_selector" android:paddingTop="4.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/container" android:paddingTop="8.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_toRightOf="@id/cover" android:layout_alignTop="@id/cover">
+        <TextView android:textSize="14.0sp" android:textColor="@color/text_dark" android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="50.0dip" android:text="购买 sdfsafsdfsdf专辑sdfsdfdsfsdfsd《天南水北》 共53集" android:maxLines="2" />
+        <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:id="@id/tv_is_success" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="@string/success" android:layout_alignTop="@id/title" android:layout_alignParentRight="true" />
+        <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:id="@id/tv_consume_type" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="@string/consume_type" android:layout_below="@id/title" />
+        <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:id="@id/tv_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="2015-12-02 10:28" android:maxLines="1" android:layout_below="@id/tv_consume_type" />
+        <TextView android:textSize="12.0sp" android:textColor="#fffc5832" android:id="@id/tv_money_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="120.0dip" android:layout_marginRight="5.0dip" android:text="-280" android:layout_toLeftOf="@id/textView1" android:layout_alignBottom="@id/tv_time" />
+        <TextView android:textSize="12.0sp" android:textColor="@color/black" android:id="@id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/xidian" android:layout_alignRight="@id/tv_is_success" android:layout_alignBottom="@id/tv_time" />
+    </RelativeLayout>
+    <View android:id="@id/border" android:background="@color/border" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginTop="10.0dip" android:layout_below="@id/container" android:layout_alignLeft="@id/container" />
+</RelativeLayout>

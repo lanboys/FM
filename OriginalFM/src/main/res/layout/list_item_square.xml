@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center_vertical" android:id="@id/item_root" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <include android:id="@id/divider" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_alignLeft="@id/title_tv" android:layout_alignParentTop="true" layout="@layout/item_divider_1px" />
+        <ImageView android:id="@id/first_icon" android:layout_width="26.0dip" android:layout_height="26.0dip" android:layout_marginLeft="18.0dip" android:layout_marginTop="13.0dip" android:layout_marginBottom="11.0dip" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@id/title_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="16.0dip" android:text="@string/main_title" android:maxLines="1" android:maxLength="9" android:layout_toRightOf="@id/first_icon" />
+        <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:id="@id/subtitle_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="17.0dip" android:layout_marginRight="5.0dip" android:text="@string/subtitle" android:maxLines="1" android:maxLength="13" android:layout_toLeftOf="@id/second_icon" />
+        <ImageView android:id="@id/second_icon" android:layout_width="26.0dip" android:layout_height="26.0dip" android:layout_marginTop="12.0dip" android:layout_marginRight="5.0dip" android:layout_toLeftOf="@id/red_icon" />
+        <ImageView android:id="@id/red_icon" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="6.0dip" android:src="@drawable/ic_red_dot" android:layout_toLeftOf="@id/action_iv" />
+        <ImageView android:id="@id/action_iv" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/ic_more" android:layout_alignTop="@id/title_tv" android:layout_alignBottom="@id/title_tv" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</LinearLayout>

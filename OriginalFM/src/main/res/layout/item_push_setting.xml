@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="50.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="16.0sp" android:textColor="@color/myspace_comment_text" android:gravity="left|center" android:id="@id/pushname" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:minHeight="50.0dip" android:text="@string/setting_push_stopnotice" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+    <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/ispush" android:layout_width="80.0dip" android:layout_height="28.0dip" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <View android:id="@id/border" android:background="@color/border_gray" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="10.0dip" android:layout_below="@id/pushname" />
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_tab_title">
+        <item>首页</item>
+        <item>妹子</item>
+        <item>发现</item>
+        <item>我的</item>
+    </string-array>
+    <string-array name="home_tab_title">
+        <item>推荐</item>
+        <item>热门</item>
+        <item>主播</item>
+        <item>分类</item>
+        <item>榜单</item>
+
+    </string-array>
+    <string-array name="girl_tab_title">
+        <item>Gank</item>
+        <item>Gank</item>
+        <item>Gank</item>
+        <item>Gank</item>
+    </string-array>
+
+    <integer-array name="main_tab_image">
+        <item>@drawable/tab1_selector</item>
+        <item>@drawable/tab2_selector</item>
+        <item>@drawable/tab3_selector</item>
+        <item>@drawable/tab4_selector</item>
+    </integer-array>
+
+    <array name="indicator_colors">
+        <item>@color/indicator_1</item>
+        <item>@color/indicator_2</item>
+        <item>@color/indicator_3</item>
+        <item>@color/indicator_4</item>
+        <item>@color/indicator_5</item>
+    </array>
+
+    <!--<color name="indicator_1">#55B3C2</color>-->
+    <!--<color name="indicator_2">#64A4A4</color>-->
+    <!--<color name="indicator_3">#66D7B9</color>-->
+    <!--<color name="indicator_4">#FDBC7D</color>-->
+    <!--<color name="indicator_5">#FDBC7D</color>-->
+</resources>

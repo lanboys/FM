@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/wavePlayRl" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/backWaveIv" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginRight="@dimen/live_wave_maring_right" android:src="@drawable/live_bg_wave1" android:scaleType="fitXY" />
+    <ImageView android:id="@id/backWaveIv2" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginRight="@dimen/live_wave_maring_right" android:src="@drawable/live_bg_wave1" android:scaleType="fitXY" />
+    <ImageView android:id="@id/middleWaveIv" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginRight="@dimen/live_wave_maring_right" android:src="@drawable/live_bg_wave2" android:scaleType="fitXY" />
+    <ImageView android:id="@id/middleWaveIv2" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginRight="@dimen/live_wave_maring_right" android:src="@drawable/live_bg_wave2" android:scaleType="fitXY" />
+    <ImageView android:id="@id/frontWaveIv" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginRight="@dimen/live_wave_maring_right" android:src="@drawable/live_bg_wave3" android:scaleType="fitXY" />
+    <ImageView android:id="@id/frontWaveIv2" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginRight="@dimen/live_wave_maring_right" android:src="@drawable/live_bg_wave3" android:scaleType="fitXY" />
+</RelativeLayout>

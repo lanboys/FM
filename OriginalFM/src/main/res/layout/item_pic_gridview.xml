@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/iv_add" android:layout_width="65.0dip" android:layout_height="65.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="7.0dip" android:src="@drawable/btn_add_pic" android:scaleType="centerCrop" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+    <ImageView android:id="@id/iv_image" android:layout_width="65.0dip" android:layout_height="65.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="7.0dip" android:scaleType="centerCrop" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+    <ImageView android:id="@id/iv_delete_btn" android:visibility="gone" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginTop="-8.0dip" android:layout_marginRight="-7.0dip" android:src="@drawable/ic_del" android:scaleType="fitXY" android:layout_alignTop="@id/iv_image" android:layout_alignRight="@id/iv_image" />
+</RelativeLayout>

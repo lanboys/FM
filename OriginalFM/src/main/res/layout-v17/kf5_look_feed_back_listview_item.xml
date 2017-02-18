@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/kf5_list_item_seletecd_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:padding="@dimen/kf5_dimen_12dp" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/kf5_look_feed_back_listitem_update" android:background="@drawable/kf5_point" android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="@null" />
+        <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_4dp" android:layout_weight="1.0" android:layout_marginStart="@dimen/kf5_dimen_4dp">
+            <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@color/kf5_look_feed_back_list_item_title_color" android:id="@id/kf5_look_feed_back_listitem_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_8dp">
+                <TextView android:textSize="@dimen/kf5_text_m_size" android:textColor="@color/kf5_look_feed_back_list_item_date_color" android:gravity="start" android:layout_gravity="center_vertical" android:id="@id/kf5_look_feed_back_listitem_date" android:layout_width="0.0dip" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" />
+                <TextView android:textSize="@dimen/kf5_text_m_size" android:textColor="@color/kf5_look_feed_back_list_item_date_color" android:gravity="end" android:layout_gravity="center_vertical" android:id="@id/kf5_look_feed_back_listitem_statu" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginRight="@dimen/kf5_dimen_4dp" android:singleLine="true" android:layout_weight="1.0" android:layout_marginEnd="@dimen/kf5_dimen_4dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/kf5_jump_icon" android:contentDescription="@null" />
+    </LinearLayout>
+    <View android:background="@color/kf5_line_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="30.0dip" android:layout_marginStart="30.0dip" />
+</LinearLayout>

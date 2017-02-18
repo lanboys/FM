@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@color/bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/include" layout="@layout/titlebar_top" />
+    <RelativeLayout android:id="@id/rl_tempRl" android:paddingLeft="15.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_alignParentBottom="true">
+        <TextView android:textColor="@android:color/black" android:id="@id/txt_canInputeHowMuchWord" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/words_can_input" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <EditText android:gravity="top" android:id="@id/et_send_comment" android:background="@android:color/white" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="-4.0dip" android:layout_above="@id/rl_tempRl" android:layout_below="@id/include" />
+</RelativeLayout>

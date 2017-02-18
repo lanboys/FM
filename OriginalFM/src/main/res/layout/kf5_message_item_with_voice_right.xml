@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingTop="@dimen/kf5_dimen_8dp" android:paddingBottom="@dimen/kf5_dimen_8dp" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/kf5_text_size_14" android:textColor="@android:color/white" android:layout_gravity="center_horizontal" android:id="@id/kf5_tvDate" android:background="@drawable/kf5_message_item_with_date_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_8dp" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_16dp">
+        <com.kf5sdk.view.CircleImageView android:id="@id/kf5_message_item_with_voice_head_img" android:layout_width="48.0dip" android:layout_height="48.0dip" android:layout_marginRight="@dimen/kf5_dimen_8dp" android:layout_alignParentRight="true" android:contentDescription="@null" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_32dp" android:layout_marginRight="@dimen/kf5_dimen_4dp" android:layout_toLeftOf="@id/kf5_message_item_with_voice_head_img" android:layout_alignTop="@id/kf5_message_item_with_voice_head_img">
+            <RelativeLayout android:layout_gravity="center" android:id="@id/kf5_progress_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/kf5_dimen_4dp">
+                <ProgressBar android:id="@id/kf5_progressbar" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" style="?android:attr/progressBarStyleSmall" />
+            </RelativeLayout>
+            <TextView android:textSize="@dimen/kf5_text_size_16" android:textColor="@android:color/white" android:gravity="start|center" android:id="@id/kf5_message_item_with_voice" android:background="@drawable/kf5_message_to_with_text_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/kf5_dimen_4dp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

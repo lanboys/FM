@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ximalaya.ting.android.view.StretchScrollView android:id="@id/all_myspace" android:paddingBottom="25.0dip" android:scrollbars="none" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <include android:id="@id/header" layout="@layout/fra_myspace_header" />
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="15.0dip">
+            <TextView android:id="@id/tv_newcenter" android:text="@string/my_center" android:drawableLeft="@drawable/wd_ic_massage" style="@style/setting_text_title" />
+            <TextView android:textSize="13.0sp" android:textColor="@color/orange" android:gravity="center_vertical" android:id="@id/tv_msg_noread_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="25.0dip" android:layout_marginBottom="15.0dip" android:layout_alignRight="@id/tv_newcenter" android:layout_centerVertical="true" />
+            <TextView android:textSize="10.0sp" android:textColor="@color/white" android:gravity="center" android:id="@id/tv_newscenter_noread_num" android:background="@drawable/badge_bg" android:visibility="gone" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="30.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            <ImageView android:id="@id/iv_noread_reddot" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="35.0dip" android:src="@drawable/ic_red_dot" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <TextView android:id="@id/tv_buyed_sound" android:layout_marginBottom="1.0px" android:text="@string/mine_buyed" android:drawableLeft="@drawable/ic_wd_buy" style="@style/setting_text_title" />
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="15.0dip">
+            <TextView android:id="@id/tv_my_money_balance" android:text="@string/my_wallet" android:drawableLeft="@drawable/ic_wd_ximoney" style="@style/setting_text_title" />
+            <TextView android:textSize="13.0sp" android:textColor="@color/orange" android:gravity="center_vertical" android:id="@id/tv_balance_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="25.0dip" android:layout_marginBottom="15.0dip" android:layout_alignRight="@id/tv_my_money_balance" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <TextView android:id="@id/tv_my_praise" android:layout_marginBottom="1.0px" android:text="@string/praised" android:drawableLeft="@drawable/ic_wd_like" style="@style/setting_text_title" />
+        <RelativeLayout android:orientation="vertical" android:id="@id/tv_free_flow" android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="1.0px" android:minHeight="50.0dip">
+            <TextView android:id="@id/free_flow_content" android:clickable="false" android:text="@string/free_flow_service" android:drawableLeft="@drawable/unicom_img" style="@style/setting_text_title" />
+            <TextView android:textSize="14.0sp" android:textColor="#ffcccccc" android:id="@id/free_flow_hint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="12.0dip" android:text="已开通" android:layout_toLeftOf="@id/free_flow_image" android:layout_centerVertical="true" />
+            <ImageView android:id="@id/free_flow_image" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/ic_more" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <TextView android:id="@id/tv_hardware" android:layout_marginBottom="15.0dip" android:text="@string/intelligent_hardware_device" android:maxEms="8" android:drawableLeft="@drawable/ic_wd_robot" style="@style/setting_text_title" />
+        <RelativeLayout android:orientation="vertical" android:id="@id/tv_more" android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginBottom="1.0px" android:minHeight="50.0dip">
+            <TextView android:clickable="false" android:layout_width="wrap_content" android:text="更多" android:drawableLeft="@drawable/ic_myspace_more" android:drawableRight="@null" style="@style/setting_text_title" />
+            <TextView android:textSize="14.0sp" android:textColor="#ffcccccc" android:id="@id/more_hint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="12.0dip" android:layout_toLeftOf="@id/more_img" android:layout_centerVertical="true" />
+            <ImageView android:id="@id/more_img" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/ic_more" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:id="@id/tv_feedback" android:layout_marginBottom="1.0px" android:text="@string/feedback" android:drawableLeft="@drawable/ic_wd_feedback" style="@style/setting_text_title" />
+            <ImageView android:id="@id/iv_feedback" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="35.0dip" android:src="@drawable/ic_red_dot" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <TextView android:id="@id/tv_setting" android:text="@string/setup" android:drawableLeft="@drawable/ic_wd_setting" style="@style/setting_text_title" />
+    </LinearLayout>
+</com.ximalaya.ting.android.view.StretchScrollView>

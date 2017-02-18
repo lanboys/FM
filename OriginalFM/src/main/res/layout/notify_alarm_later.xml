@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/icon" android:layout_width="55.0dip" android:layout_height="55.0dip" android:layout_marginLeft="10.0dip" android:src="@drawable/ting" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+    <Button android:textSize="13.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/cancel_alarm" android:background="@drawable/album_section_download_btn_bg" android:clickable="true" android:layout_width="53.0dip" android:layout_height="24.0dip" android:layout_marginRight="10.0dip" android:text="@string/cancel" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:layout_toLeftOf="@id/cancel_alarm" android:layout_toRightOf="@id/icon">
+        <TextView android:textSize="16.0sp" android:textColor="#fffafafa" android:gravity="left|center" android:id="@id/title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="2.0dip" android:text="@string/alarm_later_title" android:maxLines="1" />
+        <TextView android:textSize="14.0sp" android:textColor="#fffcc5ad" android:gravity="left|center" android:id="@id/content" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="@string/alarm_later_content" android:maxLines="1" />
+    </LinearLayout>
+</RelativeLayout>

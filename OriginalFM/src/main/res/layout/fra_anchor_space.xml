@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/text" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.ximalaya.ting.android.framework.view.refreshload.RefreshLoadMoreListView android:id="@id/listview" android:paddingBottom="@dimen/bottom_bar_height" android:scrollbars="none" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:listSelector="@color/transparent" android:divider="@null" android:dividerHeight="0.0dip" android:overScrollMode="always" ptr:ptrHeaderTextColor="@color/text_medium" ptr:ptrShowIndicator="false" ptr:ptrDrawable="@drawable/ic_loading_circle" xmlns:ptr="http://schemas.android.com/apk/res-auto" />
+    <RelativeLayout android:id="@id/layout_title" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="50.0dip" android:contentDescription="@string/title_bar_contentDescription">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <ImageView android:id="@id/back_img" android:padding="10.0dip" android:clickable="true" android:layout_width="@dimen/title_bar_button_width" android:layout_height="wrap_content" android:src="@drawable/btn_white_back_selector" android:scaleType="centerInside" android:contentDescription="@string/go_back" />
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true">
+                <ImageView android:id="@id/iv_edit_info" android:padding="10.0dip" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_edit_info" />
+                <ImageView android:id="@id/otherspace_share_img" android:padding="10.0dip" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_share_anchor" />
+                <ImageView android:id="@id/iv_more" android:paddingLeft="10.0dip" android:paddingTop="8.0dip" android:paddingRight="10.0dip" android:paddingBottom="8.0dip" android:visibility="gone" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_white_tribledot" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

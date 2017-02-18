@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:id="@id/bottomSv" android:paddingBottom="@dimen/bottom_bar_height" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="19.0sp" android:textColor="@color/white" android:id="@id/liveNameTv" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <TextView android:textSize="12.0sp" android:textColor="@color/color_bbbbbb" android:id="@id/liveTimeTv" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="12:00" android:layout_below="@id/liveNameTv" />
+    <ImageView android:id="@id/live_finish_mark_img" android:background="@drawable/live_img_end" android:visibility="gone" android:layout_width="75.0dip" android:layout_height="42.0dip" android:layout_marginTop="-4.0dip" android:layout_marginRight="3.0dip" android:layout_below="@id/liveNameTv" android:layout_alignParentRight="true" />
+    <LinearLayout android:orientation="vertical" android:id="@id/liveDetailLl" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/liveTimeTv">
+        <TextView android:textSize="13.0sp" android:textColor="@color/color_dddddd" android:ellipsize="end" android:id="@id/detailTextTv" android:layout_width="fill_parent" android:layout_height="wrap_content" android:lineSpacingMultiplier="1.2" />
+        <LinearLayout android:gravity="center" android:id="@id/expandLl" android:paddingTop="10.0dip" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:textSize="13.0sp" android:textColor="@color/color_f5ff3e" android:ellipsize="end" android:id="@id/expandTv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="展开全部" android:drawablePadding="5.0dip" />
+        </LinearLayout>
+    </LinearLayout>
+    <View android:id="@id/liveDetailBottomMargin" android:layout_width="fill_parent" android:layout_height="10.0dip" android:layout_below="@id/liveDetailLl" />
+    <RelativeLayout android:id="@id/host_tv_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="40.0dip" android:layout_marginBottom="25.0dip" android:layout_below="@id/liveDetailBottomMargin" android:layout_centerHorizontal="true">
+        <View android:background="@drawable/live_img_line" android:layout_width="220.0dip" android:layout_height="1.0dip" android:layout_centerInParent="true" />
+        <TextView android:textSize="13.0sp" android:textColor="@color/white" android:id="@id/hostNameStrTv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="主播信息" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <ImageView android:id="@id/live_follow_tip1" android:background="@drawable/live_img_tips0" android:visibility="visible" android:layout_width="40.0dip" android:layout_height="7.0dip" android:layout_marginRight="15.0dip" android:layout_above="@id/hostDetailRl" android:layout_alignParentRight="true" android:alpha="0.0" />
+    <RelativeLayout android:id="@id/hostDetailRl" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip" android:layout_below="@id/host_tv_layout">
+        <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/hostImgTv" android:layout_width="44.0dip" android:layout_height="44.0dip" android:scaleType="centerCrop" makeramen:corner_radius="50.0dip" makeramen:round_background="true"
+          xmlns:makeramen="http://schemas.android.com/apk/res/com.ximalaya.ting.android" />
+        <TextView android:textSize="15.0sp" android:textColor="@color/white" android:id="@id/hostNameTv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="1.0dip" android:layout_toRightOf="@id/hostImgTv" android:layout_alignTop="@id/hostImgTv" android:layout_toEndOf="@id/hostImgTv" />
+        <TextView android:textSize="12.0sp" android:textColor="@color/color_bbbbbb" android:id="@id/hostFollowNumTv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:layout_toRightOf="@id/hostImgTv" android:layout_below="@id/hostNameTv" android:layout_alignLeft="@id/hostNameTv" />
+        <ImageView android:id="@id/hostFollowIv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/liveListTitleRl" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="30.0dip" android:layout_marginBottom="10.0dip" android:layout_below="@id/hostDetailRl">
+        <View android:background="@drawable/live_img_line" android:layout_width="220.0dip" android:layout_height="1.0dip" android:layout_centerInParent="true" android:layout_centerVertical="true" />
+        <TextView android:textSize="13.0sp" android:textColor="@color/white" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/liveListTitleTv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/live_list_title" android:maxLines="1" android:includeFontPadding="false" android:drawablePadding="5.0dip" android:layout_centerInParent="true" android:layout_alignWithParentIfMissing="true" />
+    </RelativeLayout>
+    <ListView android:id="@id/listview" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip" android:listSelector="@color/transparent" android:divider="#00000000" android:dividerHeight="0.0dip" android:layout_below="@id/liveListTitleRl" android:overScrollMode="always" />
+    <RelativeLayout android:id="@id/load_more_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/listview" android:layout_centerHorizontal="true">
+        <ProgressBar android:id="@id/load_more" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_toLeftOf="@id/load_more_text" android:layout_centerVertical="true" style="@android:style/Widget.Holo.Light.ProgressBar.Small.Inverse" />
+        <TextView android:textSize="12.0sp" android:textColor="@color/color_bbbbbb" android:id="@id/load_more_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="加载中..." android:layout_centerInParent="true" />
+    </RelativeLayout>
+</RelativeLayout>

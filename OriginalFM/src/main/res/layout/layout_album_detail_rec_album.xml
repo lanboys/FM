@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/title_bar_4" layout="@layout/item_rich_title" />
+    <ViewStub android:id="@id/item_rec_album_1" android:layout="@layout/item_album" android:inflatedId="@id/item_rec_album_inflate_1" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rec_album_2" android:layout="@layout/item_album" android:inflatedId="@id/item_rec_album_inflate_2" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <View android:id="@id/more_rec_album_divider" android:background="@color/divider" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <TextView android:textSize="12.0sp" android:textColor="@color/zone_light" android:gravity="center" android:id="@id/more_rec_albums" android:background="@color/click_find_more" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="44.0dip" android:text="查看更多内容" />
+    <View android:id="@id/space_rec_album" android:background="@color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="20.0dip" android:layout_marginTop="-1.0dip" />
+</merge>

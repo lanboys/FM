@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="about_list">
+        <item>关注喜马拉雅新浪微博</item>
+        <item>关注喜马拉雅腾讯微博</item>
+    </string-array>
+    <string-array name="aboutour_list">
+        <item>检查更新</item>
+        <item>喜马拉雅帮助</item>
+        <item>关于</item>
+    </string-array>
+    <string-array name="alarm_list">
+        <item>特色闹铃</item>
+        <item>定时关闭</item>
+    </string-array>
+    <string-array name="alarm_list2">
+        <item>特色闹铃</item>
+        <item>定时关闭</item>
+        <item>联通流量包月</item>
+    </string-array>
+    <string-array name="bindetting_list">
+        <item>手机号绑定</item>
+        <item>QQ绑定</item>
+        <item>新浪微博绑定</item>
+        <item>微信绑定</item>
+    </string-array>
+    <array name="calabash_drawables" />
+    <integer-array name="columnlist">
+        <item>4</item>
+    </integer-array>
+    <string-array name="delay_stop_player_switch">
+        <item>定时停止播放</item>
+    </string-array>
+    <array name="emotion_icons">
+        <item>@drawable/d_hehe</item>
+        <item>@drawable/d_xixi</item>
+        <item>@drawable/d_haha</item>
+        <item>@drawable/d_taikaixin</item>
+        <item>@drawable/d_qinqin</item>
+        <item>@drawable/d_ku</item>
+        <item>@drawable/d_baibai</item>
+        <item>@drawable/d_keai</item>
+        <item>@drawable/d_chanzui</item>
+        <item>@drawable/d_huaxin</item>
+        <item>@drawable/d_aini</item>
+        <item>@drawable/d_han</item>
+        <item>@drawable/d_bishi</item>
+        <item>@drawable/d_nu</item>
+        <item>@drawable/d_shiwang</item>
+        <item>@drawable/d_haixiu</item>
+        <item>@drawable/d_kelian</item>
+        <item>@drawable/d_beishang</item>
+        <item>@drawable/d_lei</item>
+        <item>@drawable/d_bizui</item>
+        <item>@drawable/d_weiqu</item>
+        <item>@drawable/d_wabishi</item>
+        <item>@drawable/d_sikao</item>
+        <item>@drawable/d_yiwen</item>
+        <item>@drawable/d_xu</item>
+        <item>@drawable/d_yun</item>
+        <item>@drawable/d_shudaizi</item>
+        <item>@drawable/d_yinxian</item>
+        <item>@drawable/d_zuoguilian</item>
+        <item>@drawable/d_heixian</item>
+        <item>@drawable/d_chijing</item>
+        <item>@drawable/d_shuai</item>
+        <item>@drawable/d_numa</item>
+        <item>@drawable/d_fennu</item>
+        <item>@drawable/d_zuohengheng</item>
+        <item>@drawable/d_youhengheng</item>
+        <item>@drawable/d_heng</item>
+        <item>@drawable/d_landelini</item>
+        <item>@drawable/d_dahaqi</item>
+        <item>@drawable/d_qian</item>
+        <item>@drawable/d_touxiao</item>
+        <item>@drawable/d_guzhang</item>
+        <item>@drawable/d_shengbing</item>
+        <item>@drawable/d_ganmao</item>
+        <item>@drawable/d_kun</item>
+        <item>@drawable/d_shuijiao</item>
+        <item>@drawable/d_zhuakuang</item>
+        <item>@drawable/d_tu</item>
+        <item>@drawable/d_ding</item>
+        <item>@drawable/d_nanhaier</item>
+        <item>@drawable/d_nvhaier</item>
+        <item>@drawable/d_tuzi</item>
+        <item>@drawable/d_xiongmao</item>
+        <item>@drawable/d_zhutou</item>
+        <item>@drawable/d_aoteman</item>
+        <item>@drawable/f_hufen</item>
+        <item>@drawable/f_shenma</item>
+        <item>@drawable/f_meng</item>
+        <item>@drawable/f_jiong</item>
+        <item>@drawable/f_geili</item>
+        <item>@drawable/l_xin</item>
+        <item>@drawable/l_aixinchuandi</item>
+        <item>@drawable/l_shangxin</item>
+        <item>@drawable/f_shuai</item>
+        <item>@drawable/f_v5</item>
+        <item>@drawable/f_xi</item>
+        <item>@drawable/o_fahongbao</item>
+        <item>@drawable/h_woshou</item>
+        <item>@drawable/h_ye</item>
+        <item>@drawable/h_zan</item>
+        <item>@drawable/h_ok</item>
+        <item>@drawable/h_good</item>
+        <item>@drawable/h_ruo</item>
+        <item>@drawable/h_zuicha</item>
+        <item>@drawable/h_lai</item>
+        <item>@drawable/h_buyao</item>
+        <item>@drawable/h_quantou</item>
+        <item>@drawable/h_haha</item>
+        <item>@drawable/w_taiyang</item>
+        <item>@drawable/w_yueliang</item>
+        <item>@drawable/o_dangao</item>
+        <item>@drawable/o_kafei</item>
+        <item>@drawable/o_ganbei</item>
+        <item>@drawable/o_binggun</item>
+        <item>@drawable/o_xigua</item>
+        <item>@drawable/o_liwu</item>
+        <item>@drawable/o_lazhu</item>
+        <item>@drawable/w_xianhua</item>
+        <item>@drawable/w_luoye</item>
+        <item>@drawable/o_lvsidai</item>
+        <item>@drawable/o_hongsidai</item>
+        <item>@drawable/o_weiguan</item>
+        <item>@drawable/w_xueren</item>
+        <item>@drawable/o_zhong</item>
+        <item>@drawable/w_weifeng</item>
+        <item>@drawable/w_xiayu</item>
+        <item>@drawable/w_xue</item>
+        <item>@drawable/w_shachenbao</item>
+        <item>@drawable/w_fuyun</item>
+        <item>@drawable/o_zuqiu</item>
+        <item>@drawable/o_shoutao</item>
+        <item>@drawable/o_weibo</item>
+        <item>@drawable/o_wennuanmaozi</item>
+        <item>@drawable/o_zixingche</item>
+        <item>@drawable/o_qiche</item>
+        <item>@drawable/o_feiji</item>
+        <item>@drawable/o_shouji</item>
+        <item>@drawable/o_yinyue</item>
+        <item>@drawable/o_huatong</item>
+        <item>@drawable/o_zhaoxiangji</item>
+        <item>@drawable/o_dianying</item>
+        <item>@drawable/o_fengshan</item>
+        <item>@drawable/o_shixi</item>
+    </array>
+    <string-array name="emotion_names">
+        <item>@string/d_hehe</item>
+        <item>@string/d_xixi</item>
+        <item>@string/d_haha</item>
+        <item>@string/d_taikaixin</item>
+        <item>@string/d_qinqin</item>
+        <item>@string/d_ku</item>
+        <item>@string/d_baibai</item>
+        <item>@string/d_keai</item>
+        <item>@string/d_chanzui</item>
+        <item>@string/d_huaxin</item>
+        <item>@string/d_aini</item>
+        <item>@string/d_han</item>
+        <item>@string/d_bishi</item>
+        <item>@string/d_nu</item>
+        <item>@string/d_shiwang</item>
+        <item>@string/d_haixiu</item>
+        <item>@string/d_kelian</item>
+        <item>@string/d_beishang</item>
+        <item>@string/d_lei</item>
+        <item>@string/d_bizui</item>
+        <item>@string/d_weiqu</item>
+        <item>@string/d_wabishi</item>
+        <item>@string/d_sikao</item>
+        <item>@string/d_yiwen</item>
+        <item>@string/d_xu</item>
+        <item>@string/d_yun</item>
+        <item>@string/d_shudaizi</item>
+        <item>@string/d_yinxian</item>
+        <item>@string/d_zuoguilian</item>
+        <item>@string/d_heixian</item>
+        <item>@string/d_chijing</item>
+        <item>@string/d_shuai</item>
+        <item>@string/d_numa</item>
+        <item>@string/d_fennu</item>
+        <item>@string/d_zuohengheng</item>
+        <item>@string/d_youhengheng</item>
+        <item>@string/d_heng</item>
+        <item>@string/d_landelini</item>
+        <item>@string/d_dahaqi</item>
+        <item>@string/d_qian</item>
+        <item>@string/d_touxiao</item>
+        <item>@string/d_guzhang</item>
+        <item>@string/d_shengbing</item>
+        <item>@string/d_ganmao</item>
+        <item>@string/d_kun</item>
+        <item>@string/d_shuijiao</item>
+        <item>@string/d_zhuakuang</item>
+        <item>@string/d_tu</item>
+        <item>@string/d_ding</item>
+        <item>@string/d_nanhaier</item>
+        <item>@string/d_nvhaier</item>
+        <item>@string/d_tuzi</item>
+        <item>@string/d_xiongmao</item>
+        <item>@string/d_zhutou</item>
+        <item>@string/d_aoteman</item>
+        <item>@string/f_hufen</item>
+        <item>@string/f_shenma</item>
+        <item>@string/f_meng</item>
+        <item>@string/f_jiong</item>
+        <item>@string/f_geili</item>
+        <item>@string/l_xin</item>
+        <item>@string/l_aixinchuandi</item>
+        <item>@string/l_shangxin</item>
+        <item>@string/f_shuai</item>
+        <item>@string/f_v5</item>
+        <item>@string/f_xi</item>
+        <item>@string/o_fahongbao</item>
+        <item>@string/h_woshou</item>
+        <item>@string/h_ye</item>
+        <item>@string/h_zan</item>
+        <item>@string/h_ok</item>
+        <item>@string/h_good</item>
+        <item>@string/h_ruo</item>
+        <item>@string/h_zuicha</item>
+        <item>@string/h_lai</item>
+        <item>@string/h_buyao</item>
+        <item>@string/h_quantou</item>
+        <item>@string/h_haha</item>
+        <item>@string/w_taiyang</item>
+        <item>@string/w_yueliang</item>
+        <item>@string/o_dangao</item>
+        <item>@string/o_kafei</item>
+        <item>@string/o_ganbei</item>
+        <item>@string/o_binggun</item>
+        <item>@string/o_xigua</item>
+        <item>@string/o_liwu</item>
+        <item>@string/o_lazhu</item>
+        <item>@string/w_xianhua</item>
+        <item>@string/w_luoye</item>
+        <item>@string/o_lvsidai</item>
+        <item>@string/o_hongsidai</item>
+        <item>@string/o_weiguan</item>
+        <item>@string/w_xueren</item>
+        <item>@string/o_zhong</item>
+        <item>@string/w_weifeng</item>
+        <item>@string/w_xiayu</item>
+        <item>@string/w_xue</item>
+        <item>@string/w_shachenbao</item>
+        <item>@string/w_fuyun</item>
+        <item>@string/o_zuqiu</item>
+        <item>@string/o_shoutao</item>
+        <item>@string/o_weibo</item>
+        <item>@string/o_wennuanmaozi</item>
+        <item>@string/o_zixingche</item>
+        <item>@string/o_qiche</item>
+        <item>@string/o_feiji</item>
+        <item>@string/o_shouji</item>
+        <item>@string/o_yinyue</item>
+        <item>@string/o_huatong</item>
+        <item>@string/o_zhaoxiangji</item>
+        <item>@string/o_dianying</item>
+        <item>@string/o_fengshan</item>
+        <item>@string/o_shixi</item>
+    </string-array>
+    <string-array name="findfriend_list">
+        <item>找手机通讯录朋友</item>
+        <item>找新浪微博朋友</item>
+        <item>找腾讯微博朋友</item>
+    </string-array>
+    <string-array name="findingtags">
+        <item>全部</item>
+        <item>最新资讯</item>
+        <item>音乐</item>
+        <item>有声小说</item>
+        <item>综艺娱乐</item>
+        <item>情感生活</item>
+        <item>社会人文</item>
+        <item>健康养生</item>
+        <item>讲座</item>
+        <item>商业经济</item>
+        <item>儿童</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="layoutidlist">
+        <item>appwidget_layout_gowidget_1</item>
+    </string-array>
+    <string-array name="megridview">
+        <item>声音</item>
+        <item>关注的人</item>
+        <item>粉丝</item>
+        <item>专辑</item>
+        <item>兴趣领域</item>
+        <item>资料</item>
+    </string-array>
+    <string-array name="meitem">
+        <item>详细资料</item>
+        <item>关注的人</item>
+        <item>粉丝</item>
+        <item>专辑</item>
+        <item>下载</item>
+        <item>喜欢的</item>
+        <item>听过的</item>
+    </string-array>
+    <integer-array name="minHeight">
+        <item>73</item>
+    </integer-array>
+    <integer-array name="minWidth">
+        <item>292</item>
+    </integer-array>
+    <string-array name="myitembar">
+        <item>声音</item>
+        <item>关注的人</item>
+        <item>粉丝</item>
+        <item>我的专辑</item>
+        <item>兴趣领域</item>
+        <item>资料</item>
+    </string-array>
+    <string-array name="net_list">
+        <item>清理占用空间</item>
+    </string-array>
+    <string-array name="net_setting">
+        <item>仅用WIFI下载</item>
+        <item>用WIFI和2G/3G/4G下载</item>
+    </string-array>
+    <string-array name="newregistertags">
+        <item>新闻</item>
+        <item>有声小说</item>
+        <item>音乐台</item>
+        <item>相声评书</item>
+        <item>综艺娱乐</item>
+        <item>情感生活</item>
+        <item>历史人文</item>
+        <item>外语</item>
+        <item>培训讲座</item>
+        <item>儿童</item>
+        <item>电台</item>
+        <item>商业财经</item>
+        <item>IT科技</item>
+        <item>健康养生</item>
+        <item>NJ/DJ</item>
+        <item>音乐人</item>
+        <item>翻唱</item>
+        <item>古风</item>
+        <item>名人</item>
+        <item>说书人</item>
+        <item>声优/配音</item>
+        <item>社团机构</item>
+        <item>校园电台</item>
+        <item>美女主播</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="othersetting_list">
+        <item>提示音</item>
+        <item>2G/3G/4G 播放和下载</item>
+        <item>下载和缓存设置</item>
+        <item>下载位置</item>
+        <item>推送设置</item>
+        <item>修改密码</item>
+    </string-array>
+    <string-array name="othersetting_nopwd_list">
+        <item>推送设置</item>
+        <item>分享设置</item>
+    </string-array>
+    <string-array name="outnet_time_list">
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>4小时</item>
+    </string-array>
+    <string-array name="playshare_items">
+        <item>微博</item>
+        <item>腾讯</item>
+        <item>短信</item>
+        <item>微信</item>
+        <item>微信朋友圈</item>
+    </string-array>
+    <string-array name="playshare_list">
+        <item>分享给微信好友</item>
+        <item>分享到微信朋友圈</item>
+        <item>分享给QQ好友</item>
+        <item>分享到QQ空间</item>
+        <item>分享到新浪微博</item>
+        <item>分享到腾讯微博</item>
+        <item>分享到短信</item>
+    </string-array>
+    <string-array name="recordertags">
+        <item>新闻/访谈</item>
+        <item>音乐</item>
+        <item>有声小说</item>
+        <item>综艺/娱乐</item>
+        <item>情感/生活</item>
+        <item>社会/人文</item>
+        <item>健康/养生</item>
+        <item>教育/培训</item>
+        <item>财经/证券</item>
+        <item>儿童</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="repeat_list">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </string-array>
+    <integer-array name="rowlist">
+        <item>1</item>
+    </integer-array>
+    <string-array name="setting_push_list">
+        <item>我</item>
+        <item>新粉丝</item>
+        <item>新评论/回复</item>
+        <item>新私信</item>
+        <item>圈子评论</item>
+    </string-array>
+    <string-array name="setting_share_bind_list">
+        <item>已绑定新浪微博账号</item>
+        <item>已绑定腾讯微博账号</item>
+    </string-array>
+    <string-array name="setting_share_list">
+        <item>上传时同步分享</item>
+        <item>点赞时同步分享</item>
+        <item>评论时同步分享</item>
+        <item>转采时同步分享</item>
+    </string-array>
+    <string-array name="setting_share_unbind_list">
+        <item>未绑定新浪微博账号</item>
+        <item>未绑定腾讯微博账号</item>
+    </string-array>
+    <string-array name="sleep_delay_list">
+        <item>定时停止</item>
+        <item>播放完当前声音</item>
+        <item>10分钟</item>
+        <item>20分钟</item>
+        <item>30分钟</item>
+        <item>60分钟</item>
+        <item>90分钟</item>
+    </string-array>
+    <string-array name="sleep_delay_list_new">
+        <item>不开启</item>
+        <item>播完当前声音</item>
+        <item>10分钟</item>
+        <item>20分钟</item>
+        <item>30分钟</item>
+        <item>60分钟</item>
+        <item>90分钟</item>
+    </string-array>
+    <string-array name="sleep_list">
+        <item>定时自动关闭</item>
+        <item>重复</item>
+        <item>自动关闭时间</item>
+    </string-array>
+    <string-array name="soundsitembar">
+        <item>动态</item>
+        <item>下载的</item>
+        <item>喜欢的</item>
+        <item>听过的</item>
+    </string-array>
+    <string-array name="stylenamelist">
+        <item>app_widget_label_4x1</item>
+    </string-array>
+    <string-array name="stylepreviewlist">
+        <item>appwidget_preview_4x1</item>
+    </string-array>
+    <integer-array name="styletypelist">
+        <item>0</item>
+    </integer-array>
+    <string-array name="timer_operations">
+        <item>定时关闭</item>
+        <item>设为闹铃</item>
+    </string-array>
+    <string-array name="update_list">
+        <item>http://www.ximalaya.com</item>
+        <item>http://test.ximalaya.com</item>
+    </string-array>
+    <string-array name="upload_recorder_select_dialog_items">
+        <item>上传</item>
+        <item>删除</item>
+        <item>取消</item>
+    </string-array>
+    <string-array name="wake_list">
+        <item>闹铃开关</item>
+        <item>重复</item>
+        <item>时间</item>
+        <item>铃声</item>
+    </string-array>
+</resources>

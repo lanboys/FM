@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center_horizontal" android:orientation="vertical" android:clickable="false" android:layout_width="32.0dip" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:makeramen="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/iv_avtor_hat" android:layout_width="23.0dip" android:layout_height="11.0dip" android:src="@null" android:layout_centerHorizontal="true" />
+    <com.ximalaya.ting.android.framework.view.RoundedImageView android:id="@id/avatar" android:clickable="false" android:layout_width="32.0dip" android:layout_height="32.0dip" android:layout_marginTop="8.0dip" android:scaleType="centerCrop" makeramen:corner_radius="1000.0dip" makeramen:border_width="2.0dip" makeramen:border_color="@color/white" makeramen:border_bg_color="@color/white" />
+    <TextView android:textSize="12.0sp" android:textColor="#ff9b9b9b" android:gravity="center" android:layout_gravity="center_horizontal" android:id="@id/amount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:lines="1" android:layout_below="@id/avatar" android:layout_centerHorizontal="true" />
+</RelativeLayout>

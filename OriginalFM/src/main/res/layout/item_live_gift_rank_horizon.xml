@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/item_gift_rank_layout" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/item_gift_rank_avatar" android:layout_width="25.0dip" android:layout_height="25.0dip" android:scaleType="centerCrop" android:layout_centerInParent="true" makeramen:corner_radius="25.0dip" makeramen:border_width="1.0px" makeramen:border_color="@color/border" makeramen:border_bg_color="@color/border" makeramen:round_background="true"
+      xmlns:makeramen="http://schemas.android.com/apk/res/com.ximalaya.ting.android" />
+    <ImageView android:id="@id/item_gift_rank_badge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="-6.0dip" android:layout_marginBottom="-6.0dip" android:layout_alignRight="@id/item_gift_rank_avatar" android:layout_alignBottom="@id/item_gift_rank_avatar" />
+</RelativeLayout>

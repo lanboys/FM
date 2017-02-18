@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/music_item_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/divider2" android:background="#ffd9dfe5" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/pause" android:paddingLeft="6.0dip" android:paddingRight="6.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/icon_rec_switch_0" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+    <ImageView android:id="@id/play" android:paddingLeft="6.0dip" android:paddingRight="6.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/icon_rec_switch_1" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+    <ImageView android:id="@id/block_left" android:paddingLeft="7.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_rec_switch_2" android:layout_alignLeft="@id/pause" android:layout_centerVertical="true" />
+    <ImageView android:id="@id/block_right" android:paddingRight="7.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_rec_switch_2" android:layout_alignRight="@id/pause" android:layout_centerVertical="true" />
+    <TextView android:textColor="#ff000000" android:id="@id/text1" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="配音： " android:layout_toRightOf="@id/play" android:layout_centerVertical="true" />
+    <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:ellipsize="end" android:id="@id/music_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="name" android:width="200.0dip" android:singleLine="true" android:layout_toRightOf="@id/text1" android:layout_centerVertical="true" />
+    <TextView android:textColor="#ff000000" android:id="@id/duration" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="8.0dip" android:text="00:00" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="12.0dip" android:src="@drawable/icon_rec_addmusic" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/text" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/topLine" android:layout_width="fill_parent" android:layout_height="0.0dip" android:contentDescription="@string/title_bar_contentDescription" />
+    <include android:id="@id/topView" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/item_liveaudio_giftrank_first" />
+    <include android:gravity="center" android:id="@id/bottomView" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentBottom="true" layout="@layout/item_liveaudio_giftrank" />
+    <View android:id="@id/bottomViewBorder" android:background="@drawable/bg_tab_gradient" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="4.0dip" android:layout_above="@id/bottomView" android:layout_alignWithParentIfMissing="true" />
+    <ListView android:id="@id/listView" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@color/transparent" android:dividerHeight="0.0dip" android:layout_above="@id/bottomView" android:layout_below="@id/topView" />
+    <ImageView android:id="@id/back_btn" android:visibility="visible" android:clickable="true" android:layout_width="@dimen/title_bar_button_width" android:layout_height="@dimen/size_title_bar_height" android:src="@drawable/arrow_orange_left" android:scaleType="centerInside" android:layout_below="@id/topLine" />
+</RelativeLayout>

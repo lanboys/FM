@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/item_root" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.ximalaya.ting.android.framework.view.RoundedImageView android:id="@id/item_avatar" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:scaleType="centerCrop" android:layout_alignParentLeft="true" android:layout_centerVertical="true" makeramen:corner_radius="70.0dip" makeramen:round_background="true" makeramen:pressdown_shade="false"
+      xmlns:makeramen="http://schemas.android.com/apk/res/com.ximalaya.ting.android" />
+    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@id/item_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@id/item_avatar" android:layout_centerVertical="true" />
+    <ImageView android:id="@id/item_isVerify" android:background="@drawable/bg_station_flag" android:visibility="gone" android:layout_width="15.0dip" android:layout_height="15.0dip" android:layout_marginLeft="10.0dip" android:layout_toRightOf="@id/item_name" android:layout_centerVertical="true" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/item_add" android:background="@drawable/follow_btn" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_margin="15.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <ProgressBar android:id="@id/add_progress" android:visibility="gone" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_margin="15.0dip" android:layout_alignLeft="@id/item_add" android:layout_alignTop="@id/item_add" android:layout_alignRight="@id/item_add" android:layout_alignBottom="@id/item_add" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@android:style/Widget.Holo.Light.ProgressBar.Small" />
+    <View android:background="#ffe8e8e8" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="40.0dip" android:layout_marginTop="9.0dip" android:layout_below="@id/item_avatar" />
+</RelativeLayout>

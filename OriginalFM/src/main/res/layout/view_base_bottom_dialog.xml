@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="16.0sp" android:gravity="center" android:id="@id/title" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" />
+    <ListView android:id="@id/lv_content_base_dialog" android:layout_width="fill_parent" android:layout_height="wrap_content" android:listSelector="@color/transparent" android:divider="@null" android:layout_below="@id/title" />
+    <View android:id="@id/divider_line" android:background="?android:listDivider" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/lv_content_base_dialog" />
+    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:gravity="center" android:id="@id/tv_edit_dialog" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="14.0dip" android:text="@string/close" android:layout_below="@id/divider_line" />
+</RelativeLayout>

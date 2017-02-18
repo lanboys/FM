@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/myspace_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/titlebar_top" />
+    <ScrollView android:paddingBottom="80.0dip" android:scrollbars="none" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:id="@id/tv_comment_title" android:background="@null" android:paddingLeft="16.0dip" android:paddingRight="10.0dip" android:clickable="false" android:layout_width="wrap_content" android:minHeight="40.0dip" android:text="评论" android:drawableRight="@null" style="@style/setting_text_title" />
+            <TextView android:textSize="11.0sp" android:textColor="@color/psts_deactive_text_color" android:id="@id/tv_comment_detail" android:background="@null" android:paddingLeft="0.0dip" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="40.0dip" android:text="设置谁可以评论我的声音" android:maxEms="20" android:drawableRight="@null" android:layout_toRightOf="@id/tv_comment_title" style="@style/setting_text_title" />
+            <TextView android:id="@id/tv_comment_option0" android:text="所有人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/tv_comment_title" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_0" android:layout_below="@id/tv_comment_option0" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_comment_option1" android:text="我关注的人、认证主播、关注我的人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/divide_0" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_1" android:layout_below="@id/tv_comment_option1" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_comment_option2" android:text="仅我关注的人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/divide_1" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_2" android:layout_below="@id/tv_comment_option2" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_comment_option3" android:text="关闭评论" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/divide_2" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_3" android:layout_below="@id/tv_comment_option3" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_msg_title" android:background="@null" android:paddingLeft="16.0dip" android:paddingRight="10.0dip" android:clickable="false" android:layout_width="wrap_content" android:minHeight="40.0dip" android:text="私信" android:drawableRight="@null" android:layout_below="@id/divide_3" style="@style/setting_text_title" />
+            <TextView android:textSize="11.0sp" android:textColor="@color/psts_deactive_text_color" android:id="@id/tv_msg_detail" android:background="@null" android:paddingLeft="0.0dip" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="40.0dip" android:text="设置谁可以给我发私信" android:maxEms="20" android:drawableRight="@null" android:layout_toRightOf="@id/tv_msg_title" android:layout_below="@id/divide_3" style="@style/setting_text_title" />
+            <TextView android:id="@id/tv_msg_option0" android:text="所有人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/tv_msg_title" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_4" android:layout_below="@id/tv_msg_option0" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_msg_option1" android:text="我关注的人、认证主播、关注我的人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/divide_4" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_5" android:layout_below="@id/tv_msg_option1" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_msg_option2" android:text="仅我关注的人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/divide_5" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_6" android:layout_below="@id/tv_msg_option2" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_at_title" android:background="@null" android:paddingLeft="16.0dip" android:paddingRight="10.0dip" android:clickable="false" android:layout_width="wrap_content" android:minHeight="40.0dip" android:text=" @提到我" android:drawableRight="@null" android:layout_below="@id/divide_6" style="@style/setting_text_title" />
+            <TextView android:textSize="11.0sp" android:textColor="@color/psts_deactive_text_color" android:id="@id/tv_at_detail" android:background="@null" android:paddingLeft="0.0dip" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="40.0dip" android:text="设置接受那些人@我的消息提示" android:maxEms="20" android:drawableRight="@null" android:layout_toRightOf="@id/tv_at_title" android:layout_below="@id/divide_6" style="@style/setting_text_title" />
+            <TextView android:id="@id/tv_at_option0" android:text="所有人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/tv_at_title" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_7" android:layout_below="@id/tv_at_option0" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_at_option1" android:text="我关注的人、认证主播、关注我的人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/divide_7" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_8" android:layout_below="@id/tv_at_option1" style="@style/setting_divide" />
+            <TextView android:id="@id/tv_at_option2" android:text="仅我关注的人" android:drawableRight="@drawable/checkbox_uncheck_1" android:layout_below="@id/divide_8" style="@style/setting_text_title" />
+            <ImageView android:id="@id/divide_9" android:layout_below="@id/tv_at_option2" style="@style/setting_divide" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

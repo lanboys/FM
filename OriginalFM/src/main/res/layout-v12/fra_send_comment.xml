@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@string/main_content" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:background="@drawable/shadow_bg" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="-10.0dip" />
+    <RelativeLayout android:id="@id/main_layout" android:background="@color/bg_color" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <include android:id="@id/top_bar" layout="@layout/titlebar_top" />
+        <EditText android:textColor="@color/black" android:gravity="top" android:id="@id/et_send_comment" android:background="@android:color/white" android:padding="10.0dip" android:focusable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:maxLength="140" android:layout_below="@id/top_bar" android:textCursorDrawable="@null" />
+    </RelativeLayout>
+</RelativeLayout>

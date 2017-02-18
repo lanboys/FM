@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@id/top_bar4" android:background="@drawable/bg_tile_bar_me" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/back_ImageView" android:layout_width="0.0dip" android:layout_height="fill_parent" android:src="@drawable/btn_orange_back_selector" android:scaleType="centerInside" android:layout_weight="1.0" />
+    <RadioGroup android:layout_gravity="center_vertical" android:orientation="horizontal" android:id="@id/tab_radiogroup" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="6.0">
+        <RadioButton android:textSize="18.0sp" android:textColor="@drawable/tab_text_orange_selector" android:gravity="center" android:id="@id/qq_weibo_btn" android:tag="0" android:background="@null" android:layout_width="fill_parent" android:layout_height="fill_parent" android:checked="true" android:button="@null" android:text="@string/qq_weibo_title" android:layout_weight="1.0" />
+        <RadioButton android:textSize="18.0sp" android:textColor="@drawable/tab_text_orange_selector" android:gravity="center" android:id="@id/qzone_btn" android:tag="1" android:background="@null" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:button="@null" android:text="@string/qq_zone_title" android:layout_weight="1.0" />
+    </RadioGroup>
+    <TextView android:textSize="16.0sp" android:textColor="@drawable/titlebar_send_btn_text_color" android:gravity="center" android:id="@id/tv_unbind" android:paddingRight="10.0dip" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/unbind_phone" android:layout_weight="1.0" />
+</LinearLayout>

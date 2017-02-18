@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/root" android:layout_width="fill_parent" android:layout_height="44.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:id="@id/last_sound_info_container" android:background="#fffffaee" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="13.0sp" android:textColor="#ff8b572a" android:gravity="center_vertical" android:id="@id/last_sound_info" android:clickable="true" android:layout_width="fill_parent" android:layout_height="44.0dip" android:layout_marginLeft="25.0dip" android:layout_marginRight="10.0dip" android:maxLines="1" android:drawableLeft="@drawable/icon_ablum_lastplay" android:drawablePadding="24.0dip" />
+    </LinearLayout>
+</LinearLayout>

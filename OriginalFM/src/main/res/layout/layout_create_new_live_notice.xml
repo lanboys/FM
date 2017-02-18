@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/live_bg_tips_new" android:layout_width="300.0dip" android:layout_height="35.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="5.0dip">
+        <TextView android:textSize="13.0sp" android:textColor="@color/white" android:ellipsize="marquee" android:gravity="center" android:id="@id/text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:layout_marginRight="1.0dip" android:minHeight="30.0dip" android:text="@string/live_new_notice" android:maxLines="1" android:layout_toLeftOf="@id/border" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_centerVertical="true" />
+        <TextView android:gravity="center_vertical" android:background="@color/color_c8c8c8" android:layout_width="1.0dip" android:layout_height="15.0dip" android:layout_marginRight="30.0dip" android:layout_toLeftOf="@id/close" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <ImageView android:layout_gravity="right" android:id="@id/close" android:background="@drawable/live_bg_close" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</RelativeLayout>

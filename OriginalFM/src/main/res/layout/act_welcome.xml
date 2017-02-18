@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/root" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/ad_img" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="100.0dip" android:scaleType="centerCrop" />
+    <com.ximalaya.ting.android.view.GifView android:id="@id/ad_gif" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="100.0dip" />
+    <com.ximalaya.ting.android.view.PlayVideoView android:id="@id/ad_video" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="100.0dip" />
+    <TextView android:textSize="13.0sp" android:textColor="@color/white" android:id="@id/wifi_loaded_tag" android:padding="6.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:text="@string/wifi_loaded" android:layout_alignBottom="@id/ad_img" />
+    <ImageView android:id="@id/ad_logo" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="15.0dip" android:src="@drawable/ad_img_logo" />
+    <TextView android:textColor="@color/white" android:id="@id/count_down_text" android:background="@drawable/welcome_count_down_bg" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="16.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+    <View android:id="@id/count_down_click_view" android:background="@color/transparent" android:layout_width="80.0dip" android:layout_height="50.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+</RelativeLayout>

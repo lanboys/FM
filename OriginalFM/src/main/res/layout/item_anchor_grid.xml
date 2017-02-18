@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/section_header" android:layout_width="fill_parent" android:layout_height="49.0dip" layout="@layout/view_section_header_grid" />
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="40.0dip">
+        <com.ximalaya.ting.android.view.NoScrollGridView android:gravity="center" android:id="@id/gv_anchor" android:paddingBottom="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:horizontalSpacing="12.0dip" android:verticalSpacing="15.0dip" android:numColumns="3" />
+        <com.ximalaya.ting.android.view.MyListView android:id="@id/lv_anchor" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <View android:id="@id/border_bottom" android:background="@color/bg_color" android:layout_width="fill_parent" android:layout_height="10.0dip" />
+    </LinearLayout>
+</RelativeLayout>

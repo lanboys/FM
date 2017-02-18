@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="13.0sp" android:textColor="@color/color_999999" android:gravity="center_vertical" android:id="@id/tv_phone_module_title" android:background="@color/white" android:paddingLeft="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginTop="20.0dip" android:text="@string/layout_buy_bind_title" />
+    <View android:id="@id/border_1" android:background="@color/border" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <RelativeLayout android:id="@id/phone_layout" android:background="#ffffffff" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="1.0px" android:layout_below="@id/album_name_layout">
+        <EditText android:textSize="15.0sp" android:textColor="@color/color_666666" android:textColorHint="@color/color_cccccc" android:id="@id/et_input_phone" android:background="@null" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:hint="请输入手机号" android:layout_centerVertical="true" android:inputType="phone" />
+        <ImageView android:id="@id/iv_clear_accout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toLeftOf="@id/tv_get_verify_code" android:layout_centerVertical="true" />
+        <TextView android:textColor="@color/color_999999" android:id="@id/tv_get_verify_code" android:background="@drawable/bg_get_verify_code" android:paddingLeft="15.0dip" android:paddingTop="5.0dip" android:paddingRight="15.0dip" android:paddingBottom="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:text="发送验证码" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <View android:id="@id/border_2" android:background="@color/border" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <EditText android:textSize="15.0sp" android:textColorHint="@color/color_cccccc" android:gravity="center_vertical" android:id="@id/et_input_code" android:background="@color/white" android:paddingLeft="15.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="55.0dip" android:hint="请输入验证码" android:inputType="number" />
+</merge>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/iv_vip_rights" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="18.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="18.0dip" android:src="@drawable/ic_more_rights" />
+    <LinearLayout android:orientation="vertical" android:id="@id/txt_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_marginRight="20.0dip">
+        <TextView android:textSize="16.0sp" android:textColor="#ff323232" android:id="@id/tv_rights_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title" />
+        <TextView android:textSize="14.0sp" android:textColor="#ff999999" android:id="@id/tv_rights_desc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:layout_marginBottom="12.0dip" android:text="@string/subtitle" />
+    </LinearLayout>
+</LinearLayout>

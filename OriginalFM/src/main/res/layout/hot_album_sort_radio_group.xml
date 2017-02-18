@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/float_view" android:background="#ffe8e8e8" android:paddingLeft="30.0dip" android:paddingRight="30.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RadioButton android:textSize="13.0sp" android:textColor="@drawable/text_white_gray_selector" android:gravity="center" android:id="@id/radio_01" android:tag="1" android:background="@drawable/radio_group_style_gray" android:layout_width="fill_parent" android:layout_height="24.0dip" android:checked="true" android:button="@null" android:text="@string/best_hot" android:layout_weight="1.0" />
+    <View android:layout_width="30.0dip" android:layout_height="fill_parent" />
+    <RadioButton android:textSize="13.0sp" android:textColor="@drawable/text_white_gray_selector" android:gravity="center" android:id="@id/radio_02" android:tag="2" android:background="@drawable/radio_group_style_gray" android:layout_width="fill_parent" android:layout_height="24.0dip" android:button="@null" android:text="@string/best_new" android:layout_weight="1.0" />
+    <View android:layout_width="30.0dip" android:layout_height="fill_parent" />
+    <RadioButton android:textSize="13.0sp" android:textColor="@drawable/text_white_gray_selector" android:gravity="center" android:id="@id/radio_03" android:tag="3" android:background="@drawable/radio_group_style_gray" android:layout_width="fill_parent" android:layout_height="24.0dip" android:button="@null" android:text="@string/classic" android:layout_weight="1.0" />
+</RadioGroup>

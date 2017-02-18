@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@color/carlink_bg_black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListView android:id="@id/list" android:paddingTop="@dimen/common_half_margin" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/common_half_margin" android:layout_marginRight="@dimen/common_half_margin" android:divider="@null" android:dividerHeight="@dimen/common_half_margin" />
+    <TextView android:textSize="@dimen/second_title" android:textColor="@color/navi_normal" android:gravity="center" android:id="@id/empty_view" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+</RelativeLayout>

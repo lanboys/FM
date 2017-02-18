@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/kf5_text_size_20" android:gravity="center" android:layout_gravity="center" android:id="@id/kf5_textview_choice_from_image" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="照片" android:drawableTop="@drawable/kf5_img_from_file" android:drawablePadding="@dimen/kf5_dimen_4dp" android:layout_weight="1.0" />
+    <TextView android:textSize="@dimen/kf5_text_size_20" android:gravity="center" android:layout_gravity="center" android:id="@id/kf5_textview_choice_from_camera" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="相机" android:drawableTop="@drawable/kf5_img_from_camera" android:drawablePadding="@dimen/kf5_dimen_4dp" android:layout_weight="1.0" />
+</LinearLayout>

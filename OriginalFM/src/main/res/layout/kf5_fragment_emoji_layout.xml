@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <org.support.v4.view.ViewPager android:layout_gravity="center" android:id="@id/kf5_viewPager" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/kf5_dimen_8dp" android:layout_alignParentBottom="true">
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@id/kf5_pointImage1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/kf5_emoji_page_selected" />
+            <ImageView android:id="@id/kf5_pointImage2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_6dp" android:src="@drawable/kf5_emoji_page_unselected" />
+            <ImageView android:id="@id/kf5_pointImage3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_6dp" android:src="@drawable/kf5_emoji_page_unselected" />
+            <ImageView android:id="@id/kf5_pointImage4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_6dp" android:src="@drawable/kf5_emoji_page_unselected" />
+            <ImageView android:id="@id/kf5_pointImage5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_6dp" android:src="@drawable/kf5_emoji_page_unselected" />
+        </LinearLayout>
+    </FrameLayout>
+</RelativeLayout>

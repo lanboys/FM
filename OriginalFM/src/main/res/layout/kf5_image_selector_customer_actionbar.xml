@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:id="@id/kf5_top_layout" android:background="@color/xima_title" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/kf5_return_img" android:layout_width="@dimen/xima_titleheight_50dp" android:layout_height="wrap_content" android:src="@drawable/btn_orange_back_selector" android:layout_centerVertical="true" />
+    <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@android:color/black" android:id="@id/kf5_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/kf5_image_selector_activity_title" android:layout_centerHorizontal="true" android:layout_centerVertical="true" />
+    <Button android:textSize="@dimen/kf5_text_size_14" android:textColor="@drawable/kf5_list_folder_tv_submit_text_color" android:gravity="center" android:id="@id/kf5_right_text_view" android:background="@drawable/kf5_action_btn" android:paddingLeft="@dimen/kf5_dimen_12dp" android:paddingTop="@dimen/kf5_dimen_6dp" android:paddingRight="@dimen/kf5_dimen_12dp" android:paddingBottom="@dimen/kf5_dimen_6dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/kf5_dimen_12dp" android:minWidth="1.0dip" android:minHeight="1.0dip" android:text="@string/kf5_action_done" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+</RelativeLayout>

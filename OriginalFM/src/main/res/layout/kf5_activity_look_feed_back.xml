@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/kf5_top_layout" android:background="@color/xima_title" android:layout_width="fill_parent" android:layout_height="@dimen/xima_titleheight_50dp" android:layout_alignParentTop="true">
+        <ImageView android:id="@id/kf5_return_img" android:visibility="visible" android:layout_width="@dimen/xima_titleheight_50dp" android:layout_height="wrap_content" android:src="@drawable/btn_orange_back_selector" android:scaleType="centerInside" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+        <TextView android:textSize="@dimen/kf5_text_h_size" android:gravity="center" android:id="@id/kf5_right_text_view" android:padding="@dimen/kf5_dimen_8dp" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/kf5_dimen_8dp" android:text="@string/kf5_connect_us" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@android:color/black" android:id="@id/kf5_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="客服记录" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <View android:id="@id/kf5_deliver" android:background="@color/kf5_line_deliver_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/kf5_top_layout" />
+    <com.kf5sdk.view.RefreshListView android:id="@id/kf5_look_feed_back_listview" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="fill_parent" android:listSelector="@android:color/white" android:divider="@android:color/white" android:layout_below="@id/kf5_deliver" android:overScrollMode="never" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_16dp" android:layout_below="@id/kf5_top_layout">
+        <TextView android:textColor="@color/kf5_message_value_color" android:layout_gravity="center_horizontal" android:id="@id/kf5_look_feed_back_reminder_tv" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/kf5_no_feed_back" />
+    </FrameLayout>
+</RelativeLayout>

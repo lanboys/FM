@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/ll_popup" android:background="@color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <TextView android:background="@color/border_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+        <Button android:textSize="18.0sp" android:textColor="@color/text_dark" android:id="@id/item_popupwindows_camera" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip" android:text="@string/take_photo" />
+        <TextView android:background="@color/border_gray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <Button android:textSize="18.0sp" android:textColor="@color/text_dark" android:id="@id/item_popupwindows_Photo" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip" android:text="@string/from_album" />
+        <TextView android:background="@color/border_gray" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <Button android:textSize="18.0sp" android:textColor="@color/text_dark" android:id="@id/item_popupwindows_cancel" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="55.0dip" android:text="@string/cancel" />
+    </LinearLayout>
+</RelativeLayout>

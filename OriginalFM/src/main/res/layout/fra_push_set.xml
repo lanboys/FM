@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/titlebar_top" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <RelativeLayout android:id="@id/push_msg_switch" android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="44.0dip" android:layout_marginTop="15.0dip">
+                <TextView android:layout_width="wrap_content" android:text="@string/push_message" android:drawableRight="@null" style="@style/setting_text_title" />
+                <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_push_msg" style="@style/push_set_switch" />
+            </RelativeLayout>
+            <TextView android:id="@id/tv_notify" android:layout_marginTop="17.0dip" android:text="@string/setting_push_toast_01" style="@style/push_set_title" />
+            <RelativeLayout android:id="@id/push_editor_recommend" android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="10.0dip">
+                <TextView android:id="@id/tv_editor_recommend" android:layout_width="wrap_content" android:layout_marginTop="11.0dip" android:minHeight="0.0dip" android:text="@string/editor_recommend" android:drawableRight="@null" style="@style/setting_text_title" />
+                <TextView android:text="@string/editor_recommend_hint" android:layout_below="@id/tv_editor_recommend" style="@style/push_set_title" />
+                <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_editor_recommend" style="@style/push_set_switch" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/push_subscribe_update" android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="1.0px">
+                <TextView android:id="@id/tv_subscribe_update" android:layout_width="wrap_content" android:layout_marginTop="11.0dip" android:minHeight="0.0dip" android:text="@string/subscribe_update" android:drawableRight="@null" style="@style/setting_text_title" />
+                <TextView android:text="@string/subscribe_update_hint" android:layout_below="@id/tv_subscribe_update" style="@style/push_set_title" />
+                <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_subscribe_update" style="@style/push_set_switch" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/push_live_notify" android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="1.0px">
+                <TextView android:id="@id/tv_live_notify" android:layout_width="wrap_content" android:layout_marginTop="11.0dip" android:minHeight="0.0dip" android:text="@string/live_notify" android:drawableRight="@null" style="@style/setting_text_title" />
+                <TextView android:text="@string/live_notify_hint" android:layout_below="@id/tv_live_notify" style="@style/push_set_title" />
+                <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_live_notify" style="@style/push_set_switch" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/push_answer_notify" android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="1.0px">
+                <TextView android:id="@id/tv_answer_notify" android:layout_width="wrap_content" android:layout_marginTop="11.0dip" android:minHeight="0.0dip" android:text="@string/answer_notify" android:drawableRight="@null" style="@style/setting_text_title" />
+                <TextView android:text="@string/answer_notify_hint" android:layout_below="@id/tv_answer_notify" style="@style/push_set_title" />
+                <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_answer_notify" style="@style/push_set_switch" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/push_comment" android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginTop="1.0px">
+                <TextView android:id="@id/tv_comment" android:layout_width="wrap_content" android:layout_marginTop="11.0dip" android:minHeight="0.0dip" android:text="@string/new_comment_reply" android:drawableRight="@null" style="@style/setting_text_title" />
+                <TextView android:text="@string/new_comment_reply_hint" android:layout_below="@id/tv_comment" style="@style/push_set_title" />
+                <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_comment" style="@style/push_set_switch" />
+            </RelativeLayout>
+            <TextView android:id="@id/tv_without_sound" android:layout_marginTop="17.0dip" android:text="@string/setting_push_toast_02" style="@style/push_set_title" />
+            <RelativeLayout android:id="@id/push_without_sound" android:background="@android:color/white" android:clickable="true" android:layout_width="fill_parent" android:layout_height="44.0dip" android:layout_marginTop="10.0dip">
+                <TextView android:ellipsize="none" android:id="@id/tv_push_without_sound" android:clickable="false" android:layout_width="fill_parent" android:text="每日22:00-次日8:00" android:drawableRight="@null" style="@style/setting_text_title" />
+                <TextView android:text="开启后晚上10点至次日8点间将不会收到推送" android:layout_below="@id/tv_push_without_sound" style="@style/push_set_title" />
+                <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_without_sound" style="@style/push_set_switch" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

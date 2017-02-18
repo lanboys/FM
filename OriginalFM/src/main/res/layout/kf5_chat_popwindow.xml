@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:background="@drawable/kf5_popwindow_bg" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="15.0sp" android:gravity="center" android:id="@id/kf5_textview1" android:background="@drawable/kf5_text_view_bg" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="去留言" />
+    <TextView android:textSize="14.0sp" android:gravity="center" android:layout_gravity="center" android:id="@id/kf5_textview2" android:background="@drawable/kf5_text_view_bg" android:padding="3.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="客服记录" />
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@drawable/playpage_bg_pop" android:padding="10.0dip" android:layout_width="@dimen/play_fragment_popwindow_width" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="13.0sp" android:gravity="center" android:id="@id/pop_to_anchorspace" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="14.0dip" android:text="浏览TA主页" android:drawableLeft="@drawable/home" />
+    <View android:id="@id/divide1" android:background="#0c000000" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="9.0dip" android:layout_marginRight="9.0dip" android:layout_below="@id/pop_to_anchorspace" />
+    <TextView android:textSize="13.0sp" android:gravity="center" android:id="@id/pop_to_reward" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:layout_marginBottom="14.0dip" android:text="给TA打赏" android:drawableLeft="@drawable/dashang" android:layout_below="@id/divide1" />
+    <View android:id="@id/divide2" android:background="#0c000000" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="9.0dip" android:layout_marginRight="9.0dip" android:layout_below="@id/pop_to_reward" />
+    <TextView android:textSize="13.0sp" android:gravity="center" android:id="@id/pop_to_chat" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:layout_marginBottom="14.0dip" android:text="跟TA聊聊" android:drawableLeft="@drawable/sixin" android:layout_below="@id/divide2" />
+    <View android:id="@id/divide3" android:background="#0c000000" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="9.0dip" android:layout_marginRight="9.0dip" android:layout_below="@id/pop_to_chat" />
+    <TextView android:textSize="13.0sp" android:gravity="center" android:id="@id/pop_to_ask" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:layout_marginBottom="10.0dip" android:text="我要提问" android:drawableLeft="@drawable/tiwen" android:layout_below="@id/divide3" />
+</RelativeLayout>

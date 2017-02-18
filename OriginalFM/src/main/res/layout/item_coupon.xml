@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="100.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/layout_price" android:background="@drawable/bg_coupon_left" android:layout_width="100.0dip" android:layout_height="100.0dip">
+        <TextView android:textSize="11.0sp" android:textColor="#ffffffff" android:id="@id/tv_money" android:paddingTop="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="1" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="12.0sp" android:textColor="#b2ffffff" android:gravity="bottom" android:id="@id/tv_condition" android:paddingBottom="14.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/tv_money" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/layout_info" android:background="@drawable/bg_coupon_right" android:paddingLeft="12.0dip" android:paddingTop="9.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="100.0dip" android:layout_toRightOf="@id/layout_price">
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@id/tv_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:lines="2" />
+        <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:id="@id/tv_tag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" />
+        <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:id="@id/tv_val" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" />
+    </LinearLayout>
+    <ImageView android:id="@id/iv_check" android:background="@drawable/bg_select_1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+</RelativeLayout>

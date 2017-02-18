@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="jd_welcome_bg">#9D000B</color>
+    <color name="main_bottom_bg">#363636</color>
+    <color name="bot_text_color_normal">#BB1F35</color>
+    <color name="bot_text_color_selected">#414141</color>
+    <color name="choose_indicator_nor">#323335</color>
+    <color name="choose_indicator_nor_selected">#F33F3F</color>
+    <color name="choose_jd_service_nor">#232326</color>
+    <color name="choose_jd_service_selected">#F33F3F</color>
+    <color name="comment_title_txt_normal">#161616</color>
+    <color name="comment_title_txt_selected">#F47A7A</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="titleColor">#c9212e</color>
+    <color name="titleColorSelected">#535353</color>
+
+
+    <color name="otherspace_normal_gray">#ff666666</color>
+    <color name="text_disable">#ffc6c6c6</color>
+    <color name="orange">#fff86442</color>
+
+    <!-- tab 文字的两种颜色 -->
+    <color name="tab_text_color_pressed">#fff86442</color>
+    <color name="tab_text_color_unpress">#ff949494</color>
+    <!-- 首页指示器颜色 -->
+    <color name="indicator">#55B3C2</color>
+
+    <color name="indicator_1">#80dcea</color>
+    <color name="indicator_2">#a0f4f4</color>
+    <color name="indicator_3">#94efd7</color>
+    <color name="indicator_4">#FDBC7D</color>
+    <color name="indicator_5">#FDBC7D</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="default_refresh_color_style">#CA0612</color>
+
+    <color name="hot_item_background_white">#ffffffff</color>
+
+
+
+</resources>

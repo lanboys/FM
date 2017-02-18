@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/top" layout="@layout/titlebar_top" />
+    <ScrollView android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <LinearLayout android:orientation="vertical" android:id="@id/container" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <RelativeLayout android:id="@id/album_name_layout" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="10.0dip" android:layout_below="@id/top">
+                <TextView android:textSize="16.0sp" android:textColor="#ff999999" android:id="@id/tv_album_tag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="节目" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                <TextView android:textSize="16.0sp" android:textColor="#ff323232" android:ellipsize="end" android:id="@id/tv_album" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:text="专辑名称" android:maxLines="1" android:maxEms="11" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/album_count_layout" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="1.0px" android:layout_below="@id/album_name_layout">
+                <TextView android:textSize="16.0sp" android:textColor="#ff999999" android:id="@id/tv_count_tag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="集数" android:layout_centerVertical="true" />
+                <TextView android:textSize="16.0sp" android:textColor="#ff323232" android:id="@id/tv_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:text="1集" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/album_price_layout" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="1.0px" android:layout_below="@id/album_count_layout">
+                <TextView android:textSize="16.0sp" android:textColor="#ff999999" android:id="@id/tv_price_tag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="价格" android:layout_centerVertical="true" />
+                <RelativeLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+                    <TextView android:textSize="16.0sp" android:textColor="#fffc5832" android:id="@id/vip_xidian" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:layout_toLeftOf="@id/vip_discount_price" android:layout_alignTop="@id/vip_discount_price" />
+                    <TextView android:textSize="12.0sp" android:textColor="#ff323232" android:id="@id/vip_old_price" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="喜点" android:layout_below="@id/vip_discount_price" android:layout_alignParentRight="true" />
+                    <TextView android:textSize="16.0sp" android:id="@id/vip_discount_price" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="喜点" android:layout_alignParentRight="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <LinearLayout android:orientation="horizontal" android:id="@id/description_layout" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="1.0px">
+                <ImageView android:paddingLeft="15.0dip" android:paddingTop="11.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_tip" />
+                <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:gravity="center_vertical" android:id="@id/tv_description" android:paddingLeft="4.0dip" android:paddingTop="9.0dip" android:paddingRight="10.0dip" android:paddingBottom="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:drawablePadding="5.0dip" />
+            </LinearLayout>
+            <RelativeLayout android:id="@id/coupon_layout" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="10.0dip" android:layout_below="@id/album_name_layout">
+                <TextView android:textSize="16.0sp" android:textColor="#ff999999" android:id="@id/tv_coupon_tag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="优惠券" android:layout_centerVertical="true" />
+                <TextView android:textSize="16.0sp" android:textColor="#ff323232" android:gravity="center" android:id="@id/tv_coupon" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginRight="15.0dip" android:text="无可用优惠券" android:drawableRight="@drawable/arrow_black_right" android:drawablePadding="5.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/money_layout" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginTop="1.0px" android:layout_below="@id/album_name_layout">
+                <TextView android:textSize="16.0sp" android:textColor="#ff999999" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="总价" android:layout_centerVertical="true" />
+                <TextView android:textSize="16.0sp" android:textColor="#ff323232" android:id="@id/tv_money" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            </RelativeLayout>
+            <include layout="@layout/layout_bind_phone" />
+            <com.ximalaya.ting.android.view.PayActionsView android:id="@id/pay_ways" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" />
+            <TextView android:textSize="15.0sp" android:textColor="#ff323232" android:id="@id/tv_1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="20.0dip" android:text="温馨提示:" />
+            <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:id="@id/tv_2" android:paddingLeft="13.0dip" android:paddingRight="13.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:layout_marginBottom="70.0dip" android:text="@string/buy_member_tip" android:lineSpacingExtra="5.0dip" />
+        </LinearLayout>
+    </ScrollView>
+    <RelativeLayout android:layout_gravity="bottom|center" android:id="@id/btn_buy_layout" android:background="@color/white" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip">
+        <TextView android:textSize="16.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/tv_buy" android:background="@drawable/login_highlight_btn_bg" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/buy_now" android:layout_centerInParent="true" />
+        <ProgressBar android:id="@id/pb_buy_loading" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0dip" android:maxWidth="20.0dip" android:maxHeight="20.0dip" android:indeterminateDrawable="@drawable/ic_pay_loading" android:minWidth="20.0dip" android:minHeight="20.0dip" android:layout_toLeftOf="@id/tv_buy" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</LinearLayout>

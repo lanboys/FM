@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/no_content_layout" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/image_no_content" android:duplicateParentState="true" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <TextView android:textSize="15.0sp" android:textColor="@color/text_dark" android:id="@id/btn_no_content" android:background="@drawable/bg_preload_btn_selector" android:visibility="gone" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" />
+</LinearLayout>

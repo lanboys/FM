@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="44.0dip" android:layout_marginTop="10.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RatingBar android:id="@id/album_ratingbar" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="11.0dip" android:numStars="5" android:rating="2.5" android:isIndicator="true" style="@style/XimaRatingBar" />
+    <TextView android:textSize="14.0sp" android:textColor="@color/text_dark" android:id="@id/tv_album_score" android:paddingTop="1.0dip" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" />
+    <TextView android:textSize="14.0sp" android:textColor="@color/text_light" android:gravity="right|center" android:id="@id/tv_album_comment_num" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:drawableRight="@drawable/arrow_gray_right" android:drawablePadding="4.0dip" />
+</LinearLayout>

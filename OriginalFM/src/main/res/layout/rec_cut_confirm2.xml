@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/relativelayout1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <ImageView android:id="@id/img_prelisten" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_rec_clip_play" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:id="@id/text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="试听" android:layout_below="@id/img_prelisten" android:layout_centerHorizontal="true" />
+        <View android:id="@id/listen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@id/img_prelisten" android:layout_alignTop="@id/img_prelisten" android:layout_alignRight="@id/img_prelisten" android:layout_alignBottom="@id/text" />
+    </RelativeLayout>
+    <RelativeLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginRight="30.0dip" android:layout_toLeftOf="@id/relativelayout1" android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+        <ImageView android:id="@id/btn_record_cut_cancel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_rec_clip_cancel" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:gravity="center" android:id="@id/tv_cancel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="取消" android:layout_below="@id/btn_record_cut_cancel" android:layout_centerHorizontal="true" />
+        <View android:id="@id/view_cancal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@id/btn_record_cut_cancel" android:layout_alignTop="@id/btn_record_cut_cancel" android:layout_alignRight="@id/btn_record_cut_cancel" android:layout_alignBottom="@id/tv_cancel" />
+    </RelativeLayout>
+    <RelativeLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_toRightOf="@id/relativelayout1" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+        <ImageView android:id="@id/btn_record_cut_ok" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_rec_clip_confirm" android:layout_centerHorizontal="true" />
+        <TextView android:textSize="13.0sp" android:textColor="#ff666666" android:gravity="center" android:id="@id/text_ok" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="确认裁剪" android:layout_below="@id/btn_record_cut_ok" android:layout_centerHorizontal="true" />
+        <View android:id="@id/ok" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@id/text_ok" android:layout_alignTop="@id/btn_record_cut_ok" android:layout_alignRight="@id/text_ok" android:layout_alignBottom="@id/text_ok" />
+    </RelativeLayout>
+    <TextView android:textSize="13.0sp" android:textColor="#ffff4545" android:id="@id/time" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="15.0dip" android:text="00:00" android:layout_above="@id/relativelayout1" android:layout_centerHorizontal="true" />
+</RelativeLayout>

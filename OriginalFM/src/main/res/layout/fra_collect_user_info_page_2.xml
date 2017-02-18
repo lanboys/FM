@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#fff0f0f0" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/horizontal_anchor" android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_centerVertical="true" />
+    <TextView android:textSize="25.0sp" android:textStyle="bold" android:textColor="@color/interested_tag_text_color_normal" android:id="@id/h1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:layout_marginBottom="12.0dip" android:text="@string/take_choose_again" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="18.0sp" android:textColor="#ff666666" android:id="@id/h2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/take_choose_again" android:layout_below="@id/h1" android:layout_centerHorizontal="true" />
+    <View android:id="@id/vertical" android:layout_width="0.0dip" android:layout_height="0.0dip" android:layout_centerHorizontal="true" />
+    <LinearLayout android:orientation="vertical" android:id="@id/officer_item" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="28.0dip" android:layout_marginBottom="-2.0dip" android:layout_toLeftOf="@id/vertical" android:layout_above="@id/horizontal_anchor">
+        <CheckBox android:id="@id/officer" android:background="@drawable/officer_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/office" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/retired_item" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="28.0dip" android:layout_marginBottom="-2.0dip" android:layout_toRightOf="@id/vertical" android:layout_above="@id/horizontal_anchor">
+        <CheckBox android:id="@id/retired" android:background="@drawable/retired_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/retire" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/student_item" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="22.0dip" android:layout_marginRight="28.0dip" android:layout_toLeftOf="@id/vertical" android:layout_below="@id/horizontal_anchor">
+        <CheckBox android:id="@id/student" android:background="@drawable/student_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/student" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/children_item" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="28.0dip" android:layout_marginTop="22.0dip" android:layout_toRightOf="@id/vertical" android:layout_below="@id/horizontal_anchor">
+        <CheckBox android:id="@id/children" android:background="@drawable/children_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:button="@null" />
+        <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/child" />
+    </LinearLayout>
+    <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginBottom="40.0dip" android:text="@string/next_step" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+</RelativeLayout>

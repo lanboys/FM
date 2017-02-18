@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:id="@id/container" android:background="@color/color_536771" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/host_ui_blur_cover" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="centerCrop" />
+    <View android:id="@id/topLine" android:layout_width="fill_parent" android:layout_height="0.0dip" android:contentDescription="@string/title_bar_contentDescription" />
+    <FrameLayout android:id="@id/underTitleFl" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/liveaudio_loading" />
+    <include android:id="@id/titleBar" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_below="@id/topLine" layout="@layout/titlebar_top_liveaudio" />
+    <RelativeLayout android:id="@id/topRl" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/titleBar">
+        <include android:id="@id/timingLl" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" layout="@layout/live_play_timing_host" />
+        <include android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="6.0dip" android:layout_alignTop="@id/timingLl" android:layout_alignParentRight="true" layout="@layout/liveaudio_giftrank_entrance" />
+        <include android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/timingLl" layout="@layout/liveaudio_annoucement_marquee" />
+    </RelativeLayout>
+    <FrameLayout android:id="@id/bottomFl" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/topRl" android:alpha="0.0" />
+    <include android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/liveaudio_countdown_ani_layout" />
+    <com.ximalaya.ting.android.view.giftpop.SuperGiftLayout android:id="@id/super_layout" android:visibility="gone" android:layout_width="250.0dip" android:layout_height="280.0dip" android:layout_centerInParent="true" />
+</RelativeLayout>

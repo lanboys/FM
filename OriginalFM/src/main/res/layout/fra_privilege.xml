@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/top_layout" layout="@layout/titlebar_top" />
+    <RelativeLayout android:id="@id/priviege_num_layout" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_below="@id/top_layout">
+        <ImageView android:id="@id/priviege_img" android:background="@drawable/icon_priviege_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginRight="10.0dip" android:layout_centerVertical="true" />
+        <TextView android:textSize="14.0sp" android:textColor="#ff333333" android:id="@id/priviege_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_toRightOf="@id/priviege_img" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <ListView android:id="@id/listview" android:paddingBottom="@dimen/bottom_bar_height" android:scrollbars="@null" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="15.0dip" android:listSelector="@color/transparent" android:divider="@color/transparent" android:dividerHeight="10.0dip" android:layout_below="@id/priviege_num_layout" android:overScrollMode="always" />
+</RelativeLayout>

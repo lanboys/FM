@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#fff5f5f5" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/btn_record" android:layout_width="72.0dip" android:layout_height="72.0dip" android:src="@drawable/icon_rec_off" android:layout_centerInParent="true" />
+    <TextView android:textSize="16.0sp" android:textColor="#fffc5832" android:gravity="center" android:id="@id/btn_prelisten" android:visibility="gone" android:layout_width="32.0dip" android:layout_height="22.0dip" android:layout_marginLeft="58.0dip" android:text="试听" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+    <TextView android:textSize="16.0sp" android:textColor="#fffc5832" android:gravity="center" android:id="@id/btn_save" android:visibility="gone" android:clickable="true" android:layout_width="32.0dip" android:layout_height="22.0dip" android:layout_marginRight="58.0dip" android:text="保存" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <RelativeLayout android:id="@id/beautify_music_lay" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_below="@id/btn_record" android:layout_centerHorizontal="true">
+        <ImageView android:id="@id/beautify_music" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:src="@drawable/beautify" />
+        <TextView android:id="@id/beautify_type" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="text" android:singleLine="true" android:layout_toRightOf="@id/beautify_music" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <TextView android:textSize="13.0sp" android:textColor="#ff7d7f86" android:id="@id/record_state" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="18.0dip" android:layout_marginTop="15.0dip" android:text="使用耳机录制效果更佳哦" android:layout_below="@id/beautify_music_lay" android:layout_centerHorizontal="true" />
+    <Button android:id="@id/testbutton" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="测试" android:layout_alignBottom="@id/record_state" android:layout_alignParentRight="true" />
+</RelativeLayout>

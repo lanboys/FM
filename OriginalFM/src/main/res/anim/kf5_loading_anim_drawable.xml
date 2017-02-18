@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="200" android:drawable="@drawable/kf5_load_1" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_2" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_3" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_4" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_5" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_6" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_7" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_8" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_9" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_10" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_11" />
+    <item android:duration="200" android:drawable="@drawable/kf5_load_12" />
+</animation-list>

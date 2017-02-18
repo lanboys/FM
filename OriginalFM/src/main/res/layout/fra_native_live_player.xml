@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:emotion="http://schemas.android.com/apk/res-auto">
+    <com.ximalaya.ting.android.view.NotifyingScrollView android:id="@id/scroll_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/title_bar">
+        <LinearLayout android:orientation="vertical" android:id="@id/section_container" android:paddingBottom="30.0dip" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <RelativeLayout android:id="@id/cover_section" android:layout_width="fill_parent" android:layout_height="300.0dip">
+                <ImageView android:id="@id/sound_cover" android:layout_width="fill_parent" android:layout_height="300.0dip" android:src="@drawable/player_cover_default" android:scaleType="centerCrop" />
+                <ImageView android:id="@id/activity_status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" />
+                <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_centerInParent="true">
+                    <TextView android:textSize="24.0sp" android:textColor="#ffffffff" android:id="@id/countdown" android:layout_width="wrap_content" android:layout_height="wrap_content" android:shadowColor="#ff000000" android:shadowDx="1.0" android:shadowDy="1.0" android:shadowRadius="1.0" />
+                    <TextView android:textSize="15.0sp" android:textColor="#ffffffff" android:id="@id/start_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:shadowColor="#ff000000" android:shadowDx="1.0" android:shadowDy="1.0" android:shadowRadius="1.0" />
+                </LinearLayout>
+                <ImageView android:id="@id/finish_flag" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/activity_finish_flag" android:layout_centerInParent="true" />
+            </RelativeLayout>
+            <include android:id="@id/player_control_bar" android:layout_width="fill_parent" android:layout_height="100.0dip" android:layout_marginTop="-25.0dip" android:layout_below="@id/sound_cover" layout="@layout/native_live_player_control_bar" />
+            <LinearLayout android:orientation="vertical" android:background="@color/white" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+                <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="活动介绍：" />
+                <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:id="@id/description" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.ximalaya.ting.android.view.NotifyingScrollView>
+    <include android:id="@id/title_bar" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height" layout="@layout/titlebar_top" />
+    <View android:id="@id/overlay" android:background="#6c000000" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <View android:id="@id/touch_handle_layer" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <FrameLayout android:id="@id/fra_container" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <ImageView android:id="@id/freeflow" android:visibility="gone" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="8.0dip" android:src="@drawable/freeflow_normal" android:layout_below="@id/title_bar" android:layout_alignParentRight="true" />
+</RelativeLayout>

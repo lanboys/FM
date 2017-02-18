@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/transparent" android:paddingLeft="20.0dip" android:paddingRight="20.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/rl_dialog_content" android:background="@drawable/round_bg_white" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="106.0dip">
+            <TextView android:textSize="15.0sp" android:textColor="@color/text_color" android:gravity="center" android:id="@id/msg_tv" android:paddingTop="20.0dip" android:paddingBottom="20.0dip" android:scrollbars="vertical" android:clickable="false" android:longClickable="false" android:layout_width="wrap_content" android:layout_height="106.0dip" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:text="@string/exit_message" android:maxLines="12" android:layout_centerHorizontal="true" android:lineSpacingMultiplier="1.2" />
+            <ImageView android:id="@id/ad_img" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="10.0dip" />
+        </RelativeLayout>
+        <View android:id="@id/btn_border" android:background="@color/border" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/btn_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <Button android:textSize="16.0sp" android:textColor="@color/text_color" android:id="@id/cancel_btn" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="取消" android:maxLines="1" android:layout_weight="1.0" style="@style/round_bottom_btn_left_bg" />
+            <View android:id="@id/btn_separator_border_1" android:background="@color/border" android:layout_width="1.0px" android:layout_height="fill_parent" />
+            <Button android:textSize="16.0sp" android:textColor="@color/text_color" android:id="@id/neutral_btn" android:background="@drawable/btn_bg_selector" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="最小化" android:maxLines="1" android:layout_weight="1.0" />
+            <View android:id="@id/btn_separator_border_2" android:background="@color/border" android:layout_width="1.0px" android:layout_height="fill_parent" />
+            <Button android:textSize="16.0sp" android:textColor="@color/text_color" android:id="@id/ok_btn" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="退出应用" android:maxLines="1" android:layout_weight="1.0" style="@style/round_bottom_btn_right_bg" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

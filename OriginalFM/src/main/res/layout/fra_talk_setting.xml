@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/color_e8e8e8" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/titlebar_top" />
+    <RelativeLayout android:id="@id/rl_talker_info" android:background="@drawable/bg_layout_selector" android:layout_width="fill_parent" android:layout_height="67.0dip" android:layout_below="@id/rl_top_bar">
+        <com.ximalaya.ting.android.view.RoundedImageView android:id="@id/iv_talker" android:clickable="false" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginLeft="14.0dip" android:src="@drawable/default_avatar_60" android:layout_centerVertical="true" app:corner_radius="80.0dip" app:border_width="0.0px" app:round_background="true" app:pressdown_shade="false" />
+        <TextView android:textSize="17.0sp" android:textColor="@color/black" android:ellipsize="end" android:id="@id/tv_talker_name" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="11.0dip" android:layout_marginTop="11.0dip" android:maxLines="1" android:maxLength="15" android:layout_toRightOf="@id/iv_talker" />
+        <ImageView android:id="@id/iv_vip_flag" android:visibility="visible" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:layout_marginTop="1.0dip" android:src="@drawable/icon_v" android:layout_toRightOf="@id/tv_talker_name" android:layout_alignTop="@id/iv_talker" />
+        <TextView android:textSize="14.0sp" android:textColor="@color/price_gray" android:ellipsize="end" android:id="@id/tv_talker_info" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="11.0dip" android:layout_marginTop="3.0dip" android:maxLines="1" android:maxLength="20" android:layout_toRightOf="@id/iv_talker" android:layout_below="@id/tv_talker_name" />
+        <ImageView android:id="@id/iv_talker_more" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="16.0sp" android:src="@drawable/ic_more" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/rl_notice_setting" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:layout_below="@id/rl_talker_info">
+        <TextView android:id="@id/tv_notice_setting" android:background="@color/white" android:text="消息免打扰" android:drawableRight="@null" style="@style/setting_text_title" />
+        <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:id="@id/sb_without_notice" android:layout_width="60.0dip" android:layout_height="20.0dip" android:layout_marginTop="4.0dip" android:layout_marginRight="17.0dip" android:layout_alignTop="@id/tv_notice_setting" android:layout_alignParentRight="true" />
+        <View android:id="@id/divide_0" android:background="#ffe8e8e8" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip" android:layout_below="@id/tv_notice_setting" />
+        <TextView android:id="@id/tv_clear_content" android:text="清空聊天记录" android:drawableRight="@null" android:layout_below="@id/divide_0" style="@style/setting_text_title" />
+        <TextView android:textColor="@color/interested_tag_text_color_normal" android:id="@id/tv_blacklist_setting" android:layout_marginTop="15.0dip" android:drawableRight="@null" android:layout_below="@id/tv_clear_content" style="@style/setting_text_title" />
+    </RelativeLayout>
+</RelativeLayout>

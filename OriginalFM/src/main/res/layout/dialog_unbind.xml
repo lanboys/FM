@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/buy_dialog_shape" android:paddingBottom="31.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="280.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="right" android:id="@id/iv_close" android:layout_width="44.0dip" android:layout_height="44.0dip" android:src="@drawable/ic_dialog_close" />
+    <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="-10.0dip" android:src="@drawable/icon_alert" />
+    <TextView android:textSize="16.0sp" android:textColor="@color/color_333333" android:gravity="center" android:layout_gravity="center_horizontal" android:id="@id/title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="30.0dip" android:layout_marginRight="20.0dip" android:layout_marginBottom="10.0dip" android:text="该手机号已被 我是大魔王松岛枫松岛枫随碟附送 占用" android:lineSpacingExtra="5.0dip" />
+    <TextView android:textColor="@color/color_999999" android:gravity="center" android:id="@id/subtitle" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="20.0dip" android:text="该账号已加V认证，故请您切换至该账号购买" android:layout_centerHorizontal="true" />
+    <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:id="@id/btn_layout" android:background="@drawable/bg_btn_oval_orange_selector" android:layout_width="240.0dip" android:layout_height="40.0dip" android:layout_marginTop="20.0dip">
+        <TextView android:textSize="15.0sp" android:textStyle="bold" android:textColor="@color/white" android:id="@id/btn_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="切换至" />
+        <TextView android:textColor="@color/white" android:ellipsize="end" android:id="@id/btn_content" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:maxWidth="150.0dip" android:text="我是十个字我是十个字我是十个字我是十个字" android:maxLines="1" />
+    </LinearLayout>
+    <Button android:textSize="15.0sp" android:textColor="@color/white" android:layout_gravity="center_horizontal" android:id="@id/btn" android:background="@drawable/bg_btn_oval_orange_selector" android:layout_width="240.0dip" android:layout_height="40.0dip" android:layout_marginTop="15.0dip" android:text="确认绑定" />
+    <View android:layout_width="fill_parent" android:layout_height="30.0dip" />
+</LinearLayout>

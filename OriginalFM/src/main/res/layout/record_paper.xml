@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:rankbar="http://schemas.android.com/apk/res-auto">
+    <com.ximalaya.ting.android.view.record.MListView android:id="@id/list" android:background="#ff242526" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@null" android:overScrollMode="never" />
+    <com.ximalaya.ting.android.view.record.MListView android:id="@id/list1" android:background="#ff37393a" android:layout_width="fill_parent" android:layout_height="0.0dip" android:divider="@null" android:overScrollMode="never" />
+    <RelativeLayout android:id="@id/highlight_control" android:background="@drawable/bg_fontsize_control" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginLeft="@dimen/kf5_dimen_10dp" android:layout_marginRight="@dimen/kf5_dimen_10dp" android:layout_marginBottom="20.0dip" android:layout_alignParentBottom="true">
+        <ImageView android:id="@id/offset" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="17.0dip" android:src="@drawable/rec_btn_music_on" android:layout_centerVertical="true" />
+        <TextView android:textSize="13.0sp" android:textColor="#ffffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0dip" android:text="聚焦" android:layout_toRightOf="@id/offset" android:layout_centerVertical="true" />
+        <TextView android:textSize="16.0sp" android:textColor="#ffffffff" android:id="@id/big_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="17.0dip" android:text="大" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <com.ximalaya.ting.android.view.record.RankBar android:id="@id/rankbar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toLeftOf="@id/big_tv" android:layout_centerVertical="true" rankbar:rank_radius="2.0dip" rankbar:thumb="@drawable/rec_btn_fontsize" rankbar:line_height="1.0dip" rankbar:line_len="30.0dip" rankbar:rank_color="#ffffffff" />
+        <TextView android:textSize="12.0sp" android:textColor="#ffffffff" android:id="@id/small_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0dip" android:text="小" android:layout_toLeftOf="@id/rankbar" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:id="@id/download_action" android:layout_width="fill_parent" android:layout_height="55.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/placeholder_1" android:visibility="invisible" android:layout_width="0.0dip" android:layout_height="55.0dip" android:layout_weight="1.0" />
+    <TextView android:textSize="16.0sp" android:textColor="@drawable/text_color_selector" android:gravity="center" android:id="@id/batch_pause" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/pause_all" android:drawableLeft="@drawable/download_batch_pause_selector" android:drawablePadding="0.0px" android:layout_weight="2.0" />
+    <TextView android:textSize="16.0sp" android:textColor="@drawable/text_color_selector" android:gravity="center" android:id="@id/batch_resume" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/continue_all" android:drawableLeft="@drawable/download_batch_resume_selector" android:drawablePadding="0.0px" android:layout_weight="2.0" />
+    <TextView android:textSize="16.0sp" android:textColor="@drawable/text_color_selector" android:gravity="center" android:id="@id/batch_sort" android:visibility="gone" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/select_sort" android:drawableLeft="@drawable/ic_sort" android:drawablePadding="0.0px" android:layout_weight="2.0" />
+    <View android:id="@id/placeholder_2" android:visibility="invisible" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+    <TextView android:textSize="16.0sp" android:textColor="@drawable/text_color_selector" android:gravity="center" android:id="@id/clear_all" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/clear_all" android:drawableLeft="@drawable/btn_garbage_selector" android:drawablePadding="0.0px" android:layout_weight="2.0" />
+    <View android:id="@id/placeholder_3" android:visibility="invisible" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0" />
+</LinearLayout>

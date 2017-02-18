@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/kf5_list_item_seletecd_bg" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_4dp" android:layout_marginStart="@dimen/kf5_dimen_4dp">
+        <ProgressBar android:id="@id/kf5_progressBar" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:layout_alignParentStart="true" style="?android:attr/progressBarStyleSmall" />
+        <ImageView android:id="@id/kf5_feed_back_detail_failed_image" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/kf5_message_failed" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:contentDescription="@null" android:layout_alignParentStart="true" />
+        <LinearLayout android:orientation="vertical" android:id="@id/layout" android:paddingTop="@dimen/kf5_dimen_16dp" android:paddingBottom="@dimen/kf5_dimen_16dp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_4dp" android:layout_marginRight="@dimen/kf5_dimen_16dp" android:layout_toRightOf="@id/kf5_progressBar" android:layout_marginStart="@dimen/kf5_dimen_4dp" android:layout_marginEnd="@dimen/kf5_dimen_16dp" android:layout_toEndOf="@id/kf5_progressBar">
+            <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@color/kf5_look_feed_back_list_item_title_color" android:id="@id/kf5_feed_back_detail_content" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <com.kf5sdk.view.NoScrollGridView android:id="@id/kf5_feed_back_detai_grid_view" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_16dp" android:horizontalSpacing="@dimen/kf5_dimen_2dp" android:verticalSpacing="@dimen/kf5_dimen_2dp" android:numColumns="3" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_16dp">
+                <TextView android:textSize="@dimen/kf5_text_l_size" android:textColor="@color/kf5_look_feed_back_list_item_date_color" android:gravity="start" android:id="@id/kf5_feed_back_detail_date" android:layout_width="0.0dip" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" />
+                <TextView android:textSize="@dimen/kf5_text_l_size" android:textColor="@color/kf5_look_feed_back_list_item_date_color" android:gravity="end" android:id="@id/kf5_feed_back_detail_name" android:layout_width="0.0dip" android:layout_height="wrap_content" android:singleLine="true" android:layout_weight="1.0" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <View android:background="@color/kf5_line_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="22.0dip" android:layout_marginStart="22.0dip" />
+</LinearLayout>

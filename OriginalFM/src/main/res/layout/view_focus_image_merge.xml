@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.ximalaya.ting.android.framework.view.ViewPagerInScroll android:id="@id/pager" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_centerHorizontal="true" android:overScrollMode="never" />
+    <com.ximalaya.ting.android.framework.view.pageindicator.CirclePageIndicator android:id="@id/indicator_dot" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" app:strokeWidth="0.0dip" app:fillColor="@color/white" app:pageColor="@color/white_forty" app:radius="3.0dip" app:extraSpacing="10.0dip" />
+    <ImageView android:id="@id/ad_tag_img" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginBottom="5.0dip" android:src="@drawable/ad_tag_inbanner" android:layout_alignBottom="@id/pager" />
+</merge>

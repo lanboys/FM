@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#333333</color>
+    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorAccent">#dc15a0</color>
+
+    <color name="plainFontColor">#999999</color>
+    <color name="itemFontColor">#ffffff</color>
+
+    <color name="black_bg">#d0000000</color>
+    <color name="primary_text">@android:color/darker_gray</color>
+    <color name="comment_divider_color">#fff</color>
+
+    <!-- tab 文字的两种颜色 -->
+    <color name="tab_text_color_pressed">#ed10cc</color>
+    <color name="tab_text_color_unpress">#ff949494</color>
+    <!-- 首页指示器颜色 -->
+    <color name="indicator">#55B3C2</color>
+
+    <color name="indicator_1">#f5410a</color>
+    <color name="indicator_2">#f5410a</color>
+    <color name="indicator_3">#f5410a</color>
+    <color name="indicator_4">#f5410a</color>
+    <color name="indicator_5">#f5410a</color>
+
+</resources>

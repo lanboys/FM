@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="round_bottom_btn_left_bg" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/round_bottom_btn_left_bg_selector_v12</item>
+    </style>
+    <style name="round_bottom_btn_right_bg" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/round_bottom_btn_right_bg_selector_v12</item>
+    </style>
+</resources>

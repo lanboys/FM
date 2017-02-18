@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:background="#ffd9dfe5" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip" />
+    <HorizontalScrollView android:scrollbars="none" android:layout_width="wrap_content" android:layout_height="80.0dip">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent">
+            <RadioButton android:textSize="12.0sp" android:textColor="@drawable/text_black_white_selector" android:gravity="center" android:id="@id/add_local_bg" android:background="@drawable/rec_add_local_bg" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:button="@null" android:maxWidth="50.0dip" android:maxLines="1" style="@style/round_radio_button_orange" />
+            <com.ximalaya.ting.android.view.record.MyRadioGroup android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/record_bg_group" android:paddingLeft="5.0dip" android:paddingTop="10.0dip" android:paddingRight="5.0dip" android:paddingBottom="10.0dip" android:clipToPadding="false" android:layout_width="wrap_content" android:layout_height="80.0dip" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <RelativeLayout android:id="@id/vol_control_bar" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="10.0sp" android:textColor="#ffb2bac8" android:id="@id/volume_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="配乐音量:30%" android:layout_centerHorizontal="true" />
+        <com.ximalaya.ting.android.view.record.VerticalSeekBarWrapper android:id="@id/bg_volume_bar_wrap" android:layout_width="25.0dip" android:layout_height="fill_parent" android:layout_below="@id/volume_label" android:layout_centerInParent="true" android:layout_centerVertical="true">
+            <com.ximalaya.ting.android.view.record.VerticalSeekBar android:id="@id/bg_volume_bar" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:layout_marginBottom="0.0dip" android:maxHeight="1.5dip" android:progressDrawable="@drawable/progress_style_orange_black" android:minHeight="1.5dip" android:thumb="@drawable/rec_bg_volume_thumb" app:seekBarRotation="CW270" />
+        </com.ximalaya.ting.android.view.record.VerticalSeekBarWrapper>
+        <ImageView android:id="@id/left_vol_scale" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:layout_marginBottom="0.0dip" android:src="@drawable/rec_bg_vol_left" android:scaleType="fitCenter" android:layout_toLeftOf="@id/bg_volume_bar_wrap" android:layout_below="@id/volume_label" android:layout_centerVertical="true" />
+        <ImageView android:id="@id/right_vol_scale" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginBottom="0.0dip" android:src="@drawable/rec_bg_vol_right" android:scaleType="fitCenter" android:layout_toRightOf="@id/bg_volume_bar_wrap" android:layout_below="@id/volume_label" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</LinearLayout>

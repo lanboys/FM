@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@string/main_content" android:background="@color/bg_color" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/top" layout="@layout/titlebar_top" />
+    <ImageView android:id="@id/ic_app" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ting" android:layout_above="@id/tv_app_name" android:layout_centerHorizontal="true" />
+    <TextView android:id="@id/tv_app_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="@string/app_name" android:layout_centerInParent="true" style="@style/toptext_view" />
+    <TextView android:id="@id/tv_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_below="@id/tv_app_name" android:layout_centerHorizontal="true" style="@style/toptext_view" />
+    <Button android:textColor="@color/text_dark" android:id="@id/btn_intro" android:background="@drawable/about_btn_bg" android:layout_width="115.0dip" android:layout_height="32.0dip" android:layout_marginTop="20.0dip" android:text="@string/newversion" android:layout_below="@id/tv_version" android:layout_centerHorizontal="true" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:fillViewport="true" android:layout_below="@id/btn_intro">
+        <TextView android:id="@id/mycontent" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" style="@style/toptext_view" />
+    </ScrollView>
+</RelativeLayout>

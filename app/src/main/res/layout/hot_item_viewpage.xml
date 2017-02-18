@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#00000000"
+android:gravity="center"
+android:orientation="vertical"
+android:paddingLeft="80dp"
+android:paddingRight="80dp">
+
+<!-- 上述 padding 是为了让出位置显示隔壁的图片 -->
+<!-- 透明背景是为了不遮挡 其他图片  -->
+
+<ImageView
+    android:id="@+id/vp_img_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/i1"/>
+
+</LinearLayout>

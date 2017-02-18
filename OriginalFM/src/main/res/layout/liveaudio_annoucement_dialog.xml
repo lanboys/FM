@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:background="@drawable/round_bg_white" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="50.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/color_333333" android:gravity="center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="15.0dip" android:text="@string/switch_announcement" />
+            <com.ximalaya.ting.android.view.switchbutton.SwitchButton android:gravity="center_vertical" android:id="@id/announceCb" android:layout_width="60.0dip" android:layout_height="21.0dip" android:layout_marginRight="15.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <View android:background="@color/item_border_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <EditText android:textSize="16.0sp" android:textColor="@color/color_333333" android:textColorHint="@color/text_color_gray" android:gravity="top" android:id="@id/announceEt" android:background="@color/white" android:paddingLeft="15.0dip" android:paddingTop="10.0dip" android:paddingRight="15.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="92.0dip" android:hint="@string/hint_input_announcement" android:maxLength="36" />
+        <TextView android:textSize="12.0sp" android:textColor="@color/color_666666" android:gravity="right" android:id="@id/maxTextTv" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="0/36" />
+        <View android:id="@id/announceEtBottom" android:background="@color/item_border_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/saveOrNoLl" android:layout_width="fill_parent" android:layout_height="45.0dip">
+            <TextView android:textSize="16.0sp" android:textColor="@color/color_333333" android:gravity="center" android:id="@id/announceCancelBtn" android:background="@color/transparent" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="@string/cancel" android:maxLines="1" android:layout_weight="1.0" />
+            <View android:layout_gravity="center_vertical" android:background="@color/item_border_color" android:layout_width="1.0px" android:layout_height="30.0dip" />
+            <TextView android:textSize="16.0sp" android:textColor="@color/color_333333" android:gravity="center" android:id="@id/announceConfirmBtn" android:background="@color/transparent" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="@string/certain" android:maxLines="1" android:layout_weight="1.0" />
+        </LinearLayout>
+    </LinearLayout>
+    <ProgressBar android:id="@id/loadingPb" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" />
+</RelativeLayout>

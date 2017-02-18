@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/content_layout" android:background="@color/bg_color" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/top_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height" layout="@layout/titlebar_top" />
+    <ScrollView android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:id="@id/ll_trueContent" android:paddingBottom="@dimen/bottom_bar_height" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="horizontal" android:background="@color/white" android:paddingLeft="10.0dip" android:paddingTop="20.0dip" android:paddingRight="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <ImageView android:id="@id/localFmTv" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_radio_local" android:scaleType="centerCrop" />
+                    <TextView android:textSize="12.0sp" android:textColor="@color/live_text_medium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="本地台" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <ImageView android:id="@id/nationFmTv" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_radio_country" android:scaleType="centerCrop" />
+                    <TextView android:textSize="12.0sp" android:textColor="@color/live_text_medium" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="国家台" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <ImageView android:id="@id/provinceFmTv" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_radio_province" android:scaleType="centerCrop" />
+                    <TextView android:textSize="12.0sp" android:textColor="@color/live_text_medium" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="省市台" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+                    <ImageView android:id="@id/netFmTv" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_radio_internet" android:scaleType="centerCrop" />
+                    <TextView android:textSize="12.0sp" android:textColor="@color/live_text_medium" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="网络台" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:background="@color/white" android:paddingLeft="10.0dip" android:paddingTop="8.0dip" android:paddingRight="10.0dip" android:paddingBottom="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <GridView android:id="@id/categoryGv" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:horizontalSpacing="1.0dip" android:verticalSpacing="1.0dip" android:numColumns="4" />
+            </LinearLayout>
+            <RelativeLayout android:id="@id/recommendRl" android:background="@color/white" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+                <RelativeLayout android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_marginBottom="10.0dip">
+                    <ImageView android:id="@id/recommend_flag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:src="@drawable/ic_section_header" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                    <TextView android:textSize="14.0sp" android:textColor="@color/text_medium" android:id="@id/recommendTitleTv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="推荐" android:layout_toRightOf="@id/recommend_flag" />
+                    <TextView android:textSize="12.0sp" android:textColor="@drawable/recommend_more_selector" android:id="@id/moreRecommendTv" android:paddingLeft="6.0dip" android:paddingRight="6.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="更多" android:drawableRight="@drawable/finding_more_selector" android:drawablePadding="5.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <LinearLayout android:orientation="vertical" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <include android:id="@id/recommend_radio1" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/item_live_fm_list" />
+                </LinearLayout>
+                <LinearLayout android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <include android:id="@id/recommend_radio2" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/item_live_fm_list" />
+                </LinearLayout>
+                <LinearLayout android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <include android:id="@id/recommend_radio3" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/item_live_fm_list" />
+                </LinearLayout>
+            </LinearLayout>
+            <RelativeLayout android:id="@id/rankRl" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+                <RelativeLayout android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_marginBottom="10.0dip">
+                    <ImageView android:id="@id/rank_flag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:src="@drawable/ic_section_header" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                    <TextView android:textSize="14.0sp" android:textColor="@color/text_medium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="排行榜" android:layout_toRightOf="@id/rank_flag" />
+                    <TextView android:textSize="12.0sp" android:textColor="@drawable/recommend_more_selector" android:id="@id/moreRankTv" android:paddingLeft="6.0dip" android:paddingRight="6.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="更多" android:drawableRight="@drawable/finding_more_selector" android:drawablePadding="5.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:id="@id/top_radio1_holder" android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <include android:id="@id/top_radio1" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/item_live_fm_list" />
+                </LinearLayout>
+                <LinearLayout android:id="@id/top_radio2_holder" android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <include android:id="@id/top_radio2" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/item_live_fm_list" />
+                </LinearLayout>
+                <LinearLayout android:id="@id/top_radio3_holder" android:background="@drawable/bg_layout_selector" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <include android:id="@id/top_radio3" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/item_live_fm_list" />
+                </LinearLayout>
+            </LinearLayout>
+            <RelativeLayout android:id="@id/history_title" android:background="@color/white" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+                <RelativeLayout android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_marginBottom="10.0dip">
+                    <ImageView android:id="@id/his_flag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:src="@drawable/ic_section_header" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+                    <TextView android:textSize="14.0sp" android:textColor="@color/text_medium" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="收听历史" android:layout_toRightOf="@id/his_flag" />
+                    <TextView android:textSize="12.0sp" android:textColor="@drawable/recommend_more_selector" android:id="@id/btn_more" android:paddingLeft="6.0dip" android:paddingRight="6.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="更多" android:drawableRight="@drawable/finding_more_selector" android:drawablePadding="5.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <ListView android:id="@id/listview" android:paddingBottom="@dimen/bottom_bar_height" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:listSelector="@color/transparent" android:divider="@color/transparent" android:dividerHeight="10.0dip" android:overScrollMode="always" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

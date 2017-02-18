@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/title_bar_1" layout="@layout/item_rich_title" />
+    <ViewStub android:id="@id/item_rich_free_sound_1" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_1" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_2" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_2" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_3" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_3" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_4" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_4" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_5" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_5" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_6" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_6" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_7" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_7" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_8" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_8" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_9" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_9" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ViewStub android:id="@id/item_rich_free_sound_10" android:layout="@layout/item_track" android:inflatedId="@id/item_rich_free_sound_inflate_10" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <ImageView android:id="@id/image_empty_free_track" android:background="@color/white" android:paddingBottom="20.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/image_empty_free_track" />
+    <View android:id="@id/more_free_divider" android:background="@color/divider" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginTop="-1.0dip" />
+    <TextView android:textSize="12.0sp" android:textColor="@color/zone_light" android:gravity="center" android:id="@id/more_free_tracs" android:background="@color/click_find_more" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="44.0dip" android:text="查看更多内容" />
+    <View android:id="@id/space_free_tracks" android:background="@color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="20.0dip" android:layout_marginTop="-1.0dip" />
+</merge>

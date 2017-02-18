@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="#fff5f5f5" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="15.0sp" android:textColor="@color/text_dark" android:gravity="center" android:id="@id/categoryTv" android:layout_width="fill_parent" android:layout_height="45.0dip" android:text="@string/country" android:layout_centerInParent="true" />
+    <ImageView android:id="@id/downIv" android:layout_width="wrap_content" android:layout_height="45.0dip" android:layout_centerInParent="true" />
+</RelativeLayout>
