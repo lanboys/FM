@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
-        android:name="com.bing.lan.comm.base.BaseApplication"
+        android:name="com.bing.lan.comm.app.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_ting"
         android:label="@string/app_name"

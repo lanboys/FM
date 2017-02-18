@@ -1,4 +1,4 @@
-package com.bing.lan.comm.base;
+package com.bing.lan.comm.app;
 
 import android.app.Application;
 
@@ -34,7 +34,7 @@ public class BaseApplication extends Application {
         }
 
 
-
+        ErrorReport.getInstance().init(this);
 
 
     }

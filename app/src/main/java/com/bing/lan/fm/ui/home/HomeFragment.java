@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bing.lan.comm.base.BaseApplication;
+import com.bing.lan.comm.app.BaseApplication;
 import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.base.mvp.fragment.SampleFragment;
 import com.bing.lan.comm.di.FragmentComponent;
