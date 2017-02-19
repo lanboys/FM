@@ -19,6 +19,9 @@ public class MainPresenter extends BaseActivityPresenter<IMainContract.IMainView
     public void onSuccess(int action, Object data) {
 
 
+    }    @Override
+    public void onCompleted(int action) {
+
     }
 
     @Override

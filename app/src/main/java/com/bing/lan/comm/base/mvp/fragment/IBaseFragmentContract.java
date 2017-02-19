@@ -22,6 +22,10 @@ public interface IBaseFragmentContract {
 
         FragmentActivity getActivity();
 
+        boolean isHaveData();
+
+        void setHaveData(boolean haveData);
+
         void updateTitle(String title);
     }
 

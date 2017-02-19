@@ -61,7 +61,7 @@ public abstract class AbsRefreshFragment<LISTVIEWBEAN>
         mPresenter.onStart();
     }
 
-    @Override
+
     protected void errorReloadData() {
         mPresenter.errorReloadData();
     }

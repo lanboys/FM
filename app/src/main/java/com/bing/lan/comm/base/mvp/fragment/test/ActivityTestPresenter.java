@@ -34,4 +34,9 @@ public class ActivityTestPresenter
     public void onError(int action, Throwable e) {
 
     }
+
+    @Override
+    public void onCompleted(int action) {
+
+    }
 }

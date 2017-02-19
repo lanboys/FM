@@ -21,7 +21,10 @@ public class HomePresenter extends
         mModule.loadData(LOAD_SEARCH_WORD, this);
 
     }
+    @Override
+    public void onCompleted(int action) {
 
+    }
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(int action, Object data) {

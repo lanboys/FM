@@ -16,7 +16,10 @@ public class FragTestPresenter extends
             // mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
 
     }
+    @Override
+    public void onCompleted(int action) {
 
+    }
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(int action, Object data) {

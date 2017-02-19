@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiManager {
 
-    private static final int DEFAULT_CONN_TIMEOUT = 5;
+    private static final int DEFAULT_CONN_TIMEOUT = 2;
     private static final int WRITE_TIMEOUT = 20;
     private static final int READ_TIMEOUT = 20;
     private static ApiManager instance;

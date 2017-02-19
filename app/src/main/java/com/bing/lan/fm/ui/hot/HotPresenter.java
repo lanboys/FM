@@ -2,6 +2,7 @@ package com.bing.lan.fm.ui.hot;
 
 import com.bing.lan.comm.base.mvp.fragment.BaseFragmentPresenter;
 import com.bing.lan.comm.view.LoadPageView;
+import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
 import com.bing.lan.fm.ui.hot.bean.ListItemFocusImageBean;
@@ -20,27 +21,28 @@ public class HotPresenter extends
     public static final int LOAD_GANK = 0;
     public static final int LOAD_HOT_MAIN = 1;
 
-
-    private static final int LOAD_COUNT = 35;
+    private static final int LOAD_COUNT = 20;
     private static final int LOAD_PAGE = 1;
     private static final int MAX_PAGE = -1;
+
+    private int loadCompleted = 0;
 
     @Override
     public void onStart(Object... params) {
         mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
         mModule.loadData(LOAD_HOT_MAIN, this);
-
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(int action, Object data) {
-        mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
 
         switch (action) {
-
             case LOAD_HOT_MAIN:
                 handleHotData((HotResult) data);
+                break;
+            case LOAD_GANK:
+                mView.updateGirlViewPager((List<GankBean.ResultsBean>) data);
                 break;
         }
     }
@@ -62,6 +64,24 @@ public class HotPresenter extends
 
     @Override
     public void onError(int action, Throwable e) {
+        //下拉刷新,之前有数据,就不显示错误页面
+        if (!mView.isHaveData()) {
+            mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
+        }
+    }
 
+    @Override
+    public void onCompleted(int action) {
+
+        mView.closeRefeshing();
+        mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
+
+        loadCompleted++;
+        log.d("onCompleted(): " + loadCompleted);
+
+        if (loadCompleted == 2) {
+            //全部加载成功才设置为有数据状态,否则再次可见时,自动重新加载数据
+            mView.setHaveData(true);
+        }
     }
 }

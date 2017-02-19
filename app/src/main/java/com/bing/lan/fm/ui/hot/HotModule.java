@@ -49,7 +49,7 @@ public class HotModule extends BaseFragmentModule
                 observable,
                 action,
                 listener,
-                "妹子"
+                "热门页面妹子"
         ));
     }
 

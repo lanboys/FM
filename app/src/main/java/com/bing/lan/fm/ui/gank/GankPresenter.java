@@ -21,25 +21,29 @@ public class GankPresenter extends
 
     @Override
     public void onStart(Object... params) {
-
         mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(int action, Object data) {
-        mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
         switch (action) {
-
             case LOAD_GANK:
                 mView.updateGank((List<GankBean.ResultsBean>) data);
-
                 break;
         }
     }
 
     @Override
     public void onError(int action, Throwable e) {
+        if (!mView.isHaveData()) {
+            mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
+        }
+    }
 
+    @Override
+    public void onCompleted(int action) {
+        mView.setHaveData(true);
+        mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
     }
 }

@@ -20,6 +20,11 @@ public class SplashPresenter
     }
 
     @Override
+    public void onCompleted(int action) {
+
+    }
+
+    @Override
     public void onSuccess(int action, Object data) {
 
     }

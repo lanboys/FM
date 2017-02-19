@@ -14,7 +14,10 @@ public class GirlPresenter extends
     public void onStart(Object... params) {
 
     }
+    @Override
+    public void onCompleted(int action) {
 
+    }
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(int action, Object data) {

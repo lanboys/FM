@@ -43,9 +43,19 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     protected LayoutInflater mLayoutInflater;
 
     protected View mContentView;
-    protected boolean isFirst = true;
+    protected boolean mHaveData;
     private LoadPageView mLoadPage;
     private Unbinder mViewBind;
+
+    @Override
+    public boolean isHaveData() {
+        return mHaveData;
+    }
+
+    @Override
+    public void setHaveData(boolean haveData) {
+        mHaveData = haveData;
+    }
 
     public View getContentView() {
         return mContentView;
@@ -75,12 +85,17 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (isFirst) {
+
+        resetErrorCount();
+        readyStart();
+    }
+
+    private void readyStart() {
+        if (!mHaveData) {
             if (mLoadPage != null) {
                 setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_LOADING);
             }
-            //首次打开才启动p层逻辑
-            isFirst = false;
+            //页面没有数据才启动p层逻辑
             readyStartPresenter();
         } else {
             if (mLoadPage != null) {
@@ -112,9 +127,6 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
         AppUtil.MemoryLeakCheck(this);
     }
 
-    protected void initData(Intent intent) {
-    }
-
     /**
      * 停止更新,释放一些正在进行的任务
      */
@@ -141,7 +153,8 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     protected BGARefreshViewHolder getRefreshViewHolder() {
 
         // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
+        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder =
+                new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
         moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
         moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
         return moocStyleRefreshViewHolder;
@@ -258,17 +271,14 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     }
 
     protected View initSuccessView(LayoutInflater layoutInflater, ViewGroup container) {
-        View view = layoutInflater.inflate(getLayoutResId(), container, false);
-        // mViewBind = ButterKnife.bind(this, view);
-        return view;
+        return layoutInflater.inflate(getLayoutResId(), container, false);
     }
 
     protected abstract int getLayoutResId();
 
     @Override
     public void OnErrorButtonClick(View v) {
-        //重新获取
-        errorReloadData();
+        readyStart();
     }
 
     public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish) {
@@ -277,8 +287,6 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
 
     /**
      * 默认false
-     *
-     * @param clazz
      */
     public void startActivity(Class<? extends BaseActivity> clazz) {
         startActivity(clazz, false);
@@ -287,15 +295,9 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     /**
      * 加载图片
      *
-     * @param path
-     * @param imageView
      */
     protected void loadImage(Object path, ImageView imageView) {
         mPresenter.loadImage(path, imageView);
-    }
-
-    protected void errorReloadData() {
-
     }
 
     public T getPresenter() {

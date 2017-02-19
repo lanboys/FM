@@ -15,7 +15,10 @@ public class MinePresenter extends
 
 
     }
+    @Override
+    public void onCompleted(int action) {
 
+    }
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(int action, Object data) {

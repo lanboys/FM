@@ -45,9 +45,4 @@ public abstract class BasePresenter<
     public void loadData(int action, Object... parameter) {
 
     }
-
-    @Override
-    public void onCompleted(int action) {
-
-    }
 }
