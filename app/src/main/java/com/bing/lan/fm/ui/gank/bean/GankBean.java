@@ -22,6 +22,14 @@ public class GankBean {
     private boolean error;
     private List<ResultsBean> results;
 
+    @Override
+    public String toString() {
+        return "GankBean{" +
+                "error=" + error +
+                ", results=" + results +
+                '}';
+    }
+
     public static GankBean objectFromData(String str) {
 
         return new Gson().fromJson(str, GankBean.class);
@@ -163,6 +171,21 @@ public class GankBean {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
 
+        }
+
+        @Override
+        public String toString() {
+            return "ResultsBean{" +
+                    "_id='" + _id + '\'' +
+                    ", createdAt='" + createdAt + '\'' +
+                    ", desc='" + desc + '\'' +
+                    ", publishedAt='" + publishedAt + '\'' +
+                    ", source='" + source + '\'' +
+                    ", type='" + type + '\'' +
+                    ", url='" + url + '\'' +
+                    ", used=" + used +
+                    ", who='" + who + '\'' +
+                    '}';
         }
     }
 }

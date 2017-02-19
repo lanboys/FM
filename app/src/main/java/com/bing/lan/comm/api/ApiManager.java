@@ -34,13 +34,14 @@ public class ApiManager {
 
     private ApiManager() {
         OkHttpClient httpClient = getClientBuilder().build();
-               Gson gson = getGsonBuilder().create();
+        Gson gson = getGsonBuilder().create();
 
         // create unique instance
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .client(httpClient)
-                               .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                // .addConverterFactory(ScalarsConverterFactory.create())
                 // .addConverterFactory(FastJsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();

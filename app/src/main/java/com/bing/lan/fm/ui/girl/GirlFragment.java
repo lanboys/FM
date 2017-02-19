@@ -43,8 +43,12 @@ public class GirlFragment extends BaseFragment<IGirlContract.IGirlPresenter>
     }
 
     @Override
-    protected void readyStartPresenter() {
+    protected boolean isOpenLoadPager() {
+        return false;
+    }
 
+    @Override
+    protected void readyStartPresenter() {
     }
 
     @Override

@@ -1,10 +1,10 @@
 package com.bing.lan.comm.api;
 
 import com.bing.lan.fm.ui.gank.bean.GankBean;
-import com.bing.lan.fm.ui.hot.bean.HotColumnsResult;
-import com.bing.lan.fm.ui.hot.bean.HotResult;
 import com.bing.lan.fm.ui.home.bean.HomeTabsResult;
 import com.bing.lan.fm.ui.home.bean.SearchWordResult;
+import com.bing.lan.fm.ui.hot.bean.HotColumnsResult;
+import com.bing.lan.fm.ui.hot.bean.HotResult;
 
 import java.util.Map;
 
@@ -26,6 +26,9 @@ public interface ApiService {
 
     @GET
     Call<ResponseBody> getRawUrl(@Url String url);
+
+    @GET
+    Call<String> getRawUrl1(@Url String url);
 
     @GET("{url}")
     Observable<ResponseBody> executeGet(

@@ -4,37 +4,19 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-
-    <color name="theme_color_primary">#fb7299</color>
-    <color name="theme_color_primary_dark">#b85671</color>
-    <color name="theme_color_primary_trans">#99f0486c</color>
-
-    <!--<color name="jd_welcome_bg">#9D000B</color>-->
-    <!--<color name="main_bottom_bg">#363636</color>-->
-    <!--<color name="bot_text_color_normal">#BB1F35</color>-->
-    <!--<color name="bot_text_color_selected">#414141</color>-->
-    <!--<color name="choose_indicator_nor">#323335</color>-->
-    <!--<color name="choose_indicator_nor_selected">#F33F3F</color>-->
-    <!--<color name="choose_jd_service_nor">#232326</color>-->
-    <!--<color name="choose_jd_service_selected">#F33F3F</color>-->
-    <!--<color name="comment_title_txt_normal">#161616</color>-->
-    <!--<color name="comment_title_txt_selected">#F47A7A</color>-->
-    <!--<color name="transparent">#00000000</color>-->
-
     <color name="titleColor">#c9212e</color>
     <color name="titleColorSelected">#535353</color>
 
-
     <color name="otherspace_normal_gray">#ff666666</color>
     <color name="text_disable">#ffc6c6c6</color>
-    <color name="orange">#fff86442</color>
+    <color name="orange">#f9f8f7</color>
+    <!--<color name="orange">#fff86442</color>-->
 
     <!-- tab 文字的两种颜色 -->
     <color name="tab_text_color_pressed">#fff86442</color>
     <color name="tab_text_color_unpress">#ff949494</color>
-    <!-- 首页指示器颜色 -->
-    <color name="indicator">#55B3C2</color>
 
+    <!-- 首页指示器颜色 -->
     <color name="indicator_1">#80dcea</color>
     <color name="indicator_2">#a0f4f4</color>
     <color name="indicator_3">#94efd7</color>
@@ -46,6 +28,8 @@
 
     <color name="hot_item_background_white">#ffffffff</color>
 
+    <!-- 妹纸recyclerView 背景色-->
+    <color name="girl_gank_background">#ffffffff</color>
 
 
 </resources>

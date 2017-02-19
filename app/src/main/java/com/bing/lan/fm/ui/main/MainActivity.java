@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -58,7 +56,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     @Override
     protected void initViewAndData(Intent intent) {
 
-        initFab();
+
 
         initTabData();
         initFragmentTabHost();
@@ -139,16 +137,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     //     return mResideMenu.dispatchTouchEvent(ev);
     // }
 
-    private void initFab() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
+
 
     private void initTabData() {
         mFragmentClazz = new Class[]{

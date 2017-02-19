@@ -75,12 +75,17 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        // initData();
-        setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
-        //准备启动p层逻辑
         if (isFirst) {
+            if (mLoadPage != null) {
+                setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_LOADING);
+            }
+            //首次打开才启动p层逻辑
             isFirst = false;
             readyStartPresenter();
+        } else {
+            if (mLoadPage != null) {
+                setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
+            }
         }
     }
 
@@ -231,19 +236,19 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
 
     @Override
     public void setViewState2LoadPage(LoadPageView.LoadDataResult loadDataResult) {
-        checkLoadPager();
-        mLoadPage.setViewState(loadDataResult);
-    }
-
-    private void checkLoadPager() {
         if (mLoadPage == null) {
-            throw new RuntimeException("没有开启加载界面,请调用isOpenLoadPager()开启!");
+            log.w("setViewState2LoadPage(): mLoadPage == null");
+            return;
         }
+        mLoadPage.setViewState(loadDataResult);
     }
 
     @Override
     public void resetErrorCount() {
-        checkLoadPager();
+        if (mLoadPage == null) {
+            log.w("resetErrorCount(): mLoadPage == null");
+            return;
+        }
         mLoadPage.resetErrorCount();
     }
 

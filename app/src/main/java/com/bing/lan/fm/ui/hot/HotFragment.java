@@ -34,7 +34,6 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         implements IHotContract.IHotView, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     Banner mBanner;
-
     ViewPager mGirlViewpager;
     @BindView(R.id.hot_recyclerView)
     RecyclerView mHotRecyclerView;

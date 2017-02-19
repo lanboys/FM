@@ -1,6 +1,7 @@
 package com.bing.lan.comm.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ScrollView;
 
+import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.fm.R;
 
+import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 
 /**
  * @author 蓝兵
@@ -57,12 +61,26 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
         mErrorButtonListener = errorButtonListener;
     }
 
+    protected int getPagerLoading() {
+        return R.layout.pager_loading;
+    }
+
+    protected int getPagerEmpty() {
+        return R.layout.pager_empty;
+    }
+
+    protected int getPagerError() {
+        return R.layout.pager_error;
+    }
+
     private void initCommonView(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        mLoadingPager = View.inflate(context, R.layout.pager_loading, null);
-        mEmptyPager = View.inflate(context, R.layout.pager_empty, null);
-        mErrorPager = View.inflate(context, R.layout.pager_error, null);
+
+
+        mLoadingPager = View.inflate(context, getPagerLoading(), null);
+        mEmptyPager = View.inflate(context, getPagerEmpty(), null);
+        mErrorPager = View.inflate(context, getPagerError(), null);
 
         //        mLoadingPager = inflater.inflate(R.layout.pager_loading, this, false);
         //        mEmptyPager = inflater.inflate(R.layout.pager_loading, this, false);
@@ -109,23 +127,23 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
         refreshViewByState();
     }
 
-    protected abstract void initRefreshLayout(BGARefreshLayout refreshLayout) ;
-    // private void initRefreshLayout(BGARefreshLayout refreshLayout) {
-    //     // 为BGARefreshLayout 设置代理
-    //     refreshLayout.setDelegate(this);
-    //     // 设置下拉刷新和上拉加载更多的风格
-    //     refreshLayout.setRefreshViewHolder(getRefreshViewHolder());
-    // }
-    //
-    // @NonNull
-    // public BGARefreshViewHolder getRefreshViewHolder() {
-    //
-    //     // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-    //     BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
-    //     moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
-    //     moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
-    //     return moocStyleRefreshViewHolder;
-    // }
+    // protected abstract void initRefreshLayout(BGARefreshLayout refreshLayout) ;
+    protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
+        // 为BGARefreshLayout 设置代理
+        refreshLayout.setDelegate(this);
+        // 设置下拉刷新和上拉加载更多的风格
+        refreshLayout.setRefreshViewHolder(getRefreshViewHolder());
+    }
+
+    @NonNull
+    protected BGARefreshViewHolder getRefreshViewHolder() {
+
+        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
+        moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
+        moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
+        return moocStyleRefreshViewHolder;
+    }
 
     private void refreshViewByState() {
 
