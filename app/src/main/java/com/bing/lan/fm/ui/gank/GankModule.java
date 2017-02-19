@@ -16,10 +16,10 @@ import rx.functions.Func1;
 public class GankModule extends BaseFragmentModule
         implements IGankContract.IGankModule {
 
-    String Gank_BASE_URL = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/";
+    public static String Gank_BASE_URL = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/";
     // http://gank.io/api/data/%E7%A6%8F%E5%88%A9/4/2
 
-    private String getGankGirlUrl(int count, int page) {
+    public static String getGankGirlUrl(int count, int page) {
         return Gank_BASE_URL + count + "/" + page;
     }
 
@@ -46,5 +46,6 @@ public class GankModule extends BaseFragmentModule
                 listener,
                 "妹子"
         ));
+
     }
 }

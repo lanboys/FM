@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  *
@@ -54,7 +53,10 @@ public class GirlFragment extends BaseFragment<IGirlContract.IGirlPresenter>
     @Override
     protected void initViewAndData(Intent intent) {
         initData();
+        initView();
+    }
 
+    private void initView() {
         mViewPagerGirl.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -78,14 +80,10 @@ public class GirlFragment extends BaseFragment<IGirlContract.IGirlPresenter>
     private void initData() {
         mGirlTabTitle = AppUtil.getAppRes().getStringArray(R.array.girl_tab_title);
         mFragments = new ArrayList<>();
-        // mFragments.add(Fragment.instantiate(getContext(), "GankFragment.class"));
+
         mFragments.add(new GankFragment());
         mFragments.add(new SampleFragment());
         mFragments.add(new SampleFragment());
         mFragments.add(new SampleFragment());
-    }
-
-    @OnClick(R.id.tab_girl)
-    public void onClick() {
     }
 }

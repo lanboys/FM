@@ -44,7 +44,7 @@ public class SplashActivity extends BaseActivity<ISplashContract.ISplashPresente
     }
 
     public void startAnimation() {
-        mSplashContainer.animate().alpha(1.0f).setDuration(2000).setListener(new AnimatorListenerAdapter() {
+        mSplashContainer.animate().alpha(1.0f).setDuration(3000).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 mPresenter.animationFinished();

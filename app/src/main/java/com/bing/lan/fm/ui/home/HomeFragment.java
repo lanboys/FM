@@ -1,11 +1,8 @@
 package com.bing.lan.fm.ui.home;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,7 +13,6 @@ import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.base.mvp.fragment.SampleFragment;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.utils.AppUtil;
-import com.bing.lan.comm.view.LoadPageView;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.hot.HotFragment;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
@@ -26,7 +22,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
@@ -69,33 +64,23 @@ public class HomeFragment extends BaseFragment<IHomeContract.IHomePresenter>
     }
 
     @Override
-    protected void readyStartPresenter() {
-        setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
-        mPresenter.onStart();
-    }
-
-
-    @Override
-    protected void initViewAndData(Intent intent) {
-        initFragment();
-
-    }
-
-    @Override
     protected void startInject(FragmentComponent fragmentComponent) {
         fragmentComponent.inject(this);
     }
 
     protected boolean isOpenLoadPager() {
-        return true;
+        return false;
     }
 
-    /**
-     * 默认关闭下拉刷新
-     */
-    private boolean isOpenRefresh() {
-        //没必要使用的地方尽量关闭,不然嵌套太多层了
-        return true;
+    @Override
+    protected void readyStartPresenter() {
+        mPresenter.onStart();
+    }
+
+    @Override
+    protected void initViewAndData(Intent intent) {
+        //初始化推荐/热门/等fragment
+        initFragment();
     }
 
     private void initFragment() {
@@ -110,7 +95,6 @@ public class HomeFragment extends BaseFragment<IHomeContract.IHomePresenter>
         fragments.add(new SampleFragment());
 
         initIndicate(fragments);
-
     }
 
     private void initIndicate(List<Fragment> fragments) {
@@ -125,26 +109,11 @@ public class HomeFragment extends BaseFragment<IHomeContract.IHomePresenter>
         springIndicator.setViewPager(mViewPager);
     }
 
-
-
-    @Override
-    protected void initData(Intent intent) {
-
-    }
-
     public void updateSearchWord(String searchWord) {
         mSearchWordTv.setText(searchWord);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @OnClick({R.id.user_image, R.id.zxing_qrcode, R.id.tv_search_word, R.id.search, R.id.ib_download, R.id.tv_downloading, R.id.download_layout, R.id.ib_play_history, R.id.history_layout,   R.id.rl_top_bar, R.id.indicator, R.id.view_pager})
+    @OnClick({R.id.user_image, R.id.zxing_qrcode, R.id.tv_search_word, R.id.search, R.id.ib_download, R.id.tv_downloading, R.id.download_layout, R.id.ib_play_history, R.id.history_layout, R.id.rl_top_bar, R.id.indicator, R.id.view_pager})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_image:

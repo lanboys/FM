@@ -10,17 +10,14 @@ public class GirlPresenter extends
         BaseFragmentPresenter<IGirlContract.IGirlView, IGirlContract.IGirlModule>
         implements IGirlContract.IGirlPresenter {
 
-
     @Override
     public void onStart(Object... params) {
-
 
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void onSuccess(int action, Object data) {
-
 
     }
 

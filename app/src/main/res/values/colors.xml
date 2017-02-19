@@ -4,13 +4,18 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!-- 妹纸recyclerView 背景色-->
+    <color name="girl_gank_background">#ffffffff</color>
+    <!-- 主要背景色 -->
+    <color name="main_background">#f9f9f9</color>
+
     <color name="titleColor">#c9212e</color>
     <color name="titleColorSelected">#535353</color>
 
     <color name="otherspace_normal_gray">#ff666666</color>
     <color name="text_disable">#ffc6c6c6</color>
-    <color name="orange">#f9f8f7</color>
-    <!--<color name="orange">#fff86442</color>-->
+    <!--<color name="orange">#f9f8f7</color>-->
+    <color name="orange">#fff86442</color>
 
     <!-- tab 文字的两种颜色 -->
     <color name="tab_text_color_pressed">#fff86442</color>
@@ -26,10 +31,8 @@
     <color name="white">#ffffffff</color>
     <color name="default_refresh_color_style">#CA0612</color>
 
+    <!-- 热门item 背景 -->
     <color name="hot_item_background_white">#ffffffff</color>
-
-    <!-- 妹纸recyclerView 背景色-->
-    <color name="girl_gank_background">#ffffffff</color>
 
 
 </resources>

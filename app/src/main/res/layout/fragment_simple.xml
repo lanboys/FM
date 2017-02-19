@@ -4,7 +4,7 @@
     android:id="@+id/rl_modulename_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d559e6">
+    android:background="#fcfafc">
     <!--<ScrollView-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="0dp"-->
@@ -22,11 +22,18 @@
             android:scaleType="fitXY"
             android:src="@drawable/i3"
         />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        />
+            android:gravity="center"
+            android:text="小M正在努力开发中.."
+            android:textSize="25dp"/>
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/recyclerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--/>-->
     </LinearLayout>
     <!--</ScrollView>-->
 </cn.bingoogolapple.refreshlayout.BGARefreshLayout>

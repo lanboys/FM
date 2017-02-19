@@ -164,7 +164,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     /**
      * 默认关闭下拉刷新(内置了scrollview,容易发生滑动冲突)
      */
-    private boolean isOpenRefresh() {
+    protected boolean isOpenRefresh() {
         //没必要使用的地方尽量关闭,不然嵌套太多层了
         return false;
     }

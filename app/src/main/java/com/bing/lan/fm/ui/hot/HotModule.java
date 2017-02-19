@@ -2,12 +2,14 @@ package com.bing.lan.fm.ui.hot;
 
 import com.bing.lan.comm.base.mvp.IBaseContract;
 import com.bing.lan.comm.base.mvp.fragment.BaseFragmentModule;
+import com.bing.lan.fm.ui.gank.GankModule;
+import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
+
+import java.util.List;
 
 import rx.Observable;
 import rx.functions.Func1;
-
-import static com.bing.lan.fm.ui.hot.HotPresenter.LOAD_HOT_MAIN;
 
 /**
  * @author 蓝兵
@@ -19,10 +21,36 @@ public class HotModule extends BaseFragmentModule
     @Override
     public void loadData(final int action, final IBaseContract.OnDataChangerListener listener, Object... parameter) {
         switch (action) {
-            case LOAD_HOT_MAIN:
+            case HotPresenter.LOAD_HOT_MAIN:
                 loadHotMain(action, listener);
                 break;
+            case HotPresenter.LOAD_GANK:
+                loadGank(action, listener, (Integer) parameter[0], (Integer) parameter[1]);
+                break;
         }
+    }
+
+    private void loadGank(int action, IBaseContract.OnDataChangerListener listener, Integer count, Integer page) {
+        Observable<List<GankBean.ResultsBean>> observable = mApiService.getGankGirl(GankModule.getGankGirlUrl(count, page))
+                .filter(new Func1<GankBean, Boolean>() {
+                    @Override
+                    public Boolean call(GankBean gankBean) {
+                        return !gankBean.isError();
+                    }
+                })
+                .map(new Func1<GankBean, List<GankBean.ResultsBean>>() {
+                    @Override
+                    public List<GankBean.ResultsBean> call(GankBean gankBean) {
+                        return gankBean.getResults();
+                    }
+                });
+
+        mSubscriptions.add(subscribe(
+                observable,
+                action,
+                listener,
+                "妹子"
+        ));
     }
 
     /**

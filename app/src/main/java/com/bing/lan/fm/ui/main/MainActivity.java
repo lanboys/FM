@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -32,7 +30,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
     @BindView(android.R.id.tabhost)
     FragmentTabHost mTabHost;
-
     private Class[] mFragmentClazz;
     private String[] mTabTitles;
     private int[] mTabImages;
@@ -55,13 +52,12 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
     @Override
     protected void initViewAndData(Intent intent) {
-
-
-
+        //初始化主页底部tab
         initTabData();
+        //初始化fragmenttabhost
         initFragmentTabHost();
-        //借用沉浸式来实现透明状态栏
         if (Build.VERSION.SDK_INT <= 16) {
+            //类似qq5.0侧拉菜单
             initResideMenu();
         }
     }
@@ -82,6 +78,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         BaseApplication.sBus.unregister(this);
     }
 
+    //otto测试
     @Subscribe
     public void onReceive(Integer is) {
         switchNightMode();
@@ -109,9 +106,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         mResideMenu.attachToActivity(this);
         mResideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
 
-        // resideMenu.addIgnoredView(mFrameLayout);
-        // resideMenu.addIgnoredView(mTabLayout);
-
         // create menu items;
         String titles[] = {"Home", "Profile", "Calendar", "Settings"};
         int icon[] = {R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher};
@@ -122,6 +116,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
                 @Override
                 public void onClick(View v) {
                     showToast("我被点击了");
+                    // TODO: 2017/2/19 item点击事件
                 }
             });
             mResideMenu.addMenuItem(item, ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
@@ -136,8 +131,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     // public boolean dispatchTouchEvent(MotionEvent ev) {
     //     return mResideMenu.dispatchTouchEvent(ev);
     // }
-
-
 
     private void initTabData() {
         mFragmentClazz = new Class[]{
@@ -176,6 +169,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         TextView title = (TextView) view.findViewById(R.id.title);
         int padding = AppUtil.dip2px(50);
         int padding2 = AppUtil.dip2px(4);
+        //给中间两个tab设置padding值,留出中间位置
         if (index == 1) {
             view.setPadding(padding2, padding2, padding, padding2);
         }
@@ -186,19 +180,19 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         title.setText(mTabTitles[index]);
         return view;
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+    //
+    // @Override
+    // public boolean onCreateOptionsMenu(Menu menu) {
+    //     getMenuInflater().inflate(R.menu.menu_main, menu);
+    //     return true;
+    // }
+    //
+    // @Override
+    // public boolean onOptionsItemSelected(MenuItem item) {
+    //     int id = item.getItemId();
+    //     if (id == R.id.action_settings) {
+    //         return true;
+    //     }
+    //     return super.onOptionsItemSelected(item);
+    // }
 }

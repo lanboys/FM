@@ -14,7 +14,6 @@ import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.ImageLoaderManager;
-import com.bing.lan.comm.view.LoadPageView;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate;
@@ -47,6 +46,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     private int BANNER_HEIGHT = AppUtil.dip2px(150);
     private int VIEWPAGE_HEIGHT = AppUtil.dip2px(275);
     private GirlViewPagerAdapter mAdapter;
+    private List<HotInfoBean> mRecyclerViewData;
 
     @Override
     protected int getLayoutResId() {
@@ -59,8 +59,17 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     }
 
     @Override
+    protected boolean isOpenLoadPager() {
+        return true;
+    }
+
+    @Override
+    protected boolean isOpenRefresh() {
+        return true;
+    }
+
+    @Override
     protected void readyStartPresenter() {
-        setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
         mPresenter.onStart();
     }
 
@@ -69,27 +78,26 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         initRefreshLayout(mHotRefreshContainer);
         initBanner();
         initGirlGallery();
+        initRecyclerView();
     }
 
-    @Override
-    public void updateRecyclerView(List<HotInfoBean> data) {
+    protected void initBanner() {
+        mBannerView = mLayoutInflater.inflate(R.layout.item_banner_layout, null);
+        ViewGroup.LayoutParams layoutParams = new RecyclerView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, BANNER_HEIGHT);
+        mBannerView.setLayoutParams(layoutParams);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setSmoothScrollbarEnabled(true);
-        mHotRecyclerView.setLayoutManager(linearLayoutManager);
+        mBanner = (Banner) mBannerView.findViewById(R.id.item_banner);
+        mBanner.setVisibility(View.GONE);
 
-        MultiItemTypeAdapter<HotInfoBean> adapter = new MultiItemTypeAdapter<>(AppUtil.getAppContext(), data);
-        adapter.addItemViewDelegate(new EditorRecomItemDelagate());
-
-        // adapter.addItemViewDelegate(new FocusImageItemDelagate());
-        // adapter.addItemViewDelegate(new EditorRecomItemDelagate());
-
-        HeaderAndFooterWrapper mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(adapter);
-
-        mHeaderAndFooterWrapper.addHeaderView(mBannerView);
-        mHeaderAndFooterWrapper.addHeaderView(mGirlViewpagerView);
-        mHotRecyclerView.setAdapter(mHeaderAndFooterWrapper);
-        mHeaderAndFooterWrapper.notifyDataSetChanged();
+        //设置图片加载器(低版本没有此方法)
+        mBanner.setImageLoader(new ImageLoader() {
+            @Override
+            public void displayImage(Context context, Object path, ImageView imageView) {
+                //加载图片
+                ImageLoaderManager.loadImage(imageView, (String) path);
+            }
+        });
     }
 
     private void initGirlGallery() {
@@ -123,14 +131,45 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         updateGirlViewPager();
     }
 
-    private void updateGirlViewPager() {
-        createViews();
-        mAdapter.setData(mViews);
-        mGirlViewpager.setCurrentItem(mViews.size() / 2);
-        mGirlViewpager.setOffscreenPageLimit(mViews.size());
+    private void initRecyclerView() {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setSmoothScrollbarEnabled(true);
+        mHotRecyclerView.setLayoutManager(linearLayoutManager);
+
+        mRecyclerViewData = new ArrayList<>();
+
+        MultiItemTypeAdapter<HotInfoBean> adapter =
+                new MultiItemTypeAdapter<>(AppUtil.getAppContext(), mRecyclerViewData);
+        EditorRecomItemDelagate editorRecomItemDelagate = new EditorRecomItemDelagate();
+
+        adapter.addItemViewDelegate(editorRecomItemDelagate);
+
+        // adapter.addItemViewDelegate(new FocusImageItemDelagate());
+        // adapter.addItemViewDelegate(new EditorRecomItemDelagate());
+
+        HeaderAndFooterWrapper mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(adapter);
+
+        mHeaderAndFooterWrapper.addHeaderView(mBannerView);
+        mHeaderAndFooterWrapper.addHeaderView(mGirlViewpagerView);
+
+        mHotRecyclerView.setAdapter(mHeaderAndFooterWrapper);
+        mHeaderAndFooterWrapper.notifyDataSetChanged();
     }
 
-    private void createViews() {
+    @Override
+    public void updateBanner(List<String> imageUrls) {
+        // mBanner.setVisibility(View.VISIBLE);
+        mBanner.setImages(imageUrls);
+        mBanner.start();
+    }
+
+    @Override
+    public void updateRecyclerView(List<HotInfoBean> data) {
+
+    }
+
+    private void updateGirlViewPager() {
         mViews = new ArrayList<>();
         LayoutInflater inflater = LayoutInflater.from(AppUtil.getAppContext());
         for (int id : imgs) {
@@ -139,32 +178,9 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
             im.setImageResource(id);
             mViews.add(view);
         }
-    }
 
-    protected void initBanner() {
-        mBannerView = mLayoutInflater.inflate(R.layout.item_banner_layout, null);
-        ViewGroup.LayoutParams layoutParams = new RecyclerView.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, BANNER_HEIGHT);
-        mBannerView.setLayoutParams(layoutParams);
-        mBanner = (Banner) mBannerView.findViewById(R.id.item_banner);
-        // showBanner(false);
-        //设置图片加载器(低版本没有此方法)
-        mBanner.setImageLoader(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, Object path, ImageView imageView) {
-                //加载图片
-                ImageLoaderManager.loadImage(imageView, (String) path);
-            }
-        });
-    }
-
-    public void showBanner(boolean isShow) {
-        mBanner.setVisibility(isShow ? View.VISIBLE : View.GONE);
-    }
-
-    public void updateBanner(List<String> imageUrls) {
-        showBanner(true);
-        mBanner.setImages(imageUrls);
-        mBanner.start();
+        mAdapter.setData(mViews);
+        mGirlViewpager.setCurrentItem(mViews.size() / 2);
+        mGirlViewpager.setOffscreenPageLimit(mViews.size());
     }
 }

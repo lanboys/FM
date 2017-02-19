@@ -22,6 +22,7 @@ import com.bing.lan.comm.di.DaggerActivityComponent;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.comm.utils.SPUtil;
+import com.bing.lan.fm.R;
 
 import javax.inject.Inject;
 
@@ -154,7 +155,6 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
                     // | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION         //隐藏导航栏
             );
 
-
             // 2.给最外层布局根据版本调价padding值
 
             //3.将StatusBar颜色改为透明(注意不是系统StatusBar,
@@ -222,6 +222,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
 
     public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish) {
         AppUtil.startActivity(this, clazz, isFinish);
+        overridePendingTransition(R.anim.scale_alpht_in, R.anim.scale_alpht_out);
     }
 
     /**
