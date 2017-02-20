@@ -18,7 +18,6 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -31,16 +30,22 @@
     <RelativeLayout
         android:id="@+id/rl_root"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
->
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_girl"
+        <com.bing.lan.comm.view.ImageAdapterLayout
+            android:id="@+id/image_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="#eaeaea"/>
+            android:layout_height="wrap_content"
+            app:mode_space="width"        >
 
+            <ImageView
+                android:id="@+id/iv_girl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="#eaeaea"/>
+
+        </com.bing.lan.comm.view.ImageAdapterLayout>
 
         <!--<RelativeLayout-->
         <!--android:layout_width="match_parent"-->

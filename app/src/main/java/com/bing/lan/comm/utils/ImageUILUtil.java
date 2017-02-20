@@ -1,7 +1,6 @@
 package com.bing.lan.comm.utils;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bing.lan.fm.R;
@@ -13,19 +12,20 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.File;
 
-public class ImageUtil {
+public class ImageUILUtil {
 
-    private static final String TAG = "-->520it";
+    protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
     private static ImageLoader mImageLoader;
-    private static ImageUtil sImageUtil;
+    private static ImageUILUtil sImageUtil;
     private final DisplayImageOptions mNoLoadingOptions;
     private DisplayImageOptions mOptions;
     private int mDefaultPicId = R.mipmap.ic_launcher;
 
-    private ImageUtil() {
+    private ImageUILUtil() {
 
         if (mImageLoader == null) {
-            Log.w(TAG, "ImageUtil中prepare方法未被调用,请先调用!");
+            log.w("ImageUILUtil(): ImageUtil中prepare方法未被调用,请先调用!" );
+
             throw new RuntimeException("prepare方法未被调用,请先调用!");
         }
 
@@ -45,7 +45,7 @@ public class ImageUtil {
         // Create global configuration and initialize ImageLoader with this config
         //首次调用进行初始化
         if (mImageLoader == null) {
-            File cacheDir = context.getExternalCacheDir();
+            File cacheDir = AppUtil.getAppContext().getExternalCacheDir();
             ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
                     //后面再来做配置
                     .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
@@ -63,11 +63,11 @@ public class ImageUtil {
         }
     }
 
-    public static ImageUtil getInstance() {
+    public static ImageUILUtil getInstance() {
         if (sImageUtil == null) {
-            synchronized (ImageUtil.class) {
+            synchronized (ImageUILUtil.class) {
                 if (sImageUtil == null) {
-                    sImageUtil = new ImageUtil();
+                    sImageUtil = new ImageUILUtil();
                 }
             }
         }

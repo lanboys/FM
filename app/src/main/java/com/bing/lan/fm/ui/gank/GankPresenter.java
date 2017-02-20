@@ -15,13 +15,21 @@ public class GankPresenter extends
         implements IGankContract.IGankPresenter {
 
     private static final int LOAD_GANK = 0;
+    private static final int LOAD__MORE_GANK = 1;
     private static final int LOAD_COUNT = 35;
-    private static final int LOAD_PAGE = 1;
-    private static final int MAX_PAGE = -1;
+    private int mNextLoadpager = 1;
 
     @Override
     public void onStart(Object... params) {
-        mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
+        updateGankData();
+    }
+
+    public void updateGankData() {
+        mModule.loadData(LOAD_GANK, this, LOAD_COUNT, 1);
+    }
+
+    public void loadMoreGankData() {
+        mModule.loadData(LOAD__MORE_GANK, this, LOAD_COUNT, mNextLoadpager);
     }
 
     @Override
@@ -29,7 +37,12 @@ public class GankPresenter extends
     public void onSuccess(int action, Object data) {
         switch (action) {
             case LOAD_GANK:
+                mNextLoadpager++;
                 mView.updateGank((List<GankBean.ResultsBean>) data);
+                break;
+            case LOAD__MORE_GANK:
+                mNextLoadpager++;
+                mView.loadMoreGank((List<GankBean.ResultsBean>) data);
                 break;
         }
     }
@@ -39,11 +52,13 @@ public class GankPresenter extends
         if (!mView.isHaveData()) {
             mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
         }
+        mView.showToast("加载数据失败");
     }
 
     @Override
     public void onCompleted(int action) {
         mView.setHaveData(true);
+        mView.closeRefeshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
     }
 }

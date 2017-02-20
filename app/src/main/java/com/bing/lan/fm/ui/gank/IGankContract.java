@@ -14,11 +14,16 @@ public interface IGankContract {
     interface IGankView extends IBaseFragmentContract.IBaseFragmentView<IGankPresenter> {
 
         void updateGank(List<GankBean.ResultsBean> data);
+          void loadMoreGank(List<GankBean.ResultsBean> data);
+        void closeRefeshing();
     }
 
     interface IGankPresenter extends
             IBaseFragmentContract.IBaseFragmentPresenter<IGankView, IGankModule> {
 
+        void loadMoreGankData();
+
+        void updateGankData();
     }
 
     interface IGankModule extends IBaseFragmentContract.IBaseFragmentModule {

@@ -1,11 +1,8 @@
 package com.bing.lan.fm.ui.gank.bean;
 
-import android.annotation.SuppressLint;
-import android.os.Parcel;
-
-import com.felipecsl.asymmetricgridview.library.model.AsymmetricItem;
 import com.google.gson.Gson;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -22,17 +19,17 @@ public class GankBean {
     private boolean error;
     private List<ResultsBean> results;
 
+    public static GankBean objectFromData(String str) {
+
+        return new Gson().fromJson(str, GankBean.class);
+    }
+
     @Override
     public String toString() {
         return "GankBean{" +
                 "error=" + error +
                 ", results=" + results +
                 '}';
-    }
-
-    public static GankBean objectFromData(String str) {
-
-        return new Gson().fromJson(str, GankBean.class);
     }
 
     public boolean isError() {
@@ -51,8 +48,7 @@ public class GankBean {
         this.results = results;
     }
 
-    @SuppressLint("ParcelCreator")
-    public static class ResultsBean implements AsymmetricItem {
+    public static class ResultsBean implements Serializable {
 
         /**
          * _id : 58a10619421aa901f7902c6a
@@ -151,26 +147,6 @@ public class GankBean {
 
         public void setWho(String who) {
             this.who = who;
-        }
-
-        @Override
-        public int getColumnSpan() {
-            return 3;
-        }
-
-        @Override
-        public int getRowSpan() {
-            return 3;
-        }
-
-        @Override
-        public int describeContents() {
-            return 5;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-
         }
 
         @Override

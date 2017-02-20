@@ -144,21 +144,39 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     protected abstract void readyStartPresenter();
 
     protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
+        // // 为BGARefreshLayout 设置代理
+        // refreshLayout.setDelegate(this);
+        // // 设置下拉刷新和上拉加载更多的风格
+        // BGARefreshViewHolder refreshViewHolder = getRefreshViewHolder( );
+        // refreshLayout.setRefreshViewHolder(refreshViewHolder);
+
+
         // 为BGARefreshLayout 设置代理
         refreshLayout.setDelegate(this);
+        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
+        moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
+        moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
+
+        moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
         // 设置下拉刷新和上拉加载更多的风格
-        refreshLayout.setRefreshViewHolder(getRefreshViewHolder());
+        refreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
     }
 
-    protected BGARefreshViewHolder getRefreshViewHolder() {
+    protected BGARefreshViewHolder getRefreshViewHolder(   ) {
 
         // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
         BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder =
                 new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
         moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
         moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
+
+        // 设置下拉刷新和上拉加载更多的风格
+        moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
         return moocStyleRefreshViewHolder;
     }
+
+
 
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
     }

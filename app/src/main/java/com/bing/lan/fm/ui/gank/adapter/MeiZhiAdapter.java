@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bing.lan.comm.utils.ImageLoaderManager;
+import com.bing.lan.comm.utils.ImagePicassoUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
@@ -44,7 +44,7 @@ public class MeiZhiAdapter extends RecyclerArrayAdapter<GankBean.ResultsBean> {
             //         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
             //         .into(image);
 
-            ImageLoaderManager.loadImage(image,data.getUrl());
+            ImagePicassoUtil.loadImage(image,data.getUrl());
             log.d("setData(): " + data.toString());
         }
     }

@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bing.lan.comm.base.mvp.activity.IBaseActivityContract.IBaseActivityPresenter;
@@ -261,6 +262,13 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
         }
         getMenuInflater().inflate(getMenuId(), menu);
         return true;
+    }
+
+    /**
+     * 加载图片
+     */
+    protected void loadImage(Object path, ImageView imageView) {
+        mPresenter.loadImage(path, imageView);
     }
 
     protected int getMenuId() {

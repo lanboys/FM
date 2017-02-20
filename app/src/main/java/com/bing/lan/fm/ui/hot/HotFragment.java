@@ -13,17 +13,19 @@ import android.widget.ImageView;
 import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.utils.AppUtil;
-import com.bing.lan.comm.utils.ImageLoaderManager;
+import com.bing.lan.comm.utils.ImagePicassoUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate;
 import com.bing.lan.fm.ui.hot.delagate.GirlViewPagerAdapter;
+import com.bing.lan.fm.ui.pic.PictureActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ import butterknife.BindView;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
-        implements IHotContract.IHotView {
+        implements IHotContract.IHotView, View.OnClickListener {
 
     Banner mBanner;
     ViewPager mGirlViewpager;
@@ -50,6 +52,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     private List<HotInfoBean> mRecyclerViewData;
     private HeaderAndFooterWrapper mHeaderAndFooterWrapper;
     private MultiItemTypeAdapter<HotInfoBean> mMultiItemTypeAdapter;
+    private List<GankBean.ResultsBean> mImgList;
 
     @Override
     protected int getLayoutResId() {
@@ -61,10 +64,6 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         fragmentComponent.inject(this);
     }
 
-    @Override
-    protected boolean isOpenLoadPager() {
-        return true;
-    }
 
     @Override
     protected void readyStartPresenter() {
@@ -93,7 +92,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
                 //加载图片
-                ImageLoaderManager.loadImage(imageView, (String) path);
+                ImagePicassoUtil.loadImage(imageView, (String) path);
             }
         });
     }
@@ -164,13 +163,21 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     public void updateGirlViewPager(List<GankBean.ResultsBean> data) {
         mViews = new ArrayList<>();
 
-        for (GankBean.ResultsBean resultsBean : data) {
+        mImgList = data;
+
+        for (int i = 0; i < data.size(); i++) {
+
+            GankBean.ResultsBean resultsBean = data.get(i);
+
             View view = mLayoutInflater.inflate(R.layout.hot_item_viewpage, null);
             ImageView im = (ImageView) view.findViewById(R.id.vp_img_item);
             DialogTitle dt = (DialogTitle) view.findViewById(R.id.dt_img_title);
             dt.setText(resultsBean.getDesc());
 
             loadImage(resultsBean.getUrl(), im);
+
+            im.setOnClickListener(this);
+            im.setTag(i);
 
             mViews.add(view);
         }
@@ -215,5 +222,16 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
 
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Intent intent = new Intent(AppUtil.getAppContext(), PictureActivity.class);
+        intent.putExtra(PictureActivity.PIC_INDEX, (int) v.getTag());
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(PictureActivity.PIC_LIST, (Serializable) mImgList);//注意序列化
+
+        AppUtil.getAppContext().startActivity(intent);
     }
 }

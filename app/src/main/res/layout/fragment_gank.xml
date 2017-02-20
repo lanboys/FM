@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
+<cn.bingoogolapple.refreshlayout.BGARefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recyclerView_gank"
-    android:background="@color/girl_gank_background"
+    android:id="@+id/refresh_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+>
 
-</android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_gank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/girl_gank_background"/>
 
+
+</cn.bingoogolapple.refreshlayout.BGARefreshLayout>

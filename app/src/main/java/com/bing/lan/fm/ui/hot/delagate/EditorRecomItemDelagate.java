@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bing.lan.comm.utils.AppUtil;
-import com.bing.lan.comm.utils.ImageLoaderManager;
+import com.bing.lan.comm.utils.ImagePicassoUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.bean.ListItemEditorBean;
@@ -88,7 +88,7 @@ public class EditorRecomItemDelagate
             holder.setText(R.id.tv_title, listItemEditorBean.getTitle());
 
             ImageView imageView = holder.getView(R.id.iv_cover_image);
-            ImageLoaderManager.loadImage(imageView, listItemEditorBean.getCoverMiddle());
+            ImagePicassoUtil.loadImage(imageView, listItemEditorBean.getCoverMiddle());
         }
     }
 }

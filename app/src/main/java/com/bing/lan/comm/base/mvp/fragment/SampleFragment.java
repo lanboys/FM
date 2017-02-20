@@ -61,10 +61,10 @@ public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefr
         moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
         moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
 
+        moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
         // 设置下拉刷新和上拉加载更多的风格
         mRefreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
 
-        moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
     }
 
     private void initRecyclerView(BGARefreshLayout view) {
@@ -95,6 +95,6 @@ public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefr
 
     @Override
     public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        return false;
+        return true;
     }
 }

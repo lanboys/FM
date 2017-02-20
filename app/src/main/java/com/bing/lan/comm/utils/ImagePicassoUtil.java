@@ -19,19 +19,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-
-
-
 /**
  * @author 赵坤
  * @email artzok@163.com
  */
-public class ImageLoaderManager {
+public class ImagePicassoUtil {
+
     private static final int EMPTY_GONE = -1;
     private static final int EMPTY_DISABLE = -2;
     private static final int EMPTY_NONE = -3;
 
-    public static void loadImage(  ImageView imageView, String url) {
+    public static void loadImage(ImageView imageView, String url) {
         loadImage(AppUtil.getAppContext(), imageView, url, EMPTY_GONE, R.drawable.image_default_202, R.drawable.image_default_202);
     }
     //
@@ -60,11 +58,11 @@ public class ImageLoaderManager {
     // }
 
     private static void loadImage(Context context,
-                                  ImageView imageView,
-                                  String url,
-                                  int empty,
-                                  int loading,
-                                  int error) {
+            ImageView imageView,
+            String url,
+            int empty,
+            int loading,
+            int error) {
         // 重置图片状态
         imageView.setVisibility(View.VISIBLE);
         // 根据
@@ -97,6 +95,7 @@ public class ImageLoaderManager {
         Picasso.with(context).load(url)
                 .placeholder(loading)
                 .error(error)
+                .fit().centerCrop()//???
                 .into(imageView);
     }
 
@@ -138,6 +137,7 @@ public class ImageLoaderManager {
     }
 
     public interface SaveImageCallBack {
+
         void callBack(File f);
     }
 }

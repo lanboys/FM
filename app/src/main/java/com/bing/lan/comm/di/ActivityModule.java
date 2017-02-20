@@ -8,6 +8,10 @@ import com.bing.lan.fm.ui.main.IMainContract;
 import com.bing.lan.fm.ui.main.MainActivity;
 import com.bing.lan.fm.ui.main.MainModule;
 import com.bing.lan.fm.ui.main.MainPresenter;
+import com.bing.lan.fm.ui.pic.IPictureContract;
+import com.bing.lan.fm.ui.pic.PictureActivity;
+import com.bing.lan.fm.ui.pic.PictureModule;
+import com.bing.lan.fm.ui.pic.PicturePresenter;
 import com.bing.lan.fm.ui.splash.ISplashContract;
 import com.bing.lan.fm.ui.splash.SplashActivity;
 import com.bing.lan.fm.ui.splash.SplashModule;
@@ -51,6 +55,13 @@ public class ActivityModule {
         MainPresenter splashPresenter = new MainPresenter();
         splashPresenter.setModule(new MainModule());
         splashPresenter.onAttachView((MainActivity) mActivity);
+        return splashPresenter;
+    }
+    @Provides
+    public IPictureContract.IPicturePresenter providePicturePresenter() {
+        PicturePresenter splashPresenter = new PicturePresenter();
+        splashPresenter.setModule(new PictureModule());
+        splashPresenter.onAttachView((PictureActivity) mActivity);
         return splashPresenter;
     }
 
