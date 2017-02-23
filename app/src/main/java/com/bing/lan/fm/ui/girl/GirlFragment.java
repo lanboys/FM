@@ -56,6 +56,16 @@ public class GirlFragment extends BaseFragment<IGirlContract.IGirlPresenter>
         initView();
     }
 
+    private void initData() {
+        mGirlTabTitle = AppUtil.getAppRes().getStringArray(R.array.girl_tab_title);
+        mFragments = new ArrayList<>();
+
+        mFragments.add(new GankFragment());
+        mFragments.add(new SampleFragment());
+        mFragments.add(new SampleFragment());
+        mFragments.add(new SampleFragment());
+    }
+
     private void initView() {
         mViewPagerGirl.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
             @Override
@@ -75,15 +85,5 @@ public class GirlFragment extends BaseFragment<IGirlContract.IGirlPresenter>
         });
 
         mTabGirl.setupWithViewPager(mViewPagerGirl);
-    }
-
-    private void initData() {
-        mGirlTabTitle = AppUtil.getAppRes().getStringArray(R.array.girl_tab_title);
-        mFragments = new ArrayList<>();
-
-        mFragments.add(new GankFragment());
-        mFragments.add(new SampleFragment());
-        mFragments.add(new SampleFragment());
-        mFragments.add(new SampleFragment());
     }
 }

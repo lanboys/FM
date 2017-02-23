@@ -5,9 +5,9 @@
     android:id="@+id/rl_top_bar"
     android:layout_width="fill_parent"
     android:layout_height="48dip"
-    android:background="@color/white"
     android:clickable="true"
     android:paddingTop="2dp">
+    <!--android:background="@color/white"-->
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_image"

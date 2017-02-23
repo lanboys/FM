@@ -1,7 +1,11 @@
 package com.bing.lan.fm.ui.home;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -24,18 +28,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
-import github.chenupt.multiplemodel.viewpager.ModelPagerAdapter;
-import github.chenupt.multiplemodel.viewpager.PagerModelManager;
-import github.chenupt.springindicator.SpringIndicator;
-import github.chenupt.springindicator.viewpager.ScrollerViewPager;
 
 public class HomeFragment extends BaseFragment<IHomeContract.IHomePresenter>
         implements IHomeContract.IHomeView {
 
-    @BindView(R.id.view_pager)
-    ScrollerViewPager mViewPager;
-    @BindView(R.id.indicator)
-    SpringIndicator springIndicator;
+
     @BindView(R.id.user_image)
     CircleImageView mUserImage;
     @BindView(R.id.tv_search_word)
@@ -57,6 +54,12 @@ public class HomeFragment extends BaseFragment<IHomeContract.IHomePresenter>
 
     @BindView(R.id.rl_top_bar)
     RelativeLayout mRlTopBar;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.tab_home)
+    TabLayout mTabHome;
+    @BindView(R.id.view_pager_home)
+    ViewPager mViewPagerHome;
 
     @Override
     protected int getLayoutResId() {
@@ -94,26 +97,45 @@ public class HomeFragment extends BaseFragment<IHomeContract.IHomePresenter>
         fragments.add(new SampleFragment());
         fragments.add(new SampleFragment());
 
-        initIndicate(fragments);
+        initTab(fragments);
     }
 
-    private void initIndicate(List<Fragment> fragments) {
-        List<String> titles = Arrays.asList(AppUtil.getStrArr(R.array.home_tab_title));
-        PagerModelManager manager = new PagerModelManager();
-        manager.addCommonFragment(fragments, titles);
-        ModelPagerAdapter adapter = new ModelPagerAdapter(getChildFragmentManager(), manager);
+    private void initTab(final List<Fragment> fragments) {
+        final List<String> titles = Arrays.asList(AppUtil.getStrArr(R.array.home_tab_title));
+        // PagerModelManager manager = new PagerModelManager();
+        // manager.addCommonFragment(fragments, titles);
+        // ModelPagerAdapter adapter = new ModelPagerAdapter(getChildFragmentManager(), manager);
+        //
+        // mViewPager.setAdapter(adapter);
+        // mViewPager.fixScrollSpeed();
+        // // just set viewPager
+        // springIndicator.setViewPager(mViewPager);
 
-        mViewPager.setAdapter(adapter);
-        mViewPager.fixScrollSpeed();
-        // just set viewPager
-        springIndicator.setViewPager(mViewPager);
+        mViewPagerHome.setAdapter(new FragmentStatePagerAdapter(getChildFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return fragments.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return fragments.size();
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return titles.get(position);
+            }
+        });
+
+        mTabHome.setupWithViewPager(mViewPagerHome);
     }
 
     public void updateSearchWord(String searchWord) {
         mSearchWordTv.setText(searchWord);
     }
 
-    @OnClick({R.id.user_image, R.id.zxing_qrcode, R.id.tv_search_word, R.id.search, R.id.ib_download, R.id.tv_downloading, R.id.download_layout, R.id.ib_play_history, R.id.history_layout, R.id.rl_top_bar, R.id.indicator, R.id.view_pager})
+    @OnClick({R.id.user_image, R.id.zxing_qrcode, R.id.tv_search_word, R.id.search, R.id.ib_download, R.id.tv_downloading, R.id.download_layout, R.id.ib_play_history, R.id.history_layout, R.id.rl_top_bar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_image:
@@ -141,12 +163,10 @@ public class HomeFragment extends BaseFragment<IHomeContract.IHomePresenter>
             case R.id.history_layout:
                 break;
             case R.id.rl_top_bar:
-                break;
-            case R.id.indicator:
-                break;
-            case R.id.view_pager:
+
                 break;
         }
     }
+
 }
 

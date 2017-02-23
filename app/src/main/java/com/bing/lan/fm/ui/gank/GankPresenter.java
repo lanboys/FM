@@ -25,11 +25,11 @@ public class GankPresenter extends
     }
 
     public void updateGankData() {
-        mModule.loadData(LOAD_GANK, this, LOAD_COUNT, 1);
+        mModule.requestData(LOAD_GANK, this, LOAD_COUNT, 1);
     }
 
     public void loadMoreGankData() {
-        mModule.loadData(LOAD__MORE_GANK, this, LOAD_COUNT, mNextLoadpager);
+        mModule.requestData(LOAD__MORE_GANK, this, LOAD_COUNT, mNextLoadpager);
     }
 
     @Override
@@ -49,6 +49,7 @@ public class GankPresenter extends
 
     @Override
     public void onError(int action, Throwable e) {
+        super.onError(action, e);
         if (!mView.isHaveData()) {
             mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
         }
@@ -57,6 +58,7 @@ public class GankPresenter extends
 
     @Override
     public void onCompleted(int action) {
+        super.onCompleted(action);
         mView.setHaveData(true);
         mView.closeRefeshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);

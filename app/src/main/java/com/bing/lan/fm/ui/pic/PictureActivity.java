@@ -1,21 +1,24 @@
 package com.bing.lan.fm.ui.pic;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.anbetter.log.MLog;
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
 import com.bing.lan.comm.di.ActivityComponent;
+import com.bing.lan.comm.view.RecyclerPhotoView;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
+import com.facebook.fresco.helper.listener.IResult;
 
 import java.util.List;
 
 import butterknife.BindView;
-import uk.co.senab.photoview.PhotoView;
 
 public class PictureActivity extends BaseActivity<IPictureContract.IPicturePresenter>
         implements IPictureContract.IPictureView {
@@ -111,9 +114,24 @@ public class PictureActivity extends BaseActivity<IPictureContract.IPicturePrese
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            PhotoView photoView = new PhotoView(container.getContext());
+            final RecyclerPhotoView photoView = new RecyclerPhotoView(container.getContext());
+            // PhotoView photoView = new PhotoView(container.getContext());
+            //  ImageView photoView = new ImageView(container.getContext());
+
             //加载图片
-            loadImage(mImgList.get(position).getUrl(), photoView);
+            // loadImage(mImgList.get(position).getUrl(), photoView);
+            // ImagePicassoUtil.loadBigImage(photoView, mImgList.get(position).getUrl());
+            // TODO: 2017/2/23
+            // com.bing.lan.comm.utils.load.ImageLoader.getInstance().loadImage(photoView, mImgList.get(position).getUrl());
+            com.bing.lan.comm.utils.load.ImageLoader
+                    .getInstance()
+                    .loadImage(photoView.getContext(), mImgList.get(position).getUrl(), 500, 700, new IResult<Bitmap>() {
+                        @Override
+                        public void onResult(Bitmap bitmap) {
+                            MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
+                            photoView.setImageBitmap(bitmap);
+                        }
+                    });
 
             container.addView(photoView);
             return photoView;

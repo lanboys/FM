@@ -51,7 +51,9 @@
         <activity
             android:name=".ui.pic.PictureActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+        >
+            <!--android:process=":picture"-->
         </activity>
     </application>
 

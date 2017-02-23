@@ -1,7 +1,5 @@
 package com.bing.lan.comm.base.mvp;
 
-import android.widget.ImageView;
-
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
 
 public interface IBaseContract {
@@ -34,7 +32,7 @@ public interface IBaseContract {
 
         void setModule(M module);
 
-        void loadImage(Object path, ImageView imageView);
+        // void loadImage(Object path, ImageView imageView);
 
         void loadData(int action, Object... parameter);
     }
@@ -43,14 +41,21 @@ public interface IBaseContract {
 
         void releaseTask();
 
-        void loadImage(Object path, ImageView imageView);
+        // void loadImage(Object path, ImageView imageView);
 
         void loadData(int action, OnDataChangerListener listener, Object... parameter);
+
+        void refreshTask(int action);
+
+        void requestData(int action, OnDataChangerListener listener, Object... parameter);
     }
 
     interface OnDataChangerListener {
+
         @SuppressWarnings("unchecked")
         void onSuccess(int action, Object data);
+
+        void onLoading(int action);
 
         void onError(int action, Throwable e);
 

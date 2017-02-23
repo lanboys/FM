@@ -29,12 +29,12 @@
 
     </LinearLayout>
 
-    <com.jude.easyrecyclerview.EasyRecyclerView
-        android:id="@+id/recycler_view"
-        app:scrollbarStyle="insideOverlay"
-        app:layout_progress="@layout/progress_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.jude.easyrecyclerview.EasyRecyclerView>
+    <!--<com.jude.easyrecyclerview.EasyRecyclerView-->
+        <!--android:id="@+id/recycler_view"-->
+        <!--app:scrollbarStyle="insideOverlay"-->
+        <!--app:layout_progress="@layout/progress_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</com.jude.easyrecyclerview.EasyRecyclerView>-->
 
 </LinearLayout>

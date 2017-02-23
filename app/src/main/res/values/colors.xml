@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#fff86442</color>
+    <color name="colorPrimaryDark">#fff86442</color>
+    <color name="colorAccent">#f97b5e</color>
 
     <!-- 妹纸recyclerView 背景色-->
     <color name="girl_gank_background">#ffffffff</color>
     <!-- 主要背景色 -->
-    <color name="main_background">#f9f9f9</color>
+    <color name="main_background">#fff86442</color>
+    <!--<color name="main_background">#f9f9f9</color>-->
 
     <color name="titleColor">#c9212e</color>
     <color name="titleColorSelected">#535353</color>
@@ -21,12 +22,6 @@
     <color name="tab_text_color_pressed">#fff86442</color>
     <color name="tab_text_color_unpress">#ff949494</color>
 
-    <!-- 首页指示器颜色 -->
-    <color name="indicator_1">#80dcea</color>
-    <color name="indicator_2">#a0f4f4</color>
-    <color name="indicator_3">#94efd7</color>
-    <color name="indicator_4">#FDBC7D</color>
-    <color name="indicator_5">#FDBC7D</color>
 
     <color name="white">#ffffffff</color>
     <color name="default_refresh_color_style">#CA0612</color>

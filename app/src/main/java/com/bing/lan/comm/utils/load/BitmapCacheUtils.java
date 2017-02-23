@@ -1,7 +1,10 @@
-package com.bing.lan.comm.utils;
+package com.bing.lan.comm.utils.load;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.IOUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

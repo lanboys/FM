@@ -1,8 +1,10 @@
-package com.bing.lan.comm.utils;
+package com.bing.lan.comm.utils.load;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.LruCache;
+
+import com.bing.lan.comm.utils.LogUtil;
 
 //注意要在后台线程进行加载图片
 public class ImageLruCacheUtil {
@@ -21,9 +23,9 @@ public class ImageLruCacheUtil {
         //前提二：要告诉lruCache，存在里面的每个对象的大小
         mLruCache = new LruCache<String, Bitmap>(maxSize) {
             @Override
-            protected int sizeOf(String key, Bitmap value) {
+            protected int sizeOf(String key, Bitmap bitmap) {
                 //确定存在LruCache中的每个对象的内存大小
-                return value.getByteCount();
+                return bitmap.getByteCount();
             }
         };
     }
@@ -65,6 +67,12 @@ public class ImageLruCacheUtil {
         log.i("getBitmapScale():scaleW:" + scaleW + " scaleH:"
                 + scaleH + " max:" + max + " inSampleSize:" + options.inSampleSize);
         return max;
+    }
+
+    public void addBitmapToLruCache(String key, Bitmap bitmap) {
+        if (mLruCache.get(key) == null) {
+            mLruCache.put(key, bitmap);
+        }
     }
 
     public Bitmap loadBitmap(String path) {

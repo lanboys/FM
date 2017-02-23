@@ -16,26 +16,26 @@ public class BaseApplication extends Application {
     //1.创建一个静态的事件总线
     public static Bus sBus;
 
-
     @Override
     public void onCreate() {
         super.onCreate();
 
+        //全局初始化
         AppUtil.initGlobal(this, getApplicationContext());
+        //二维码
         ZXingLibrary.initDisplayOpinion(this);
-//        ImageUtil.prepare(getApplicationContext());
 
-
-
-
-        if (sBus==null) {
+        //otto
+        if (sBus == null) {
             //ANY是说该事件总线 在哪条线程中运行 无所谓
-            sBus=new Bus(ThreadEnforcer.ANY);
+            sBus = new Bus(ThreadEnforcer.ANY);
         }
 
+        //图片加载
+        // Fresco.initialize(this);
 
+        //错误报告
         // ErrorReport.getInstance().init(this);
-
 
     }
 }

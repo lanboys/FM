@@ -13,7 +13,7 @@ public class ActivityTestPresenter
     @Override
     public void onStart(Object... params) {
 
-            // mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
+        // mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
 
     }
 
@@ -32,11 +32,11 @@ public class ActivityTestPresenter
 
     @Override
     public void onError(int action, Throwable e) {
-
+        super.onError(action, e);
     }
 
     @Override
     public void onCompleted(int action) {
-
+        super.onCompleted(action);
     }
 }

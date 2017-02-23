@@ -2,6 +2,7 @@ package com.bing.lan.fm.ui.hot;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DialogTitle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,16 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.anbetter.log.MLog;
 import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.utils.AppUtil;
-import com.bing.lan.comm.utils.ImagePicassoUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate;
 import com.bing.lan.fm.ui.hot.delagate.GirlViewPagerAdapter;
 import com.bing.lan.fm.ui.pic.PictureActivity;
+import com.facebook.fresco.helper.listener.IResult;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
@@ -42,7 +44,15 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     @BindView(R.id.hot_refresh_container)
     BGARefreshLayout mHotRefreshContainer;
 
-    private int[] imgs = {R.drawable.i1, R.drawable.i2, R.drawable.i3, R.drawable.i4, R.drawable.i5, R.drawable.i6, R.drawable.i7, R.drawable.i1, R.drawable.i2, R.drawable.i3, R.drawable.i4, R.drawable.i5, R.drawable.i6, R.drawable.i7, R.drawable.i1, R.drawable.i2, R.drawable.i3, R.drawable.i4, R.drawable.i5, R.drawable.i6, R.drawable.i7};
+    private int[] imgs = {R.drawable.i1, R.drawable.i2,
+            R.drawable.i3, R.drawable.i4, R.drawable.i5,
+            R.drawable.i6, R.drawable.i7, R.drawable.i1,
+            R.drawable.i2, R.drawable.i3, R.drawable.i4,
+            R.drawable.i5, R.drawable.i6, R.drawable.i7,
+            R.drawable.i1, R.drawable.i2, R.drawable.i3,
+            R.drawable.i4, R.drawable.i5, R.drawable.i6,
+            R.drawable.i7};
+
     private List<View> mViews;
     private View mGirlViewpagerView;
     private View mBannerView;
@@ -63,7 +73,6 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     protected void startInject(FragmentComponent fragmentComponent) {
         fragmentComponent.inject(this);
     }
-
 
     @Override
     protected void readyStartPresenter() {
@@ -90,9 +99,20 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         //设置图片加载器(低版本没有此方法)
         mBanner.setImageLoader(new ImageLoader() {
             @Override
-            public void displayImage(Context context, Object path, ImageView imageView) {
+            public void displayImage(Context context, Object path, final ImageView imageView) {
                 //加载图片
-                ImagePicassoUtil.loadImage(imageView, (String) path);
+                // ImagePicassoUtil.loadImage(imageView, (String) path);
+                // com.bing.lan.comm.utils.load.ImageLoader.getInstance().loadImage(imageView, (String) path);
+                // TODO: 2017/2/24  注释后,tab来回切换报错,查找原因
+                com.bing.lan.comm.utils.load.ImageLoader
+                        .getInstance()
+                        .loadImage(getContext(), (String) path, 500, 500, new IResult<Bitmap>() {
+                            @Override
+                            public void onResult(Bitmap bitmap) {
+                                MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
+                                imageView.setImageBitmap(bitmap);
+                            }
+                        });
             }
         });
     }
@@ -164,7 +184,6 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mViews = new ArrayList<>();
 
         mImgList = data;
-
         for (int i = 0; i < data.size(); i++) {
 
             GankBean.ResultsBean resultsBean = data.get(i);
@@ -174,7 +193,9 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
             DialogTitle dt = (DialogTitle) view.findViewById(R.id.dt_img_title);
             dt.setText(resultsBean.getDesc());
 
-            loadImage(resultsBean.getUrl(), im);
+            // ImagePicassoUtil.loadImage(im, resultsBean.getUrl());
+            com.bing.lan.comm.utils.load.ImageLoader.getInstance().loadBigImage(im, resultsBean.getUrl());
+            im.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
             im.setOnClickListener(this);
             im.setTag(i);

@@ -1,20 +1,24 @@
 package com.bing.lan.fm.ui.hot.delagate;
 
 import android.content.Context;
+import android.graphics.drawable.Animatable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bing.lan.comm.utils.AppUtil;
-import com.bing.lan.comm.utils.ImagePicassoUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.bean.ListItemEditorBean;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * @author 蓝兵
@@ -87,8 +91,27 @@ public class EditorRecomItemDelagate
             holder.setText(R.id.tv_track_Title, listItemEditorBean.getTrackTitle());
             holder.setText(R.id.tv_title, listItemEditorBean.getTitle());
 
-            ImageView imageView = holder.getView(R.id.iv_cover_image);
-            ImagePicassoUtil.loadImage(imageView, listItemEditorBean.getCoverMiddle());
+            final int imageViewWidth = AppUtil.getScreenW() / 3;
+
+            final SimpleDraweeView draweeView = holder.getView(R.id.iv_cover_image);
+            // ImagePicassoUtil.loadImage(imageView, listItemEditorBean.getCoverMiddle());
+            com.bing.lan.comm.utils.load.ImageLoader
+                    .getInstance()
+                    .loadImage(draweeView,
+                            listItemEditorBean.getCoverMiddle(), new BaseControllerListener<ImageInfo>() {
+                                @Override
+                                public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
+                                    if (imageInfo == null) {
+                                        return;
+                                    }
+                                    ViewGroup.LayoutParams vp = draweeView.getLayoutParams();
+                                    //计算控件高宽比
+                                    vp.width = imageInfo.getWidth();
+                                    vp.height = imageInfo.getHeight();
+
+                                    draweeView.requestLayout();
+                                }
+                            });
         }
     }
 }

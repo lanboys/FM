@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
@@ -25,7 +24,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 
 /**
  * @author 蓝兵
@@ -105,6 +103,18 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        log.d("onStart(): ");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        log.d("onResume(): ");
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         //停止更新
@@ -144,16 +154,10 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     protected abstract void readyStartPresenter();
 
     protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
-        // // 为BGARefreshLayout 设置代理
-        // refreshLayout.setDelegate(this);
-        // // 设置下拉刷新和上拉加载更多的风格
-        // BGARefreshViewHolder refreshViewHolder = getRefreshViewHolder( );
-        // refreshLayout.setRefreshViewHolder(refreshViewHolder);
-
 
         // 为BGARefreshLayout 设置代理
         refreshLayout.setDelegate(this);
-        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+        // 设置下拉刷新和上拉加载更多的风格
         BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
         moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
         moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
@@ -163,20 +167,18 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
         refreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
     }
 
-    protected BGARefreshViewHolder getRefreshViewHolder(   ) {
-
-        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder =
-                new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
-        moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
-        moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
-
-        // 设置下拉刷新和上拉加载更多的风格
-        moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
-        return moocStyleRefreshViewHolder;
-    }
-
-
+    // protected BGARefreshViewHolder getRefreshViewHolder(   ) {
+    //
+    //     // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+    //     BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder =
+    //             new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
+    //     moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
+    //     moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
+    //
+    //     // 设置下拉刷新和上拉加载更多的风格
+    //     moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
+    //     return moocStyleRefreshViewHolder;
+    // }
 
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
     }
@@ -312,12 +314,10 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
 
     /**
      * 加载图片
-     *
      */
-    protected void loadImage(Object path, ImageView imageView) {
-        mPresenter.loadImage(path, imageView);
-    }
-
+    // protected void loadImage(Object path, ImageView imageView) {
+    //     mPresenter.loadImage(path, imageView);
+    // }
     public T getPresenter() {
         return mPresenter;
     }

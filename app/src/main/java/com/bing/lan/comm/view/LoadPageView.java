@@ -30,7 +30,7 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
     /**
      * 重试次数
      */
-    private static final int RELOAD_TIMES = 3;
+    private static final int RELOAD_TIMES = 2;
     protected LogUtil log = LogUtil.getLogUtil(getClass(), 1);
     private boolean mIsOpenRefresh;
     private View mEmptyPager;
@@ -75,8 +75,6 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
 
     private void initCommonView(Context context) {
         LayoutInflater inflater = LayoutInflater.from(context);
-
-
 
         mLoadingPager = View.inflate(context, getPagerLoading(), null);
         mEmptyPager = View.inflate(context, getPagerEmpty(), null);
@@ -166,13 +164,12 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
         mCurrentState = viewState.getState();
 
         //在此判断,防止在错误重试页面,用户不断点击重试按钮
-        //记录显示错误页面的次数,次数大于2将显示空白界面
+        //记录显示错误页面的次数,次数大于RELOAD_TIMES将显示空白界面
         if (mCurrentState == STATE_ERROR) {
             mErrorCount++;
-            if (mErrorCount > RELOAD_TIMES) {
+            if (mErrorCount >  RELOAD_TIMES) {
                 mCurrentState = STATE_EMPTY;
             }
-
             log.d("setViewState():出现错误页面的次数 " + mErrorCount);
         }
 

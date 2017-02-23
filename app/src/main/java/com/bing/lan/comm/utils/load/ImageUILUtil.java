@@ -1,8 +1,10 @@
-package com.bing.lan.comm.utils;
+package com.bing.lan.comm.utils.load;
 
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.fm.R;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;

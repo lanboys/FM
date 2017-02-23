@@ -42,6 +42,6 @@ public class HomeModule extends BaseFragmentModule
                 action,
                 listener,
                 "搜索词汇");
-        mSubscriptions.add(subscribe) ;
+
     }
 }

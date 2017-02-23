@@ -29,8 +29,8 @@ public class HotPresenter extends
 
     @Override
     public void onStart(Object... params) {
-        mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
-        mModule.loadData(LOAD_HOT_MAIN, this);
+        mModule.requestData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
+        mModule.requestData(LOAD_HOT_MAIN, this);
     }
 
     @Override
@@ -64,6 +64,7 @@ public class HotPresenter extends
 
     @Override
     public void onError(int action, Throwable e) {
+        super.onError(action, e);
         //下拉刷新,之前有数据,就不显示错误页面
         if (!mView.isHaveData()) {
             mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
@@ -72,7 +73,7 @@ public class HotPresenter extends
 
     @Override
     public void onCompleted(int action) {
-
+        super.onCompleted(action);
         mView.closeRefeshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
 

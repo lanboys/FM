@@ -3,6 +3,8 @@ package com.bing.lan.comm.base.mvp.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,11 @@ import android.widget.Toast;
 
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.fm.R;
+import com.yalantis.phoenix.PullToRefreshView;
 
-import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
@@ -20,7 +25,8 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefreshLayoutDelegate {
 
-    private BGARefreshLayout mRefreshLayout;
+    private View mView;
+    private PullToRefreshView mPullToRefreshView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,43 +49,59 @@ public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefr
         // // container.setPadding(AppUtil.dip2px(20),0,AppUtil.dip2px(20),0);
         // view.setScaleType(ImageView.ScaleType.FIT_XY);
 
-        BGARefreshLayout view = (BGARefreshLayout) inflater.inflate(R.layout.fragment_simple, container, false);
+        mView =  inflater.inflate(R.layout.fragment_simple, container, false);
         // view.setViewState(LoadPageView.LoadDataResult.LOAD_SUCCESS);
-        initRecyclerView(view);
+        initRecyclerView( mView);
+        //
+        // initRefreshLayout();
+        initPullToRefreshView(mView);
 
-        mRefreshLayout = (BGARefreshLayout) view.findViewById(R.id.rl_modulename_refresh);
-        initRefreshLayout();
+        return mView;
+    }
 
-        return view;
+    private void initPullToRefreshView(View view) {
+        mPullToRefreshView = (PullToRefreshView) view.findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+        });
     }
 
     private void initRefreshLayout() {
-        // 为BGARefreshLayout 设置代理
-        mRefreshLayout.setDelegate(this);
-        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
-        moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
-        moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
-
-        moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
-        // 设置下拉刷新和上拉加载更多的风格
-        mRefreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
+        // mRefreshLayout = (BGARefreshLayout) mView.findViewById(R.id.rl_modulename_refresh);
+        // // 为BGARefreshLayout 设置代理
+        // mRefreshLayout.setDelegate(this);
+        // // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+        // BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
+        // moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
+        // moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
+        //
+        // moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
+        // // 设置下拉刷新和上拉加载更多的风格
+        // mRefreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
 
     }
 
-    private void initRecyclerView(BGARefreshLayout view) {
+    private void initRecyclerView( View view) {
 
-        // RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        // recyclerView.setHasFixedSize(true);
-        // List<String> list = new ArrayList<>();
-        // for (int i = 0; i < 20; i++) {
-        //     list.add("我是第" + i + "个");
-        // }
-        // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        // linearLayoutManager.setSmoothScrollbarEnabled(true);
-        // recyclerView.setLayoutManager(linearLayoutManager);
-        // ListRecyclerAdapter adapter = new ListRecyclerAdapter(list);
-        // recyclerView.setAdapter(adapter);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            list.add("我是第" + i + "个");
+        }
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setSmoothScrollbarEnabled(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        ListRecyclerAdapter adapter = new ListRecyclerAdapter(list);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -88,7 +110,7 @@ public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefr
             @Override
             public void run() {
                 Toast.makeText(AppUtil.getAppContext(), "客观没有更多的数据了哦", Toast.LENGTH_SHORT).show();
-                mRefreshLayout.endRefreshing();
+                // mRefreshLayout.endRefreshing();
             }
         }, 2000);
     }

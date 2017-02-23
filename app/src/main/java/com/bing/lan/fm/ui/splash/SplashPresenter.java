@@ -21,16 +21,15 @@ public class SplashPresenter
 
     @Override
     public void onCompleted(int action) {
-
+        super.onCompleted(action);
     }
 
     @Override
     public void onSuccess(int action, Object data) {
-
     }
 
     @Override
     public void onError(int action, Throwable e) {
-
+        super.onError(action, e);
     }
 }

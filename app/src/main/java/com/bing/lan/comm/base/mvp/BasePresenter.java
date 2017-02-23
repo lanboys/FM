@@ -1,7 +1,5 @@
 package com.bing.lan.comm.base.mvp;
 
-import android.widget.ImageView;
-
 import com.bing.lan.comm.utils.LogUtil;
 
 /**
@@ -35,14 +33,28 @@ public abstract class BasePresenter<
         mModule.releaseTask();
         mView = null;
     }
-
-    @Override
-    public void loadImage(Object path, ImageView imageView) {
-        mModule.loadImage(path, imageView);
-    }
+    //
+    // @Override
+    // public void loadImage(Object path, ImageView imageView) {
+    //     mModule.loadImage(path, imageView);
+    // }
 
     @Override
     public void loadData(int action, Object... parameter) {
 
+    }
+
+    @Override
+    public void onLoading(int action) {
+    }
+
+    @Override
+    public void onError(int action, Throwable e) {
+        mModule.refreshTask(action);
+    }
+
+    @Override
+    public void onCompleted(int action) {
+        mModule.refreshTask(action);
     }
 }

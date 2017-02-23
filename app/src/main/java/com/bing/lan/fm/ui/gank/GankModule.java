@@ -17,6 +17,7 @@ public class GankModule extends BaseFragmentModule
         implements IGankContract.IGankModule {
 
     public static String Gank_BASE_URL = "http://gank.io/api/data/%E7%A6%8F%E5%88%A9/";
+
     // http://gank.io/api/data/%E7%A6%8F%E5%88%A9/4/2
 
     public static String getGankGirlUrl(int count, int page) {
@@ -40,12 +41,9 @@ public class GankModule extends BaseFragmentModule
                     }
                 });
 
-        mSubscriptions.add(subscribe(
-                observable,
+        subscribe(observable,
                 action,
                 listener,
-                "妹子"
-        ));
-
+                "妹子");
     }
 }

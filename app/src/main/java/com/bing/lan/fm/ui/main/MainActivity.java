@@ -3,7 +3,6 @@ package com.bing.lan.fm.ui.main;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,8 @@ import android.widget.TextView;
 
 import com.bing.lan.comm.app.BaseApplication;
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
-import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.di.ActivityComponent;
 import com.bing.lan.comm.utils.AppUtil;
-import com.bing.lan.comm.view.ResideMenu.ResideMenu;
-import com.bing.lan.comm.view.ResideMenu.ResideMenuItem;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.girl.GirlFragment;
 import com.bing.lan.fm.ui.home.HomeFragment;
@@ -34,7 +30,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     private String[] mTabTitles;
     private int[] mTabImages;
     private LayoutInflater mInflater;
-    private ResideMenu mResideMenu;
+
 
     @Override
     protected int getLayoutResId() {
@@ -56,10 +52,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         initTabData();
         //初始化fragmenttabhost
         initFragmentTabHost();
-        if (Build.VERSION.SDK_INT <= 16) {
-            //类似qq5.0侧拉菜单
-            initResideMenu();
-        }
     }
 
     @Override
@@ -85,52 +77,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         showToast("切换成功");
         log.d("onReceive(): " + is);
     }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(mTabTitles[0]);
-            View loadPage = fragment.getContentView();
-            View viewById = loadPage.findViewById(R.id.view_pager);
-            if (mResideMenu != null && viewById != null) {
-                mResideMenu.addIgnoredView(viewById);
-            }
-        }
-    }
-
-    public void initResideMenu() {
-        // attach to current activity;
-        mResideMenu = new ResideMenu(this);
-        mResideMenu.setBackground(R.drawable.menu_background);
-        mResideMenu.attachToActivity(this);
-        mResideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
-
-        // create menu items;
-        String titles[] = {"Home", "Profile", "Calendar", "Settings"};
-        int icon[] = {R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher};
-
-        for (int i = 0; i < titles.length; i++) {
-            ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
-            item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showToast("我被点击了");
-                    // TODO: 2017/2/19 item点击事件
-                }
-            });
-            mResideMenu.addMenuItem(item, ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
-        }
-
-        // TODO: 2017/2/15   用 rxbus / eventbus 实现
-        mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT); // or ResideMenu.DIRECTION_RIGHT
-        mResideMenu.closeMenu();
-    }
-
-    // @Override
-    // public boolean dispatchTouchEvent(MotionEvent ev) {
-    //     return mResideMenu.dispatchTouchEvent(ev);
-    // }
 
     private void initTabData() {
         mFragmentClazz = new Class[]{
@@ -180,19 +126,50 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         title.setText(mTabTitles[index]);
         return view;
     }
-    //
+
     // @Override
-    // public boolean onCreateOptionsMenu(Menu menu) {
-    //     getMenuInflater().inflate(R.menu.menu_main, menu);
-    //     return true;
-    // }
-    //
-    // @Override
-    // public boolean onOptionsItemSelected(MenuItem item) {
-    //     int id = item.getItemId();
-    //     if (id == R.id.action_settings) {
-    //         return true;
+    // public void onWindowFocusChanged(boolean hasFocus) {
+    //     super.onWindowFocusChanged(hasFocus);
+    //     if (hasFocus) {
+    //         BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(mTabTitles[0]);
+    //         View loadPage = fragment.getContentView();
+    //         View viewById = loadPage.findViewById(R.id.view_pager);
+    //         if (mResideMenu != null && viewById != null) {
+    //             mResideMenu.addIgnoredView(viewById);
+    //         }
     //     }
-    //     return super.onOptionsItemSelected(item);
+    // }
+
+    // public void initResideMenu() {
+    //     // attach to current activity;
+    //     mResideMenu = new ResideMenu(this);
+    //     mResideMenu.setBackground(R.drawable.menu_background);
+    //     mResideMenu.attachToActivity(this);
+    //     mResideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
+    //
+    //     // create menu items;
+    //     String titles[] = {"Home", "Profile", "Calendar", "Settings"};
+    //     int icon[] = {R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher};
+    //
+    //     for (int i = 0; i < titles.length; i++) {
+    //         ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
+    //         item.setOnClickListener(new View.OnClickListener() {
+    //             @Override
+    //             public void onClick(View v) {
+    //                 showToast("我被点击了");
+    //                 // TODO: 2017/2/19 item点击事件
+    //             }
+    //         });
+    //         mResideMenu.addMenuItem(item, ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
+    //     }
+    //
+    //     // TODO: 2017/2/15   用 rxbus / eventbus 实现
+    //     mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT); // or ResideMenu.DIRECTION_RIGHT
+    //     mResideMenu.closeMenu();
+    // }
+
+    // @Override
+    // public boolean dispatchTouchEvent(MotionEvent ev) {
+    //     return mResideMenu.dispatchTouchEvent(ev);
     // }
 }

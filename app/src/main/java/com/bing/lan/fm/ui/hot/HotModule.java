@@ -45,12 +45,12 @@ public class HotModule extends BaseFragmentModule
                     }
                 });
 
-        mSubscriptions.add(subscribe(
+        subscribe(
                 observable,
                 action,
                 listener,
                 "热门页面妹子"
-        ));
+        );
     }
 
     /**
@@ -109,10 +109,10 @@ public class HotModule extends BaseFragmentModule
         //     }
         // });
 
-        mSubscriptions.add(subscribe(
+        subscribe(
                 observable,
                 action,
                 listener,
-                "热门页面"));
+                "热门页面");
     }
 }

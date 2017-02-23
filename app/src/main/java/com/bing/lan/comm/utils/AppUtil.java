@@ -61,6 +61,8 @@ public class AppUtil {
         initLeakCanary(sApplication);
         // realm init
         RealmManager.initRealm(sContext);
+        //ImageLoader init
+        com.bing.lan.comm.utils.load.ImageLoader.init(application);
     }
 
     private static void initLeakCanary(Application application) {

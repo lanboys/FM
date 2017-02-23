@@ -1,18 +1,14 @@
 package com.bing.lan.comm.base.mvp;
 
-import android.widget.ImageView;
-
 import com.bing.lan.comm.api.ApiService;
 import com.bing.lan.comm.api.BaseSubscriber;
 import com.bing.lan.comm.di.DaggerDiComponent;
 import com.bing.lan.comm.di.DiModule;
-import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.comm.utils.RxJavaUtils;
-import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -32,7 +28,7 @@ public abstract class BaseModule implements IBaseContract.IBaseModule {
 
     @Inject
     protected LogUtil log;
-    protected List<Subscription> mSubscriptions=new ArrayList<>();
+    protected Map<String, Subscription> mSubscriptions = new HashMap<>();
 
     public BaseModule() {
         DaggerDiComponent.builder()
@@ -44,31 +40,35 @@ public abstract class BaseModule implements IBaseContract.IBaseModule {
     @Override
     public void releaseTask() {
         if (mSubscriptions != null && mSubscriptions.size() > 0) {
-            for (Subscription subscription : mSubscriptions) {
+            for (Subscription subscription : mSubscriptions.values()) {
                 RxJavaUtils.releaseSubscribe(subscription);
             }
             mSubscriptions.clear();
         }
     }
 
-    @Override
-    public void loadImage(Object path, ImageView imageView) {
-        // Picasso.with(AppUtil.getAppContext()).load((String) path).into(imageView);
-        // Glide可以加载 path 为object的路径,比图本地资源文件  R.mipmap.ic_launcher
-        Glide.with(AppUtil.getAppContext())
-                .load(path)
-                .crossFade()
-                .into(imageView);
-
-        // ImageLoaderManager.loadRefreshImage(AppUtil.getAppContext(), imageView, (String) path);
-    }
+    // @Override
+    // public void loadImage(Object path, ImageView imageView) {
+    //
+    //     // Glide可以加载 path 为object的路径,比图本地资源文件  R.mipmap.ic_launcher
+    //
+    //     // Glide.with(AppUtil.getAppContext())
+    //     //         .load(path)
+    //     //         .crossFade()
+    //     //         .into(imageView);
+    //
+    //     // ImagePicassoUtil.loadImage(imageView, (String) path);
+    //     // ImagePicassoUtil.loadBigImage(imageView, (String) path);
+    //
+    //     ImageLoader.getInstance().loadBigImage(imageView, (String) path);
+    // }
 
     protected <T> Subscription subscribe(Observable<T> observable,
             int action,
             IBaseContract.OnDataChangerListener listener,
             String onNextString) {
 
-        return observable.subscribeOn(Schedulers.io())
+        Subscription subscribe = observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(BaseSubscriber.newBuilder()
                         .action(action)
@@ -76,5 +76,32 @@ public abstract class BaseModule implements IBaseContract.IBaseModule {
                         .dataChangelistener(listener)
                         .description(onNextString)
                         .build());
+        mSubscriptions.put(String.valueOf(action), subscribe);
+        return subscribe;
+    }
+
+    /**
+     * 任务完成或者发生错误的时候调用
+     *
+     * @param action
+     */
+    @Override
+    public void refreshTask(int action) {
+        mSubscriptions.remove(String.valueOf(action));
+    }
+
+    @Override
+    public void requestData(int action, IBaseContract.OnDataChangerListener listener, Object... parameter) {
+        Subscription subscribe = mSubscriptions.get(String.valueOf(action));
+        if (subscribe != null && !subscribe.isUnsubscribed()) {
+            //任务正在进行中
+            if (listener != null) {
+                log.i("requestData(): 有任务正在进行哦");
+                listener.onLoading(action);
+            }
+        } else {
+            //没有任务进行
+            loadData(action, listener, parameter);
+        }
     }
 }

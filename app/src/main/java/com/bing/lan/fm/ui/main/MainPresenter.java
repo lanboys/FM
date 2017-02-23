@@ -21,11 +21,11 @@ public class MainPresenter extends BaseActivityPresenter<IMainContract.IMainView
 
     }    @Override
     public void onCompleted(int action) {
-
+        super.onCompleted(action);
     }
 
     @Override
     public void onError(int action, Throwable e) {
-
+        super.onError(action, e);
     }
 }

@@ -18,12 +18,12 @@ public class HomePresenter extends
     @Override
     public void onStart(Object... params) {
 
-        mModule.loadData(LOAD_SEARCH_WORD, this);
+        mModule.requestData(LOAD_SEARCH_WORD, this);
 
     }
     @Override
     public void onCompleted(int action) {
-
+        super.onCompleted(action);
     }
     @Override
     @SuppressWarnings("unchecked")
@@ -42,6 +42,6 @@ public class HomePresenter extends
 
     @Override
     public void onError(int action, Throwable e) {
-
+        super.onError(action, e);
     }
 }

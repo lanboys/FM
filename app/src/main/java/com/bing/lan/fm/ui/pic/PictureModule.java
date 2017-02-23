@@ -15,6 +15,12 @@ public class PictureModule extends BaseActivityModule
 
     }
 
+    // @Override
+    // public void loadImage(Object path, ImageView imageView) {
+        // ImagePicassoUtil.loadImage(imageView, (String) path);
+        // com.bing.lan.comm.utils.load.ImageLoader.getInstance().loadImage(imageView, (String) path);
+    // }
+
     @Override
     public void loadData(int action, IBaseContract.OnDataChangerListener listener, Object... parameter) {
 
