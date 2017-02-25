@@ -1,74 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout-->
-<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--android:background="@color/white"-->
-<!--android:orientation="vertical">-->
-
-<!--<include layout="@layout/home_search_top_bar"/>-->
-<!--<include layout="@layout/discover_divider_layout"/>-->
-
-<!--<github.chenupt.springindicator.SpringIndicator-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--android:id="@+id/indicator"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="56dp"-->
-<!--android:layout_marginLeft="24dp"-->
-<!--android:layout_marginRight="24dp"-->
-<!--app:siIndicatorColors="@array/indicator_colors"-->
-<!--app:siSelectedTextColor="@color/tab_text_color_unpress"-->
-<!--app:siTextColor="@color/tab_text_color_unpress"-->
-<!--app:siTextSize="18sp"/>-->
-
-<!--<github.chenupt.springindicator.viewpager.ScrollerViewPager-->
-<!--android:id="@+id/view_pager"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--android:layout_gravity="center"/>-->
-<!--</LinearLayout>-->
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
->
+    android:orientation="vertical">
     <!--android:fitsSystemWindows="true"-->
 
-    <android.support.design.widget.AppBarLayout
+    <!--<android.support.design.widget.AppBarLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:theme="@style/AppTheme.AppBarOverlay">-->
+
+
+    <!--<include layout="@layout/discover_divider_layout"/>-->
+
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"-->
+    <!--android:background="?attr/colorPrimary"-->
+    <!--app:layout_scrollFlags="scroll"-->
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay">-->
+
+    <!--<include layout="@layout/home_search_top_bar"/>-->
+    <!--</android.support.v7.widget.Toolbar>-->
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:background="@color/main_background"
+        app:tabIndicatorColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/grgray">
 
-
-        <!--<include layout="@layout/discover_divider_layout"/>-->
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
-            <include layout="@layout/home_search_top_bar"/>
-        </android.support.v7.widget.Toolbar>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_home"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.design.widget.TabLayout>
-
-
-    </android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.TabLayout>
+    <!--</android.support.design.widget.AppBarLayout>-->
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
+        android:layout_height="match_parent">
     </android.support.v4.view.ViewPager>
-</android.support.design.widget.CoordinatorLayout>
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+</LinearLayout>

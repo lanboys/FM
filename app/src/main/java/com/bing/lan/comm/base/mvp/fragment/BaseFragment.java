@@ -1,5 +1,6 @@
 package com.bing.lan.comm.base.mvp.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,14 +8,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
 import com.bing.lan.comm.di.DaggerFragmentComponent;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.di.FragmentModule;
 import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.DialogUtil;
 import com.bing.lan.comm.utils.LogUtil;
+import com.bing.lan.comm.utils.ToastUtil;
 import com.bing.lan.comm.view.LoadPageView;
 import com.bing.lan.fm.R;
 
@@ -41,9 +43,18 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     protected LayoutInflater mLayoutInflater;
 
     protected View mContentView;
+    protected String mTitle;
     protected boolean mHaveData;
     private LoadPageView mLoadPage;
     private Unbinder mViewBind;
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
 
     @Override
     public boolean isHaveData() {
@@ -66,11 +77,11 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //启动di,可能第二次执行生命周期,故需要做个非空判断
-        if (mPresenter == null) {
-            //必须在子类注入,因为要注入的类型是泛型,只有在实现类才能确定
-            startInject(getFragmentComponent());
-        }
+        // //启动di,可能第二次执行生命周期,故需要做个非空判断
+        // if (mPresenter == null) {
+        //     //必须在子类注入,因为要注入的类型是泛型,只有在实现类才能确定
+        //     startInject(getFragmentComponent());
+        // }
     }
 
     @Nullable
@@ -122,16 +133,34 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        //解绑
+        if (mPresenter != null) {
+            mPresenter.onDetachView();
+            mPresenter = null;
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        //启动di,可能第二次执行生命周期,故需要做个非空判断
+        if (mPresenter == null) {
+            //必须在子类注入,因为要注入的类型是泛型,只有在实现类才能确定
+            startInject(getFragmentComponent());
+            // mPresenter.onAttachView(this);
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
 
         if (mViewBind != null) {
             mViewBind.unbind();
             mViewBind = null;
-        }
-        //解绑
-        if (mPresenter != null) {
-            mPresenter.onDetachView();
         }
 
         AppUtil.MemoryLeakCheck(this);
@@ -197,7 +226,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     /**
      * 默认关闭下拉刷新(内置了scrollview,容易发生滑动冲突)
      */
-    protected boolean isOpenRefresh() {
+    private boolean isOpenRefresh() {
         //没必要使用的地方尽量关闭,不然嵌套太多层了
         return false;
     }
@@ -207,7 +236,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
             initContentView(inflater, container);
             mViewBind = ButterKnife.bind(this, mContentView);
             //初始化数据
-            initViewAndData(getActivity().getIntent());
+            initViewAndData(getActivity().getIntent(), getArguments());
         } else {
             ViewGroup parent = (ViewGroup) mContentView.getParent();
             if (parent != null) {
@@ -257,7 +286,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
         mLoadPage.setErrorButtonListener(this);
     }
 
-    protected abstract void initViewAndData(Intent intent);
+    protected abstract void initViewAndData(Intent intent, Bundle arguments);
 
     protected FragmentComponent getFragmentComponent() {
         return DaggerFragmentComponent.builder()
@@ -285,11 +314,6 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
         mLoadPage.resetErrorCount();
     }
 
-    public void showToast(String msg) {
-        // TODO: 2017/2/8 记得更新
-        Toast.makeText(AppUtil.getAppContext(), msg, Toast.LENGTH_SHORT).show();
-    }
-
     protected View initSuccessView(LayoutInflater layoutInflater, ViewGroup container) {
         return layoutInflater.inflate(getLayoutResId(), container, false);
     }
@@ -301,7 +325,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
         readyStart();
     }
 
-    public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish) {
+    public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim) {
         AppUtil.startActivity(getActivity(), clazz, isFinish);
     }
 
@@ -309,7 +333,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
      * 默认false
      */
     public void startActivity(Class<? extends BaseActivity> clazz) {
-        startActivity(clazz, false);
+        startActivity(clazz, false, true);
     }
 
     /**
@@ -329,7 +353,12 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
 
     @Override
     public void showDialog(String msg) {
+        DialogUtil.showAlertDialog(getActivity(), msg);
+    }
 
+    @Override
+    public void showToast(String msg) {
+        ToastUtil.showToast(msg);
     }
 
     @Override

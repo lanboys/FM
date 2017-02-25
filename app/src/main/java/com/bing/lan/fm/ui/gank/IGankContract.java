@@ -15,7 +15,7 @@ public interface IGankContract {
 
         void updateGank(List<GankBean.ResultsBean> data);
           void loadMoreGank(List<GankBean.ResultsBean> data);
-        void closeRefeshing();
+        void closeRefreshing();
     }
 
     interface IGankPresenter extends

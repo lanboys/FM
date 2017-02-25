@@ -1,6 +1,7 @@
 package com.bing.lan.comm.base.mvp.fragment.test;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.di.FragmentComponent;
@@ -28,7 +29,7 @@ public class FragTestFragment extends BaseFragment<IFragTestContract.IFragTestPr
 
 
     @Override
-    protected void initViewAndData(Intent intent) {
+    protected void initViewAndData(Intent intent, Bundle arguments) {
 
     }
 }

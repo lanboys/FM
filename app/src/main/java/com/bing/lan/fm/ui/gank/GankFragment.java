@@ -3,6 +3,8 @@ package com.bing.lan.fm.ui.gank;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Animatable;
+import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.view.ViewGroup;
 import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.load.ImageLoader;
 import com.bing.lan.fm.R;
+import com.bing.lan.fm.listener.RecyclerViewScrollListener;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.pic.PictureActivity;
 import com.facebook.drawee.controller.BaseControllerListener;
@@ -28,20 +32,20 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import butterknife.BindView;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
  *
  */
 public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
         implements IGankContract.IGankView,
-        MultiItemTypeAdapter.OnItemClickListener {
+        MultiItemTypeAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final int GRIL_COLUMN = 3;
     @BindView(R.id.recyclerView_gank)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refresh_container)
-    BGARefreshLayout mRefreshLayout;
+    @BindView(R.id.hot_refresh_container)
+    SwipeRefreshLayout mHotRefreshContainer;
+
     private List<GankBean.ResultsBean> mRecyclerViewData;
     private GankRecyclerViewAdapter mAdapter;
 
@@ -61,8 +65,8 @@ public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
     }
 
     @Override
-    protected void initViewAndData(Intent intent) {
-        initRefreshLayout(mRefreshLayout);
+    protected void initViewAndData(Intent intent, Bundle arguments) {
+        mHotRefreshContainer.setOnRefreshListener(this);
         initRecyclerView();
     }
 
@@ -77,40 +81,53 @@ public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
                 R.layout.item_gank_meizi, mRecyclerViewData);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
+
+        mRecyclerView.addOnScrollListener(new RecyclerViewScrollListener() {
+            @Override
+            public int getLastVisiblePosition(RecyclerView.LayoutManager layoutManager) {
+
+                int[] into = new int[3];
+                ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(into);
+                //接近底部开始加载更多,因为高度层次不齐,所以加上5
+                return into[0] + 5;
+            }
+
+            @Override
+            public void loadMore() {
+                mPresenter.loadMoreGankData();
+                log.d("loadMore(): " + "gank界面加载更多");
+            }
+        });
     }
 
     @Override
     public void updateGank(List<GankBean.ResultsBean> data) {
         mRecyclerViewData.clear();
-        updateRecylerViewData(data);
+        updateRecyclerViewData(data);
     }
 
     @Override
     public void loadMoreGank(List<GankBean.ResultsBean> data) {
-        updateRecylerViewData(data);
+        updateRecyclerViewData(data);
     }
 
-    private void updateRecylerViewData(List<GankBean.ResultsBean> data) {
+    private void updateRecyclerViewData(List<GankBean.ResultsBean> data) {
         mRecyclerViewData.addAll(data);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+    public void closeRefreshing() {
+
+        if (mHotRefreshContainer != null && mHotRefreshContainer.isRefreshing()) {
+            mHotRefreshContainer.setRefreshing(false);
+        }
+    }
+
+    @Override
+    public void onRefresh() {
         mPresenter.updateGankData();
         log.d("onBGARefreshLayoutBeginRefreshing(): gank界面下拉刷新");
-    }
-
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        mPresenter.loadMoreGankData();
-        log.d("onBGARefreshLayoutBeginLoadingMore(): gank界面加载更多");
-        return true;
-    }
-
-    public void closeRefeshing() {
-        if (mRefreshLayout != null) {
-            mRefreshLayout.endRefreshing();
-        }
     }
 
     @Override
@@ -128,116 +145,6 @@ public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
     @Override
     public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
         return false;
-    }
-
-    public void loadImageByFresco(final ViewHolder holder, String imageUrl) {
-        // SimpleDraweeView imageView2 = holder.getView(R.id.main_simple_drawee_view);
-        //   int imageViewSize = AppUtil.getScreenW() / GRIL_COLUMN;
-        //
-        // int base = (int) (imageViewSize * (1 - 0.3));
-        //
-        // Random random = new Random();
-        // int i = random.nextInt(base);
-        //
-        // //计算控件高宽比
-        // final ViewGroup.LayoutParams layoutParams = imageView2.getLayoutParams();
-        // layoutParams.height = imageViewSize - 50 + i;
-        //
-        // DraweeController controller = Fresco.newDraweeControllerBuilder()
-        //         .setUri(imageUrl)
-        //         .setAutoPlayAnimations(true)
-        //         .build();
-        // imageView2.setController(controller);
-    }
-
-    private void loadImageByLoad(ViewHolder holder, String imageUrl, int position) {
-
-        // String imagePath = new File(AppUtil.getAppContext().getFilesDir(), position + "haha.jpeg").getAbsolutePath();
-        //
-        // final int imageViewSize = AppUtil.getScreenW() / GRIL_COLUMN;
-        // final ImageView imageView = holder.getView(R.id.iv_girl);
-        //
-        // manager.loadImage(imageUrl, imagePath, new IAsyncImageLoadedCallBack() {
-        //     @Override
-        //     public void imageLoaded(Bitmap imageBitmap, String imgUrl) {
-        //         int width = imageBitmap.getWidth();
-        //         int height = imageBitmap.getHeight();
-        //
-        //         // imageView1.setRelative(width / height);
-        //         // imageView.setImageBitmap(imageBitmap);
-        //
-        //         //计算高宽比
-        //         int finalHeight = (imageViewSize) * height / width;
-        //
-        //         ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-        //         layoutParams.height = finalHeight;
-        //         imageView.setImageBitmap(imageBitmap);
-        //     }
-        // });
-    }
-
-    private void loadImageByPicasso(final ViewHolder holder, String imageUrl) {
-        // final ImageView imageView = holder.getView(R.id.iv_girl);
-        // ImagePicassoUtil.loadBigImage(imageView, imageUrl);
-    }
-
-    private void loadImageByGlide(final ViewHolder holder, final String imageUrl) {
-        // final int imageViewWidth = AppUtil.getScreenW() / GRIL_COLUMN;
-        // final ImageView imageView = holder.getView(R.id.iv_girl);
-        // final ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-        // //
-        // Glide.with(getContext())
-        //         .load(imageUrl)
-        //         .asBitmap()
-        //         // .Transformation()
-        //         // .thumbnail(0.1f)
-        //         // .fitCenter()
-        //         // .centerCrop() Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL
-        //         // .placeholder(R.drawable.image_default_202)
-        //         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-        //         .into(new SimpleTarget<Bitmap>() {
-        //                   @Override
-        //                   public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap> glideAnimation) {
-        //
-        //                       int width = bitmap.getWidth();
-        //                       int height = bitmap.getHeight();
-        //                       log.d("onResourceReady(): imageUrl:  " + imageUrl);
-        //                       log.d("onResourceReady(): width:  " + width + ", height: " + height + "   " + imageUrl);
-        //
-        //                       // imageView1.setRelative(width / height);
-        //                       // imageView.setImageBitmap(bitmap);
-        //
-        //                       //计算控件高宽比
-        //                       int finalHeight = (int) (imageViewWidth * height / width + 0.5f);
-        //                       layoutParams.height = finalHeight;
-        //
-        //                       log.d("onResourceReady(): imageViewWidth: " + imageViewWidth
-        //                               + " imageViewHeight: " + finalHeight);
-        //
-        //                       // //计算inSampleSize
-        //                       // float scaleW = (width * 1.0f) / imageViewWidth;
-        //                       // float scaleH = (height * 1.0f) / layoutParams.height;
-        //                       // //取大的
-        //                       // float inSampleSize = Math.max(scaleW, scaleH);
-        //
-        //                       // Bitmap scaleBitmap = BitmapUtils.createScaleBitmap(bitmap, Math.abs(imageViewWidth), Math.abs(finalHeight), (int) inSampleSize);
-        //
-        //                       // imageView.setImageBitmap(bitmap);
-        //                       bitmap.recycle();
-        //
-        //                       Glide.with(getContext())
-        //                               .load(imageUrl)
-        //                               .asBitmap()
-        //                               // .Transformation()
-        //                               .thumbnail(0.1f)
-        //                               .override(imageViewWidth, finalHeight)
-        //                               // .placeholder(R.drawable.image_default_202)
-        //                               .error(R.drawable.image_default_202)
-        //                               .diskCacheStrategy(DiskCacheStrategy.RESULT)
-        //                               .into(imageView);
-        //                   }
-        //               }
-        //         );
     }
 
     class GankRecyclerViewAdapter extends CommonAdapter<GankBean.ResultsBean> {
@@ -258,8 +165,7 @@ public class GankFragment extends BaseFragment<IGankContract.IGankPresenter>
             final SimpleDraweeView draweeView = holder.getView(R.id.main_simple_drawee_view);
             final int imageViewWidth = AppUtil.getScreenW() / GRIL_COLUMN;
 
-            com.bing.lan.comm.utils.load.ImageLoader
-                    .getInstance()
+            ImageLoader.getInstance()
                     .loadImage(draweeView, imageUrl, new BaseControllerListener<ImageInfo>() {
                         @Override
                         public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {

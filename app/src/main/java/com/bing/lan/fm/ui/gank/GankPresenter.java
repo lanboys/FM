@@ -60,7 +60,7 @@ public class GankPresenter extends
     public void onCompleted(int action) {
         super.onCompleted(action);
         mView.setHaveData(true);
-        mView.closeRefeshing();
+        mView.closeRefreshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
     }
 }

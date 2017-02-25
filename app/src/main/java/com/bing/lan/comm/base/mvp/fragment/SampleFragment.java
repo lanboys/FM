@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.fm.R;
+import com.bing.lan.fm.cons.Constants;
 import com.yalantis.phoenix.PullToRefreshView;
 
 import java.util.ArrayList;
@@ -27,7 +28,13 @@ public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefr
 
     private View mView;
     private PullToRefreshView mPullToRefreshView;
-
+    public static SampleFragment newInstance(String title) {
+        SampleFragment fragment = new SampleFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.FRAGMENT_TITLE, title);
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

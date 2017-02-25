@@ -20,7 +20,7 @@ public interface IHotContract {
 
         void updateBanner(List<String> imageUrls);
 
-        void closeRefeshing();
+        void closeRefreshing();
     }
 
     interface IHotPresenter extends

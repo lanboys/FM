@@ -62,7 +62,8 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
     }
 
     protected int getPagerLoading() {
-        return R.layout.pager_loading;
+        return R.layout.item_md_loadbar;
+        // return R.layout.pager_loading;
     }
 
     protected int getPagerEmpty() {
@@ -167,7 +168,7 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
         //记录显示错误页面的次数,次数大于RELOAD_TIMES将显示空白界面
         if (mCurrentState == STATE_ERROR) {
             mErrorCount++;
-            if (mErrorCount >  RELOAD_TIMES) {
+            if (mErrorCount > RELOAD_TIMES) {
                 mCurrentState = STATE_EMPTY;
             }
             log.d("setViewState():出现错误页面的次数 " + mErrorCount);

@@ -3,8 +3,9 @@ package com.bing.lan.fm.ui.hot;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.DialogTitle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.fm.R;
+import com.bing.lan.fm.cons.Constants;
+import com.bing.lan.fm.listener.RecyclerViewScrollListener;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate;
@@ -32,17 +35,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
-        implements IHotContract.IHotView, View.OnClickListener {
+        implements IHotContract.IHotView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     Banner mBanner;
     ViewPager mGirlViewpager;
     @BindView(R.id.hot_recyclerView)
     RecyclerView mHotRecyclerView;
     @BindView(R.id.hot_refresh_container)
-    BGARefreshLayout mHotRefreshContainer;
+    SwipeRefreshLayout mHotRefreshContainer;
 
     private int[] imgs = {R.drawable.i1, R.drawable.i2,
             R.drawable.i3, R.drawable.i4, R.drawable.i5,
@@ -64,6 +66,14 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     private MultiItemTypeAdapter<HotInfoBean> mMultiItemTypeAdapter;
     private List<GankBean.ResultsBean> mImgList;
 
+    public static HotFragment newInstance(String title) {
+        HotFragment fragment = new HotFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.FRAGMENT_TITLE, title);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_hot;
@@ -80,8 +90,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     }
 
     @Override
-    protected void initViewAndData(Intent intent) {
-        initRefreshLayout(mHotRefreshContainer);
+    protected void initViewAndData(Intent intent, Bundle arguments) {
+        mHotRefreshContainer.setOnRefreshListener(this);
         initBanner();
         initGirlGallery();
         initRecyclerView();
@@ -128,7 +138,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mGirlViewpagerView.setLayoutParams(layoutParams);
         mGirlViewpager = (ViewPager) mGirlViewpagerView.findViewById(R.id.girl_viewpager);
 
-        mGirlViewpager.setPageMargin(-screenWidth / 3 - 55);
+        mGirlViewpager.setPageMargin(-screenWidth / 3 - 90);
         mGirlViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
@@ -136,7 +146,6 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
                     position = 1;
                 }
                 final float normalizedposition = Math.abs(Math.abs(position) - 1);
-                // Log.d("bingtag", "--------" + position + "------" + +normalizedposition + "----" + (normalizedposition / 2 + 0.5f));
                 page.setScaleX(normalizedposition / 2 + 0.5f);
                 page.setScaleY(normalizedposition / 2 + 0.5f);
             }
@@ -168,6 +177,18 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mHeaderAndFooterWrapper.addHeaderView(mGirlViewpagerView);
 
         mHotRecyclerView.setAdapter(mHeaderAndFooterWrapper);
+        mHotRecyclerView.addOnScrollListener(new RecyclerViewScrollListener() {
+            @Override
+            public int getLastVisiblePosition(RecyclerView.LayoutManager layoutManager) {
+                return ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+            }
+
+            @Override
+            public void loadMore() {
+                // TODO: 2017/2/25
+                log.d("loadMore(): 热门页面加载更多,还未做");
+            }
+        });
         mHeaderAndFooterWrapper.notifyDataSetChanged();
     }
 
@@ -190,8 +211,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
 
             View view = mLayoutInflater.inflate(R.layout.hot_item_viewpage, null);
             ImageView im = (ImageView) view.findViewById(R.id.vp_img_item);
-            DialogTitle dt = (DialogTitle) view.findViewById(R.id.dt_img_title);
-            dt.setText(resultsBean.getDesc());
+            // DialogTitle dt = (DialogTitle) view.findViewById(R.id.dt_img_title);
+            // dt.setText(resultsBean.getDesc());
 
             // ImagePicassoUtil.loadImage(im, resultsBean.getUrl());
             com.bing.lan.comm.utils.load.ImageLoader.getInstance().loadBigImage(im, resultsBean.getUrl());
@@ -217,6 +238,12 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mRecyclerViewData.addAll(data);
         notifyDataSetChanged();
         mHotRecyclerView.setVisibility(View.VISIBLE);
+        showToast("为您更新了" + data.size() + "条数据");
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.reStartUpdate();
     }
 
     private void hideAll() {
@@ -230,19 +257,10 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mHeaderAndFooterWrapper.notifyDataSetChanged();
     }
 
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        mPresenter.reStartUpdate();
-    }
-
-    public void closeRefeshing() {
-        if (mHotRefreshContainer != null) {
-            mHotRefreshContainer.endRefreshing();
+    public void closeRefreshing() {
+        if (mHotRefreshContainer != null && mHotRefreshContainer.isRefreshing()) {
+            mHotRefreshContainer.setRefreshing(false);
         }
-    }
-
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-
-        return true;
     }
 
     @Override
@@ -256,3 +274,4 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         AppUtil.getAppContext().startActivity(intent);
     }
 }
+

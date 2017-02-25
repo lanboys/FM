@@ -2,7 +2,7 @@
 
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!-- toolbar color -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -11,14 +11,44 @@
         <!--<item name="colorPrimaryDark">#08ef08</item>-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!--在AppTheme定义中可以加入如下代码改变Title的颜色：-->
+        <item name="titleTextColor">@android:color/white</item>
+
     </style>
 
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <!-- 修改默认的溢出菜单 -->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <!-- toolbar 的默认主题 -->
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!-- 右上角益出菜单样式 -->
+    <style name="OverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+        <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
+        <item name="overlapAnchor">false</item>
+        <!-- 弹出层背景颜色 -->
+        <item name="android:popupBackground">@color/colorPrimary</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">8dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+        <!--改变Toolbar非溢出菜单字体颜色-->
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+    </style>
+
+    <!--http://blog.csdn.net/zhyh1986/article/details/51810803-->
+    <!--https://www.murrayc.com/permalink/2014/10/28/android-changing-the-toolbars-text-color-and-overflow-icon-color/-->
+    <!--    Android 5.0引入一个全新的特性，允许你对view设置theme，这种设置会影响控件及其包含的子控件。
+        使用AppCompat v22.1.x 后，也可以给你 layout 里的任意视图设置主题。
+        只要使用 android:theme 这个属性就好，新版本的兼容库可以在 compat 和 framework 之间无缝地切换功能。-->
+
 
 </resources>

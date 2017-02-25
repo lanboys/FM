@@ -3,4 +3,21 @@
     <string name="action_settings">Settings</string>
     <string name="hot_item_more">更多</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="search">search</string>
+
+
+    <string name="nv_home_title">首页</string>
+    <string name="nv_girl_title">妹子</string>
+    <string name="nv_subscriber_title">发现</string>
+    <string name="nv_mine_title">我的</string>
+
+
+    <string name="exit_tips">你真的要离开FM吗？</string>
+    <string name="ok_btn">下次再回来玩</string>
+    <string name="cancel_btn">多玩一会吧</string>
+
+
 </resources>

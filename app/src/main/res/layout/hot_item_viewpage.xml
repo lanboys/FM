@@ -36,14 +36,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <android.support.v7.widget.DialogTitle
-                android:id="@+id/dt_img_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="1dp"
-                android:textSize="18sp"
-                tools:text="美女"/>
+            <!--<android.support.v7.widget.DialogTitle-->
+                <!--android:id="@+id/dt_img_title"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:paddingTop="1dp"-->
+                <!--android:textSize="18sp"-->
+                <!--tools:text="美女"/>-->
 
             <!--<GridLayout-->
             <!--android:id="@+id/GridLayout1"-->

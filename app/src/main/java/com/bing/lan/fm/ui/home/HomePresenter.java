@@ -17,8 +17,7 @@ public class HomePresenter extends
 
     @Override
     public void onStart(Object... params) {
-
-        mModule.requestData(LOAD_SEARCH_WORD, this);
+        // mModule.requestData(LOAD_SEARCH_WORD, this);
 
     }
     @Override

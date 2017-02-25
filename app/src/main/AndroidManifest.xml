@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.bing.lan.fm">
 
     <!-- 检查网络状态的权限 -->
@@ -19,6 +20,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
+        tools:replace="android:icon"
         android:name="com.bing.lan.comm.app.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_ting"

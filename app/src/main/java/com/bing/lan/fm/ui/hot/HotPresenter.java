@@ -52,6 +52,7 @@ public class HotPresenter extends
         hotInfos.add(hotResult.getEditorRecommendAlbums());
         hotInfos.add(hotResult.getSpecialColumn());
         mView.updateRecyclerView(hotInfos);
+        // TODO: 2017/2/24 报空指针
 
         HotInfoBean<ListItemFocusImageBean> focusImages = hotResult.getFocusImages();
         List<ListItemFocusImageBean> list = focusImages.getList();
@@ -74,7 +75,7 @@ public class HotPresenter extends
     @Override
     public void onCompleted(int action) {
         super.onCompleted(action);
-        mView.closeRefeshing();
+        mView.closeRefreshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
 
         loadCompleted++;

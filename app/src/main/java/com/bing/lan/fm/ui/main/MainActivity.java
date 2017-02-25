@@ -2,35 +2,62 @@ package com.bing.lan.fm.ui.main;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.support.v4.app.FragmentTabHost;
-import android.view.LayoutInflater;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.TextView;
 
 import com.bing.lan.comm.app.BaseApplication;
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
+import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
+import com.bing.lan.comm.base.mvp.fragment.IBaseFragmentContract;
 import com.bing.lan.comm.di.ActivityComponent;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.girl.GirlFragment;
 import com.bing.lan.fm.ui.home.HomeFragment;
+import com.bing.lan.fm.ui.mine.MineFragment;
 import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
-        implements IMainContract.IMainView<IMainContract.IMainPresenter> {
+        implements IMainContract.IMainView<IMainContract.IMainPresenter>,
+        NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(android.R.id.tabhost)
-    FragmentTabHost mTabHost;
-    private Class[] mFragmentClazz;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+
     private String[] mTabTitles;
     private int[] mTabImages;
-    private LayoutInflater mInflater;
+    private SearchView searchView;
+    private FragmentManager mFragmentManager;
 
+    private HomeFragment mHomeFragment;
+    private GirlFragment mGirlFragment;
+    private MineFragment mMineFragment;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //注销事件总线
+        BaseApplication.sBus.unregister(this);
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -48,10 +75,22 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
     @Override
     protected void initViewAndData(Intent intent) {
-        //初始化主页底部tab
+        // 获得Fragment管理器
+        mFragmentManager = getSupportFragmentManager();
         initTabData();
-        //初始化fragmenttabhost
-        initFragmentTabHost();
+        //
+        // mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        // setSupportActionBar(mToolbar);
+
+        setToolBar(mToolbar, "", false);
+
+        initFab();
+
+        initDrawerLayout();
+
+        initNavigation();
+
+        initSearchView();
     }
 
     @Override
@@ -61,13 +100,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
         //注册事件总线
         BaseApplication.sBus.register(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //注销事件总线
-        BaseApplication.sBus.unregister(this);
+        jumpHomeFragment();
     }
 
     //otto测试
@@ -79,12 +112,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     }
 
     private void initTabData() {
-        mFragmentClazz = new Class[]{
-                HomeFragment.class,
-                GirlFragment.class,
-                HomeFragment.class,
-                HomeFragment.class,
-        };
 
         mTabTitles = AppUtil.getStrArr(R.array.main_tab_title);
 
@@ -94,82 +121,231 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         for (int i = 0; i < len; i++)
             mTabImages[i] = ar.getResourceId(i, 0);
         ar.recycle();
-
-        mInflater = LayoutInflater.from(this);
     }
 
-    private void initFragmentTabHost() {
-        mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
-        mTabHost.getTabWidget().setDividerDrawable(null);
+    private void initNavigation() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 
-        for (int i = 0; i < mFragmentClazz.length; i++) {
-            TabHost.TabSpec tabSpec = mTabHost.newTabSpec(mTabTitles[i]).setIndicator(getTabView(i));
-            mTabHost.addTab(tabSpec, mFragmentClazz[i], null);
-            mTabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.WHITE);
+    private void initDrawerLayout() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    private void initFab() {
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id == R.id.action_search) {
+            searchView.setVisibility(View.VISIBLE);
+            searchView.onActionViewExpanded();
+            searchView.requestFocus();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void initSearchView() {
+        searchView = (SearchView) findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // recyclerAdapter.clear();
+                // searchPicture(query);
+                searchView.setVisibility(View.GONE);
+                // recyclerView.requestFocus();
+                // toolbar.setTitle(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            jumpHomeFragment();
+        } else if (id == R.id.nav_girl) {
+            jumpGirlFragment();
+        } else if (id == R.id.nav_subscriber) {
+            jumpSubscriberFragment();
+        } else if (id == R.id.nav_mine) {
+            jumpMineFragment();
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        closeDrawer();
+        return true;
+    }
+
+    private void jumpHomeFragment() {
+        if (mHomeFragment == null) {
+            mHomeFragment = HomeFragment.newInstance(mTabTitles[0]);
+        }
+        replaceFragment(mHomeFragment);
+        updateTitle(mHomeFragment.getTitle());
+    }
+
+    private void jumpGirlFragment() {
+        if (mGirlFragment == null) {
+            mGirlFragment = GirlFragment.newInstance(mTabTitles[1]);
+        }
+        replaceFragment(mGirlFragment);
+        updateTitle(mGirlFragment.getTitle());
+    }
+
+    private void jumpSubscriberFragment() {
+        // if (mHomeFragment == null) {
+        //     SubscriberFragment.newInstance(mTabTitles[2]);
+        // }
+        // replaceFragment(mHomeFragment);
+        // updateTitle(mGirlFragment.getTitle());
+
+    }
+
+    private void jumpMineFragment() {
+        if (mMineFragment == null) {
+            mMineFragment = MineFragment.newInstance(mTabTitles[3]);
+        }
+        replaceFragment(mMineFragment);
+        updateTitle(mMineFragment.getTitle());
+    }
+
+    /*关闭侧边导航*/
+    private void closeDrawer() {
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    /*判断导航是否打开*/
+    private boolean isDrawerOpen() {
+        return mDrawerLayout.isDrawerOpen(GravityCompat.START);
+    }
+
+    @Override
+    public void replaceFragment(BaseFragment instance) {
+        try {
+            String hashCode = Integer.toString(instance.hashCode());
+
+            BaseFragment addedFragment = (BaseFragment) getForehand();
+
+            // start transaction
+            FragmentTransaction transaction = mFragmentManager.beginTransaction();
+
+            if (addedFragment != null) {
+                addedFragment.stopUpdate();
+                addedFragment.onPause();
+                transaction.hide(addedFragment);
+            }
+
+            Fragment cachedFragment = mFragmentManager.findFragmentByTag(hashCode);
+            if (cachedFragment == null) {
+                cachedFragment = instance;
+                transaction.add(R.id.fragment_container, cachedFragment, hashCode);
+            } else {
+                cachedFragment.onResume();
+                transaction.show(cachedFragment);
+                ((IBaseFragmentContract.IBaseFragmentView) cachedFragment).reStartUpdate();
+            }
+            transaction.addToBackStack(hashCode);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private View getTabView(int index) {
-        View view = mInflater.inflate(R.layout.tab_item, null);
-        ImageView image = (ImageView) view.findViewById(R.id.image);
-        TextView title = (TextView) view.findViewById(R.id.title);
-        int padding = AppUtil.dip2px(50);
-        int padding2 = AppUtil.dip2px(4);
-        //给中间两个tab设置padding值,留出中间位置
-        if (index == 1) {
-            view.setPadding(padding2, padding2, padding, padding2);
+    /*获得前台显示的Fragment实例*/
+    private Fragment getForehand() {
+        //返回堆栈的总数目。
+        int count = mFragmentManager.getBackStackEntryCount();
+        Fragment addedFragment = null;
+        FragmentManager.BackStackEntry entryAt;
+        if (count > 0) {
+            //根据序号返回后台堆栈中的BackStackEntry对象，最底的序号为0。
+            entryAt = mFragmentManager.getBackStackEntryAt(count - 1);
+            if (entryAt != null) {
+                String hashCode = entryAt.getName();
+                addedFragment = mFragmentManager.findFragmentByTag(hashCode);
+            }
         }
-        if (index == 2) {
-            view.setPadding(padding, padding2, padding2, padding2);
-        }
-        image.setImageResource(mTabImages[index]);
-        title.setText(mTabTitles[index]);
-        return view;
+        return addedFragment;
     }
 
-    // @Override
-    // public void onWindowFocusChanged(boolean hasFocus) {
-    //     super.onWindowFocusChanged(hasFocus);
-    //     if (hasFocus) {
-    //         BaseFragment fragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(mTabTitles[0]);
-    //         View loadPage = fragment.getContentView();
-    //         View viewById = loadPage.findViewById(R.id.view_pager);
-    //         if (mResideMenu != null && viewById != null) {
-    //             mResideMenu.addIgnoredView(viewById);
-    //         }
-    //     }
-    // }
+    @Override
+    public void onBackPressed() {
+        if (isDrawerOpen()) {
+            closeDrawer();
+            return;
+        }
 
-    // public void initResideMenu() {
-    //     // attach to current activity;
-    //     mResideMenu = new ResideMenu(this);
-    //     mResideMenu.setBackground(R.drawable.menu_background);
-    //     mResideMenu.attachToActivity(this);
-    //     mResideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
-    //
-    //     // create menu items;
-    //     String titles[] = {"Home", "Profile", "Calendar", "Settings"};
-    //     int icon[] = {R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher, R.drawable.ic_launcher};
-    //
-    //     for (int i = 0; i < titles.length; i++) {
-    //         ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
-    //         item.setOnClickListener(new View.OnClickListener() {
-    //             @Override
-    //             public void onClick(View v) {
-    //                 showToast("我被点击了");
-    //                 // TODO: 2017/2/19 item点击事件
-    //             }
-    //         });
-    //         mResideMenu.addMenuItem(item, ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
-    //     }
-    //
-    //     // TODO: 2017/2/15   用 rxbus / eventbus 实现
-    //     mResideMenu.openMenu(ResideMenu.DIRECTION_LEFT); // or ResideMenu.DIRECTION_RIGHT
-    //     mResideMenu.closeMenu();
-    // }
+        // back to the home fragment or finish the activity
+        Fragment forehand = getForehand();
+        if (forehand == null || forehand.getClass() == HomeFragment.class) {
+            createExitDialog().show();
+        } else {
+            jumpHomeFragment();
+        }
+    }
 
-    // @Override
-    // public boolean dispatchTouchEvent(MotionEvent ev) {
-    //     return mResideMenu.dispatchTouchEvent(ev);
-    // }
+    private SweetAlertDialog createExitDialog() {
+
+        return new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                .setCustomImage(R.drawable.exit_pic)
+                .setTitleText(AppUtil.getString(R.string.exit_tips))
+                .setCancelText(AppUtil.getString(R.string.ok_btn))
+                .setConfirmText(AppUtil.getString(R.string.cancel_btn))
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                    }
+                }).setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                        finish();
+                        // sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    }
+                });
+
+    }
+
+    @Override
+    public void updateTitle(String title) {
+        mToolbar.setTitle(title);
+    }
 }

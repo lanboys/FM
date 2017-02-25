@@ -1,6 +1,7 @@
 package com.bing.lan.fm.ui.girl;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -11,6 +12,7 @@ import com.bing.lan.comm.base.mvp.fragment.SampleFragment;
 import com.bing.lan.comm.di.FragmentComponent;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.fm.R;
+import com.bing.lan.fm.cons.Constants;
 import com.bing.lan.fm.ui.gank.GankFragment;
 
 import java.util.ArrayList;
@@ -30,6 +32,15 @@ public class GirlFragment extends BaseFragment<IGirlContract.IGirlPresenter>
     ViewPager mViewPagerGirl;
     private String[] mGirlTabTitle;
     private List<Fragment> mFragments;
+
+    public static GirlFragment newInstance(String title) {
+        GirlFragment fragment = new GirlFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.FRAGMENT_TITLE, title);
+        fragment.setArguments(args);
+        fragment.setTitle(title);
+        return fragment;
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -51,7 +62,7 @@ public class GirlFragment extends BaseFragment<IGirlContract.IGirlPresenter>
     }
 
     @Override
-    protected void initViewAndData(Intent intent) {
+    protected void initViewAndData(Intent intent, Bundle arguments) {
         initData();
         initView();
     }

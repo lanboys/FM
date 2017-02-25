@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bing.lan.comm.base.mvp.activity.IBaseActivityContract.IBaseActivityPresenter;
 import com.bing.lan.comm.base.mvp.activity.IBaseActivityContract.IBaseActivityView;
@@ -18,9 +17,11 @@ import com.bing.lan.comm.di.ActivityComponent;
 import com.bing.lan.comm.di.ActivityModule;
 import com.bing.lan.comm.di.DaggerActivityComponent;
 import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.DialogUtil;
 import com.bing.lan.comm.utils.ImmersionUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.comm.utils.SPUtil;
+import com.bing.lan.comm.utils.ToastUtil;
 import com.bing.lan.fm.R;
 
 import javax.inject.Inject;
@@ -176,9 +177,11 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
                 .build();
     }
 
-    public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish) {
+    public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim) {
         AppUtil.startActivity(this, clazz, isFinish);
-        overridePendingTransition(R.anim.scale_alpht_in, R.anim.scale_alpht_out);
+        if (isAnim) {
+            overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+        }
     }
 
     /**
@@ -187,7 +190,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
      * @param clazz
      */
     public void startActivity(Class<? extends BaseActivity> clazz) {
-        startActivity(clazz, false);
+        startActivity(clazz, false, true);
     }
 
     @Override
@@ -197,12 +200,12 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
 
     @Override
     public void showToast(String msg) {
-        Toast.makeText(AppUtil.getAppContext(), msg, Toast.LENGTH_SHORT).show();
+        ToastUtil.showToast(msg);
     }
 
     @Override
     public void showDialog(String msg) {
-        //        new
+        DialogUtil.showAlertDialog(this, msg);
     }
 
     @Override
@@ -225,7 +228,6 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
     // protected void loadImage(Object path, ImageView imageView) {
     //     mPresenter.loadImage(path, imageView);
     // }
-
     protected int getMenuId() {
         return 0;
     }

@@ -53,6 +53,6 @@ public class SplashActivity extends BaseActivity<ISplashContract.ISplashPresente
     }
 
     public void animationFinished() {
-        startActivity(MainActivity.class, true);
+        startActivity(MainActivity.class, true, true);
     }
 }

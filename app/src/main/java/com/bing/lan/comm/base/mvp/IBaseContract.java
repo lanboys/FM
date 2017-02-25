@@ -17,7 +17,7 @@ public interface IBaseContract {
 
         T getPresenter();
 
-        void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish);
+        void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim);
 
         void startActivity(Class<? extends BaseActivity> clazz);
     }

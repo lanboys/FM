@@ -5,8 +5,9 @@
     <color name="colorAccent">#f97b5e</color>
 
     <!-- 妹纸recyclerView 背景色-->
-    <color name="girl_gank_background">#ffffffff</color>
+    <color name="girl_gank_background">#f9f9f9</color>
     <!-- 主要背景色 -->
+    <!--<color name="main_background">#f88e01</color>-->
     <color name="main_background">#fff86442</color>
     <!--<color name="main_background">#f9f9f9</color>-->
 

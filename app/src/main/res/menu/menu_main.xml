@@ -2,7 +2,27 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.bing.lan.fm.ui.main.MainActivity">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_action_search"
+        android:orderInCategory="100"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"/>
+
     <item android:id="@+id/action_settings"
+          android:orderInCategory="100"
+          android:title="@string/action_settings"
+          app:showAsAction="never"/>
+    <item android:id="@+id/action_settings1"
+          android:orderInCategory="100"
+          android:title="@string/action_settings"
+          app:showAsAction="never"/>
+    <item android:id="@+id/action_settings2"
+          android:orderInCategory="100"
+          android:title="@string/action_settings"
+          app:showAsAction="never"/>
+    <item android:id="@+id/action_settings3"
           android:orderInCategory="100"
           android:title="@string/action_settings"
           app:showAsAction="never"/>
