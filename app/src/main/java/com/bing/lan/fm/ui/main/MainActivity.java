@@ -33,6 +33,7 @@ import com.lapism.searchview.SearchHistoryTable;
 import com.lapism.searchview.SearchItem;
 import com.lapism.searchview.SearchView;
 import com.squareup.otto.Subscribe;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 
@@ -118,9 +119,8 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     //otto测试
     @Subscribe
     public void onReceive(Integer is) {
-        switchNightMode();
-        showToast("切换成功");
-        log.d("onReceive(): " + is);
+
+        showToast("otto测试切换成功");
     }
 
     private void initTabData() {
@@ -241,13 +241,27 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        if (id == R.id.action_search) {
-            mSearchView.open(true, item);
+        switch (item.getItemId()) {
+            case R.id.action_zxing_qrcode:
+                //打开扫码界面
+                Intent intent = new Intent(this, CaptureActivity.class);
+                startActivity(intent);
+                // startActivityForResult(intent, REQUEST_CODE);
+                // return true;
+                break;
+            case R.id.action_search:
+                mSearchView.open(true, item);
+                break;
+            case R.id.action_day_night:
+                switchNightMode();
+                break;
+
+            case R.id.action_test_otto:
+                BaseApplication.sBus.post(Integer.parseInt("15"));
+                showToast("测试otto");
+                break;
+
         }
 
         return super.onOptionsItemSelected(item);

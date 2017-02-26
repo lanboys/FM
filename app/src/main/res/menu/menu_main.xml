@@ -10,20 +10,18 @@
         android:title="@string/search"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/action_settings"
+    <item android:id="@+id/action_zxing_qrcode"
+          android:icon="@drawable/qrcode"
           android:orderInCategory="100"
-          android:title="@string/action_settings"
+          android:title="@string/zxing_qrcode"
           app:showAsAction="never"/>
-    <item android:id="@+id/action_settings1"
+    <item android:id="@+id/action_day_night"
           android:orderInCategory="100"
-          android:title="@string/action_settings"
+          android:title="@string/day_night"
           app:showAsAction="never"/>
-    <item android:id="@+id/action_settings2"
+    <item android:id="@+id/action_test_otto"
           android:orderInCategory="100"
-          android:title="@string/action_settings"
+          android:title="@string/test_otto"
           app:showAsAction="never"/>
-    <item android:id="@+id/action_settings3"
-          android:orderInCategory="100"
-          android:title="@string/action_settings"
-          app:showAsAction="never"/>
+
 </menu>

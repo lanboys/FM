@@ -1,7 +1,7 @@
 package com.bing.lan.fm.ui.home;
 
 import com.bing.lan.comm.base.mvp.fragment.BaseFragmentPresenter;
-import com.bing.lan.fm.ui.home.bean.SearchWordResult;
+import com.bing.lan.fm.ui.search.bean.SearchHintWordResult;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class HomePresenter extends
         switch (action) {
 
             case LOAD_SEARCH_WORD:
-              List<SearchWordResult.SearchWordBean>  searchWordBeans = (List<SearchWordResult.SearchWordBean>) data;
+              List<SearchHintWordResult.SearchWordBean>  searchWordBeans = (List<SearchHintWordResult.SearchWordBean>) data;
                 String guideWord = searchWordBeans.get(0).getGuideWord();
 
                 mView.updateSearchWord(guideWord);

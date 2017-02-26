@@ -1,7 +1,8 @@
 package com.bing.lan.fm.ui.search;
 
 import com.bing.lan.comm.base.mvp.activity.BaseActivityPresenter;
-import com.bing.lan.fm.ui.home.bean.SearchWordResult;
+import com.bing.lan.fm.ui.search.bean.SearchHintWordResult;
+import com.bing.lan.fm.ui.search.bean.SearchHotWordResult;
 
 import java.util.List;
 
@@ -12,14 +13,31 @@ import java.util.List;
 public class SearchPresenter
         extends BaseActivityPresenter<ISearchContract.ISearchView, ISearchContract.ISearchModule>
         implements ISearchContract.ISearchPresenter {
-    public static final int LOAD_SEARCH_WORD = 1;
+
+    public static final int LOAD_SEARCH_HINT_WORD = 0;
+    public static final int LOAD_SEARCH_HOT_WORD = 1;
+    public static final int LOAD_SEARCH_RESULT = 2;
 
     @Override
     public void onStart(Object... params) {
-        mModule.requestData(LOAD_SEARCH_WORD, this);
-
+        loadData(LOAD_SEARCH_HINT_WORD);
+        loadData(LOAD_SEARCH_HOT_WORD);
     }
 
+    @Override
+    public void loadData(int action, Object... parameter) {
+        switch (action) {
+            case LOAD_SEARCH_HINT_WORD:
+                mModule.requestData(action, this);
+                break;
+            case LOAD_SEARCH_HOT_WORD:
+                mModule.requestData(action, this);
+                break;
+            case LOAD_SEARCH_RESULT:
+                mModule.requestData(action, this,parameter);
+                break;
+        }
+    }
 
     @Override
     @SuppressWarnings("unchecked")
@@ -27,11 +45,14 @@ public class SearchPresenter
 
         switch (action) {
 
-            case LOAD_SEARCH_WORD:
-                List<SearchWordResult.SearchWordBean> searchWordBeans = (List<SearchWordResult.SearchWordBean>) data;
+            case LOAD_SEARCH_HINT_WORD:
+                List<SearchHintWordResult.SearchWordBean> searchWordBeans = (List<SearchHintWordResult.SearchWordBean>) data;
                 String guideWord = searchWordBeans.get(0).getGuideWord();
-
                 mView.updateSearchWord(guideWord);
+                break;
+
+            case LOAD_SEARCH_HOT_WORD:
+                mView.updateFlowContainer2((List<SearchHotWordResult.HotWordListBean>) data);
                 break;
         }
     }

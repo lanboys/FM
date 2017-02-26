@@ -32,7 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:navigationIcon="@mipmap/account_avatar"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
                 <!--app:layout_scrollFlags="scroll"-->
 
@@ -73,7 +72,7 @@
         app:layout_anchorGravity="center"
         android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:search_theme="light"
         app:search_version="menu_item"
         app:search_version_margins="menu_item"

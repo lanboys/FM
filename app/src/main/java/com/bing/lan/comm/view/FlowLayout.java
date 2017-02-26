@@ -1,19 +1,28 @@
 package com.bing.lan.comm.view;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.bing.lan.comm.utils.AppUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class FlowLayout extends ViewGroup {
+public class FlowLayout extends ViewGroup implements View.OnClickListener {
 
     private List<Line> mLines = new ArrayList<Line>(); // 用来记录描述有多少行View
     private Line mCurrrenLine; // 用来记录当前已经添加到了哪一行
     private int mHorizontalSpace = 10;
     private int mVerticalSpace = 10;
+    private OnItemClickListener listener;
 
     public FlowLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -120,6 +129,87 @@ public class FlowLayout extends ViewGroup {
         }
     }
 
+    public void initAllChild(List<CharSequence> strings) {
+        removeAllViews();
+        for (CharSequence string : strings) {
+            addChild(string);
+        }
+    }
+
+    public void addChild(CharSequence string) {
+        this.addView(createChild(string));
+    }
+
+    public void addChild(CharSequence string, int index) {
+        this.addView(createChild(string), index);
+    }
+
+    private View createChild(CharSequence string) {
+        TextView textView = new TextView(getContext());
+        textView.setText(string);
+        textView.setTextSize(AppUtil.dip2px(8));
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextColor(Color.WHITE);
+
+        int padding = AppUtil.dip2px(2);
+        textView.setPadding(padding, padding, padding, padding);
+
+
+        Random random = new Random();
+        int alpha = 255;
+        int red = random.nextInt(190) + 30;
+        int green = random.nextInt(190) + 30;
+        int blue = random.nextInt(190) + 30;
+
+        int argb = Color.argb(alpha, red, green, blue);
+
+        //正常时候的效果
+        GradientDrawable normalDrawable = new GradientDrawable();
+        normalDrawable.setCornerRadius(8);//圆角处的弧度
+        normalDrawable.setColor(argb);
+
+        red = random.nextInt(190) + 30;
+        green = random.nextInt(190) + 30;
+        blue = random.nextInt(190) + 30;
+
+        argb = Color.argb(alpha, red, green, blue);
+
+        //选中时候的效果
+        GradientDrawable pressDrawable = new GradientDrawable();
+        pressDrawable.setCornerRadius(8);
+        pressDrawable.setColor(argb);
+
+        //选择器
+        StateListDrawable listDrawable = new StateListDrawable();
+
+        listDrawable.addState(new int[]{android.R.attr.state_pressed}, pressDrawable);
+        listDrawable.addState(new int[]{}, normalDrawable);
+
+        //设置背景
+        textView.setBackground(listDrawable);
+
+        textView.setClickable(true);
+        textView.setOnClickListener(this);
+
+        return textView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null) {
+            listener.onItemClick(v);
+        }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+
+        void onItemClick(View view);
+    }
+
     class Line {
 
         // 属性
@@ -191,12 +281,7 @@ public class FlowLayout extends ViewGroup {
             // 预计使用的宽度
             float planWidth = mUsedWidth + mHorizontalSpace + viewWidth;
 
-            if (planWidth > mMaxWidth) {
-                // 加不进去
-                return false;
-            }
-
-            return true;
+            return planWidth <= mMaxWidth;
         }
 
         /**

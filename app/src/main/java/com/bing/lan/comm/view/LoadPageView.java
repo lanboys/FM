@@ -140,7 +140,7 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
         // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
         BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
         moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
-        moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
+        moocStyleRefreshViewHolder.setUltimateColor(R.color.colorPrimary);
         return moocStyleRefreshViewHolder;
     }
 

@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.widget.ScrollView;
 
-public class FlexiScrollView extends ScrollView{
+public class FlexibleScrollView extends ScrollView{
     //初始可拉动Y轴方向距离
     private static final int MAX_Y_OVERSCROLL_DISTANCE = 100;
     //上下文环境
@@ -13,19 +13,19 @@ public class FlexiScrollView extends ScrollView{
     //实际可上下拉动Y轴上的距离
     private int mMaxYOverscrollDistance;  
       
-    public FlexiScrollView(Context context){  
+    public FlexibleScrollView(Context context){
         super(context);  
         mContext = context;  
         initBounceListView();  
     }  
       
-    public FlexiScrollView(Context context, AttributeSet attrs) {  
+    public FlexibleScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);  
         mContext = context;  
         initBounceListView();  
     }  
       
-    public FlexiScrollView(Context context, AttributeSet attrs, int defStyle) {  
+    public FlexibleScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);  
         mContext = context;  
         initBounceListView();  

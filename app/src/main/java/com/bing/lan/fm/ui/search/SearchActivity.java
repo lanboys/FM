@@ -2,14 +2,15 @@ package com.bing.lan.fm.ui.search;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
 import com.bing.lan.comm.di.ActivityComponent;
+import com.bing.lan.comm.view.FlexibleScrollView;
+import com.bing.lan.comm.view.FlowLayout;
 import com.bing.lan.fm.R;
+import com.bing.lan.fm.ui.search.bean.SearchHotWordResult;
 import com.lapism.searchview.SearchAdapter;
 import com.lapism.searchview.SearchHistoryTable;
 import com.lapism.searchview.SearchItem;
@@ -20,17 +21,29 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.bing.lan.fm.ui.search.SearchPresenter.LOAD_SEARCH_RESULT;
+
 public class SearchActivity extends BaseActivity<ISearchContract.ISearchPresenter>
-        implements ISearchContract.ISearchView, SearchView.OnQueryTextListener, SearchAdapter.OnItemClickListener, SearchView.OnVoiceClickListener {
+        implements ISearchContract.ISearchView, SearchView.OnQueryTextListener,
+        SearchAdapter.OnItemClickListener,
+        SearchView.OnVoiceClickListener,
+        FlowLayout.OnItemClickListener {
 
     public static final String EXTRA_KEY_TEXT = "text";
     @BindView(R.id.searchView)
     SearchView mSearchView;
-    @BindView(R.id.search_recyclerView)
-    RecyclerView mSearchRecyclerView; 
+    // @BindView(R.id.search_recyclerView)
+    // RecyclerView mSearchRecyclerView;
+    @BindView(R.id.fs_container)
+    FlexibleScrollView mFlexibleScrollView;
+    @BindView(R.id.flow_container1)
+    FlowLayout mFlowContainer1;
+    @BindView(R.id.flow_container2)
+    FlowLayout mFlowContainer2;
 
     private SearchHistoryTable mHistoryDatabase;
     private String mSearchWord;
+    private List<SearchItem> mAllItems;
 
     @Override
     protected int getLayoutResId() {
@@ -44,46 +57,53 @@ public class SearchActivity extends BaseActivity<ISearchContract.ISearchPresente
 
     @Override
     protected void initViewAndData(Intent intent) {
+        mHistoryDatabase = new SearchHistoryTable(this);
+        Integer databaseKey = null;
+        mAllItems = mHistoryDatabase.getAllItems(databaseKey);
 
         initSearchView(intent);
-        initRecyclerView();
+        initFlexibleScrollView();
     }
 
     @Override
     protected void readyStartPresenter() {
-        // CharSequence hint = mSearchView.getHint();
+
         mPresenter.onStart();
     }
 
-    private void initRecyclerView() {
-        List<String> list = new ArrayList<>(30);
-        while (list.size() < 30) {
-            list.add("test数据");
+    private void initFlexibleScrollView() {
+        mFlowContainer1.removeAllViews();
+        for (SearchItem allItem : mAllItems) {
+            mFlowContainer1.addChild(allItem.get_text());
         }
+        mFlowContainer1.setOnItemClickListener(this);
+        mFlowContainer2.setOnItemClickListener(this);
+    }
 
-        mSearchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mSearchRecyclerView.setAdapter(new RecyclerViewAdapter(list));
-        mSearchRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                // mSearchView.close(true);
-            }
-        });
+    public void updateFlowContainer1(String string) {
+        mFlowContainer1.addChild(string, 0);
+    }
+
+    public void updateFlowContainer2(List<SearchHotWordResult.HotWordListBean> hotWordListBeen) {
+        mFlowContainer2.removeAllViews();
+        for (SearchHotWordResult.HotWordListBean hotWordListBean : hotWordListBeen) {
+            mFlowContainer2.addChild(hotWordListBean.getSearchWord());
+        }
     }
 
     private void initSearchView(Intent intent) {
-
-        mHistoryDatabase = new SearchHistoryTable(this);
         mSearchView.open(true);
 
         Bundle extras = intent.getExtras();
         if (extras != null) {
             mSearchWord = extras.getString(EXTRA_KEY_TEXT);
-            mSearchView.setHint(mSearchWord);
+            if (mSearchWord != null) {
+                mSearchView.setQuery(mSearchWord, true);
+                mSearchView.close(false);//关闭,并取消焦点
+            }
         }
 
         mSearchView.setOnQueryTextListener(this);
-
         SearchAdapter searchAdapter = new SearchAdapter(this, new ArrayList<SearchItem>());
         searchAdapter.addOnItemClickListener(this);
         mSearchView.setAdapter(searchAdapter);
@@ -94,14 +114,15 @@ public class SearchActivity extends BaseActivity<ISearchContract.ISearchPresente
         mSearchView.setArrowOnly(false);
     }
 
-    protected void goSearchActivity(String text) {
-        showToast(text);
+    protected void requestQuery(String text) {
+        mPresenter.loadData(LOAD_SEARCH_RESULT, text);
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        requestQuery(query);
+        updateFlowContainer1(query);
         mHistoryDatabase.addItem(new SearchItem(query));
-        goSearchActivity(query);
         mSearchView.close(false);
         return true;
     }
@@ -111,12 +132,13 @@ public class SearchActivity extends BaseActivity<ISearchContract.ISearchPresente
         return false;
     }
 
+    //search view 的监听
     @Override
     public void onItemClick(View view, int position) {
         TextView textView = (TextView) view.findViewById(R.id.textView_item_text);
         String query = textView.getText().toString();
         mHistoryDatabase.addItem(new SearchItem(query));
-        goSearchActivity(query);
+        requestQuery(query);
         mSearchView.close(false);
     }
 
@@ -128,6 +150,11 @@ public class SearchActivity extends BaseActivity<ISearchContract.ISearchPresente
 
     public void updateSearchWord(String searchWord) {
         mSearchView.setHint(searchWord);
-        mSearchView.removeFocus();
+    }
+
+    //流式布局的监听器
+    @Override
+    public void onItemClick(View view) {
+
     }
 }

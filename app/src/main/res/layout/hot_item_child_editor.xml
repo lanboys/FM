@@ -46,7 +46,7 @@
         android:drawablePadding="4dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/tab_text_color_unpress"
+        android:textColor="@color/hot_item_title_text_color"
         android:textSize="@dimen/hot_title"
         tools:text="标题小编推荐推荐"/>
 

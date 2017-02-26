@@ -198,6 +198,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mBanner.start();
         notifyDataSetChanged();
         mBanner.setVisibility(View.VISIBLE);
+        mHotRecyclerView.scrollToPosition(0);
     }
 
     @Override

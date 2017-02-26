@@ -28,6 +28,18 @@ public class SearchResult {
     private TrackBean track;
     private List<String> resultSort;
 
+    @Override
+    public String toString() {
+        return "SearchResult{" +
+                "album=" + album +
+                ", user=" + user +
+                ", responseHeader=" + responseHeader +
+                ", live=" + live +
+                ", track=" + track +
+                ", resultSort=" + resultSort +
+                '}';
+    }
+
     public static SearchResult objectFromData(String str) {
 
         return new Gson().fromJson(str, SearchResult.class);
@@ -96,6 +108,17 @@ public class SearchResult {
         private Object sq;
         private Object spellcheckerNumFound;
         private List<DocsBean> docs;
+
+        @Override
+        public String toString() {
+            return "AlbumBean{" +
+                    "docs=" + docs +
+                    ", start=" + start +
+                    ", numFound=" + numFound +
+                    ", sq=" + sq +
+                    ", spellcheckerNumFound=" + spellcheckerNumFound +
+                    '}';
+        }
 
         public static AlbumBean objectFromData(String str) {
 
@@ -191,6 +214,34 @@ public class SearchResult {
             private long created_at;
             private boolean is_paid;
             private int is_finished;
+
+            @Override
+            public String toString() {
+                return "DocsBean{" +
+                        "category_id=" + category_id +
+                        ", count_comment=" + count_comment +
+                        ", tags='" + tags + '\'' +
+                        ", uid=" + uid +
+                        ", last_uptrack_at_hour=" + last_uptrack_at_hour +
+                        ", nickname='" + nickname + '\'' +
+                        ", is_v=" + is_v +
+                        ", play=" + play +
+                        ", verify_type=" + verify_type +
+                        ", tracks=" + tracks +
+                        ", serialState=" + serialState +
+                        ", intro='" + intro + '\'' +
+                        ", cover_path='" + cover_path + '\'' +
+                        ", user_source='" + user_source + '\'' +
+                        ", id=" + id +
+                        ", title='" + title + '\'' +
+                        ", category_title='" + category_title + '\'' +
+                        ", updated_at=" + updated_at +
+                        ", last_uptrack_at='" + last_uptrack_at + '\'' +
+                        ", created_at=" + created_at +
+                        ", is_paid=" + is_paid +
+                        ", is_finished=" + is_finished +
+                        '}';
+            }
 
             public static DocsBean objectFromData(String str) {
 

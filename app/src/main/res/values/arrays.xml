@@ -28,13 +28,13 @@
         <item>@drawable/tab4_selector</item>
     </integer-array>
 
-    <array name="indicator_colors">
-        <item>@color/indicator_1</item>
-        <item>@color/indicator_2</item>
-        <item>@color/indicator_3</item>
-        <item>@color/indicator_4</item>
-        <item>@color/indicator_5</item>
-    </array>
+    <!--<array name="indicator_colors">-->
+        <!--<item>@color/indicator_1</item>-->
+        <!--<item>@color/indicator_2</item>-->
+        <!--<item>@color/indicator_3</item>-->
+        <!--<item>@color/indicator_4</item>-->
+        <!--<item>@color/indicator_5</item>-->
+    <!--</array>-->
 
     <!--<color name="indicator_1">#55B3C2</color>-->
     <!--<color name="indicator_2">#64A4A4</color>-->

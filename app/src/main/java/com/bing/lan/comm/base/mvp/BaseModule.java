@@ -96,7 +96,7 @@ public abstract class BaseModule implements IBaseContract.IBaseModule {
         if (subscribe != null && !subscribe.isUnsubscribed()) {
             //任务正在进行中
             if (listener != null) {
-                log.i("requestData(): 有任务正在进行哦");
+                log.i("requestData(): 有任务正在进行哦 action: " + action);
                 listener.onLoading(action);
             }
         } else {

@@ -2,9 +2,9 @@ package com.bing.lan.comm.api;
 
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.home.bean.HomeTabsResult;
-import com.bing.lan.fm.ui.home.bean.SearchWordResult;
 import com.bing.lan.fm.ui.hot.bean.HotColumnsResult;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
+import com.bing.lan.fm.ui.search.bean.SearchHintWordResult;
 import com.bing.lan.fm.ui.search.bean.SearchHotWordResult;
 import com.bing.lan.fm.ui.search.bean.SearchResult;
 
@@ -29,8 +29,8 @@ public interface ApiService {
     @GET
     Call<ResponseBody> getRawUrl(@Url String url);
 
-    @GET
-    Call<String> getRawUrl1(@Url String url);
+    // @GET
+    // Call<String> getRawUrl1(@Url String url);
 
     @GET("{url}")
     Observable<ResponseBody> executeGet(
@@ -38,10 +38,6 @@ public interface ApiService {
             @QueryMap Map<String, String> map
     );
 
-    //搜索文字
-    @GET("discovery/v1/search/hint?device=android&version=5.4.81")
-    Observable<SearchWordResult> getHomeSearchWord();
-    //http://mobile.ximalaya.com/mobile/discovery/v1/search/hint?device=android&version=5.4.81
 
     // 横向 listview
     @GET("discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81")
@@ -62,6 +58,13 @@ public interface ApiService {
     @GET
     Observable<GankBean> getGankGirl(@Url String url);
     // http://gank.io/api/data/%E7%A6%8F%E5%88%A9/4/2
+
+    //搜索文字
+    @GET("discovery/v1/search/hint?device=android&version=5.4.81")
+    Observable<SearchHintWordResult> getSearchHintWord();
+    //http://mobile.ximalaya.com/mobile/discovery/v1/search/hint?device=android&version=5.4.81
+
+
 
     // 搜索页面词汇
     @GET

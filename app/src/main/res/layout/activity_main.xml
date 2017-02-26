@@ -6,7 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background"
+    android:background="@color/main_orange_background"
     tools:openDrawer="start">
 
     <!-- 上面的背景色不能去除,api19的时候会显示白色??? -->

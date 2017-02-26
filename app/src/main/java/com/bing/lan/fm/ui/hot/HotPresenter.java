@@ -29,8 +29,8 @@ public class HotPresenter extends
 
     @Override
     public void onStart(Object... params) {
-        mModule.requestData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
         mModule.requestData(LOAD_HOT_MAIN, this);
+        mModule.requestData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
     }
 
     @Override

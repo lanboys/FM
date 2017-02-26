@@ -189,7 +189,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
         // 设置下拉刷新和上拉加载更多的风格
         BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
         moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
-        moocStyleRefreshViewHolder.setUltimateColor(R.color.default_refresh_color_style);
+        moocStyleRefreshViewHolder.setUltimateColor(R.color.colorPrimary);
 
         moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
         // 设置下拉刷新和上拉加载更多的风格

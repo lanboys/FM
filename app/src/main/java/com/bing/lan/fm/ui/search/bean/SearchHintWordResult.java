@@ -1,4 +1,4 @@
-package com.bing.lan.fm.ui.home.bean;
+package com.bing.lan.fm.ui.search.bean;
 
 import com.bing.lan.fm.bean.ResultBean;
 import com.google.gson.Gson;
@@ -9,7 +9,7 @@ import java.util.List;
  * @author 蓝兵
  * @time 2017/2/15  22:52
  */
-public class SearchWordResult extends ResultBean {
+public class SearchHintWordResult extends ResultBean {
 
     private List<SearchWordBean> list;
 
