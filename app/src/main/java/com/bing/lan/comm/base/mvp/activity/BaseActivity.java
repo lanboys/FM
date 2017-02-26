@@ -177,13 +177,6 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
                 .build();
     }
 
-    public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim) {
-        AppUtil.startActivity(this, clazz, isFinish);
-        if (isAnim) {
-            overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
-        }
-    }
-
     /**
      * 默认false
      *
@@ -191,6 +184,13 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
      */
     public void startActivity(Class<? extends BaseActivity> clazz) {
         startActivity(clazz, false, true);
+    }
+
+    public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim) {
+        AppUtil.startActivity(this, clazz, isFinish);
+        if (isAnim) {
+            overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+        }
     }
 
     @Override

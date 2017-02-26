@@ -5,6 +5,8 @@ import com.bing.lan.fm.ui.home.bean.HomeTabsResult;
 import com.bing.lan.fm.ui.home.bean.SearchWordResult;
 import com.bing.lan.fm.ui.hot.bean.HotColumnsResult;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
+import com.bing.lan.fm.ui.search.bean.SearchHotWordResult;
+import com.bing.lan.fm.ui.search.bean.SearchResult;
 
 import java.util.Map;
 
@@ -36,15 +38,10 @@ public interface ApiService {
             @QueryMap Map<String, String> map
     );
 
-
-
     //搜索文字
     @GET("discovery/v1/search/hint?device=android&version=5.4.81")
     Observable<SearchWordResult> getHomeSearchWord();
     //http://mobile.ximalaya.com/mobile/discovery/v1/search/hint?device=android&version=5.4.81
-
-
-
 
     // 横向 listview
     @GET("discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81")
@@ -66,9 +63,15 @@ public interface ApiService {
     Observable<GankBean> getGankGirl(@Url String url);
     // http://gank.io/api/data/%E7%A6%8F%E5%88%A9/4/2
 
+    // 搜索页面词汇
+    @GET
+    Observable<SearchHotWordResult> getSearchHotWord(@Url String url);
+    //http://search.ximalaya.com/hotWord?device=iPhone&size=45&version=5.4.81
 
-
-
+    // 搜索页面词汇
+    @GET
+    Observable<SearchResult> getSearchResult(@Url String url);
+    //http://search.ximalaya.com/front/v1?core=all&device=iPhone&is_paid=true&kw=%E7%BE%8E%E5%A5%B3&live=true&page=1&paidFilter=false&rows=3&spellchecker=true&version=5.4.81
 
 
     //    @POST("login")

@@ -12,6 +12,10 @@ import com.bing.lan.fm.ui.pic.IPictureContract;
 import com.bing.lan.fm.ui.pic.PictureActivity;
 import com.bing.lan.fm.ui.pic.PictureModule;
 import com.bing.lan.fm.ui.pic.PicturePresenter;
+import com.bing.lan.fm.ui.search.ISearchContract;
+import com.bing.lan.fm.ui.search.SearchActivity;
+import com.bing.lan.fm.ui.search.SearchModule;
+import com.bing.lan.fm.ui.search.SearchPresenter;
 import com.bing.lan.fm.ui.splash.ISplashContract;
 import com.bing.lan.fm.ui.splash.SplashActivity;
 import com.bing.lan.fm.ui.splash.SplashModule;
@@ -57,11 +61,20 @@ public class ActivityModule {
         splashPresenter.onAttachView((MainActivity) mActivity);
         return splashPresenter;
     }
+
     @Provides
     public IPictureContract.IPicturePresenter providePicturePresenter() {
         PicturePresenter splashPresenter = new PicturePresenter();
         splashPresenter.setModule(new PictureModule());
         splashPresenter.onAttachView((PictureActivity) mActivity);
+        return splashPresenter;
+    }
+
+    @Provides
+    public ISearchContract.ISearchPresenter provideSearchPresenter() {
+        SearchPresenter splashPresenter = new SearchPresenter();
+        splashPresenter.setModule(new SearchModule());
+        splashPresenter.onAttachView((SearchActivity) mActivity);
         return splashPresenter;
     }
 

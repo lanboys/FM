@@ -2,8 +2,16 @@ apply plugin: 'com.android.application'
 
 //dagger
 apply plugin: 'com.neenbedankt.android-apt'
+//dagger
 
+//realm
 apply plugin: 'realm-android'
+//realm
+
+//方法数统计
+// make sure this line comes *after* you apply the Android plugin
+apply plugin: 'com.getkeepsafe.dexcount'
+//方法数统计
 
 android {
     compileSdkVersion 25
@@ -27,7 +35,6 @@ android {
 }
 
 
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -45,6 +52,8 @@ dependencies {
     //下拉刷新
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
     compile 'com.yalantis:phoenix:1.2.3'
+    //搜索框
+    compile 'com.lapism:searchview:4.0'
     // gson
     //    compile 'com.google.code.gson:gson:2.7'
     // multi dex

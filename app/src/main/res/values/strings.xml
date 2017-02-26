@@ -18,6 +18,7 @@
     <string name="exit_tips">你真的要离开FM吗？</string>
     <string name="ok_btn">下次再回来玩</string>
     <string name="cancel_btn">多玩一会吧</string>
+    <string name="title_activity_search">SearchActivity</string>
 
 
 </resources>

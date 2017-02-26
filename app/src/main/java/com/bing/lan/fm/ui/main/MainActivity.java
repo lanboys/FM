@@ -11,11 +11,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.bing.lan.comm.app.BaseApplication;
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
@@ -27,14 +27,21 @@ import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.girl.GirlFragment;
 import com.bing.lan.fm.ui.home.HomeFragment;
 import com.bing.lan.fm.ui.mine.MineFragment;
+import com.bing.lan.fm.ui.search.SearchActivity;
+import com.lapism.searchview.SearchAdapter;
+import com.lapism.searchview.SearchHistoryTable;
+import com.lapism.searchview.SearchItem;
+import com.lapism.searchview.SearchView;
 import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         implements IMainContract.IMainView<IMainContract.IMainPresenter>,
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener, SearchAdapter.OnItemClickListener, SearchView.OnVoiceClickListener {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -42,15 +49,17 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     Toolbar mToolbar;
     @BindView(R.id.fab)
     FloatingActionButton mFab;
+    @BindView(R.id.searchView)
+    SearchView mSearchView;
 
     private String[] mTabTitles;
     private int[] mTabImages;
-    private SearchView searchView;
     private FragmentManager mFragmentManager;
 
     private HomeFragment mHomeFragment;
     private GirlFragment mGirlFragment;
     private MineFragment mMineFragment;
+    private SearchHistoryTable mHistoryDatabase;
 
     @Override
     protected void onDestroy() {
@@ -64,8 +73,14 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         return R.layout.activity_main;
     }
 
+    @Override
     protected boolean isImmersion() {
         return false;
+    }
+
+    @Override
+    protected boolean isTranslucentStatus() {
+        return true;
     }
 
     @Override
@@ -78,9 +93,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         // 获得Fragment管理器
         mFragmentManager = getSupportFragmentManager();
         initTabData();
-        //
-        // mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        // setSupportActionBar(mToolbar);
 
         setToolBar(mToolbar, "", false);
 
@@ -146,47 +158,55 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         });
     }
 
+    private void initSearchView() {
+
+        mHistoryDatabase = new SearchHistoryTable(this);
+
+        mSearchView.setHint("fm");
+        mSearchView.setOnQueryTextListener(this);
+
+        SearchAdapter searchAdapter = new SearchAdapter(this, new ArrayList<SearchItem>());
+        searchAdapter.addOnItemClickListener(this);
+        mSearchView.setAdapter(searchAdapter);
+
+        mSearchView.setVoiceText("Set permission on Android 6.0+ !");
+        mSearchView.setOnVoiceClickListener(this);
+
+        mSearchView.setArrowOnly(false);
+    }
+
+    protected void goSearchActivity(String text) {
+        Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+        intent.putExtra(SearchActivity.EXTRA_KEY_TEXT, text);
+        startActivity(intent);
+    }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+    public boolean onQueryTextSubmit(String query) {
+        mHistoryDatabase.addItem(new SearchItem(query));
+        goSearchActivity(query);
+        mSearchView.close(false);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        if (id == R.id.action_search) {
-            searchView.setVisibility(View.VISIBLE);
-            searchView.onActionViewExpanded();
-            searchView.requestFocus();
-        }
-
-        return super.onOptionsItemSelected(item);
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 
-    private void initSearchView() {
-        searchView = (SearchView) findViewById(R.id.searchView);
+    @Override
+    public void onItemClick(View view, int position) {
+        TextView textView = (TextView) view.findViewById(R.id.textView_item_text);
+        String query = textView.getText().toString();
+        mHistoryDatabase.addItem(new SearchItem(query));
+        goSearchActivity(query);
+        mSearchView.close(false);
+    }
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // recyclerAdapter.clear();
-                // searchPicture(query);
-                searchView.setVisibility(View.GONE);
-                // recyclerView.requestFocus();
-                // toolbar.setTitle(query);
-                return false;
-            }
+    @Override
+    public void onVoiceClick() {
+        // permission
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -211,6 +231,26 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
         closeDrawer();
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id == R.id.action_search) {
+            mSearchView.open(true, item);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void jumpHomeFragment() {
@@ -275,6 +315,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
             Fragment cachedFragment = mFragmentManager.findFragmentByTag(hashCode);
             if (cachedFragment == null) {
                 cachedFragment = instance;
+                //fragment 的hashCode是内存地址,作为tag存进去
                 transaction.add(R.id.fragment_container, cachedFragment, hashCode);
             } else {
                 cachedFragment.onResume();
@@ -298,7 +339,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
             //根据序号返回后台堆栈中的BackStackEntry对象，最底的序号为0。
             entryAt = mFragmentManager.getBackStackEntryAt(count - 1);
             if (entryAt != null) {
-                String hashCode = entryAt.getName();
+                String hashCode = entryAt.getName();//fragment tag
                 addedFragment = mFragmentManager.findFragmentByTag(hashCode);
             }
         }
@@ -341,7 +382,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
                         // sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
                     }
                 });
-
     }
 
     @Override
