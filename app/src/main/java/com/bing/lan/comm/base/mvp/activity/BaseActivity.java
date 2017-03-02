@@ -187,7 +187,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
     }
 
     public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim) {
-        AppUtil.startActivity(this, clazz, isFinish,false);
+        AppUtil.startActivity(this, clazz, isFinish, false);
         if (isAnim) {
             overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
         }
@@ -231,14 +231,6 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
     // }
     protected int getMenuId() {
         return 0;
-    }
-
-    protected void setToolBar(Toolbar toolBar) {
-        setToolBar(toolBar, null, true);
-    }
-
-    protected void setToolBar(Toolbar toolBar, String title) {
-        setToolBar(toolBar, title, true);
     }
 
     protected void setToolBar(Toolbar toolBar, String title, boolean finishActivity) {

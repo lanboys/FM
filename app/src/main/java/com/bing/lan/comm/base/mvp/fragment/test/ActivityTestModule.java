@@ -10,10 +10,7 @@ import com.bing.lan.comm.base.mvp.activity.BaseActivityModule;
 public class ActivityTestModule extends BaseActivityModule
         implements IActivityTestContract.IActivityTestModule {
 
-    @Override
-    public void releaseTask() {
 
-    }
 
     @Override
     public void loadData(int action, IBaseContract.OnDataChangerListener listener, Object... parameter) {

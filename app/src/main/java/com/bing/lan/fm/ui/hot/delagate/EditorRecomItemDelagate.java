@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.fm.R;
+import com.bing.lan.fm.ui.album.AlbumActivity;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.bean.ListItemEditorBean;
-import com.bing.lan.fm.ui.music.MusicActivity;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
@@ -90,13 +90,21 @@ public class EditorRecomItemDelagate
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
         log.d("onItemClick(): item点击事件");
 
+        // ListItemEditorBean tag = (ListItemEditorBean) view.getTag();
+        // log.d("onItemClick(): " + tag);
+        // AppUtil.startActivity(view.getContext(), MusicActivity.class, false, true);
+        // Intent intent = new Intent(view.getContext(), MusicActivity.class);
+        // intent.putExtra(ALBUM_DETAIL, tag);
+        // intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        // view.getContext().startActivity(intent);
+
         ListItemEditorBean tag = (ListItemEditorBean) view.getTag();
         log.d("onItemClick(): " + tag);
-        AppUtil.startActivity(view.getContext(), MusicActivity.class, false, true);
-        Intent intent = new Intent(view.getContext(), MusicActivity.class);
+        Intent intent = new Intent(view.getContext(), AlbumActivity.class);
         intent.putExtra(ALBUM_DETAIL, tag);
         intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
         view.getContext().startActivity(intent);
+
     }
 
     @Override

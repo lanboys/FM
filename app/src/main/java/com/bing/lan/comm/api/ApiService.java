@@ -1,5 +1,6 @@
 package com.bing.lan.comm.api;
 
+import com.bing.lan.fm.ui.album.bean.AlbumResultBean;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.home.bean.HomeTabsResult;
 import com.bing.lan.fm.ui.hot.bean.HotColumnsResult;
@@ -14,6 +15,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -37,7 +39,6 @@ public interface ApiService {
             @Path("url") String url,
             @QueryMap Map<String, String> map
     );
-
 
     // 横向 listview
     @GET("discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81")
@@ -64,8 +65,6 @@ public interface ApiService {
     Observable<SearchHintWordResult> getSearchHintWord();
     //http://mobile.ximalaya.com/mobile/discovery/v1/search/hint?device=android&version=5.4.81
 
-
-
     // 搜索页面词汇
     @GET
     Observable<SearchHotWordResult> getSearchHotWord(@Url String url);
@@ -76,6 +75,10 @@ public interface ApiService {
     Observable<SearchResult> getSearchResult(@Url String url);
     //http://search.ximalaya.com/front/v1?core=all&device=iPhone&is_paid=true&kw=%E7%BE%8E%E5%A5%B3&live=true&page=1&paidFilter=false&rows=3&spellchecker=true&version=5.4.81
 
+    //专辑详情
+    @GET("v1/album?device=iPhone&pageSize=20&source=5&statEvent=pageview%2Falbum%404360562&statModule=%E5%B0%8F%E7%BC%96%E6%8E%A8%E8%8D%90&statPage=tab%40%E5%8F%91%E7%8E%B0_%E6%8E%A8%E8%8D%90&statPosition=2")
+    Observable<AlbumResultBean> getAlbumResult(@Query("albumId") long albumId);
+    //http://mobile.ximalaya.com/mobile/v1/album?albumId=4360562&device=iPhone&pageSize=20&source=5&statEvent=pageview%2Falbum%404360562&statModule=%E5%B0%8F%E7%BC%96%E6%8E%A8%E8%8D%90&statPage=tab%40%E5%8F%91%E7%8E%B0_%E6%8E%A8%E8%8D%90&statPosition=2
 
     //    @POST("login")
     //    Observable<LoginResultBean> getLoginResult(@Body LoginParamsBean loginParamsBean);

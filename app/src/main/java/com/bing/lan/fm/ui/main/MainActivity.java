@@ -12,7 +12,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +22,7 @@ import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
 import com.bing.lan.comm.base.mvp.fragment.IBaseFragmentContract;
 import com.bing.lan.comm.di.ActivityComponent;
 import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.musicplay.MusicPlayer;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.girl.GirlFragment;
 import com.bing.lan.fm.ui.home.HomeFragment;
@@ -61,12 +61,16 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     private GirlFragment mGirlFragment;
     private MineFragment mMineFragment;
     private SearchHistoryTable mHistoryDatabase;
+    private MusicPlayer.ServiceToken mServiceToken;
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         //注销事件总线
         BaseApplication.sBus.unregister(this);
+
+        //    关闭音乐服务
+        MusicPlayer.closeService(mServiceToken);
     }
 
     @Override
@@ -77,6 +81,11 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     @Override
     protected boolean isImmersion() {
         return false;
+    }
+
+    @Override
+    protected int getMenuId() {
+        return R.menu.menu_main;
     }
 
     @Override
@@ -108,6 +117,9 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
     @Override
     protected void readyStartPresenter() {
+
+        mServiceToken = MusicPlayer.startService(this);
+
         //启动p层逻辑
         // mPresenter.onStart();
 
@@ -233,11 +245,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -261,7 +269,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
                 BaseApplication.sBus.post(Integer.parseInt("15"));
                 showToast("测试otto");
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);

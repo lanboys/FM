@@ -1,0 +1,86 @@
+package com.bing.lan.comm.utils.musicplay;
+
+import android.provider.MediaStore;
+
+/**
+ * @author 蓝兵
+ * @time 2017/3/1  22:09
+ */
+public class MusicServiceCons {
+
+
+    public static final String SERVICECMD = "com.naman14.timber.musicservicecommand";
+    public static final String TOGGLEPAUSE_ACTION = "com.naman14.timber.togglepause";
+    public static final String PAUSE_ACTION = "com.naman14.timber.pause";
+    public static final String PLAY_ACTION = "com.naman14.timber.play";
+    public static final String STOP_ACTION = "com.naman14.timber.stop";
+    public static final String PREVIOUS_ACTION = "com.naman14.timber.previous";
+    public static final String PREVIOUS_FORCE_ACTION = "com.naman14.timber.previous.force";
+    public static final String NEXT_ACTION = "fcom.naman14.timber.next";
+    public static final String REPEAT_ACTION = "com.naman14.timber.repeat";
+    public static final String SHUFFLE_ACTION = "com.naman14.timber.shuffle";
+    public static final String SET_PLAYLIST_ACTION = "com.naman14.timber.list";
+    public static final String FROM_MEDIA_BUTTON = "frommediabutton";
+    public static final String REFRESH = "com.naman14.timber.refresh";
+    public static final String UPDATE_LOCKSCREEN = "com.naman14.timber.updatelockscreen";
+    public static final String CMD_NAME = "command";
+    public static final String CMD_TOGGLEPAUSE = "togglepause";
+    public static final String CMD_STOP = "stop";
+    public static final String CMD_PAUSE = "pause";
+    public static final String CMD_PLAY = "play";
+    public static final String CMD_PREVIOUS = "previous";
+    public static final String CMD_NEXT = "next";
+    public static final String CMD_SET_PLAYLIST = "cmd_set_playlist";
+    public static final String CMD_NOTIF = "buttonId";
+    public static final String DATA_URL = "dataurl";
+    public static final String PLAYLIST_URL = "playlist_url";
+
+    public static final int NEXT = 2;
+    public static final int LAST = 3;
+    public static final int SHUFFLE_NONE = 0;
+    public static final int SHUFFLE_NORMAL = 1;
+    public static final int SHUFFLE_AUTO = 2;
+    public static final int REPEAT_NONE = 0;
+    public static final int REPEAT_CURRENT = 1;
+    public static final int REPEAT_ALL = 2;
+    public static final int MAX_HISTORY_SIZE = 1000;
+    public static final String TAG = "MusicPlaybackService";
+    public static final boolean D = false;
+    public static final String SHUTDOWN = "com.naman14.timber.shutdown";
+    public static final int IDCOLIDX = 0;
+    public static final int TRACK_ENDED = 1;
+    public static final int TRACK_WENT_TO_NEXT = 2;
+    public static final int RELEASE_WAKELOCK = 3;
+    public static final int SERVER_DIED = 4;
+    public static final int FOCUSCHANGE = 5;
+    public static final int FADEDOWN = 6;
+    public static final int FADEUP = 7;
+    public static final int HANDLER_CHANGE_CURR_POS = 8;
+
+    public static final int IDLE_DELAY = 5 * 60 * 1000;
+    public static final long REWIND_INSTEAD_PREVIOUS_THRESHOLD = 3000;
+    public static final String[] PROJECTION = new String[]{
+            "audio._id AS _id", MediaStore.Audio.Media.ARTIST, MediaStore.Audio.Media.ALBUM,
+            MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.DATA,
+            MediaStore.Audio.Media.MIME_TYPE, MediaStore.Audio.Media.ALBUM_ID,
+            MediaStore.Audio.Media.ARTIST_ID
+    };
+    public static final String[] ALBUM_PROJECTION = new String[]{
+            MediaStore.Audio.Albums.ALBUM, MediaStore.Audio.Albums.ARTIST,
+            MediaStore.Audio.Albums.LAST_YEAR
+    };
+    public static final String[] NOTIFICATION_PROJECTION = new String[]{
+            "audio._id AS _id", MediaStore.Audio.AudioColumns.ALBUM_ID, MediaStore.Audio.AudioColumns.TITLE,
+            MediaStore.Audio.AudioColumns.ARTIST, MediaStore.Audio.AudioColumns.DURATION
+    };
+    // private static final Shuffler mShuffler = new Shuffler();
+    public static final int NOTIFY_MODE_NONE = 0;
+    public static final int NOTIFY_MODE_FOREGROUND = 1;
+    public static final int NOTIFY_MODE_BACKGROUND = 2;
+    public static final String[] PROJECTION_MATRIX = new String[]{
+            "_id", MediaStore.Audio.Media.ARTIST, MediaStore.Audio.Media.ALBUM,
+            MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.DATA,
+            MediaStore.Audio.Media.MIME_TYPE, MediaStore.Audio.Media.ALBUM_ID,
+            MediaStore.Audio.Media.ARTIST_ID
+    };
+}

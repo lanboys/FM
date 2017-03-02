@@ -4,10 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.bing.lan.comm.utils.LogUtil;
+import com.bing.lan.fm.ui.album.AlbumActivity;
+import com.bing.lan.fm.ui.album.AlbumModule;
+import com.bing.lan.fm.ui.album.AlbumPresenter;
+import com.bing.lan.fm.ui.album.IAlbumContract;
 import com.bing.lan.fm.ui.main.IMainContract;
 import com.bing.lan.fm.ui.main.MainActivity;
 import com.bing.lan.fm.ui.main.MainModule;
 import com.bing.lan.fm.ui.main.MainPresenter;
+import com.bing.lan.fm.ui.music.IMusicContract;
+import com.bing.lan.fm.ui.music.MusicActivity;
+import com.bing.lan.fm.ui.music.MusicModule;
+import com.bing.lan.fm.ui.music.MusicPresenter;
 import com.bing.lan.fm.ui.pic.IPictureContract;
 import com.bing.lan.fm.ui.pic.PictureActivity;
 import com.bing.lan.fm.ui.pic.PictureModule;
@@ -75,6 +83,22 @@ public class ActivityModule {
         SearchPresenter splashPresenter = new SearchPresenter();
         splashPresenter.setModule(new SearchModule());
         splashPresenter.onAttachView((SearchActivity) mActivity);
+        return splashPresenter;
+    }
+
+    @Provides
+    public IAlbumContract.IAlbumPresenter provideAlbumPresenter() {
+        AlbumPresenter splashPresenter = new AlbumPresenter();
+        splashPresenter.setModule(new AlbumModule());
+        splashPresenter.onAttachView((AlbumActivity) mActivity);
+        return splashPresenter;
+    }
+
+    @Provides
+    public IMusicContract.IMusicPresenter provideMusicPresenter() {
+        MusicPresenter splashPresenter = new MusicPresenter();
+        splashPresenter.setModule(new MusicModule());
+        splashPresenter.onAttachView((MusicActivity) mActivity);
         return splashPresenter;
     }
 

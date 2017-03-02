@@ -42,7 +42,7 @@ public class ListItemEditorBean implements Serializable{
      */
 
     private int id;
-    private int albumId;
+    private long albumId;
     private int uid;
     private String intro;
     private String nickname;
@@ -92,7 +92,7 @@ public class ListItemEditorBean implements Serializable{
         this.id = id;
     }
 
-    public int getAlbumId() {
+    public long getAlbumId() {
         return albumId;
     }
 

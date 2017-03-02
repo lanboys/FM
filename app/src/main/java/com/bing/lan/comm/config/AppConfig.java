@@ -24,5 +24,11 @@ public class AppConfig {
     * 日间/夜间模式存储的键值
     */
    public static final String DAY_NIGHT_MODE = "day_night_mode";
+   /**
+    * 日志前缀
+    */
+
+   public static final String TAG_PREFIX = "fmapp-->";
+
 
 }

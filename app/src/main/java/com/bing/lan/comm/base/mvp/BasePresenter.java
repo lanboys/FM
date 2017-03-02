@@ -40,7 +40,7 @@ public abstract class BasePresenter<
     // }
 
     @Override
-    public void loadData(int action, Object... parameter) {
+    public void requestData(int action, Object... parameter) {
 
     }
 

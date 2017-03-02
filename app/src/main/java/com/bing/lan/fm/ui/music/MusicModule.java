@@ -7,8 +7,8 @@ import com.bing.lan.comm.base.mvp.activity.BaseActivityModule;
  * @author 蓝兵
  * @time 2017/2/6  19:12
  */
-public class ActivityTestModule extends BaseActivityModule
-        implements IActivityTestContract.IActivityTestModule {
+public class MusicModule extends BaseActivityModule
+        implements IMusicContract.IMusicModule {
 
     @Override
     public void releaseTask() {

@@ -115,7 +115,7 @@ public class SearchActivity extends BaseActivity<ISearchContract.ISearchPresente
     }
 
     protected void requestQuery(String text) {
-        mPresenter.loadData(LOAD_SEARCH_RESULT, text);
+        mPresenter.requestData(LOAD_SEARCH_RESULT, text);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.bing.lan.comm.di;
 
+import com.bing.lan.fm.ui.album.AlbumActivity;
 import com.bing.lan.fm.ui.main.MainActivity;
+import com.bing.lan.fm.ui.music.MusicActivity;
 import com.bing.lan.fm.ui.pic.PictureActivity;
 import com.bing.lan.fm.ui.search.SearchActivity;
 import com.bing.lan.fm.ui.splash.SplashActivity;
@@ -21,5 +23,9 @@ public interface ActivityComponent {
     void inject(PictureActivity pictureActivity);
 
     void inject(SearchActivity searchActivity);
+
+    void inject(AlbumActivity albumActivity);
+
+    void inject(MusicActivity musicActivity);
 }
 

@@ -12,12 +12,18 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
-
+    <!-- 二维码 -->
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <!-- 二维码 -->
 
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+
 
     <application
         android:name="com.bing.lan.comm.app.BaseApplication"
@@ -75,6 +81,16 @@
             android:label="@string/title_activity_music"
             android:theme="@style/AppTheme">
         </activity>
+        <!-- 专辑详情页面 -->
+        <activity
+            android:name=".ui.album.AlbumActivity"
+            android:label="@string/title_activity_album"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <!-- 音乐服务 -->
+        <service android:name="com.bing.lan.comm.utils.musicplay.MusicService"/>
+
     </application>
 
 </manifest>

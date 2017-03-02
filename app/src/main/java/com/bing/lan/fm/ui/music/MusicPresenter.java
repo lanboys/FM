@@ -6,9 +6,9 @@ import com.bing.lan.comm.base.mvp.activity.BaseActivityPresenter;
  * @author 蓝兵
  * @time 2017/2/6  19:11
  */
-public class ActivityTestPresenter
-        extends BaseActivityPresenter<IActivityTestContract.IActivityTestView, IActivityTestContract.IActivityTestModule>
-        implements IActivityTestContract.IActivityTestPresenter {
+public class MusicPresenter
+        extends BaseActivityPresenter<IMusicContract.IMusicView, IMusicContract.IMusicModule>
+        implements IMusicContract.IMusicPresenter {
 
     @Override
     public void onStart(Object... params) {

@@ -10,10 +10,7 @@ import com.bing.lan.comm.base.mvp.fragment.BaseFragmentModule;
 public class FragTestModule extends BaseFragmentModule
         implements IFragTestContract.IFragTestModule {
 
-    @Override
-    public void releaseTask() {
 
-    }
 
     @Override
     public void loadData(int action, IBaseContract.OnDataChangerListener listener, Object... parameter) {

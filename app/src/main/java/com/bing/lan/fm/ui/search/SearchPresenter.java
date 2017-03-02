@@ -20,12 +20,12 @@ public class SearchPresenter
 
     @Override
     public void onStart(Object... params) {
-        loadData(LOAD_SEARCH_HINT_WORD);
-        loadData(LOAD_SEARCH_HOT_WORD);
+        requestData(LOAD_SEARCH_HINT_WORD);
+        requestData(LOAD_SEARCH_HOT_WORD);
     }
 
     @Override
-    public void loadData(int action, Object... parameter) {
+    public void requestData(int action, Object... parameter) {
         switch (action) {
             case LOAD_SEARCH_HINT_WORD:
                 mModule.requestData(action, this);

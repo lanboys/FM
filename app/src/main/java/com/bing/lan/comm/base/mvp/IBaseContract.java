@@ -34,7 +34,7 @@ public interface IBaseContract {
 
         // void loadImage(Object path, ImageView imageView);
 
-        void loadData(int action, Object... parameter);
+        void requestData(int action, Object... parameter);
     }
 
     interface IBaseModule {
@@ -43,7 +43,7 @@ public interface IBaseContract {
 
         // void loadImage(Object path, ImageView imageView);
 
-        void loadData(int action, OnDataChangerListener listener, Object... parameter);
+        // void loadData(int action, OnDataChangerListener listener, Object... parameter);
 
         void refreshTask(int action);
 

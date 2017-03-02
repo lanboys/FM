@@ -9,7 +9,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
  * @author 蓝兵
  * @time 2017/2/25  8:58
  */
-public abstract class RecyclerViewScrollListener<T extends RecyclerView.LayoutManager> extends RecyclerView.OnScrollListener {
+public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollListener {
 
     private int preScrollState;
     private RecyclerView.LayoutManager mLayoutManager;

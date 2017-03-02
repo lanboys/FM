@@ -2,6 +2,8 @@ package com.bing.lan.comm.utils;
 
 import android.util.Log;
 
+import com.bing.lan.comm.config.AppConfig;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -21,7 +23,7 @@ public class LogUtil {
     /* global log level and default value is LOG_ERROR */
     private static int GLOBAL_LOG_LEVEL = LOG_ERROR;
     /* default prefix of tag */
-    private static String TAG_PREFIX = "fm-->";
+    private static String TAG_PREFIX = AppConfig.TAG_PREFIX;
     private static boolean IS_OPEN = true;
     /* current class log level */
     private int mLogLevel;

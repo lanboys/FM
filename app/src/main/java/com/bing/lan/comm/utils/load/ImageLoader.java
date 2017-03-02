@@ -49,15 +49,17 @@ public class ImageLoader {
         mStrategy.loadImage(imageView.getContext(), imageView, url, controllerListener);
     }
 
+    public void loadImage(Context context, String url, int reqWidth, int reqHeight, IResult<Bitmap> loadImageResult) {
+        mStrategy.loadImage(context, url, reqWidth, reqHeight, loadImageResult);
+    }
+
+
+
     public void loadBigImage(ImageView imageView, String url) {
         mStrategy.loadBigImage(imageView.getContext(), imageView, url);
     }
 
     public void loadSmallImage(ImageView imageView, String url) {
         mStrategy.loadSmallImage(imageView.getContext(), imageView, url);
-    }
-
-    public void loadImage(Context context, String url, int reqWidth, int reqHeight, IResult<Bitmap> loadImageResult) {
-        mStrategy.loadImage(context, url, reqWidth, reqHeight, loadImageResult);
     }
 }

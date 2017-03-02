@@ -21,7 +21,14 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <include
+                layout="@layout/item_music_play"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+            />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

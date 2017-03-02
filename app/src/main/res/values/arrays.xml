@@ -41,4 +41,13 @@
     <!--<color name="indicator_3">#66D7B9</color>-->
     <!--<color name="indicator_4">#FDBC7D</color>-->
     <!--<color name="indicator_5">#FDBC7D</color>-->
+
+    <string-array name="playlist">
+        <item>http://download.xmcdn.com/group25/M0A/B9/F2/wKgJMViyXEOAENQmAAX_MWpQS-w408.aac</item>
+        <item>http://audio.xmcdn.com/group21/M04/C7/5C/wKgJKFi2xGewibmZAEDhOBRUOFg471.mp3</item>
+        <item>http://download.xmcdn.com/group25/M0A/B9/F2/wKgJMViyXEOAENQmAAX_MWpQS-w408.aac</item>
+        <!--<item>http://audio.xmcdn.com/group25/M00/C5/4B/wKgJNli1dDSzrVk0ADt9xhhFD2k023.m4a</item>-->
+        <!--<item>http://audio.xmcdn.com/group23/M07/C1/D6/wKgJNFi0L-azgsIqABqh9L_IXAU735.m4a</item>-->
+
+    </string-array>
 </resources>

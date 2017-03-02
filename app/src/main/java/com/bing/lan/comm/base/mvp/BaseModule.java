@@ -104,4 +104,6 @@ public abstract class BaseModule implements IBaseContract.IBaseModule {
             loadData(action, listener, parameter);
         }
     }
+
+    protected abstract void loadData(int action, IBaseContract.OnDataChangerListener listener, Object[] parameter);
 }

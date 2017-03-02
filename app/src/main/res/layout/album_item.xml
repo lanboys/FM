@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:id="@+id/ll_child_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="12dp">
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_cover_image1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:src="@mipmap/account_avatar"/>-->
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_album_episode_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="#445"
+        android:gravity="center"
+        android:src="@mipmap/account_avatar"
+        fresco:ImageScaleType="fitCenter"
+        fresco:placeholderImage="@draw/R.drawable.image_default_202"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_album_episode_image"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/iv_album_episode_Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="标题小编推荐推荐荐推荐荐推荐"
+            android:textColor="#292d29"
+            android:textSize="@dimen/hot_track_Title"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/finding_album_img"
+            android:drawablePadding="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="标题小编推荐推荐"
+            android:textColor="@color/hot_item_title_text_color"
+            android:textSize="@dimen/hot_title"/>
+
+    </LinearLayout>
+</RelativeLayout>
