@@ -21,7 +21,7 @@ public class LogUtil {
     /* global log level and default value is LOG_ERROR */
     private static int GLOBAL_LOG_LEVEL = LOG_ERROR;
     /* default prefix of tag */
-    private static String TAG_PREFIX = "bingtag-->";
+    private static String TAG_PREFIX = "fm-->";
     private static boolean IS_OPEN = true;
     /* current class log level */
     private int mLogLevel;

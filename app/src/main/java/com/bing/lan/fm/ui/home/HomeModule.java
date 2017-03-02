@@ -7,7 +7,6 @@ import com.bing.lan.fm.ui.search.bean.SearchHintWordResult;
 import java.util.List;
 
 import rx.Observable;
-import rx.Subscription;
 import rx.functions.Func1;
 
 /**
@@ -16,7 +15,6 @@ import rx.functions.Func1;
  */
 public class HomeModule extends BaseFragmentModule
         implements IHomeContract.IHomeModule {
-
 
     @Override
     public void loadData(final int action, final IBaseContract.OnDataChangerListener listener, Object... parameter) {
@@ -38,10 +36,9 @@ public class HomeModule extends BaseFragmentModule
                     }
                 });
 
-        Subscription subscribe = subscribe(observable,
+        subscribe(observable,
                 action,
                 listener,
                 "搜索词汇");
-
     }
 }

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.bing.lan.fm">
-
+ 
     <!-- 检查网络状态的权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- 联网权限 -->
@@ -68,6 +68,11 @@
         <activity
             android:name=".ui.category.SearchActivity"
             android:label="@string/title_activity_search"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".ui.music.MusicActivity"
+            android:label="@string/title_activity_music"
             android:theme="@style/AppTheme">
         </activity>
     </application>

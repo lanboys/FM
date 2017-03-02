@@ -162,7 +162,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
         mHistoryDatabase = new SearchHistoryTable(this);
 
-        mSearchView.setHint("fm");
+        mSearchView.setHint("搜你想搜的..");
         mSearchView.setOnQueryTextListener(this);
 
         SearchAdapter searchAdapter = new SearchAdapter(this, new ArrayList<SearchItem>());

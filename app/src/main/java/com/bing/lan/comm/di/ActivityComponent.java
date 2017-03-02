@@ -16,8 +16,6 @@ public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
 
-
-
     void inject(SplashActivity splashActivity);
 
     void inject(PictureActivity pictureActivity);

@@ -48,19 +48,19 @@ public class ToastUtil {
 
     public static void showToast(String msg) {
 
-        if (sSuperToast == null) {
-            sSuperToast = SuperToast.create(AppUtil.getAppContext(), msg, Style.DURATION_SHORT)
-                    .setFrame(Style.FRAME_KITKAT)
-                    .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_ORANGE))
-                    .setAnimations(Style.ANIMATIONS_POP);
-        }
-        if (msg.length() < 10) {
-            sSuperToast.setDuration(Style.DURATION_SHORT);
-        } else {
-            sSuperToast.setDuration(Style.DURATION_LONG);
-        }
-
-        sSuperToast.setText(msg).show();
+        // if (sSuperToast == null) {
+        //     sSuperToast = SuperToast.create(AppUtil.getAppContext(), msg, Style.DURATION_SHORT)
+        //             .setFrame(Style.FRAME_KITKAT)
+        //             .setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_ORANGE))
+        //             .setAnimations(Style.ANIMATIONS_POP);
+        // }
+        // if (msg.length() < 10) {
+        //     sSuperToast.setDuration(Style.DURATION_SHORT);
+        // } else {
+        //     sSuperToast.setDuration(Style.DURATION_LONG);
+        // }
+        //
+        // sSuperToast.setText(msg).show();
     }
 
     // SuperActivityToast.create(getActivity(), new Style(), Style.TYPE_BUTTON)

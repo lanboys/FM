@@ -1,11 +1,13 @@
 package com.bing.lan.fm.ui.hot.bean;
 
+import java.io.Serializable;
+
 /**
  * @author 蓝兵
  * @time 2017/2/17  15:12
  */
 
-public class ListItemEditorBean {
+public class ListItemEditorBean implements Serializable{
     // 小编推荐
     /**
      * id : 2881558
@@ -69,6 +71,18 @@ public class ListItemEditorBean {
     private String displayDiscountedPrice;
     private int priceTypeEnum;
 
+    @Override
+    public String toString() {
+        return "ListItemEditorBean{" +
+                "albumId=" + albumId +
+                ", intro='" + intro + '\'' +
+                ", coverLarge='" + coverLarge + '\'' +
+                ", trackId=" + trackId +
+                ", trackTitle='" + trackTitle + '\'' +
+                ", tags='" + tags + '\'' +
+                ", albumCoverUrl290='" + albumCoverUrl290 + '\'' +
+                '}';
+    }
 
     public int getId() {
         return id;

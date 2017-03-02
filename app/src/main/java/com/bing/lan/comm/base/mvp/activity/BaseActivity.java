@@ -187,7 +187,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
     }
 
     public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim) {
-        AppUtil.startActivity(this, clazz, isFinish);
+        AppUtil.startActivity(this, clazz, isFinish,false);
         if (isAnim) {
             overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
         }
@@ -201,6 +201,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
     @Override
     public void showToast(String msg) {
         ToastUtil.showToast(msg);
+        // Toast.makeText(AppUtil.getAppContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override

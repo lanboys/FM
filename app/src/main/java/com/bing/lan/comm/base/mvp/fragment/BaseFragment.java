@@ -326,7 +326,7 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     }
 
     public void startActivity(Class<? extends BaseActivity> clazz, boolean isFinish, boolean isAnim) {
-        AppUtil.startActivity(getActivity(), clazz, isFinish);
+        AppUtil.startActivity(getActivity(), clazz, isFinish,false);
     }
 
     /**

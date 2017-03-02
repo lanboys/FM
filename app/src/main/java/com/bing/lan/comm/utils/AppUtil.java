@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 public class AppUtil {
 
     /* global application parameter */
@@ -167,8 +169,11 @@ public class AppUtil {
         return sResources.getColor(colorId);
     }
 
-    public static void startActivity(Context c, Class<? extends Activity> clazz, boolean ifFinish) {
+    public static void startActivity(Context c, Class<? extends Activity> clazz, boolean ifFinish,boolean addFlags) {
         Intent intent = new Intent(c, clazz);
+        if (addFlags) {
+            intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        }
         c.startActivity(intent);
         if (ifFinish) {
             ((Activity) c).finish();
@@ -242,7 +247,7 @@ public class AppUtil {
 
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 // intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
                 ComponentName cn = new ComponentName(packageName, className);
 
                 intent.setComponent(cn);
@@ -282,7 +287,7 @@ public class AppUtil {
         }
         intent.putExtra(Intent.EXTRA_SUBJECT, detailTitle);
         intent.putExtra(Intent.EXTRA_TEXT, msgText);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
         return Intent.createChooser(intent, shareTitle);
     }
 
@@ -605,7 +610,7 @@ public class AppUtil {
      */
     public static void installApp(Context context, File apkFile) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
         intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
         context.startActivity(intent);
     }
@@ -641,7 +646,7 @@ public class AppUtil {
         intent.addCategory("android.intent.category.DEFAULT");
         intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
         // startActivity(intent);//这种方法启动安装界面,安装完成后,将不会自动进入下一个界面,造成假死界面
         activity.startActivityForResult(intent, requestCode);
     }

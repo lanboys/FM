@@ -23,8 +23,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //api23抛弃了httpclient,继续使用httpclient
         useLibrary 'org.apache.http.legacy'
+        //继续使用httpclient
+
+        //65536,分包
 //        multiDexEnabled true
+        //65536,分包
     }
     buildTypes {
         release {
@@ -49,10 +55,10 @@ dependencies {
     compile "org.apache.httpcomponents:httpcore:4.3.2"
 //    compile 'com.google.guava:guava:18.0'
     compile 'com.github.chenupt.android:multiplemodel:1.1.0@aar'
-    //下拉刷新
+    // 下拉刷新
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
     compile 'com.yalantis:phoenix:1.2.3'
-    //搜索框
+    // 搜索框
     compile 'com.lapism:searchview:4.0'
     // gson
     //    compile 'com.google.code.gson:gson:2.7'
@@ -61,7 +67,7 @@ dependencies {
     // butter knife
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    //缓存
+    // 缓存
     compile 'com.jakewharton:disklrucache:2.0.2'
     // dependency injector
     compile 'com.google.dagger:dagger:2.7'
