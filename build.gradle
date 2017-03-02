@@ -28,6 +28,12 @@ allprojects {
     repositories {
         jcenter()
 
+        //com.github.Rukey7:IjkPlayerView
+        maven {
+            url 'https://jitpack.io'
+        }
+        //com.github.Rukey7:IjkPlayerView
+
         // fresco.helper
         maven {
             url 'https://dl.bintray.com/hpdx/maven/'
