@@ -106,6 +106,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
 
         setToolBar(mToolbar, "", false);
 
+
         initFab();
 
         initDrawerLayout();

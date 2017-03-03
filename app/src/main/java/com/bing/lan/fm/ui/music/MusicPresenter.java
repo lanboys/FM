@@ -1,6 +1,7 @@
 package com.bing.lan.fm.ui.music;
 
 import com.bing.lan.comm.base.mvp.activity.BaseActivityPresenter;
+import com.bing.lan.fm.ui.music.bean.PlayResult;
 
 /**
  * @author 蓝兵
@@ -10,11 +11,20 @@ public class MusicPresenter
         extends BaseActivityPresenter<IMusicContract.IMusicView, IMusicContract.IMusicModule>
         implements IMusicContract.IMusicPresenter {
 
+    public static final int LOAD_TRACK = 0;
+
     @Override
     public void onStart(Object... params) {
+        requestData(LOAD_TRACK, params);
+    }
 
-        // mModule.loadData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
-
+    @Override
+    public void requestData(int action, Object... parameter) {
+        switch (action) {
+            case LOAD_TRACK:
+                mModule.requestData(action, this, parameter);
+                break;
+        }
     }
 
     @Override
@@ -23,10 +33,12 @@ public class MusicPresenter
 
         switch (action) {
 
-            // case LOAD_GANK:
-            //
-            //     break;
+            case LOAD_TRACK:
 
+                PlayResult playResult = (PlayResult) data;
+                mView.updateTrackInfo(playResult.getTrackInfo());
+
+                break;
         }
     }
 

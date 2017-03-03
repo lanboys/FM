@@ -5,6 +5,7 @@ import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.home.bean.HomeTabsResult;
 import com.bing.lan.fm.ui.hot.bean.HotColumnsResult;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
+import com.bing.lan.fm.ui.music.bean.PlayResult;
 import com.bing.lan.fm.ui.search.bean.SearchHintWordResult;
 import com.bing.lan.fm.ui.search.bean.SearchHotWordResult;
 import com.bing.lan.fm.ui.search.bean.SearchResult;
@@ -22,7 +23,7 @@ import rx.Observable;
 
 public interface ApiService {
 
-    String BASE_URL = "http://mobile.ximalaya.com/mobile/";
+    String BASE_URL = "http://mobile.ximalaya.com/";
 
     /*访问全路径API并返回原生数据*/
     @GET
@@ -41,17 +42,17 @@ public interface ApiService {
     );
 
     // 横向 listview
-    @GET("discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81")
+    @GET("mobile/discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81")
     Observable<HotColumnsResult> getHotColumns();
     // http://mobile.ximalaya.com/mobile/discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81
 
     // 小编推荐/轮播图(焦点图)/精品听当
-    @GET("discovery/v4/recommends?channel=and-inapp&device=android&includeActivity=true&includeSpecial=true&scale=2&version=5.4.81")
+    @GET("mobile/discovery/v4/recommends?channel=and-inapp&device=android&includeActivity=true&includeSpecial=true&scale=2&version=5.4.81")
     Observable<HotResult> getHotResult();
     // http://mobile.ximalaya.com/mobile/discovery/v4/recommends?channel=and-inapp&device=android&includeActivity=true&includeSpecial=true&scale=2&version=5.4.81
 
     // 首页 中 tabs
-    @GET("discovery/v2/tabs?device=android&version=5.4.81")
+    @GET("mobile/discovery/v2/tabs?device=android&version=5.4.81")
     Observable<HomeTabsResult> getHomeTabs();
     // http://mobile.ximalaya.com/mobile/discovery/v2/tabs?device=android&version=5.4.81
 
@@ -61,7 +62,7 @@ public interface ApiService {
     // http://gank.io/api/data/%E7%A6%8F%E5%88%A9/4/2
 
     //搜索文字
-    @GET("discovery/v1/search/hint?device=android&version=5.4.81")
+    @GET("mobile/discovery/v1/search/hint?device=android&version=5.4.81")
     Observable<SearchHintWordResult> getSearchHintWord();
     //http://mobile.ximalaya.com/mobile/discovery/v1/search/hint?device=android&version=5.4.81
 
@@ -76,9 +77,13 @@ public interface ApiService {
     //http://search.ximalaya.com/front/v1?core=all&device=iPhone&is_paid=true&kw=%E7%BE%8E%E5%A5%B3&live=true&page=1&paidFilter=false&rows=3&spellchecker=true&version=5.4.81
 
     //专辑详情
-    @GET("v1/album?device=iPhone&pageSize=20&source=5&statEvent=pageview%2Falbum%404360562&statModule=%E5%B0%8F%E7%BC%96%E6%8E%A8%E8%8D%90&statPage=tab%40%E5%8F%91%E7%8E%B0_%E6%8E%A8%E8%8D%90&statPosition=2")
+    @GET("mobile/v1/album?device=iPhone&pageSize=20&source=5&statEvent=pageview%2Falbum%404360562&statModule=%E5%B0%8F%E7%BC%96%E6%8E%A8%E8%8D%90&statPage=tab%40%E5%8F%91%E7%8E%B0_%E6%8E%A8%E8%8D%90&statPosition=2")
     Observable<AlbumResultBean> getAlbumResult(@Query("albumId") long albumId);
     //http://mobile.ximalaya.com/mobile/v1/album?albumId=4360562&device=iPhone&pageSize=20&source=5&statEvent=pageview%2Falbum%404360562&statModule=%E5%B0%8F%E7%BC%96%E6%8E%A8%E8%8D%90&statPage=tab%40%E5%8F%91%E7%8E%B0_%E6%8E%A8%E8%8D%90&statPosition=2
+
+    @GET("v1/track/ca/playpage/{trackId}")
+    Observable<PlayResult> getPlayResult(@Path("trackId") long trackId);
+    // http://mobile.ximalaya.com/v1/track/ca/playpage/31353083
 
     //    @POST("login")
     //    Observable<LoginResultBean> getLoginResult(@Body LoginParamsBean loginParamsBean);

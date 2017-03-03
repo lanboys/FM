@@ -29,7 +29,7 @@ android {
         //继续使用httpclient
 
         //65536,分包
-//        multiDexEnabled true
+        multiDexEnabled true
         //65536,分包
     }
     buildTypes {
@@ -62,15 +62,19 @@ dependencies {
     compile 'com.github.chenupt.android:multiplemodel:1.1.0@aar'
     // 下拉刷新
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
+    // 下拉刷新
     compile 'com.yalantis:phoenix:1.2.3'
     // 搜索框
     compile 'com.lapism:searchview:4.0'
-    // 播放器控件
+    // 音乐播放器控件
     compile 'net.steamcrafted:materialiconlib:1.0.3'
-
+    //弹幕
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.6.2'
+    //IjkPlayerView/弹幕封装类
+    compile 'com.github.Rukey7:IjkPlayerView:v1.0.3'
     // gson
     //    compile 'com.google.code.gson:gson:2.7'
-    // multi dex
+    // multi dex (分包)
     compile 'com.android.support:multidex:1.0.1'
     // butter knife
     compile 'com.jakewharton:butterknife:8.4.0'

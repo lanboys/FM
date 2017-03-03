@@ -16,7 +16,7 @@
     <dimen name="hot_title">11sp</dimen>
 
     <dimen name="status_bar_height">0dp</dimen>
-    <dimen name="app_bar_height">480dp</dimen>
+    <dimen name="app_bar_height">450dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
     <!-- 播放器 -->

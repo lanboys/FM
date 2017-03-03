@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Process;
+import android.support.annotation.RawRes;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
@@ -26,6 +27,7 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -149,6 +151,9 @@ public class AppUtil {
         return sResources.getString(strId);
     }
 
+    public static  InputStream openRawResource(@RawRes int id) {
+        return sResources.openRawResource(id);
+    }
     public static String getString(int strId, String format) {
         return sResources.getString(strId, format);
     }

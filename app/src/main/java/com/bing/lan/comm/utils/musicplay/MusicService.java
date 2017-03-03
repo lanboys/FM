@@ -26,7 +26,7 @@ public class MusicService extends Service {
     private int mNextPlayPos = -1;
     private MusicPlayerHandler mPlayerHandler;
     private HandlerThread mHandlerThread;
-    private  List<Music> mPlaylist = new ArrayList<>();
+    private List<Music> mPlaylist = new ArrayList<>();
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
@@ -155,9 +155,11 @@ public class MusicService extends Service {
         }
     }
 
-    public void setPlaylist( List<Music> playlist) {
-        mPlaylist = playlist;
+    public void setPlaylist(List<Music> playlist) {
         if (playlist != null && playlist.size() > 0) {
+            mPlaylist.clear();
+            mPlaylist.addAll(playlist);
+
             mCurrentPlayPos = 0;
             if (!mPlayer.isInitialized()) {
                 mPlayer.setDataSource(mPlaylist.get(mCurrentPlayPos).Url);

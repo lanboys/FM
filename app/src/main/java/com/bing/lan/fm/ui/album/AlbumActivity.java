@@ -3,6 +3,7 @@ package com.bing.lan.fm.ui.album;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -52,6 +53,12 @@ public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
     @Override
     protected void initViewAndData(Intent intent) {
         setToolBar(mToolbar, "专辑详情", true);
+        // mToolbar.setNavigationIcon(R.drawable.icon_feed_back_head);
+        ActionBar supportActionBar = getSupportActionBar();
+        supportActionBar.setHomeAsUpIndicator(R.drawable.icon_feed_back_head);
+        // supportActionBar.setDisplayHomeAsUpEnabled(true);
+
+
         initFab();
         initData(intent);
 
@@ -129,6 +136,7 @@ public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
 
         Intent intent = new Intent(view.getContext(), MusicActivity.class);
         intent.putExtra(MusicActivity.TRACK_PLAYLIST, (ArrayList<TracksInfoBean>) mRecyclerViewData);
+        intent.putExtra(MusicActivity.TRACK_POSITION, position);
         startActivity(intent);
     }
 
