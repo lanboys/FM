@@ -8,7 +8,12 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="@color/main_orange_background"
     tools:context="com.bing.lan.fm.ui.main.MainActivity">
+
+    <!-- 背景色是为了适配api19,api21 不设置都行 -->
+    <!-- fit出来的bar 用的是本身的背景色 -->
+
     <!--android:fitsSystemWindows="true"-->
     <!--android:layout_marginTop= "@dimen/status_bar_height"-->
 

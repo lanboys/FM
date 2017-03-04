@@ -6,15 +6,18 @@ import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
 import com.bing.lan.comm.di.ActivityComponent;
+import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.comm.utils.musicplay.Music;
 import com.bing.lan.comm.utils.musicplay.MusicPlayer;
@@ -99,6 +102,20 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
 
     @Override
     protected void initViewAndData(Intent intent) {
+
+        setToolBar(mToolbar, "", true);
+        if (Build.VERSION.SDK_INT >= 19) {
+            mToolbar.post(new Runnable() {
+                @Override
+                public void run() {
+                    int statusHeight = AppUtil.getStatusHeight();
+                    mToolbar.setPadding(0, statusHeight, 0, 0);
+                    ViewGroup.LayoutParams layoutParams = mToolbar.getLayoutParams();
+                    layoutParams.height = mToolbar.getHeight() + statusHeight;
+                }
+            });
+        }
+
         mTrackInfos = (ArrayList<TracksInfoBean>) intent.getSerializableExtra(TRACK_PLAYLIST);
         mCurrentPlayPos = intent.getIntExtra(TRACK_POSITION, 0);
         updateCurrentTrackId();
@@ -106,7 +123,7 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
         mUpdateCircularProgress = new UpdateCircularProgress();
         initMusicPlay();
         initData();
-        initView();
+
         setDanmakuSource(getResources().openRawResource(R.raw.bili));
         initDanmakuView();
 
@@ -145,6 +162,35 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
                 });
             }
         });
+    }
+
+    /**
+     * 设置弹幕资源，默认资源格式需满足 bilibili 的弹幕文件格式，
+     * 配合{ setDanmakuCustomParser}来进行自定义弹幕解析方式，{ setDanmakuCustomParser}必须先调用
+     *
+     * @param stream 弹幕资源
+     * @return
+     */
+    public void setDanmakuSource(InputStream stream) {
+        if (stream == null) {
+            return;
+        }
+        if (!mIsEnableDanmaku) {
+            throw new RuntimeException("Danmaku is disable, use enableDanmaku() first");
+        }
+        if (mDanmakuLoader == null) {
+            mDanmakuLoader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
+        }
+        try {
+            mDanmakuLoader.load(stream);
+        } catch (IllegalDataException e) {
+            e.printStackTrace();
+        }
+        IDataSource<?> dataSource = mDanmakuLoader.getDataSource();
+        if (mDanmakuParser == null) {
+            mDanmakuParser = new BiliDanmukuParser();
+        }
+        mDanmakuParser.load(dataSource);
     }
 
     /**
@@ -191,35 +237,6 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
         }
     }
 
-    /**
-     * 设置弹幕资源，默认资源格式需满足 bilibili 的弹幕文件格式，
-     * 配合{ setDanmakuCustomParser}来进行自定义弹幕解析方式，{ setDanmakuCustomParser}必须先调用
-     *
-     * @param stream 弹幕资源
-     * @return
-     */
-    public void setDanmakuSource(InputStream stream) {
-        if (stream == null) {
-            return;
-        }
-        if (!mIsEnableDanmaku) {
-            throw new RuntimeException("Danmaku is disable, use enableDanmaku() first");
-        }
-        if (mDanmakuLoader == null) {
-            mDanmakuLoader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
-        }
-        try {
-            mDanmakuLoader.load(stream);
-        } catch (IllegalDataException e) {
-            e.printStackTrace();
-        }
-        IDataSource<?> dataSource = mDanmakuLoader.getDataSource();
-        if (mDanmakuParser == null) {
-            mDanmakuParser = new BiliDanmukuParser();
-        }
-        mDanmakuParser.load(dataSource);
-    }
-
     private void updateCurrentTrackId() {
         mCurrentTrackId = mTrackInfos.get(mCurrentPlayPos).getTrackId();
     }
@@ -264,11 +281,6 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
         for (TracksInfoBean s : mTrackInfos) {
             mArrayList.add(new Music(s.getPlayUrl32()));
         }
-    }
-
-    private void initView() {
-
-        setToolBar(mToolbar, "", true);
     }
 
     private void playMusic() {

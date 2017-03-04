@@ -121,6 +121,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
                             public void onResult(Bitmap bitmap) {
                                 MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
                                 imageView.setImageBitmap(bitmap);
+                                imageView.setScaleType(ImageView.ScaleType.CENTER);
                             }
                         });
             }

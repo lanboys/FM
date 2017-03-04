@@ -18,6 +18,11 @@
     </style>
 
 
+    <style name="MusicPlayTheme" parent="AppTheme">
+        <item name="colorPrimaryDark">@android:color/holo_blue_bright</item>
+    </style>
+
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -25,7 +30,9 @@
         <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!--<item name="android:background">@android:color/black</item>-->
+    </style>
 
     <!-- toolbar 的默认主题 -->
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>

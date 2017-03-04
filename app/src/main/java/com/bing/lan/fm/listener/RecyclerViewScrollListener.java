@@ -1,6 +1,8 @@
 package com.bing.lan.fm.listener;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -50,7 +52,30 @@ public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollLi
         preScrollState = newState;
     }
 
-    public abstract int getLastVisiblePosition(RecyclerView.LayoutManager layoutManager);
+    public int getLastVisiblePosition(RecyclerView.LayoutManager layoutManager) {
+
+        int lastVisibleItemPosition = 0;
+
+        if (layoutManager instanceof LinearLayoutManager) {
+            lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) layoutManager;
+            int[] lastPosition = new int[staggeredGridLayoutManager.getSpanCount()];
+            staggeredGridLayoutManager.findLastVisibleItemPositions(lastPosition);
+            lastVisibleItemPosition = getMax(lastPosition);
+        }
+        return lastVisibleItemPosition;
+    }
+
+    private int getMax(int[] lastPosition) {
+        int max = lastPosition[0];
+        for (int value : lastPosition) {
+            if (value > max) {
+                max = value;
+            }
+        }
+        return max;
+    }
     //     return mLayoutManager.findLastVisibleItemPosition();
     // }
 

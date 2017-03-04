@@ -7,20 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 
-/**
- * ClassName: MyRecyclerView
- * Desc:
- * Created by lsj on 16/7/28.
- */
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 public class LoadMoreRecyclerView extends RecyclerView {
+
     private LoadMoreListener mListener;
-
-    private int lastVisibleItemPosition;
-
-
-    public void setListener(LoadMoreListener listener) {
-        mListener = listener;
-    }
+    private int preScrollState;
 
     public LoadMoreRecyclerView(Context context) {
         super(context);
@@ -34,29 +26,53 @@ public class LoadMoreRecyclerView extends RecyclerView {
         super(context, attrs, defStyle);
     }
 
-    @Override
-    public void onScrolled(int dx, int dy) {
-        super.onScrolled(dx, dy);
-        LayoutManager layoutManager = getLayoutManager();
-        if (layoutManager instanceof LinearLayoutManager) {
-            lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
-        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-            StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) getLayoutManager();
-            int[] lastPosition = new int[staggeredGridLayoutManager.getSpanCount()];
-            staggeredGridLayoutManager.findLastVisibleItemPositions(lastPosition);
-            lastVisibleItemPosition = getMax(lastPosition);
-
-        }
+    public void setLoadMoreListener(LoadMoreListener listener) {
+        mListener = listener;
     }
 
     @Override
     public void onScrollStateChanged(int state) {
-        LayoutManager layoutManager =  getLayoutManager();
-        if (state == RecyclerView.SCROLL_STATE_IDLE) {
-            int totalCount = layoutManager.getItemCount();
-            if (lastVisibleItemPosition == totalCount - 1) {
-                mListener.loadMore();
+        switch (state) {
+            case RecyclerView.SCROLL_STATE_IDLE://停止滑动
+                if (Fresco.getImagePipeline().isPaused())
+                    Fresco.getImagePipeline().resume();
+                //检测是否需要加载更多
+                loadMoreCheck();
+                break;
+            case RecyclerView.SCROLL_STATE_DRAGGING:
+                if (preScrollState == RecyclerView.SCROLL_STATE_SETTLING) {
+                    //触摸滑动不需要加载
+                    Fresco.getImagePipeline().pause();
+                } else {
+                    //触摸滑动需要加载
+                    if (Fresco.getImagePipeline().isPaused())
+                        Fresco.getImagePipeline().resume();
+                }
+                break;
+            case RecyclerView.SCROLL_STATE_SETTLING://惯性滑动
+                Fresco.getImagePipeline().pause();
+                break;
+        }
+        preScrollState = state;
+    }
 
+    private void loadMoreCheck() {
+
+        if (mListener != null) {
+            int lastVisibleItemPosition = 0;
+            LayoutManager layoutManager = getLayoutManager();
+
+            if (layoutManager instanceof LinearLayoutManager) {
+                lastVisibleItemPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+            } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+                StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) layoutManager;
+                int[] lastPosition = new int[staggeredGridLayoutManager.getSpanCount()];
+                staggeredGridLayoutManager.findLastVisibleItemPositions(lastPosition);
+                lastVisibleItemPosition = getMax(lastPosition);
+            }
+
+            if (lastVisibleItemPosition == layoutManager.getItemCount() - 1) {
+                mListener.loadMore(this,lastVisibleItemPosition);
             }
         }
     }
@@ -72,6 +88,7 @@ public class LoadMoreRecyclerView extends RecyclerView {
     }
 
     public interface LoadMoreListener {
-        void loadMore();
+
+        void loadMore(LoadMoreRecyclerView loadMoreRecyclerView, int lastVisibleItemPosition);
     }
 }

@@ -76,6 +76,7 @@
             android:label="@string/title_activity_search"
             android:theme="@style/AppTheme">
         </activity>
+        <!-- 音乐界面 -->
         <activity
             android:name=".ui.music.MusicActivity"
             android:label="@string/title_activity_music"
