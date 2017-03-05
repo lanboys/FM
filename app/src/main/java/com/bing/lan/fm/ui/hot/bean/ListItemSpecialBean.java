@@ -1,10 +1,12 @@
 package com.bing.lan.fm.ui.hot.bean;
 
+import java.io.Serializable;
+
 /**
  * @author 蓝兵
  * @time 2017/2/17  15:14
  */
-public class ListItemSpecialBean {
+public class ListItemSpecialBean  implements Serializable {
     // 精品听单
 
     /**

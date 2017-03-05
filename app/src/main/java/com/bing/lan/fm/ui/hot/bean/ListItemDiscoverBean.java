@@ -2,11 +2,13 @@ package com.bing.lan.fm.ui.hot.bean;
 
 import com.google.gson.Gson;
 
+import java.io.Serializable;
+
 /**
  * @author 蓝兵
  * @time 2017/3/5  17:41
  */
-public class ListItemDiscoverBean {
+public class ListItemDiscoverBean  implements Serializable {
 
 
 

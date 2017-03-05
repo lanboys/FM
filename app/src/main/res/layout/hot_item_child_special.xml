@@ -6,16 +6,15 @@
     android:id="@+id/ll_child_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorAccent"
     android:orientation="horizontal"
     android:padding="12dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_cover_image"
         android:layout_width="0dp"
-        android:layout_height="140dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_weight="2"
+        android:layout_weight="1.8"
 
         android:gravity="center"
         fresco:actualImageScaleType="fitCenter"
@@ -41,6 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="6dp"
         android:layout_weight="5"
         android:orientation="vertical">
 
@@ -49,24 +49,22 @@
             android:id="@+id/tv_track_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="4dp"
+
             android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="#292d29"
+            android:maxLines="1"
+            android:textColor="@color/big_title_color"
             android:textSize="@dimen/hot_track_Title"
             tools:text="标题小编推荐推荐荐推荐荐推荐"/>
         <TextView
             android:id="@+id/tv_track_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="4dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
             android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="#292d29"
+            android:maxLines="1"
+            android:textColor="@color/little_title_color"
+
             android:textSize="@dimen/hot_track_Subtitle"
             tools:text="标题小编推荐推荐荐推荐荐推荐"/>
         <TextView
@@ -77,8 +75,8 @@
             android:drawablePadding="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/hot_item_title_text_color"
-            android:textSize="@dimen/hot_title"
+            android:textColor="@color/foot_note_color"
+            android:textSize="@dimen/foot_note_title"
             tools:text="标题小编推荐推荐"/>
     </LinearLayout>
 

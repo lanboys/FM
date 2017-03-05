@@ -21,6 +21,21 @@
     <color name="main_gray_line">#6f6f6f</color>
 
 
+    <!-- hot -->
+
+    <!--  item 背景 -->
+    <color name="hot_item_background_white">#ffffffff</color>
+    <!--  猜你喜欢 -->
+    <color name="hot_item_title_text_color">#0e0e0e</color>
+    <!-- item内部大标题 -->
+    <color name="big_title_color">#101010</color>
+    <!-- item内部小标题 -->
+    <color name="little_title_color">#b3b0b0</color>
+    <!-- item内部note -->
+    <color name="foot_note_color">#ff949494</color>
+    <!-- 经典必听 -->
+
+
     <color name="titleColor">#c9212e</color>
     <color name="titleColorSelected">#535353</color>
 
@@ -35,10 +50,6 @@
     <!-- home页面tab颜色 -->
     <color name="tab_text_color_white">#ffffffff</color>
     <!--<color name="default_refresh_color_style">#CA0612</color>-->
-
-    <!-- 热门item 背景 -->
-    <color name="hot_item_title_text_color">#ff949494</color>
-    <color name="hot_item_background_white">#ffffffff</color>
 
 
     <!-- 播放器 -->

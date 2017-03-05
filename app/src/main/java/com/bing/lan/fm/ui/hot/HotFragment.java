@@ -36,6 +36,7 @@ import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 
@@ -61,13 +62,16 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     private List<View> mViews;
     private View mGirlViewpagerView;
     private View mBannerView;
-    private int BANNER_HEIGHT = AppUtil.dip2px(175);
-    private int VIEWPAGE_HEIGHT = AppUtil.dip2px(285);
+    // private int BANNER_HEIGHT = AppUtil.dip2px(175);
+    // private int VIEWPAGE_HEIGHT = (int) (AppUtil.getScreenW() * 0.65f + AppUtil.dip2px(20));
+    // private int VIEWPAGE_HEIGHT = AppUtil.dip2px(285);
     private GirlViewPagerAdapter mAdapter;
     private List<HotInfoBean> mRecyclerViewData;
     private HeaderAndFooterWrapper mHeaderAndFooterWrapper;
     private MultiItemTypeAdapter<HotInfoBean> mMultiItemTypeAdapter;
     private List<GankBean.ResultsBean> mImgList;
+    private int bannerHeight;
+    private int viewpageHeight;
 
     public static HotFragment newInstance(String title) {
         HotFragment fragment = new HotFragment();
@@ -95,16 +99,23 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     @Override
     protected void initViewAndData(Intent intent, Bundle arguments) {
         mHotRefreshContainer.setOnRefreshListener(this);
+        initHeight();
         initBanner();
         initGirlGallery();
         initRecyclerView();
         hideAll();
     }
 
+    private void initHeight() {
+        bannerHeight = AppUtil.dip2px(175);
+        // bannerHeight = (int) (AppUtil.getScreenH() * 0.35f);
+        viewpageHeight = (int) (AppUtil.getScreenW() * 0.7f + AppUtil.dip2px(20));
+    }
+
     protected void initBanner() {
         mBannerView = mLayoutInflater.inflate(R.layout.item_banner_layout, null);
         ViewGroup.LayoutParams layoutParams = new RecyclerView.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, BANNER_HEIGHT);
+                ViewGroup.LayoutParams.MATCH_PARENT, bannerHeight);
         mBannerView.setLayoutParams(layoutParams);
 
         mBanner = (Banner) mBannerView.findViewById(R.id.item_banner);
@@ -118,7 +129,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
                 // com.bing.lan.comm.utils.load.ImageLoader.getInstance().loadImage(imageView, (String) path);
                 com.bing.lan.comm.utils.load.ImageLoader
                         .getInstance()
-                        .loadImage(getContext(), (String) path, AppUtil.getScreenW(), BANNER_HEIGHT, new IResult<Bitmap>() {
+                        .loadImage(getContext(), (String) path, AppUtil.getScreenW(), bannerHeight, new IResult<Bitmap>() {
                             @Override
                             public void onResult(Bitmap bitmap) {
                                 MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
@@ -136,12 +147,13 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
 
         mGirlViewpagerView = mLayoutInflater.inflate(R.layout.hot_viewpage_layout, null);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, VIEWPAGE_HEIGHT);
+                ViewGroup.LayoutParams.MATCH_PARENT, viewpageHeight);
 
         mGirlViewpagerView.setLayoutParams(layoutParams);
         mGirlViewpager = (ViewPager) mGirlViewpagerView.findViewById(R.id.girl_viewpager);
 
-        mGirlViewpager.setPageMargin(-screenWidth / 3 - 90);
+        // mGirlViewpager.setPageMargin(-screenWidth / 3 - 90);
+        mGirlViewpager.setPageMargin((int) (-screenWidth * 0.4f));
         mGirlViewpager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
@@ -230,7 +242,14 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         }
 
         mAdapter.setData(mViews);
-        mGirlViewpager.setCurrentItem(mViews.size() / 2);
+
+        Random random = new Random();
+        int nextInt = random.nextInt(mViews.size() - 15);
+        if (nextInt < 1) {
+            nextInt += 5;
+        }
+        mGirlViewpager.setCurrentItem(nextInt);
+
         mGirlViewpager.setOffscreenPageLimit(mViews.size());
         notifyDataSetChanged();
 

@@ -2,11 +2,13 @@ package com.bing.lan.fm.ui.hot.bean;
 
 import com.google.gson.Gson;
 
+import java.io.Serializable;
+
 /**
  * @author 蓝兵
  * @time 2017/3/5  17:35
  */
-public class ListItemGuessBean {
+public class ListItemGuessBean implements Serializable, IAlbum {
 
     /**
      * albumCoverUrl290 : http://fdfs.xmcdn.com/group16/M06/96/3A/wKgDaldlAxnBY7P6AABHJRP50Nk811_mobile_meduim.jpg
@@ -41,7 +43,7 @@ public class ListItemGuessBean {
      */
 
     private String albumCoverUrl290;
-    private int albumId;
+    private long albumId;
     private int commentsCount;
     private String coverLarge;
     private String coverMiddle;
@@ -83,11 +85,11 @@ public class ListItemGuessBean {
         this.albumCoverUrl290 = albumCoverUrl290;
     }
 
-    public int getAlbumId() {
+    public long getAlbumId() { 
         return albumId;
     }
 
-    public void setAlbumId(int albumId) {
+    public void setAlbumId(long albumId) {
         this.albumId = albumId;
     }
 

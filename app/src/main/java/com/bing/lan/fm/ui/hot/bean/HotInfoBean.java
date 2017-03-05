@@ -26,6 +26,19 @@ public class HotInfoBean<T> {
     private int loopCount;//猜你喜欢
     private int ret;//发现新奇
 
+    private String code;
+    private String contentType;
+    private int count;
+
+    //听人文/听广播剧/精品等
+    private int categoryId;
+    private int categoryType;
+    private boolean filterSupported;
+    private boolean isFinished;
+    private boolean isPaid;
+
+
+
     public void setRet(int ret) {
         this.ret = ret;
     }

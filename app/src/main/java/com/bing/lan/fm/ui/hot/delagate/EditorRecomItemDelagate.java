@@ -34,6 +34,8 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class EditorRecomItemDelagate
         implements ItemViewDelegate<HotInfoBean>, MultiItemTypeAdapter.OnItemClickListener {
 
+    // 小编推荐
+    // 听广州
     public static final String ALBUM_DETAIL = "album_detail";
     protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
 

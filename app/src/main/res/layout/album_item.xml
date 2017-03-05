@@ -54,7 +54,7 @@
             android:maxLines="1"
             android:text="标题小编推荐推荐"
             android:textColor="@color/hot_item_title_text_color"
-            android:textSize="@dimen/hot_title"/>
+            android:textSize="@dimen/foot_note_title"/>
 
     </LinearLayout>
 </RelativeLayout>

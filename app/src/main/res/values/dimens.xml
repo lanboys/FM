@@ -11,10 +11,16 @@
     <dimen name="carlink_title_bar_height">38.0dip</dimen>
 
     <!-- hot -->
+    <!--  猜你喜欢 -->
     <dimen name="hot_item_title">14sp</dimen>
-    <dimen name="hot_track_Title">16sp</dimen>
+    <!-- item内部大标题 -->
+    <dimen name="hot_track_Title">15sp</dimen>
+    <!-- item内部小标题 -->
     <dimen name="hot_track_Subtitle">12sp</dimen>
-    <dimen name="hot_title">11sp</dimen>
+    <!-- item内部note -->
+    <dimen name="foot_note_title">11sp</dimen>
+    <!-- 经典必听 -->
+    <dimen name="hot_discover_Title">14sp</dimen>
 
     <dimen name="status_bar_height">0dp</dimen>
     <dimen name="app_bar_height">450dp</dimen>

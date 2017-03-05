@@ -1,6 +1,7 @@
 package com.bing.lan.fm.ui.hot.delagate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,22 +11,28 @@ import android.view.View;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.fm.R;
+import com.bing.lan.fm.ui.album.AlbumActivity;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.bean.ListItemGuessBean;
 import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.image.ImageInfo;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate.ALBUM_DETAIL;
+
 /**
  * @author 蓝兵
  * @time 2017/3/5  16:50
  */
-public class GuessItemDelagate implements ItemViewDelegate<HotInfoBean> {
+public class GuessItemDelagate implements
+        ItemViewDelegate<HotInfoBean>, MultiItemTypeAdapter.OnItemClickListener {
 
     @Override
     public int getItemViewLayoutId() {
@@ -73,9 +80,22 @@ public class GuessItemDelagate implements ItemViewDelegate<HotInfoBean> {
                 R.layout.hot_item_child_guess, list);
 
         itemRecyclerView.setAdapter(adapter);
-        // adapter.setOnItemClickListener(this);
+        adapter.setOnItemClickListener(this);
+    }
+    @Override
+    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+        ListItemGuessBean tag = (ListItemGuessBean) view.getTag();
+
+        Intent intent = new Intent(view.getContext(), AlbumActivity.class);
+        intent.putExtra(ALBUM_DETAIL, tag);
+        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        view.getContext().startActivity(intent);
     }
 
+    @Override
+    public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+        return false;
+    }
     private static class ChildRecyclerViewAdapter extends CommonAdapter<ListItemGuessBean> {
 
         protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);

@@ -26,7 +26,7 @@ import java.util.List;
  * @time 2017/3/5  16:50
  */
 public class SpecialItemDelagate implements ItemViewDelegate<HotInfoBean> {
-
+    // 精品听单
     @Override
     public int getItemViewLayoutId() {
         return R.layout.hot_item;

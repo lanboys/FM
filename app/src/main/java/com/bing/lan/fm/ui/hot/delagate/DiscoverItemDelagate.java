@@ -39,50 +39,30 @@ public class DiscoverItemDelagate implements ItemViewDelegate<HotInfoBean> {
 
     @Override
     public void convert(ViewHolder holder, HotInfoBean hotInfoBean, int position) {
-        // holder.setText(R.id.tv_hot_item_title, hotInfoBean.getTitle());
-
         List<ListItemDiscoverBean> list = hotInfoBean.getList();
         initChildRecyclerView(holder, list);
     }
 
     private void initChildRecyclerView(ViewHolder holder, List<ListItemDiscoverBean> list) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(AppUtil.getAppContext(),
-                LinearLayoutManager.HORIZONTAL,false) {
-
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };
-
-        // GridLayoutManager layoutManager = new GridLayoutManager(AppUtil.getAppContext(), 3) {
-        //
-        //     @Override
-        //     public boolean canScrollVertically() {
-        //         return false;
-        //     }
-        // };
-
-
-
-
+                LinearLayoutManager.HORIZONTAL, false);
 
         RecyclerView itemRecyclerView = holder.getView(R.id.rv_hot_item_child);
         itemRecyclerView.setLayoutManager(layoutManager);
         itemRecyclerView.setHasFixedSize(true);
 
-        ChildRecyclerViewAdapter adapter = new ChildRecyclerViewAdapter(AppUtil.getAppContext(),
-                R.layout.hot_item_child_guess, list);
+        DiscoverChildAdapter adapter = new DiscoverChildAdapter(AppUtil.getAppContext(),
+                R.layout.hot_item_child_discover, list);
 
         itemRecyclerView.setAdapter(adapter);
         // adapter.setOnItemClickListener(this);
     }
 
-    private static class ChildRecyclerViewAdapter extends CommonAdapter<ListItemDiscoverBean> {
+    private static class DiscoverChildAdapter extends CommonAdapter<ListItemDiscoverBean> {
 
         protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
 
-        ChildRecyclerViewAdapter(Context context, int layoutId, List<ListItemDiscoverBean> datas) {
+        DiscoverChildAdapter(Context context, int layoutId, List<ListItemDiscoverBean> datas) {
             super(context, layoutId, datas);
         }
 
@@ -92,16 +72,10 @@ public class DiscoverItemDelagate implements ItemViewDelegate<HotInfoBean> {
             View view = holder.getView(R.id.ll_child_container);
 
             view.setTag(listItemEditorBean);
-            log.d("convert(): " + listItemEditorBean);
 
-            holder.setText(R.id.tv_track_Title, listItemEditorBean.getTitle());
-            // holder.setText(R.id.tv_track_subtitle, listItemEditorBean.getSubtitle());
-            // holder.setText(R.id.tv_footNote, listItemEditorBean.getFootnote());
-
-
+            holder.setText(R.id.tv_discover_Title, listItemEditorBean.getTitle());
 
             final SimpleDraweeView draweeView = holder.getView(R.id.iv_cover_image);
-            // ImagePicassoUtil.loadImage(imageView, listItemEditorBean.getCoverMiddle());
             com.bing.lan.comm.utils.load.ImageLoader
                     .getInstance()
                     .loadImage(draweeView,

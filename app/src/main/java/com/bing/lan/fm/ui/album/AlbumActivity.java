@@ -16,7 +16,7 @@ import com.bing.lan.fm.R;
 import com.bing.lan.fm.listener.RecyclerViewScrollListener;
 import com.bing.lan.fm.ui.album.bean.TracksInfoBean;
 import com.bing.lan.fm.ui.album.delagate.TracksInfoDelagate;
-import com.bing.lan.fm.ui.hot.bean.ListItemEditorBean;
+import com.bing.lan.fm.ui.hot.bean.IAlbum;
 import com.bing.lan.fm.ui.music.MusicActivity;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
@@ -58,7 +58,6 @@ public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
         supportActionBar.setHomeAsUpIndicator(R.drawable.icon_feed_back_head);
         // supportActionBar.setDisplayHomeAsUpEnabled(true);
 
-
         initFab();
         initData(intent);
 
@@ -98,7 +97,7 @@ public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
     }
 
     private void initData(Intent intent) {
-        ListItemEditorBean editorBean = (ListItemEditorBean) intent.getSerializableExtra(ALBUM_DETAIL);
+        IAlbum editorBean = (IAlbum) intent.getSerializableExtra(ALBUM_DETAIL);
         mAlbumId = editorBean.getAlbumId();
     }
 

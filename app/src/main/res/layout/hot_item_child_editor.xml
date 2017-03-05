@@ -12,8 +12,8 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_cover_image"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:gravity="center"
         fresco:actualImageScaleType="fitCenter"
@@ -43,8 +43,9 @@
         android:drawablePadding="4dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:textColor="#292d29"
+        android:textColor="@color/big_title_color"
         android:textSize="@dimen/hot_track_Title"
+
         tools:text="标题小编推荐推荐荐推荐荐推荐"/>
     <TextView
         android:id="@+id/tv_title"
@@ -52,10 +53,11 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/finding_album_img"
         android:drawablePadding="4dp"
+
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/hot_item_title_text_color"
-        android:textSize="@dimen/hot_title"
+        android:textColor="@color/foot_note_color"
+        android:textSize="@dimen/foot_note_title"
         tools:text="标题小编推荐推荐"/>
 
 </LinearLayout>

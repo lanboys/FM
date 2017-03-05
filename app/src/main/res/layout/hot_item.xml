@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/title_tag"
                 android:drawablePadding="4dp"
+                android:textColor="@color/hot_item_title_text_color"
                 android:textSize="@dimen/hot_item_title"
                 tools:text="标题小编推荐"/>
             <!--android:id="@+id/tv_hot_item_more"-->
@@ -35,6 +36,7 @@
                 android:drawablePadding="4dp"
                 android:drawableRight="@drawable/arrow_right_selector"
                 android:text="@string/hot_item_more"
+                android:textColor="@color/little_title_color"
                 android:textSize="@dimen/hot_item_title"/>
         </RelativeLayout>
         <android.support.v7.widget.RecyclerView
