@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="44.0dip"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="12.0sp" android:textColor="@color/text_light" android:gravity="center" android:id="@id/tv_play_count" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginRight="12.0dip" android:maxWidth="100.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
-    <com.ximalaya.ting.android.view.flowlayout.FlowLayout android:id="@id/album_tips" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="1.0px" android:layout_marginRight="10.0dip" android:minHeight="44.0dip" />
-    <ImageView android:id="@id/album_tips_arrow" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="112.0dip" android:src="@drawable/arrow_gray_right" android:layout_toRightOf="@id/album_tips" android:layout_centerVertical="true" />
-</RelativeLayout>

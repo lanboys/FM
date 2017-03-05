@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/iv_play_status" android:padding="5.0dip" android:layout_width="35.0dip" android:layout_height="@dimen/title_bar_height" android:src="@drawable/icon_play_status" android:scaleType="centerInside" android:layout_toLeftOf="@id/tv_play_status" />
-    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:gravity="center" android:id="@id/tv_play_status" android:layout_width="wrap_content" android:layout_height="@dimen/title_bar_height" android:layout_marginLeft="4.0dip" android:layout_marginRight="5.0dip" android:text="未播放" android:layout_centerHorizontal="true" />
-    <ImageView android:id="@id/iv_play_status_rhythm" android:layout_width="wrap_content" android:layout_height="@dimen/title_bar_height" android:src="@drawable/playpage_icon_dynamic_rhythm_p1" android:scaleType="centerInside" android:layout_toRightOf="@id/tv_play_status" />
-</RelativeLayout>

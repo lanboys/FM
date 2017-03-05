@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:background="@drawable/kf5_list_item_seletecd_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:layout_gravity="center_vertical" android:orientation="horizontal" android:padding="@dimen/kf5_dimen_16dp" android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@color/kf5_user_field_label_color" android:id="@id/kf5_help_list_item_title" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_4dp" android:singleLine="true" android:layout_weight="1.0" />
-        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/kf5_jump_icon" android:contentDescription="@null" />
-    </LinearLayout>
-    <View android:background="@color/kf5_line_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="@dimen/kf5_dimen_20dp" />
-</LinearLayout>

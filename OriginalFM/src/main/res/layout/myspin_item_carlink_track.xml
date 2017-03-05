@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="@dimen/carlink_track_item_height"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:layout_gravity="center_vertical" android:id="@id/cover" android:layout_width="@dimen/track_item_cover_size" android:layout_height="@dimen/track_item_cover_size" android:layout_marginRight="@dimen/common_margin" android:scaleType="fitCenter" />
-    <TextView android:textSize="@dimen/first_title" android:textColor="@color/first_title" android:gravity="left|center" android:id="@id/title" android:layout_width="fill_parent" android:layout_height="@dimen/carlink_track_item_height" android:maxLines="1" />
-</LinearLayout>

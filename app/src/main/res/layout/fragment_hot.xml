@@ -10,7 +10,8 @@
         android:id="@+id/hot_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/tab_text_color_white"/>
+        android:background="@color/main_gray_white_background"
+    />
 </android.support.v4.widget.SwipeRefreshLayout>
 
 

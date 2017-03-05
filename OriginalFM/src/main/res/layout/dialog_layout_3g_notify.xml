@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:paddingLeft="10.0dip" android:paddingTop="5.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="16.0sp" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/notify_3g_text" />
-    <CheckBox android:id="@id/checkBox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:text="@string/notify_3g_never_mind" />
-    <ImageView android:layout_width="1.0px" android:layout_height="15.0dip" />
-</LinearLayout>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:paddingTop="@dimen/kf5_dimen_8dp" android:paddingBottom="@dimen/kf5_dimen_8dp" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="@dimen/kf5_text_size_14" android:textColor="@android:color/white" android:layout_gravity="center_horizontal" android:id="@id/kf5_tvDate" android:background="@drawable/kf5_message_item_with_date_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_8dp" />
-    <TextView android:textSize="@dimen/kf5_text_size_14" android:textColor="@android:color/white" android:layout_gravity="center_horizontal" android:id="@id/kf5_message_item_system" android:background="@drawable/kf5_message_item_with_date_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_16dp" />
-</LinearLayout>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <GridView android:id="@id/kf5_selector_gridview" android:paddingBottom="?android:actionBarSize" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:horizontalSpacing="@dimen/kf5_space_size" android:verticalSpacing="@dimen/kf5_space_size" android:numColumns="3" />
-    <RelativeLayout android:id="@id/kf5_footer_layout" android:background="#cc000000" android:clickable="true" android:layout_width="fill_parent" android:layout_height="?android:actionBarSize" android:layout_alignParentBottom="true">
-        <Button android:textSize="@dimen/kf5_text_size_16" android:textColor="@android:color/white" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/kf5_category_btn" android:background="@null" android:paddingLeft="@dimen/kf5_dimen_16dp" android:paddingRight="@dimen/kf5_dimen_16dp" android:layout_width="wrap_content" android:layout_height="fill_parent" android:singleLine="true" android:drawableRight="@drawable/kf5_text_indicator" android:drawablePadding="@dimen/kf5_dimen_4dp" android:layout_centerVertical="true" />
-    </RelativeLayout>
-</RelativeLayout>

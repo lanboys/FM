@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <include android:id="@id/kf5_top_layout" android:layout_width="fill_parent" android:layout_height="@dimen/xima_titleheight_50dp" layout="@layout/kf5_image_selector_customer_actionbar" />
-    <View android:id="@id/kf5_deliver" android:background="@color/kf5_line_deliver_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/kf5_top_layout" />
-    <FrameLayout android:id="@id/kf5_image_framelayout" android:background="@color/xima_title" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/kf5_deliver" />
-</RelativeLayout>

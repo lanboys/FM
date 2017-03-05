@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<paths
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <external-path name="ximalayaapk" path="Android/data/com.ximalaya.ting.android/files/update/" />
-    <external-path name="gameapks" path="Android/data/com.ximalaya.ting.android/files/download/files/update/" />
-</paths>

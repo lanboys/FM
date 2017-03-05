@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.ximalaya.ting.android.view.SquareLayout android:orientation="vertical" android:background="@color/liveaudio_ppt_back" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/iv_image" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_centerInParent="true" />
-    <ImageView android:layout_gravity="top|left|center" android:layout_width="30.0dip" android:layout_height="30.0dip" android:src="@drawable/live_bg_count" android:scaleType="fitXY" />
-    <TextView android:textSize="11.0sp" android:textColor="@color/white" android:gravity="center" android:layout_gravity="top|left|center" android:id="@id/iv_number_tag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginTop="2.0dip" android:text="1" />
-    <ProgressBar android:layout_gravity="center" android:id="@id/progress" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@android:style/Widget.Holo.Light.ProgressBar.Small.Inverse" />
-</com.ximalaya.ting.android.view.SquareLayout>

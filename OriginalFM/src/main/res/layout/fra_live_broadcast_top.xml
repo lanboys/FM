@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <View android:id="@id/status_space" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_alignParentTop="true" android:contentDescription="@string/title_bar_contentDescription" />
-    <include android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="50.0dip" android:layout_below="@id/status_space" layout="@layout/live_play_timing" />
-</RelativeLayout>

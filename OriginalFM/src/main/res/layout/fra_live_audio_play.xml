@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical" android:id="@id/container" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <View android:id="@id/status_space" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_alignParentTop="true" android:contentDescription="@string/title_bar_contentDescription" />
-    <FrameLayout android:id="@id/upWholeBackFl" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="fill_parent" />
-    <FrameLayout android:id="@id/underTitleFl" android:layout_width="fill_parent" android:layout_height="wrap_content" />
-    <com.ximalaya.ting.android.view.liveaudio.VerticalTouchRelativeLayout android:id="@id/bottomFl" android:layout_width="fill_parent" android:layout_height="fill_parent" />
-</RelativeLayout>

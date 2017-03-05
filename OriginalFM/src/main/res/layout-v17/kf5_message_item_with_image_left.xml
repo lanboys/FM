@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:paddingTop="@dimen/kf5_dimen_8dp" android:paddingBottom="@dimen/kf5_dimen_8dp" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="@dimen/kf5_text_size_14" android:textColor="@android:color/white" android:layout_gravity="center_horizontal" android:id="@id/kf5_tvDate" android:background="@drawable/kf5_message_item_with_date_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_8dp" />
-    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_16dp">
-        <com.kf5sdk.view.CircleImageView android:id="@id/kf5_message_item_with_image_head_img" android:layout_width="48.0dip" android:layout_height="48.0dip" android:layout_marginLeft="@dimen/kf5_dimen_8dp" android:contentDescription="@null" android:layout_marginStart="@dimen/kf5_dimen_8dp" />
-        <com.kf5sdk.view.MaskImage android:id="@id/kf5_message_item_with_image_content_img" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_4dp" android:scaleType="fitXY" android:layout_toRightOf="@id/kf5_message_item_with_image_head_img" android:layout_alignTop="@id/kf5_message_item_with_image_head_img" android:contentDescription="@string/kf5_left" android:layout_marginStart="@dimen/kf5_dimen_4dp" android:layout_toEndOf="@id/kf5_message_item_with_image_head_img" />
-    </RelativeLayout>
-</LinearLayout>

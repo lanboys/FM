@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <include android:id="@id/album_head_sort" layout="@layout/item_album_sort_selector" />
-    <include android:id="@id/album_head_lastplayed" android:visibility="gone" layout="@layout/header_album_lastsoundinfo" />
-    <View android:background="#ffe8e8e8" android:layout_width="fill_parent" android:layout_height="1.0px" />
-</LinearLayout>

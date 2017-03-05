@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_child_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="12dp">
-    <!--<ImageView-->
-        <!--android:id="@+id/iv_cover_image1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--tools:src="@mipmap/account_avatar"/>-->
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_cover_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="156dp"
+        android:layout_height="156dp"
         android:layout_gravity="center"
         android:gravity="center"
-        fresco:ImageScaleType="fitCenter"
-        fresco:placeholderImage="@draw/R.drawable.image_default_202"
-        tools:src="@mipmap/account_avatar"/>
+        fresco:actualImageScaleType="fitCenter"
+        fresco:fadeDuration="2000"
+        fresco:placeholderImage="@drawable/image_default_202"
+        fresco:progressBarImage="@drawable/image_default_202"
+        fresco:progressBarImageScaleType="centerCrop"
 
+        fresco:roundedCornerRadius="10dp"
+        tools:src="@mipmap/account_avatar"
+    />
+    <!--fresco:roundAsCircle="true"-->
+    <!--app:failureImage="@mipmap/ic_launcher"-->
+    <!--app:failureImageScaleType="centerInside"-->
+    <!--app:retryImage="@mipmap/ic_launcher"-->
+    <!--app:retryImageScaleType="centerCrop"-->
+    <!--app:progressBarImage="@mipmap/ic_launcher"-->
+    <!--app:progressBarImageScaleType="centerCrop"-->
+    <!--app:progressBarAutoRotateInterval="5000"/>-->
 
     <TextView
         android:id="@+id/tv_track_Title"

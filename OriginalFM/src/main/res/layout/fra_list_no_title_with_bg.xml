@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merge
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:skin="http://schemas.android.com/android/skin">
-    <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="50.0dip" android:src="@drawable/pulldown_listview_bg" android:scaleType="centerCrop" android:adjustViewBounds="true" skin:enable="true" />
-    <com.ximalaya.ting.android.framework.view.refreshload.RefreshLoadMoreListView android:id="@id/listview" android:paddingBottom="@dimen/bottom_bar_height" android:scrollbars="none" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:listSelector="@color/transparent" android:divider="@null" android:dividerHeight="0.0dip" android:overScrollMode="always" ptr:ptrHeaderBackground="#00000000" ptr:ptrHeaderTextColor="@color/pull_to_refresh_text_color" ptr:ptrShowIndicator="false" ptr:ptrDrawable="@drawable/default_ptr_rotate" skin:enable="true"
-      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ptr="http://schemas.android.com/apk/res-auto" xmlns:skin="http://schemas.android.com/android/skin" />
-</merge>

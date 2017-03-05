@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ProgressBar android:layout_gravity="center" android:id="@id/progress" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@android:style/Widget.Holo.ProgressBar.Small" />
-    <uk.co.senab.photoview.PhotoView android:id="@id/photo" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent" />
-</FrameLayout>

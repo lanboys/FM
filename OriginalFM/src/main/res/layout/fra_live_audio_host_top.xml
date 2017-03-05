@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout android:id="@id/pageRl" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <ImageView android:id="@id/playIv" android:visibility="gone" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginTop="60.0dip" android:src="@drawable/liveaudio_play" android:layout_centerHorizontal="true" />
-    </RelativeLayout>
-</RelativeLayout>

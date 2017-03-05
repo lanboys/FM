@@ -26,6 +26,7 @@ import com.bing.lan.comm.utils.musicplay.MusicPlayer;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.girl.GirlFragment;
 import com.bing.lan.fm.ui.home.HomeFragment;
+import com.bing.lan.fm.ui.live.LiveActivity;
 import com.bing.lan.fm.ui.mine.MineFragment;
 import com.bing.lan.fm.ui.search.SearchActivity;
 import com.lapism.searchview.SearchAdapter;
@@ -261,6 +262,10 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
                 break;
             case R.id.action_search:
                 mSearchView.open(true, item);
+                break;
+            case R.id.action_live:
+                Intent intent1 = new Intent(this, LiveActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.action_day_night:
                 switchNightMode();

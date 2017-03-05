@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@string/main_content" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout android:background="@drawable/shadow_bg" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="-10.0dip" />
-    <RelativeLayout android:id="@id/main_layout" android:background="@color/bg_color" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <ListView android:id="@id/carePersonList" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:cacheColorHint="#00000000" android:divider="@drawable/care_person_list_line" android:layout_below="@id/top" />
-        <include android:id="@id/top" layout="@layout/titlebar_top" />
-    </RelativeLayout>
-</RelativeLayout>

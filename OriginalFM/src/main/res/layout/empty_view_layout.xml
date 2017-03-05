@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:background="@color/bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="19.0sp" android:textColor="@color/text_dark" android:gravity="center" android:id="@id/empty_view_title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="30.0dip" android:layout_marginBottom="30.0dip" android:text="@string/tip_have_not_collect" />
-    <TextView android:textSize="14.0sp" android:textColor="@color/text_dark" android:gravity="center" android:id="@id/empty_view_message" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/tip_collect" android:lineSpacingExtra="6.0dip" />
-    <Button android:textSize="19.0sp" android:textColor="#ffffffff" android:id="@id/empty_view_btn" android:background="@drawable/bg_btn_oval_orange_selector" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="34.0dip" android:layout_marginTop="30.0dip" android:layout_marginBottom="30.0dip" android:text="@string/find_you_like" />
-</LinearLayout>

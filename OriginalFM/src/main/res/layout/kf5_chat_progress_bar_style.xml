@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:background="@drawable/kf5_chat_message_box_bg" android:padding="6.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:padding="4.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent">
-        <ImageView android:id="@id/kf5_image_view" android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="@null" />
-        <TextView android:textSize="14.0sp" android:textColor="@android:color/white" android:id="@id/kf5_progress_dialog_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/kf5_dimen_4dp" android:text="正在加载..." />
-    </LinearLayout>
-</LinearLayout>

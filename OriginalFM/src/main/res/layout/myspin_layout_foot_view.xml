@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="30.0dip"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ProgressBar android:id="@id/loading_progress" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" style="?android:attr/progressBarStyleSmall" />
-    <TextView android:textSize="@dimen/first_title" android:textColor="@color/navi_normal" android:id="@id/loading_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="@string/carlink_tip_loading" android:layout_toRightOf="@id/loading_progress" android:layout_centerVertical="true" />
-</RelativeLayout>

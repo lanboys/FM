@@ -31,6 +31,20 @@ android {
         //65536,分包
         multiDexEnabled true
         //65536,分包
+
+        //jpush
+        ndk {
+        //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a','x86_64','x86'
+        // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "com.bing.lan.fm",
+                JPUSH_APPKEY : "4a2883814591ecf41485e313", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+        //jpush
+
     }
     buildTypes {
         release {
@@ -38,6 +52,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+//    sourceSets.main.jniLibs.srcDirs = ['libs']
+
 }
 
 
@@ -46,12 +69,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support:support-v4:25.2.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:cardview-v7:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.android.support:cardview-v7:25.2.0'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
     compile 'com.android.support:percent:25.2.0'
 
     //api23抛弃了httpclient,继续使用httpclient
@@ -130,4 +153,7 @@ dependencies {
     compile 'com.zhy:base-rvadapter:3.0.3'
     //    compile 'com.jude:easyrecyclerview:3.5.7'
     compile 'com.squareup:otto:1.3.8'
+    // 极光推送
+    compile 'cn.jiguang.sdk:jpush:3.0.1'
+    compile 'cn.jiguang.sdk:jcore:1.1.0'
 }

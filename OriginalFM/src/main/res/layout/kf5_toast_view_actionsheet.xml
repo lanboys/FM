@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="13.0sp" android:textColor="@color/kf5_actionsheet_gray" android:gravity="center" android:id="@id/kf5_txt_title" android:background="@drawable/kf5_toast_actionsheet_top_normal" android:paddingLeft="15.0dip" android:paddingTop="10.0dip" android:paddingRight="15.0dip" android:paddingBottom="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="45.0dip" />
-    <ScrollView android:id="@id/kf5_sLayout_content" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <LinearLayout android:orientation="vertical" android:id="@id/kf5_lLayout_content" android:layout_width="fill_parent" android:layout_height="wrap_content" />
-    </ScrollView>
-    <TextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="@color/kf5_actionsheet_blue" android:gravity="center" android:id="@id/kf5_txt_cancel" android:background="@drawable/kf5_actionsheet_single_selector" android:layout_width="fill_parent" android:layout_height="45.0dip" android:layout_marginTop="8.0dip" android:text="取消" />
-</LinearLayout>

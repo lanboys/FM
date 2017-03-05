@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:gravity="center" android:layout_gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textColor="#ff111111" android:gravity="center" android:id="@id/month_day" android:layout_width="wrap_content" android:layout_height="wrap_content" android:lines="1" />
-    <TextView android:textColor="#ff777777" android:gravity="center" android:id="@id/week_day" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:lines="1" />
-</LinearLayout>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@id/content_root" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.ximalaya.ting.android.framework.view.refreshload.RefreshLoadMoreListView android:id="@id/id_stickynavlayout_innerscrollview" android:paddingBottom="@dimen/bottom_bar_height" android:scrollbars="none" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="70.0dip" android:listSelector="@color/transparent" android:divider="@null" android:dividerHeight="0.0dip" android:overScrollMode="never" ptr:ptrHeaderTextColor="@color/text_medium" ptr:ptrShowIndicator="false" ptr:ptrDrawable="@drawable/ic_loading_circle" xmlns:ptr="http://schemas.android.com/apk/res-auto" />
-</RelativeLayout>

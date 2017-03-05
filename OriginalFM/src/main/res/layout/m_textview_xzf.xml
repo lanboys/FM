@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <View android:id="@id/divider3" android:background="#ffe8e8e8" android:layout_width="1.0px" android:layout_height="fill_parent" android:layout_alignParentLeft="true" />
-    <View android:id="@id/divider4" android:background="#ffe8e8e8" android:layout_width="1.0px" android:layout_height="fill_parent" android:layout_alignParentRight="true" />
-    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_rec_addmusic" android:layout_toLeftOf="@id/music_textview" android:layout_centerHorizontal="true" android:layout_centerVertical="true" />
-    <TextView android:textSize="13.0dip" android:textColor="#fffc5832" android:id="@id/music_textview" android:paddingLeft="6.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="添加配音" android:layout_centerHorizontal="true" android:layout_centerVertical="true" />
-</RelativeLayout>

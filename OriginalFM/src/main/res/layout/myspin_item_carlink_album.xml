@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="horizontal" android:background="@color/carlink_item_bg_black" android:paddingRight="@dimen/common_half_margin" android:layout_width="fill_parent" android:layout_height="@dimen/carlink_album_item_height"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/cover" android:layout_width="@dimen/carlink_album_item_height" android:layout_height="@dimen/carlink_album_item_height" android:layout_margin="@dimen/common_half_margin" android:src="@drawable/ting" android:scaleType="fitCenter" android:layout_alignParentLeft="true" />
-    <TextView android:textSize="@dimen/first_title" android:textColor="@color/first_title" android:id="@id/title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxLines="1" android:layout_toRightOf="@id/cover" android:layout_alignTop="@id/cover" />
-    <TextView android:textSize="@dimen/second_title" android:textColor="@color/second_title" android:id="@id/nick_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxLines="1" android:layout_below="@id/title" android:layout_alignLeft="@id/title" android:layout_alignBottom="@id/cover" />
-</RelativeLayout>

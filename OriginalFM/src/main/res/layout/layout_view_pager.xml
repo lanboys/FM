@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@id/main_layout" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.ximalaya.ting.android.view.HackyViewPager android:id="@id/pager_image" android:fadingEdge="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:overScrollMode="never" />
-    <com.ximalaya.ting.android.framework.view.pageindicator.CirclePageIndicator android:id="@id/indicator_dot" android:paddingBottom="5.0dip" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" app:strokeWidth="0.0dip" app:fillColor="@color/white" app:pageColor="@color/transparent_white" app:radius="3.0dip" app:extraSpacing="10.0dip" />
-    <ImageView android:id="@id/close_ads" android:visibility="gone" android:layout_width="25.0dip" android:layout_height="25.0dip" android:layout_marginTop="0.0dip" android:layout_marginRight="0.0dip" android:src="@drawable/ic_close_ad" android:scaleType="centerInside" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
-    <ProgressBar android:id="@id/pb_loading" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" style="?android:attr/progressBarStyleLarge" />
-</RelativeLayout>

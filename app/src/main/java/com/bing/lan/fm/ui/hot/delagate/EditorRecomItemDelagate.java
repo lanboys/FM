@@ -6,7 +6,6 @@ import android.graphics.drawable.Animatable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
@@ -88,23 +87,12 @@ public class EditorRecomItemDelagate
 
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
-        log.d("onItemClick(): item点击事件");
-
-        // ListItemEditorBean tag = (ListItemEditorBean) view.getTag();
-        // log.d("onItemClick(): " + tag);
-        // AppUtil.startActivity(view.getContext(), MusicActivity.class, false, true);
-        // Intent intent = new Intent(view.getContext(), MusicActivity.class);
-        // intent.putExtra(ALBUM_DETAIL, tag);
-        // intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
-        // view.getContext().startActivity(intent);
-
         ListItemEditorBean tag = (ListItemEditorBean) view.getTag();
         log.d("onItemClick(): " + tag);
         Intent intent = new Intent(view.getContext(), AlbumActivity.class);
         intent.putExtra(ALBUM_DETAIL, tag);
         intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
         view.getContext().startActivity(intent);
-
     }
 
     @Override
@@ -123,12 +111,12 @@ public class EditorRecomItemDelagate
         @Override
         protected void convert(ViewHolder holder, ListItemEditorBean listItemEditorBean, int position) {
 
-            RecyclerView.LayoutParams layoutParams =
-                    new RecyclerView.LayoutParams(AppUtil.getScreenW() / 3,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-
+            // RecyclerView.LayoutParams layoutParams =
+            //         new RecyclerView.LayoutParams(AppUtil.getScreenW() / 3,
+            //                 ViewGroup.LayoutParams.WRAP_CONTENT);
+            //
             View view = holder.getView(R.id.ll_child_container);
-            view.setLayoutParams(layoutParams);
+            // view.setLayoutParams(layoutParams);
 
             view.setTag(listItemEditorBean);
             log.d("convert(): " + listItemEditorBean);
@@ -143,18 +131,21 @@ public class EditorRecomItemDelagate
             com.bing.lan.comm.utils.load.ImageLoader
                     .getInstance()
                     .loadImage(draweeView,
-                            listItemEditorBean.getCoverMiddle(), new BaseControllerListener<ImageInfo>() {
+                            listItemEditorBean.getCoverLarge(),
+                            new BaseControllerListener<ImageInfo>() {
                                 @Override
-                                public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
-                                    if (imageInfo == null) {
-                                        return;
-                                    }
-                                    ViewGroup.LayoutParams vp = draweeView.getLayoutParams();
-                                    //计算控件高宽比
-                                    vp.width = imageInfo.getWidth();
-                                    vp.height = imageInfo.getHeight();
+                                public void onFinalImageSet(String id,
+                                        @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
 
-                                    draweeView.requestLayout();
+                                    // if (imageInfo == null) {
+                                    //     return;
+                                    // }
+                                    // ViewGroup.LayoutParams vp = draweeView.getLayoutParams();
+                                    // //计算控件高宽比
+                                    // vp.width = imageInfo.getWidth();
+                                    // vp.height = imageInfo.getHeight();
+                                    //
+                                    // draweeView.requestLayout();
                                 }
                             });
         }

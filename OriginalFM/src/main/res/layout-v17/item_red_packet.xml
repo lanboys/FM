@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/iv_packet" android:background="@drawable/red_packet" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="14.0dip" android:layout_centerVertical="true" />
-    <TextView android:textSize="16.0sp" android:textColor="#ff333333" android:id="@id/tv_count_send" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25.0dip" android:text="@string/envelope_count" android:layout_toRightOf="@id/iv_packet" />
-    <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:id="@id/tv_deadline" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/envelope_deadline" android:layout_below="@id/tv_count_send" android:layout_alignLeft="@id/tv_count_send" />
-    <TextView android:textColor="#fffb5832" android:id="@id/tv_send_packet" android:background="@drawable/bg_album_batch_downloaded_selector" android:paddingLeft="14.0dip" android:paddingRight="14.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="@string/envelope_send" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_marginEnd="10.0dip" android:layout_alignParentEnd="true" />
-</RelativeLayout>

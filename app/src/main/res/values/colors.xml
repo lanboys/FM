@@ -11,7 +11,11 @@
     <color name="main_background">#fff86442</color>
     <color name="main_orange_background">#fff86442</color>
     <!-- 灰白 -->
+    <color name="main_gray_white_background">#dadada</color>
+
+
     <color name="main_white_background">#f3f3f3</color>
+    <color name="load_pager_background">#f3f3f3</color>
 
     <!-- 灰色分割线 -->
     <color name="main_gray_line">#6f6f6f</color>

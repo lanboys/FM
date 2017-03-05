@@ -58,8 +58,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     private List<View> mViews;
     private View mGirlViewpagerView;
     private View mBannerView;
-    private int BANNER_HEIGHT = AppUtil.dip2px(150);
-    private int VIEWPAGE_HEIGHT = AppUtil.dip2px(275);
+    private int BANNER_HEIGHT = AppUtil.dip2px(175);
+    private int VIEWPAGE_HEIGHT = AppUtil.dip2px(285);
     private GirlViewPagerAdapter mAdapter;
     private List<HotInfoBean> mRecyclerViewData;
     private HeaderAndFooterWrapper mHeaderAndFooterWrapper;
@@ -113,15 +113,14 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
                 //加载图片
                 // ImagePicassoUtil.loadImage(imageView, (String) path);
                 // com.bing.lan.comm.utils.load.ImageLoader.getInstance().loadImage(imageView, (String) path);
-                // TODO: 2017/2/24  注释后,tab来回切换报错,查找原因
                 com.bing.lan.comm.utils.load.ImageLoader
                         .getInstance()
-                        .loadImage(getContext(), (String) path, 500, 500, new IResult<Bitmap>() {
+                        .loadImage(getContext(), (String) path, AppUtil.getScreenW(), BANNER_HEIGHT, new IResult<Bitmap>() {
                             @Override
                             public void onResult(Bitmap bitmap) {
                                 MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
                                 imageView.setImageBitmap(bitmap);
-                                imageView.setScaleType(ImageView.ScaleType.CENTER);
+                                // imageView.setScaleType(ImageView.ScaleType.CENTER);
                             }
                         });
             }

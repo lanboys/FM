@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:gravity="center_vertical" android:id="@id/layout_reward_module" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="112.0dip"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/iv_reward" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_marginLeft="10.0dip" android:src="@drawable/player_reward" android:layout_centerVertical="true" />
-    <ImageView android:id="@id/player_reward_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:src="@drawable/ic_more" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
-    <LinearLayout android:gravity="right" android:orientation="horizontal" android:id="@id/player_reward_container" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="5.0dip" android:layout_marginRight="10.0dip" android:layout_toLeftOf="@id/player_reward_right" android:layout_toRightOf="@id/iv_reward" android:layout_centerVertical="true" />
-    <TextView android:textSize="17.0sp" android:textColor="#ff666666" android:id="@id/hint_reward" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="给TA打赏" android:layout_toRightOf="@id/iv_reward" android:layout_centerVertical="true" />
-</RelativeLayout>

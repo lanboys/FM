@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:background="@color/myspace_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <include layout="@layout/titlebar_top" />
-    <TextView android:id="@id/tv_private_setting" android:layout_marginTop="15.0dip" android:text="隐私设置" android:layout_below="@id/tv_comment_title" style="@style/setting_text_title" />
-    <ImageView android:id="@id/divide_0" android:layout_below="@id/tv_comment_option0" style="@style/setting_divide" />
-    <TextView android:id="@id/tv_push_setting" android:text="推送设置" android:layout_below="@id/divide_0" style="@style/setting_text_title" />
-</LinearLayout>

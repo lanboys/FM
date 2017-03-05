@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:orientation="horizontal" android:padding="@dimen/kf5_dimen_12dp" android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <TextView android:textSize="@dimen/kf5_text_h_size" android:textColor="@color/kf5_user_field_label_color" android:ellipsize="middle" android:gravity="start" android:id="@id/kf5_user_field_name" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_4dp" android:singleLine="true" android:layout_weight="1.0" />
-        <TextView android:textSize="@dimen/kf5_text_l_size" android:textColor="@color/kf5_message_value_color" android:ellipsize="middle" android:gravity="end" android:id="@id/kf5_user_field_value" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginRight="@dimen/kf5_dimen_4dp" android:singleLine="true" android:layout_weight="1.0" />
-    </LinearLayout>
-    <View android:background="@color/kf5_table_deliver" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="@dimen/kf5_dimen_20dp" />
-</LinearLayout>

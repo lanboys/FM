@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.handmark.pulltorefresh.library.PullToRefreshListView android:scrollbarStyle="outsideInset" android:id="@id/private_msg" android:paddingBottom="80.0dip" android:scrollbars="none" android:fadingEdge="none" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="-4.0dip" android:listSelector="@android:color/transparent" android:scrollingCache="false" android:cacheColorHint="#00000000" android:divider="@null" android:dividerHeight="0.0px" android:layout_below="@id/top_bar" />
-    <include android:id="@id/top_bar" layout="@layout/titlebar_top" />
-</RelativeLayout>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical" android:background="@color/white" android:paddingTop="13.0dip" android:paddingBottom="13.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="15.0sp" android:textColor="#ff333333" android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:drawableLeft="@drawable/ic_section_header" android:drawablePadding="5.0dip" />
-    <TextView android:textSize="12.0sp" android:textColor="#ff999999" android:gravity="center_vertical" android:id="@id/more" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:text="更多好书" android:drawableRight="@drawable/arrow_black_right" android:drawablePadding="5.0dip" android:layout_alignTop="@id/title" android:layout_alignBottom="@id/title" android:layout_alignParentRight="true" />
-    <com.ximalaya.ting.android.framework.view.ViewPagerInScroll android:id="@id/pager" android:paddingLeft="20.0dip" android:paddingRight="20.0dip" android:clipToPadding="false" android:layout_width="wrap_content" android:layout_height="150.0dip" android:layout_marginTop="14.0dip" android:layout_below="@id/title" />
-</RelativeLayout>

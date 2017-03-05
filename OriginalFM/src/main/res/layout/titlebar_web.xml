@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="15.0sp" android:textColor="@color/orange" android:gravity="center" android:id="@id/tv_web_back" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:text="@string/go_back" android:drawableLeft="@drawable/arrow_orange_left" android:drawablePadding="2.0dip" android:layout_alignParentLeft="true" />
-    <TextView android:textSize="15.0sp" android:textColor="@color/orange" android:gravity="center" android:id="@id/tv_web_close" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:text="@string/close" android:layout_toRightOf="@id/tv_web_back" android:layout_centerVertical="true" />
-</RelativeLayout>

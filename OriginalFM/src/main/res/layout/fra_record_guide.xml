@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.ximalaya.ting.android.view.MyViewPager android:id="@id/viewPager" android:layout_width="fill_parent" android:layout_height="fill_parent" />
-    <ImageView android:layout_gravity="right" android:id="@id/close" android:visibility="gone" android:clickable="true" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginTop="10.0dip" android:src="@drawable/guide_close" android:scaleType="center" />
-    <com.ximalaya.ting.android.framework.view.pageindicator.CirclePageIndicator android:layout_gravity="bottom" android:id="@id/indicator" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="15.0dip" app:centered="true" app:strokeWidth="0.0dip" app:fillColor="@color/indicator_fill_color" app:pageColor="@color/indicator_page_color" app:radius="3.0dip" app:extraSpacing="10.0dip" />
-</FrameLayout>

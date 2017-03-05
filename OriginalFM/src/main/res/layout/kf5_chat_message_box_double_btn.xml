@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:gravity="end" android:orientation="horizontal" android:id="@id/btnLayoutDouble" android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <TextView android:textSize="16.0sp" android:textColor="#ff0079ff" android:gravity="center" android:id="@id/kf5_dialogLeftBtn" android:background="@drawable/kf5_chat_messagebox_single_btn" android:padding="@dimen/kf5_dimen_6dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OK" android:singleLine="true" />
-        <TextView android:textSize="16.0sp" android:textColor="#ff0079ff" android:gravity="center" android:id="@id/kf5_dialogRightBtn" android:background="@drawable/kf5_chat_messagebox_single_btn" android:padding="@dimen/kf5_dimen_6dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/kf5_dimen_24dp" android:text="Cancel" android:singleLine="true" />
-    </LinearLayout>
-</LinearLayout>

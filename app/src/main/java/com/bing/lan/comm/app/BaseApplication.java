@@ -7,6 +7,8 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * @author 蓝兵
  * @time 2017/1/9  18:26
@@ -36,6 +38,11 @@ public class BaseApplication extends Application {
 
         //错误报告
         // ErrorReport.getInstance().init(this);
+
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+
+
 
     }
 }

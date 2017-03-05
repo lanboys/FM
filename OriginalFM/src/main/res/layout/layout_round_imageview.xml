@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.ximalaya.ting.android.framework.view.RoundedImageView android:orientation="vertical" android:layout_width="30.0dip" android:layout_height="30.0dip" android:scaleType="centerCrop" android:layout_alignParentLeft="true" makeramen:corner_radius="80.0dip" makeramen:round_background="true" makeramen:pressdown_shade="false"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:makeramen="http://schemas.android.com/apk/res-auto" />

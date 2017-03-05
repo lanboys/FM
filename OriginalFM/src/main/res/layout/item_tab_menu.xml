@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/tab_menu_icon" android:paddingTop="5.0dip" android:focusable="false" android:visibility="visible" android:clickable="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/ting" android:scaleType="fitCenter" />
-    <TextView android:textColor="@color/white" android:gravity="center" android:id="@id/tab_menu_title" android:padding="5.0dip" android:focusable="false" android:clickable="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="" android:maxLines="1" />
-</LinearLayout>

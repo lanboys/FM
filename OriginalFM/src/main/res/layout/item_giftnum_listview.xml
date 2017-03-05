@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="110.0dip" android:layout_height="30.0dip"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="13.0sp" android:textColor="#ff333333" android:gravity="center" android:layout_gravity="center" android:id="@id/tv_item_gift_num" android:layout_width="110.0dip" android:layout_height="29.0dip" android:text="1" />
-    <View android:id="@id/divide" android:background="#ffe2e2e2" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginLeft="9.0dip" android:layout_marginRight="9.0dip" />
-</LinearLayout>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:background="@color/white" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <include android:id="@id/layout_section_header" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/view_section_header_grid" />
-    <LinearLayout android:orientation="vertical" android:id="@id/layout_container" android:layout_width="fill_parent" android:layout_height="wrap_content" />
-    <View android:id="@id/border_bottom" android:background="@color/bg_color" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="10.0dip" />
-</LinearLayout>

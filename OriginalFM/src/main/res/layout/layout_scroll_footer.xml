@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@id/footer" android:paddingTop="20.0dip" android:layout_width="fill_parent" android:layout_height="200.0dip"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="14.0sp" android:textColor="@color/text_light" android:gravity="center" android:id="@id/foot_title" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="30.0dip" android:text="@string/album_scroll_footer_tip" android:layout_centerHorizontal="true" />
-    <View android:id="@id/border_1" android:background="@color/album_border_color" android:layout_width="30.0dip" android:layout_height="1.5px" android:layout_marginTop="13.5dip" android:layout_marginRight="10.0dip" android:layout_toLeftOf="@id/foot_title" android:layout_alignTop="@id/foot_title" />
-    <View android:id="@id/border_2" android:background="@color/album_border_color" android:layout_width="30.0dip" android:layout_height="1.5px" android:layout_marginLeft="10.0dip" android:layout_marginTop="13.5dip" android:layout_toRightOf="@id/foot_title" android:layout_alignTop="@id/foot_title" />
-</RelativeLayout>
