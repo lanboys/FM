@@ -11,5 +11,6 @@ public class LiveUrl {
     public static final String STREAM_PUSH_URL = "rtmp://push.bcelive.com/live/fo1ph9bo1tkpunfyxk";
 
     // http://play.bcelive.com/live/lss-hcdxxegx2erpy1hu.flv
+    //rtmp://play.bcelive.com/live/lss-hcdxxegx2erpy1hu
 
 }

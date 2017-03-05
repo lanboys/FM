@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="basic_permissions">
+        <item>android.permission.ACCESS_NETWORK_STATE</item>
+        <item>android.permission.READ_PHONE_STATE</item>
+        <item>android.permission.READ_EXTERNAL_STORAGE</item>
+        <item>android.permission.WRITE_EXTERNAL_STORAGE</item>
+    </string-array>
+
+    <string-array name="main_permissions">
+        <item>android.permission.ACCESS_WIFI_STATE</item>
+        <item>android.permission.ACCESS_NETWORK_STATE</item>
+    </string-array>
+
+
     <string-array name="main_tab_title">
         <item>首页</item>
         <item>妹子</item>
@@ -29,11 +42,11 @@
     </integer-array>
 
     <!--<array name="indicator_colors">-->
-        <!--<item>@color/indicator_1</item>-->
-        <!--<item>@color/indicator_2</item>-->
-        <!--<item>@color/indicator_3</item>-->
-        <!--<item>@color/indicator_4</item>-->
-        <!--<item>@color/indicator_5</item>-->
+    <!--<item>@color/indicator_1</item>-->
+    <!--<item>@color/indicator_2</item>-->
+    <!--<item>@color/indicator_3</item>-->
+    <!--<item>@color/indicator_4</item>-->
+    <!--<item>@color/indicator_5</item>-->
     <!--</array>-->
 
     <!--<color name="indicator_1">#55B3C2</color>-->

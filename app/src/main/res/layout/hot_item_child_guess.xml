@@ -46,16 +46,16 @@
         android:textColor="#292d29"
         android:textSize="@dimen/hot_track_Title"
         tools:text="标题小编推荐推荐荐推荐荐推荐"/>
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/finding_album_img"
-        android:drawablePadding="4dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/hot_item_title_text_color"
-        android:textSize="@dimen/hot_title"
-        tools:text="标题小编推荐推荐"/>
+    <!--<TextView-->
+        <!--android:id="@+id/tv_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:drawableLeft="@drawable/finding_album_img"-->
+        <!--android:drawablePadding="4dp"-->
+        <!--android:ellipsize="end"-->
+        <!--android:maxLines="1"-->
+        <!--android:textColor="@color/hot_item_title_text_color"-->
+        <!--android:textSize="@dimen/hot_title"-->
+        <!--tools:text="标题小编推荐推荐"/>-->
 
 </LinearLayout>

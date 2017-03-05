@@ -14,7 +14,7 @@ public class EditorRecomItemDelagate
 
     @Override
     public int getItemViewLayoutId() {
-        return R.layout.hot_item_editor;
+        return R.layout.hot_item;
     }
 
     @Override

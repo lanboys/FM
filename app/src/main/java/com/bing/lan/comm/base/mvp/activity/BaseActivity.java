@@ -1,9 +1,14 @@
 package com.bing.lan.comm.base.mvp.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,10 +29,15 @@ import com.bing.lan.comm.utils.SPUtil;
 import com.bing.lan.comm.utils.ToastUtil;
 import com.bing.lan.fm.R;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_NO;
 import static android.support.v7.app.AppCompatDelegate.MODE_NIGHT_YES;
@@ -41,9 +51,9 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
         extends AppCompatActivity
         implements IBaseActivityView<T> {
 
+    private static final int BASE_PERMISSION_REQUEST_CODE = 0;
     // protected LogUtil log = LogUtil.getLogUtil(getClass(), 1);
     protected Unbinder mViewBind;
-
     @Inject
     protected LogUtil log;
     @Inject
@@ -97,11 +107,6 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
         setContentView(getLayoutResId());
         //绑定控件
         mViewBind = ButterKnife.bind(this);
-    }
-
-    public void requestPermissions() {
-        // TODO: 2017/1/12 获取权限的操作
-        readyStartPresenter();
     }
 
     /**
@@ -254,5 +259,163 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
                 }
             });
         }
+    }
+
+    /*请求权限*/
+    private void requestPermissions() {
+
+        // 判断系统是不是大于等于M
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // 获得权限字符串数组
+            final String[] permissions = AppUtil.getStrArr(getPermissionArrId());
+            //检查基本权限是否授权成功
+            if (checkBasePermissions(permissions)) {
+                requestPermissionSucceed();
+            } else {
+                //检查是否有被拒绝过的权限
+                checkDeniedPermissions(permissions);
+            }
+        } else {
+            requestPermissionSucceed();
+        }
+    }
+
+    /**
+     * 检查基本权限
+     */
+    private boolean checkBasePermissions(String[] permissions) {
+        boolean result = true;
+        for (String permission : permissions) {
+            //PackageManager.PERMISSION_GRANTED 表示授权成功
+            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(this, permission)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 检查是否有被拒绝过的权限
+     */
+    private void checkDeniedPermissions(final String[] permissions) {
+        List<String> shouldShowPermission = new ArrayList<>();
+        for (String permission : permissions) {
+
+            // false: 1.没有被拒绝过(第一次申请)
+            //        2.被拒绝,并且在权限申请对话框中设置了,不再弹窗
+            // true: 1.被拒绝过,弹窗向用户解释
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                shouldShowPermission.add(permission);
+            }
+        }
+        log.i("checkDeniedPermissions():被拒绝过的权限: " + shouldShowPermission.toString());
+        if (shouldShowPermission.size() > 0) {
+            //被拒绝过需要解释
+            showRationaleDialog(permissions);
+        } else {
+            //未被拒绝
+            //永久拒绝(不弹窗了)
+            requestPermissionsImpl(permissions);
+        }
+    }
+
+    private void showRationaleDialog(final String[] permissions) {
+        new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
+                .setTitleText("授权温馨提示:")
+                .setContentText("亲爱的用户,您好,麻烦您授权一下,不然我们没办法启动哦,谢谢您的配合")
+                .setCancelText("取消")
+                .setConfirmText("确定")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        requestPermissionsImpl(permissions);
+                    }
+                }).setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismissWithAnimation();
+                //请求权限失败
+                requestPermissionFailed(Arrays.asList(permissions));
+            }
+        }).show();
+    }
+
+    /**
+     * 真正请求权限的操作
+     */
+    private void requestPermissionsImpl(final String[] permissions) {
+        //请求权限
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                //弹系统请求权限对话框
+                ActivityCompat.requestPermissions(BaseActivity.this, permissions, BASE_PERMISSION_REQUEST_CODE);
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == BASE_PERMISSION_REQUEST_CODE) {
+            List<String> failed = new ArrayList<>();
+            // 检查权限请求结果
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] != PackageManager.PERMISSION_GRANTED)
+                    failed.add(permissions[i]);
+            }
+
+            log.d("onRequestPermissionsResult():请求失败的权限 " + failed.toString());
+            // 报告每个请求失败的权限
+            if (!failed.isEmpty()) {
+                requestPermissionFailed(failed);
+                return;
+            }
+            // 权限请求成功
+            requestPermissionSucceed();
+        }
+    }
+
+    /**
+     * 权限请求成功时调用
+     */
+    protected void requestPermissionSucceed() {
+        readyStartPresenter();
+    }
+
+    /**
+     * 权限请求失败时调用
+     */
+    protected void requestPermissionFailed(List<String> failedPermissions) {
+        new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
+                .setTitleText("温馨提示:")
+                .setContentText("亲爱的用户,您好,小M未得到您的授权,无法启动哦,再见..")
+                .setConfirmText("确定")
+                .setCancelText("去设置页面开启权限")
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+                        finish();
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                        AppUtil.detailApp(BaseActivity.this, getPackageName());
+                        finish();
+
+                    }
+                }).show();
+    }
+
+    /**
+     * 返回权限数组资源id
+     */
+    protected int getPermissionArrId() {
+        return R.array.basic_permissions;
     }
 }

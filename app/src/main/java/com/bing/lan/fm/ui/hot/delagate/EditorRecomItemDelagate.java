@@ -39,22 +39,22 @@ public class EditorRecomItemDelagate
 
     @Override
     public int getItemViewLayoutId() {
-        return R.layout.hot_item_editor;
+        return R.layout.hot_item;
     }
 
     @Override
     public boolean isForViewType(HotInfoBean item, int position) {
-        return true;
-        // return item.getList().get(0) instanceof ListItemEditorBean;
+        // return true;
+        return item.getList().get(0) instanceof ListItemEditorBean;
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void convert(ViewHolder holder, HotInfoBean hotInfoBean, int position) {
         holder.setText(R.id.tv_hot_item_title, hotInfoBean.getTitle());
-        if (!(hotInfoBean.getList().get(0) instanceof ListItemEditorBean)) {
-            return;
-        }
+        // if (!(hotInfoBean.getList().get(0) instanceof ListItemEditorBean)) {
+        //     return;
+        // }
         List<ListItemEditorBean> list = hotInfoBean.getList();
         initChildRecyclerView(holder, list);
     }
