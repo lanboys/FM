@@ -3,7 +3,7 @@ package com.bing.lan.comm.api;
 import com.bing.lan.fm.ui.album.bean.AlbumResultBean;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.home.bean.HomeTabsResult;
-import com.bing.lan.fm.ui.hot.bean.HotColumnsResult;
+import com.bing.lan.fm.ui.hot.bean.HotResult1;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
 import com.bing.lan.fm.ui.music.bean.PlayResult;
 import com.bing.lan.fm.ui.search.bean.SearchHintWordResult;
@@ -43,7 +43,7 @@ public interface ApiService {
 
     // 横向 listview
     @GET("mobile/discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81")
-    Observable<HotColumnsResult> getHotColumns();
+    Observable<HotResult1> getHotResult1();
     // http://mobile.ximalaya.com/mobile/discovery/v3/recommend/hotAndGuess?code=43_440000_4401&device=android&version=5.4.81
 
     // 小编推荐/轮播图(焦点图)/精品听当

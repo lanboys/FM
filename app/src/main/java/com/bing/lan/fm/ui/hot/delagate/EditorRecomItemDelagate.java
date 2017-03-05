@@ -119,7 +119,7 @@ public class EditorRecomItemDelagate
             // view.setLayoutParams(layoutParams);
 
             view.setTag(listItemEditorBean);
-            log.d("convert(): " + listItemEditorBean);
+            // log.d("convert(): " + listItemEditorBean);
 
             holder.setText(R.id.tv_track_Title, listItemEditorBean.getTrackTitle());
             holder.setText(R.id.tv_title, listItemEditorBean.getTitle());

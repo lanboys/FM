@@ -5,6 +5,7 @@ import com.bing.lan.comm.view.LoadPageView;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
+import com.bing.lan.fm.ui.hot.bean.HotResult1;
 import com.bing.lan.fm.ui.hot.bean.ListItemFocusImageBean;
 
 import java.util.ArrayList;
@@ -20,17 +21,20 @@ public class HotPresenter extends
 
     public static final int LOAD_GANK = 0;
     public static final int LOAD_HOT_MAIN = 1;
+    public static final int LOAD_HOT_MAIN1 = 2;
 
     private static final int LOAD_COUNT = 20;
     private static final int LOAD_PAGE = 1;
     private static final int MAX_PAGE = -1;
 
     private int loadCompleted = 0;
+    private List<HotInfoBean> mHotInfos = new ArrayList<>();
 
     @Override
     public void onStart(Object... params) {
         mModule.requestData(LOAD_HOT_MAIN, this);
         mModule.requestData(LOAD_GANK, this, LOAD_COUNT, LOAD_PAGE);
+        mModule.requestData(LOAD_HOT_MAIN1, this);
     }
 
     @Override
@@ -41,19 +45,31 @@ public class HotPresenter extends
             case LOAD_HOT_MAIN:
                 handleHotData((HotResult) data);
                 break;
+            case LOAD_HOT_MAIN1:
+                handleHotData1((HotResult1) data);
+                break;
             case LOAD_GANK:
                 mView.updateGirlViewPager((List<GankBean.ResultsBean>) data);
                 break;
         }
     }
 
-    private void handleHotData(HotResult hotResult) {
-        List<HotInfoBean> hotInfos = new ArrayList<>();
-        hotInfos.add(hotResult.getEditorRecommendAlbums());
-        hotInfos.add(hotResult.getSpecialColumn());
-        mView.updateRecyclerView(hotInfos);
-        // TODO: 2017/2/24 报空指针
+    private void handleHotData1(HotResult1 hotResult) {
 
+        //猜你喜欢
+        mHotInfos.add(0,hotResult.getGuess() );
+        mHotInfos.add(hotResult.getDiscoveryColumns() );
+        mView.updateRecyclerView(mHotInfos);
+    }
+
+    private void handleHotData(HotResult hotResult) {
+        //小编推荐
+        mHotInfos.add(hotResult.getEditorRecommendAlbums());
+        //精品听单
+        mHotInfos.add(hotResult.getSpecialColumn());
+        mView.updateRecyclerView(mHotInfos);
+
+        //轮播图
         HotInfoBean<ListItemFocusImageBean> focusImages = hotResult.getFocusImages();
         List<ListItemFocusImageBean> list = focusImages.getList();
         List<String> imageUrls = new ArrayList<>();

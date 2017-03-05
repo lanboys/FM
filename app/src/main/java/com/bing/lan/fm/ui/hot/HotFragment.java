@@ -21,8 +21,10 @@ import com.bing.lan.fm.cons.Constants;
 import com.bing.lan.fm.listener.RecyclerViewScrollListener;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
+import com.bing.lan.fm.ui.hot.delagate.DiscoverItemDelagate;
 import com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate;
 import com.bing.lan.fm.ui.hot.delagate.GirlViewPagerAdapter;
+import com.bing.lan.fm.ui.hot.delagate.GuessItemDelagate;
 import com.bing.lan.fm.ui.hot.delagate.SpecialItemDelagate;
 import com.bing.lan.fm.ui.pic.PictureActivity;
 import com.facebook.fresco.helper.listener.IResult;
@@ -159,7 +161,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
     private void initRecyclerView() {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setSmoothScrollbarEnabled(true); 
+        linearLayoutManager.setSmoothScrollbarEnabled(true);
         mHotRecyclerView.setLayoutManager(linearLayoutManager);
 
         mRecyclerViewData = new ArrayList<>();
@@ -170,7 +172,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mMultiItemTypeAdapter.addItemViewDelegate(editorRecomItemDelagate);
 
         mMultiItemTypeAdapter.addItemViewDelegate(new SpecialItemDelagate());
-        // mMultiItemTypeAdapter.addItemViewDelegate(new EditorRecomItemDelagate());
+        mMultiItemTypeAdapter.addItemViewDelegate(new GuessItemDelagate());
+        mMultiItemTypeAdapter.addItemViewDelegate(new DiscoverItemDelagate());
 
         mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(mMultiItemTypeAdapter);
 
