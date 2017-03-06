@@ -1,0 +1,62 @@
+// package com.bing.lan.fm.ui.anchor;
+//
+// import com.bing.lan.comm.base.mvp.fragment.BaseFragmentPresenter;
+// import com.bing.lan.fm.ui.anchor.bean.AnchorResult;
+//
+// /**
+//  * anchor的P层
+//  * @author 蓝兵
+//  * @time 2017/2/8  10:27
+//  */
+// public class AnchorPresenter extends
+//         BaseFragmentPresenter<IAnchorContract.IAnchorView, IAnchorContract.IAnchorModule>
+//         implements IAnchorContract.IAnchorPresenter {
+//     //发起一个请求
+//     public static final int ANCHOR_NULL = 0;
+//
+//     /**
+//      *  给module层发送消息
+//      * @param params 需要传递的参数
+//      */
+//     @Override
+//     public void onStart(Object... params) {
+//         //发送一个空请求数据
+//       mModule.requestData(ANCHOR_NULL,this);
+//     }
+//
+//     /**
+//      * 返回数据的回调
+//      * @param action 声明的action
+//      * @param data 回调的数据
+//      */
+//     @Override
+//     @SuppressWarnings("unchecked")
+//     public void onSuccess(int action, Object data) {
+//         switch (action) {
+//             //总数据
+//              case ANCHOR_NULL:
+//                 mView.upDateRecyclerView((AnchorResult)data);
+//                  break;
+//         }
+//     }
+//
+//
+//     /**
+//      * 失败的回调
+//      * @param action  声明的action
+//      * @param e 失败的原因
+//      */
+//     @Override
+//     public void onError(int action, Throwable e) {
+//         super.onError(action, e);
+//     }
+//
+//     /**
+//      * 成功的回调
+//      * @param action 声明的action
+//      */
+//     @Override
+//     public void onCompleted(int action) {
+//         super.onCompleted(action);
+//     }
+// }

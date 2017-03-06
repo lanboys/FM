@@ -1,4 +1,4 @@
-package com.bing.lan.comm.base.mvp.fragment.test;
+package com.bing.lan.fm.ui.category;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,12 @@ import com.bing.lan.fm.cons.Constants;
 /**
  *
  */
-public class FragTestFragment extends BaseFragment<IFragTestContract.IFragTestPresenter>
-        implements IFragTestContract.IFragTestView {
+public class CategoryFragment extends BaseFragment<ICategoryContract.ICategoryPresenter>
+        implements ICategoryContract.ICategoryView {
 
 
-    public static FragTestFragment newInstance(String title) {
-        FragTestFragment fragment = new FragTestFragment();
+    public static CategoryFragment newInstance(String title) {
+        CategoryFragment fragment = new CategoryFragment();
         Bundle args = new Bundle();
         args.putString(Constants.FRAGMENT_TITLE, title);
         fragment.setArguments(args);
@@ -29,7 +29,7 @@ public class FragTestFragment extends BaseFragment<IFragTestContract.IFragTestPr
 
     @Override
     protected void startInject(FragmentComponent fragmentComponent) {
-        //        fragmentComponent.inject(this);
+               fragmentComponent.inject(this);
     }
 
     @Override

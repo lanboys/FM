@@ -7,7 +7,7 @@ import io.realm.RealmConfiguration;
 
 
 public class RealmManager {
-    private static final String DB_NAME = "jdmall.db";
+    private static final String DB_NAME = "fm.db";
     private static RealmConfiguration sConfig;
     private static RealmManager instance;
     private static int code;

@@ -15,14 +15,12 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_weight="1.8"
-
         android:gravity="center"
         fresco:actualImageScaleType="fitCenter"
         fresco:fadeDuration="500"
         fresco:placeholderImage="@drawable/image_default_202"
         fresco:progressBarImage="@drawable/image_default_202"
         fresco:progressBarImageScaleType="centerCrop"
-
         fresco:roundedCornerRadius="10dp"
         tools:src="@mipmap/account_avatar"
     />
@@ -49,7 +47,6 @@
             android:id="@+id/tv_track_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/big_title_color"
@@ -64,7 +61,6 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/little_title_color"
-
             android:textSize="@dimen/hot_track_Subtitle"
             tools:text="标题小编推荐推荐荐推荐荐推荐"/>
         <TextView

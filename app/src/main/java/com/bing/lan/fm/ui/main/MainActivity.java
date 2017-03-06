@@ -29,6 +29,7 @@ import com.bing.lan.fm.ui.home.HomeFragment;
 import com.bing.lan.fm.ui.live.LiveActivity;
 import com.bing.lan.fm.ui.mine.MineFragment;
 import com.bing.lan.fm.ui.search.SearchActivity;
+import com.bing.lan.fm.ui.subscriber.SubscriberFragment;
 import com.lapism.searchview.SearchAdapter;
 import com.lapism.searchview.SearchHistoryTable;
 import com.lapism.searchview.SearchItem;
@@ -63,6 +64,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     private MineFragment mMineFragment;
     private SearchHistoryTable mHistoryDatabase;
     private MusicPlayer.ServiceToken mServiceToken;
+    private SubscriberFragment mSubscriberFragment;
 
     @Override
     protected void onDestroy() {
@@ -220,6 +222,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     @Override
     public void onVoiceClick() {
         // permission
+        //搜索框的声音搜索
 
     }
 
@@ -297,11 +300,11 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     }
 
     private void jumpSubscriberFragment() {
-        // if (mHomeFragment == null) {
-        //     SubscriberFragment.newInstance(mTabTitles[2]);
-        // }
-        // replaceFragment(mHomeFragment);
-        // updateTitle(mGirlFragment.getTitle());
+        if (mSubscriberFragment == null) {
+            mSubscriberFragment = SubscriberFragment.newInstance(mTabTitles[2]);
+        }
+        replaceFragment(mSubscriberFragment);
+        updateTitle(mSubscriberFragment.getTitle());
 
     }
 

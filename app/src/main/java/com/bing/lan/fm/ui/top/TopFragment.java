@@ -1,4 +1,4 @@
-package com.bing.lan.comm.base.mvp.fragment.test;
+package com.bing.lan.fm.ui.top;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,12 @@ import com.bing.lan.fm.cons.Constants;
 /**
  *
  */
-public class FragTestFragment extends BaseFragment<IFragTestContract.IFragTestPresenter>
-        implements IFragTestContract.IFragTestView {
+public class TopFragment extends BaseFragment<ITopContract.ITopPresenter>
+        implements ITopContract.ITopView {
 
 
-    public static FragTestFragment newInstance(String title) {
-        FragTestFragment fragment = new FragTestFragment();
+    public static TopFragment newInstance(String title) {
+        TopFragment fragment = new TopFragment();
         Bundle args = new Bundle();
         args.putString(Constants.FRAGMENT_TITLE, title);
         fragment.setArguments(args);
@@ -29,7 +29,7 @@ public class FragTestFragment extends BaseFragment<IFragTestContract.IFragTestPr
 
     @Override
     protected void startInject(FragmentComponent fragmentComponent) {
-        //        fragmentComponent.inject(this);
+               fragmentComponent.inject(this);
     }
 
     @Override

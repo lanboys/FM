@@ -85,7 +85,7 @@ public class ListItemGuessBean implements Serializable, IAlbum {
         this.albumCoverUrl290 = albumCoverUrl290;
     }
 
-    public long getAlbumId() { 
+    public long getAlbumId() {
         return albumId;
     }
 

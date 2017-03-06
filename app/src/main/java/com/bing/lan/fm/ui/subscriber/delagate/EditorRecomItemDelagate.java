@@ -1,4 +1,4 @@
-package com.bing.lan.fm.ui.hot.delagate;
+package com.bing.lan.fm.ui.subscriber.delagate;
 
 import android.content.Context;
 import android.content.Intent;

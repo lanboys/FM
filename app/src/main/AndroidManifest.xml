@@ -93,11 +93,6 @@
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity
-            android:name=".ui.category.Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
 
         <!-- 查看图片界面 -->
         <activity
@@ -112,11 +107,6 @@
             android:name=".ui.search.SearchActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".ui.category.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:theme="@style/AppTheme">
         </activity>
         <!-- 音乐界面 -->
         <activity

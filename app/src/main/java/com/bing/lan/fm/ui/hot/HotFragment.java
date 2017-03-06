@@ -45,9 +45,9 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
 
     Banner mBanner;
     ViewPager mGirlViewpager;
-    @BindView(R.id.hot_recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView mHotRecyclerView;
-    @BindView(R.id.hot_refresh_container)
+    @BindView(R.id.refresh_container)
     SwipeRefreshLayout mHotRefreshContainer;
 
     private int[] imgs = {R.drawable.i1, R.drawable.i2,
@@ -83,7 +83,7 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_hot;
+        return R.layout.fragment_recyclerview;
     }
 
     @Override
@@ -202,7 +202,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
             @Override
             public void loadMore() {
                 // TODO: 2017/2/25
-                log.d("loadMore(): 热门页面加载更多,还未做");
+                // log.d("loadMore(): 热门页面加载更多,还未做");
+                //没有加载更多
             }
         });
         mHeaderAndFooterWrapper.notifyDataSetChanged();

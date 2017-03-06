@@ -10,21 +10,34 @@
     android:orientation="vertical"
     android:padding="12dp">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_cover_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        fresco:actualImageScaleType="fitCenter"
-        fresco:fadeDuration="2000"
-        fresco:placeholderImage="@drawable/image_default_202"
-        fresco:progressBarImage="@drawable/image_default_202"
-        fresco:progressBarImageScaleType="centerCrop"
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        fresco:roundedCornerRadius="10dp"
-        tools:src="@mipmap/account_avatar"
-    />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_cover_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:fadeDuration="500"
+            fresco:placeholderImage="@drawable/image_default_202"
+            fresco:progressBarImage="@drawable/image_default_202"
+            fresco:progressBarImageScaleType="centerCrop"
+
+            fresco:roundedCornerRadius="10dp"
+            tools:src="@mipmap/account_avatar"
+        />
+
+        <ImageView
+            android:id="@+id/iv_pay"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_pay"/>
+    </FrameLayout>
     <!--fresco:roundAsCircle="true"-->
     <!--app:failureImage="@mipmap/ic_launcher"-->
     <!--app:failureImageScaleType="centerInside"-->

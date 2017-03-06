@@ -52,13 +52,12 @@
             android:layout_gravity="center"
             android:gravity="center"
             fresco:actualImageScaleType="fitCenter"
-            fresco:fadeDuration="2000"
+            fresco:fadeDuration="500"
             fresco:placeholderImage="@drawable/image_default_202"
             fresco:progressBarImage="@drawable/image_default_202"
             fresco:progressBarImageScaleType="centerCrop"
-            fresco:roundedCornerRadius="10dp"
+            fresco:roundedCornerRadius="30dp"
         />
-        <!--fresco:roundAsCircle="true"-->
         <!--fresco:roundAsCircle="true"-->
         <!--app:failureImage="@mipmap/ic_launcher"-->
         <!--app:failureImageScaleType="centerInside"-->

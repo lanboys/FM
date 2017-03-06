@@ -30,7 +30,7 @@ public class HotPresenter extends
     private static final int MAX_PAGE = -1;
 
     private int loadCompleted = 0;
-    private List<HotInfoBean> mHotInfos = new ArrayList<>();
+    private List<HotInfoBean> mHotInfos = new ArrayList<>(50);
     private boolean isFinishHot = false;
     private boolean isFinishHot1 = false;
 
@@ -86,9 +86,9 @@ public class HotPresenter extends
 
     private void handleHotData(HotResult hotResult) {
         //小编推荐
-        mHotInfos.add(4, hotResult.getEditorRecommendAlbums());
+        mHotInfos.add( hotResult.getEditorRecommendAlbums());
         //精品听单
-        mHotInfos.add(3, hotResult.getSpecialColumn());
+        mHotInfos.add( hotResult.getSpecialColumn());
 
         //轮播图
         HotInfoBean<ListItemFocusImageBean> focusImages = hotResult.getFocusImages();

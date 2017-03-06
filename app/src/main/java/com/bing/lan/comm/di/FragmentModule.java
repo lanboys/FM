@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.bing.lan.comm.utils.LogUtil;
+import com.bing.lan.fm.ui.category.CategoryFragment;
+import com.bing.lan.fm.ui.category.CategoryModule;
+import com.bing.lan.fm.ui.category.CategoryPresenter;
+import com.bing.lan.fm.ui.category.ICategoryContract;
 import com.bing.lan.fm.ui.gank.GankFragment;
 import com.bing.lan.fm.ui.gank.GankModule;
 import com.bing.lan.fm.ui.gank.GankPresenter;
@@ -24,6 +28,18 @@ import com.bing.lan.fm.ui.mine.IMineContract;
 import com.bing.lan.fm.ui.mine.MineFragment;
 import com.bing.lan.fm.ui.mine.MineModule;
 import com.bing.lan.fm.ui.mine.MinePresenter;
+import com.bing.lan.fm.ui.recommend.IRecommendContract;
+import com.bing.lan.fm.ui.recommend.RecommendFragment;
+import com.bing.lan.fm.ui.recommend.RecommendModule;
+import com.bing.lan.fm.ui.recommend.RecommendPresenter;
+import com.bing.lan.fm.ui.subscriber.ISubscriberContract;
+import com.bing.lan.fm.ui.subscriber.SubscriberFragment;
+import com.bing.lan.fm.ui.subscriber.SubscriberModule;
+import com.bing.lan.fm.ui.subscriber.SubscriberPresenter;
+import com.bing.lan.fm.ui.top.ITopContract;
+import com.bing.lan.fm.ui.top.TopFragment;
+import com.bing.lan.fm.ui.top.TopModule;
+import com.bing.lan.fm.ui.top.TopPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -91,4 +107,48 @@ public class FragmentModule {
         homePresenter.onAttachView((GankFragment) mFragment);
         return homePresenter;
     }
+
+    @Provides
+    public ISubscriberContract.ISubscriberPresenter provideSubscriberPresenter() {
+        SubscriberPresenter homePresenter = new SubscriberPresenter();
+        homePresenter.setParams(initParams);
+        homePresenter.setModule(new SubscriberModule());
+        homePresenter.onAttachView((SubscriberFragment) mFragment);
+        return homePresenter;
+    }
+
+    @Provides
+    public ICategoryContract.ICategoryPresenter provideCategoryPresenter() {
+        CategoryPresenter homePresenter = new CategoryPresenter();
+        homePresenter.setParams(initParams);
+        homePresenter.setModule(new CategoryModule());
+        homePresenter.onAttachView((CategoryFragment) mFragment);
+        return homePresenter;
+    }
+    @Provides
+    public ITopContract.ITopPresenter provideTopPresenter() {
+        TopPresenter homePresenter = new TopPresenter();
+        homePresenter.setParams(initParams);
+        homePresenter.setModule(new TopModule());
+        homePresenter.onAttachView((TopFragment) mFragment);
+        return homePresenter;
+    }
+
+    @Provides
+    public IRecommendContract.IRecommendPresenter provideRecommendPresenter() {
+        RecommendPresenter homePresenter = new RecommendPresenter();
+        homePresenter.setParams(initParams);
+        homePresenter.setModule(new RecommendModule());
+        homePresenter.onAttachView((RecommendFragment) mFragment);
+        return homePresenter;
+    }
+
+    // @Provides
+    // public IAnchorContract.IAnchorPresenter provideAnchorPresenter() {
+    //     AnchorPresenter homePresenter = new AnchorPresenter();
+    //     homePresenter.setParams(initParams);
+    //     homePresenter.setModule(new AnchorModule());
+    //     homePresenter.onAttachView((AnchorFragment) mFragment);
+    //     return homePresenter;
+    // }
 }
