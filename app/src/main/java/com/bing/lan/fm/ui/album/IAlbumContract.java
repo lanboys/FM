@@ -1,6 +1,7 @@
 package com.bing.lan.fm.ui.album;
 
 import com.bing.lan.comm.base.mvp.activity.IBaseActivityContract;
+import com.bing.lan.fm.ui.album.bean.AlbumResultBean;
 import com.bing.lan.fm.ui.album.bean.TracksInfoBean;
 
 import java.util.List;
@@ -11,6 +12,9 @@ public interface IAlbumContract {
             extends IBaseActivityContract.IBaseActivityView<IAlbumPresenter> {
 
         void updateRecyclerView(List<TracksInfoBean> data);
+
+        void updateAlbumDetail(AlbumResultBean.DataBean.AlbumBean data);
+
 
         void loadRecyclerView(List<TracksInfoBean> data);
     }

@@ -40,14 +40,21 @@ public class AlbumPresenter
         switch (action) {
 
             case LOAD_ALBUM:
-                mView.updateRecyclerView(((AlbumResultBean.DataBean) data).getTracks().getList());
-
+                handleAlbumData((AlbumResultBean.DataBean) data);
                 break;
             case LOAD_MORE:
                 // mModule.requestData(action, this, parameter);
 
                 break;
         }
+    }
+
+    private void handleAlbumData(AlbumResultBean.DataBean data) {
+        //专辑详情
+        AlbumResultBean.DataBean.AlbumBean album = data.getAlbum();
+        mView.updateAlbumDetail(album);
+        //专辑节目
+        mView.updateRecyclerView(data.getTracks().getList());
     }
 
     @Override

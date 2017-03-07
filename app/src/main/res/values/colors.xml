@@ -7,15 +7,20 @@
     <!-- 妹纸recyclerView 背景色-->
     <color name="girl_gank_background">#f9f9f9</color>
     <!-- 主要背景色 -->
-
-    <color name="main_background">#fff86442</color>
+    <!--<color name="main_background">#fff86442</color>-->
     <color name="main_orange_background">#fff86442</color>
     <!-- 灰白 -->
     <color name="main_gray_white_background">#dadada</color>
+    <!-- 白色 -->
+    <color name="main_white_background_10">#fffefe</color>
+    <color name="main_white_background_50">#fffafafa</color>
+    <color name="main_white_background_100">#fff5f5f5</color>
+    <color name="main_white_background_200">#ffeeeeee</color>
+    <color name="main_white_background_300">#ffe0e0e0</color>
 
 
-    <color name="main_white_background">#f3f3f3</color>
     <color name="load_pager_background">#f3f3f3</color>
+
 
     <!-- 灰色分割线 -->
     <color name="main_gray_line">#6f6f6f</color>
@@ -40,8 +45,11 @@
     <color name="titleColorSelected">#535353</color>
 
     <color name="otherspace_normal_gray">#ff666666</color>
-    <color name="text_disable">#ffc6c6c6</color>
-    <color name="orange">#fff86442</color>
+
+
+    <!-- 文字选择器的两种颜色 -->
+    <color name="text_color_gray_select">#ffc6c6c6</color>
+    <color name="text_color_gray_unSelect">#fff86442</color>
 
     <!-- tab 文字的两种颜色 -->
     <color name="tab_text_color_pressed">#fff86442</color>
@@ -49,7 +57,7 @@
 
     <!-- home页面tab颜色 -->
     <color name="tab_text_color_white">#ffffffff</color>
-    <!--<color name="default_refresh_color_style">#CA0612</color>-->
+    <color name="default_refresh_color_style">#CA0612</color>
 
 
     <!-- 播放器 -->

@@ -30,7 +30,7 @@ public class HotPresenter extends
     private static final int MAX_PAGE = -1;
 
     private int loadCompleted = 0;
-    private List<HotInfoBean> mHotInfos = new ArrayList<>(50);
+    private List<HotInfoBean> mHotInfos = new ArrayList<>();
     private boolean isFinishHot = false;
     private boolean isFinishHot1 = false;
 

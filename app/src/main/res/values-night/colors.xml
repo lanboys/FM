@@ -11,7 +11,7 @@
     <color name="main_background">#222222</color>
     <color name="main_orange_background">#222222</color>
     <!-- 灰白 -->
-    <color name="main_white_background">#f3f3f3</color>
+    <color name="main_white_background_10">#f3f3f3</color>
 
     <!-- 灰色分割线 -->
     <color name="main_gray_line">#f4f1f1</color>
@@ -21,8 +21,8 @@
     <color name="titleColorSelected">#535353</color>
 
     <color name="otherspace_normal_gray">#ff666666</color>
-    <color name="text_disable">#ffc6c6c6</color>
-    <color name="orange">#fff86442</color>
+    <color name="text_color_gray_select">#ffc6c6c6</color>
+    <color name="text_color_gray_unSelect">#fff86442</color>
 
     <!-- tab 文字的两种颜色 -->
     <color name="tab_text_color_pressed">#fff86442</color>

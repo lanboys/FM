@@ -8,22 +8,27 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bing.lan.comm.base.mvp.activity.BaseActivity;
 import com.bing.lan.comm.di.ActivityComponent;
 import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.listener.RecyclerViewScrollListener;
+import com.bing.lan.fm.ui.album.bean.AlbumResultBean;
 import com.bing.lan.fm.ui.album.bean.TracksInfoBean;
 import com.bing.lan.fm.ui.album.delagate.TracksInfoDelagate;
 import com.bing.lan.fm.ui.hot.bean.IAlbum;
 import com.bing.lan.fm.ui.music.MusicActivity;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate.ALBUM_DETAIL;
 
@@ -36,6 +41,26 @@ public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
     FloatingActionButton mFab;
     @BindView(R.id.rlv_album_music)
     RecyclerView mRecyclerView;
+    @BindView(R.id.iv_album_image)
+    SimpleDraweeView mIvAlbumImage;
+    @BindView(R.id.tv_album_title)
+    TextView mTvAlbumTitle;
+    @BindView(R.id.tv_album_nickname)
+    TextView mTvAlbumNickname;
+    @BindView(R.id.tv_album_playTimes)
+    TextView mTvAlbumPlayTimes;
+    @BindView(R.id.tv_album_categoryName)
+    TextView mTvAlbumCategoryName;
+    @BindView(R.id.ll_child_container)
+    LinearLayout mLlChildContainer;
+    @BindView(R.id.ll_album_subscriber)
+    LinearLayout mLlAlbumSubscriber;
+    @BindView(R.id.ll_album_download)
+    LinearLayout mLlAlbumDownload;
+    @BindView(R.id.content_album1)
+    LinearLayout mContentAlbum1;
+    @BindView(R.id.tv_subscribeCount)
+    TextView mTvSubscribeCount;
     private long mAlbumId;
     private List<TracksInfoBean> mRecyclerViewData;
     private MultiItemTypeAdapter<TracksInfoBean> mMultiItemTypeAdapter;
@@ -125,6 +150,17 @@ public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
     }
 
     @Override
+    public void updateAlbumDetail(AlbumResultBean.DataBean.AlbumBean data) {
+        mTvAlbumTitle.setText(data.getTitle());
+        mIvAlbumImage.setImageURI(data.getCoverLarge());
+        mTvAlbumPlayTimes.setText("播放: " + data.getPlayTimes());
+        mTvAlbumNickname.setText("主播: " + data.getNickname());
+        mTvAlbumCategoryName.setText("分类: " + data.getCategoryName());
+       // TODO: 2017/3/6 查询数据库
+        mTvSubscribeCount.setText("订阅(" + data.getSubscribeCount() + ")");
+    }
+
+    @Override
     public void loadRecyclerView(List<TracksInfoBean> data) {
         mRecyclerViewData.addAll(data);
         showToast("为您增加了" + data.size() + "条数据");
@@ -143,4 +179,17 @@ public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
     public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
         return false;
     }
+
+    @OnClick({R.id.ll_album_subscriber, R.id.ll_album_download,R.id.tv_subscribeCount})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_album_subscriber:
+                break;
+            case R.id.ll_album_download:
+                break;
+            case R.id.tv_subscribeCount:
+                break;
+        }
+    }
+
 }

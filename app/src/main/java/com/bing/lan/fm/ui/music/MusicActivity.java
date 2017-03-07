@@ -1,13 +1,20 @@
 package com.bing.lan.fm.ui.music;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +28,7 @@ import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.comm.utils.musicplay.Music;
 import com.bing.lan.comm.utils.musicplay.MusicPlayer;
+import com.bing.lan.comm.utils.musicplay.MusicServiceCons;
 import com.bing.lan.comm.view.CircularSeekBar;
 import com.bing.lan.comm.view.DivergeView;
 import com.bing.lan.fm.R;
@@ -31,6 +39,7 @@ import com.dl7.player.danmaku.BiliDanmukuParser;
 import net.steamcrafted.materialiconlib.MaterialIconView;
 
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -48,15 +57,31 @@ import master.flame.danmaku.danmaku.model.android.Danmakus;
 import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import master.flame.danmaku.danmaku.parser.IDataSource;
 
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_CODE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_LIST_CHANGE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_LIST_INIT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NEXT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NEXT_CUSTOM;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NO_NEXT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NULL;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_PAUSE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_PREV;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_START;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_STOP;
+
 public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
         implements IMusicContract.IMusicView {
 
     public static final String TRACK_POSITION = "track_position";
     public static final String TRACK_PLAYLIST = "track_playlist";
+    private static final int MSG_PLAY_PAUSE = 0;
+    private static final int MSG_PREVIOUS = 1;
+    private static final int MSG_NEXT = 2;
+    private static final int MSG_INIT = 3;
     protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
-    public Runnable mUpdateCircularProgress;
+    public Runnable mUpdateSeekBarRunnable;
     @BindView(R.id.song_progress_circular)
-    CircularSeekBar mCircularProgress;
+    CircularSeekBar mCircularSeekBar;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.fab)
@@ -75,7 +100,7 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
     DivergeView mDivergeView;
     private ArrayList<Music> mArrayList;
     private ArrayList<TracksInfoBean> mTrackInfos;
-    private int mCurrentPlayPos;
+    private int mFirstPlayPos;
     private long mCurrentTrackId;
     private BaseDanmakuParser mDanmakuParser;//解析器对象
     private DanmakuContext mDanmakuContext;
@@ -84,6 +109,9 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
     private ILoader mDanmakuLoader;
     private ArrayList<Bitmap> mList;
     private int mIndex = 0;
+    private MusicBroadcastReceiver mReceiver;
+    private MusicPlayerHandler mPlayerHandler;
+    private HandlerThread mHandlerThread;
 
     @Override
     protected int getLayoutResId() {
@@ -100,9 +128,35 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
         activityComponent.inject(this);
     }
 
+    public void initPlayHandler() {
+        mHandlerThread = new HandlerThread("MusicPlayerHandler",
+                android.os.Process.THREAD_PRIORITY_BACKGROUND);
+        mHandlerThread.start();
+        mPlayerHandler = new MusicPlayerHandler(this, mHandlerThread.getLooper());
+    }
+
     @Override
     protected void initViewAndData(Intent intent) {
 
+        registerMusicReceiver();
+
+        initToolbar();
+        initData(intent);
+        // mTrackInfos = (ArrayList<TracksInfoBean>) intent.getSerializableExtra(TRACK_PLAYLIST);
+        // mCurrentPlayPos = intent.getIntExtra(TRACK_POSITION, 0);
+        // updateCurrentTrackId();
+
+        //播放器
+        initMusicPlay();
+        initPlayHandler();
+        //弹幕
+        setDanmakuSource(getResources().openRawResource(R.raw.bili));
+        initDanmakuView();
+        //点赞
+        initDivergeView();
+    }
+
+    private void initToolbar() {
         setToolBar(mToolbar, "", true);
         if (Build.VERSION.SDK_INT >= 19) {
             mToolbar.post(new Runnable() {
@@ -115,19 +169,6 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
                 }
             });
         }
-
-        mTrackInfos = (ArrayList<TracksInfoBean>) intent.getSerializableExtra(TRACK_PLAYLIST);
-        mCurrentPlayPos = intent.getIntExtra(TRACK_POSITION, 0);
-        updateCurrentTrackId();
-
-        mUpdateCircularProgress = new UpdateCircularProgress();
-        initMusicPlay();
-        initData();
-
-        setDanmakuSource(getResources().openRawResource(R.raw.bili));
-        initDanmakuView();
-
-        initDivergeView();
     }
 
     private void initDivergeView() {
@@ -238,7 +279,8 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
     }
 
     private void updateCurrentTrackId() {
-        mCurrentTrackId = mTrackInfos.get(mCurrentPlayPos).getTrackId();
+        // mCurrentTrackId = mTrackInfos.get((int) MusicPlayer.getCurrentPlaylistPos()).getTrackId();
+        // mCurrentTrackId = mTrackInfos.get(mCurrentPlayPos).getTrackId();
     }
 
     @Override
@@ -254,14 +296,49 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
             mList.clear();
             mList = null;
         }
+
+        if (mReceiver != null) {
+            unregisterReceiver(mReceiver);
+            mReceiver = null;
+        }
+
+        destroyHandler();
+    }
+
+    private void destroyHandler() {
+        if (mPlayerHandler != null) {
+            mPlayerHandler.removeCallbacksAndMessages(null);
+            mPlayerHandler = null;
+        }
+
+        if (mHandlerThread != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+                mHandlerThread.quitSafely();
+            else
+                mHandlerThread.quit();
+        }
     }
 
     @Override
     protected void readyStartPresenter() {
         mPresenter.onStart(mCurrentTrackId);
+        //播放音乐
+        mPlayerHandler.obtainMessage(MSG_INIT, mFirstPlayPos, 0).sendToTarget();
+    }
+
+    private void initData(Intent intent) {
+        mTrackInfos = (ArrayList<TracksInfoBean>) intent.getSerializableExtra(TRACK_PLAYLIST);
+        mFirstPlayPos = intent.getIntExtra(TRACK_POSITION, 0);
+        updateCurrentTrackId();
+
+        mArrayList = new ArrayList<>();
+        for (TracksInfoBean s : mTrackInfos) {
+            mArrayList.add(new Music(s.getPlayUrl32()));
+        }
     }
 
     private void initMusicPlay() {
+        mUpdateSeekBarRunnable = new UpdateCircularProgress();
         MusicPlayer.bindToService(this, new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -273,39 +350,25 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
 
             }
         });
-    }
 
-    private void initData() {
-
-        mArrayList = new ArrayList<>();
-        for (TracksInfoBean s : mTrackInfos) {
-            mArrayList.add(new Music(s.getPlayUrl32()));
-        }
-    }
-
-    private void playMusic() {
-        new Thread() {
+        mCircularSeekBar.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
             @Override
-            public void run() {
-                MusicPlayer.setPlaylist(mArrayList);
-                // MusicPlayer.Play(MusicActivity.this);
-                MusicPlayer.playOrPause();
-                updateCircleProgress();
-            }
-        }.start();
-    }
-
-    public void updateCircleProgress() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (mCircularProgress != null) {
-                    mCircularProgress.setMax((int) MusicPlayer.duration());
-                    if (mUpdateCircularProgress != null) {
-                        mCircularProgress.removeCallbacks(mUpdateCircularProgress);
-                    }
-                    mCircularProgress.postDelayed(mUpdateCircularProgress, 10);
+            public void onProgressChanged(CircularSeekBar circularSeekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    MusicPlayer.seek(progress);
+                    MusicPlayer.getCurrentSeekPosition();
+                    log.d("onProgressChanged(): seekBar 被手转动了: " + MusicPlayer.getCurrentSeekPosition());
                 }
+            }
+
+            @Override
+            public void onStopTrackingTouch(CircularSeekBar seekBar) {
+                log.d("onStopTrackingTouch(): seekBar 停止触摸了");
+            }
+
+            @Override
+            public void onStartTrackingTouch(CircularSeekBar seekBar) {
+                log.d("onStartTrackingTouch(): seekBar 开始触摸了");
             }
         });
     }
@@ -327,27 +390,175 @@ public class MusicActivity extends BaseActivity<IMusicContract.IMusicPresenter>
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.previous:
+                // MusicPlayer.gotoPrev();
+                mPlayerHandler.sendEmptyMessage(MSG_PREVIOUS);
                 break;
+            //发播放的消息
             case R.id.cir_play:
             case R.id.cir_play1:
-                playMusic();
+                // MusicPlayer.playOrPause();
+                mPlayerHandler.sendEmptyMessage(MSG_PLAY_PAUSE);
                 break;
             case R.id.next:
+                // MusicPlayer.gotoNext();
+                mPlayerHandler.sendEmptyMessage(MSG_NEXT);
                 break;
         }
+        //更新seekBar
+        // updateCircleSeekBar();
+    }
+
+    //注册广播接收者,接收音乐广播
+    private void registerMusicReceiver() {
+        mReceiver = new MusicBroadcastReceiver(this);
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES_BROADCAST);
+        registerReceiver(mReceiver, filter);
+    }
+
+
+    //子线程的操作
+    private void handlerMessage(Message msg) {
+        switch (msg.what) {
+            case MSG_PLAY_PAUSE:
+                MusicPlayer.playOrPause();
+                break;
+            case MSG_PREVIOUS:
+                MusicPlayer.gotoPrev();
+                break;
+            case MSG_NEXT:
+                MusicPlayer.gotoNext();
+                break;
+            case MSG_INIT:
+                //初始化播放器列表
+                MusicPlayer.setPlaylist(mArrayList);
+                MusicPlayer.goToPosition(msg.arg1);
+                // updateCircleSeekBar();
+                break;
+
+
+        }
+    }
+
+    //主线程 收到广播后的操作(发消息)
+    private void handlerOnReceive(Context context, Intent intent) {
+        log.d("onReceive(): 收到了广播,可以更新状态了,当前播放位置: " + MusicPlayer.getCurrentPlaylistPos() + "  "
+                + mTrackInfos.get((int) MusicPlayer.getCurrentPlaylistPos()).getTitle());
+
+        int intExtra = intent.getIntExtra(STATUS_CODE, STATUS_NULL);
+
+        switch (intExtra) {
+
+            case STATUS_NULL:
+                log.d("onReceive(): 默认状态");
+                break;
+            case STATUS_NEXT:
+                log.d("onReceive(): 下一首");
+                break;
+            case STATUS_PREV:
+                log.d("onReceive(): 上一首");
+                break;
+            case STATUS_NEXT_CUSTOM:
+                log.d("onReceive(): 自定义下一首(上一首)");
+                break;
+            case STATUS_NO_NEXT:
+                log.d("onReceive(): 没有下一首");
+                break;
+            case STATUS_START:
+                log.d("onReceive(): 开始播放");
+                break;
+            case STATUS_PAUSE:
+                log.d("onReceive(): 暂停");
+
+                break;
+            case STATUS_STOP:
+                log.d("onReceive(): 停止");
+
+                break;
+            case STATUS_LIST_INIT:
+                log.d("onReceive(): 播放列表初始化");
+
+                break;
+            case STATUS_LIST_CHANGE:
+                log.d("onReceive(): 播放列表发生改变");
+
+                break;
+        }
+
+        updateCircleSeekBar();
+    }
+
+    static class MusicPlayerHandler extends Handler {
+
+        private final WeakReference<MusicActivity> mMusicActivity;
+
+        public MusicPlayerHandler(final MusicActivity activity, final Looper looper) {
+            super(looper);
+            mMusicActivity = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            if (mMusicActivity.get() != null) {
+
+                mMusicActivity.get().handlerMessage(msg);
+            }
+        }
+    }
+
+    static class MusicBroadcastReceiver extends BroadcastReceiver {
+
+        private final WeakReference<MusicActivity> mMusicActivity;
+
+        MusicBroadcastReceiver(MusicActivity activity) {
+            mMusicActivity = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (mMusicActivity.get() != null) {
+                mMusicActivity.get().handlerOnReceive(context, intent);
+            }
+        }
+    }
+
+    private    float rotation =0;
+    public void updateCircleSeekBar() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mCircularSeekBar != null) {
+                    mCircularSeekBar.setMax((int) MusicPlayer.getDuration());
+
+                    if (mUpdateSeekBarRunnable != null) {
+                        mCircularSeekBar.removeCallbacks(mUpdateSeekBarRunnable);
+                    }
+                    //时间不能太小,否则,播放器还没准备好,就结束了滚动
+                    mCircularSeekBar.postDelayed(mUpdateSeekBarRunnable, 10);
+                    log.d("run(): seekBar 10ms 后开始转动了");
+                }
+            }
+        });
     }
 
     class UpdateCircularProgress implements Runnable {
 
         @Override
         public void run() {
-            if (mCircularProgress != null) {
-                long position = MusicPlayer.position();
-                mCircularProgress.setProgress((int) position);
+            if (mCircularSeekBar != null) {
+                long position = MusicPlayer.getCurrentSeekPosition();
+                mCircularSeekBar.setProgress((int) position);
+                rotation+=20;
+                mCirPlay.setRotation(rotation);
 
+                log.d("run():---------------播放状态: " + MusicPlayer.isPlaying());
                 if (MusicPlayer.isPlaying()) {
-                    mCircularProgress.postDelayed(mUpdateCircularProgress, 50);
+                    mCircularSeekBar.postDelayed(mUpdateSeekBarRunnable, 500);
+                    log.d("run(): 当前播放百分比: " + MusicPlayer.getCurrentSeekPositionPercent());
+                    return;
                 }
+
+                log.d("run(): seekBar 停止转动了");
             }
         }
     }

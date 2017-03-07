@@ -11,6 +11,8 @@ import android.os.IBinder;
 import java.util.List;
 import java.util.WeakHashMap;
 
+import static android.content.Context.BIND_AUTO_CREATE;
+
 /**
  * @author 蓝兵
  * @time 2017/3/1  16:39
@@ -46,27 +48,27 @@ public class MusicPlayer {
     //     context.sendBroadcast(intent);
     // }
 
-    public static ServiceToken startService(final Context context) {
-        Activity realActivity = ((Activity) context).getParent();
-        if (realActivity == null) {
-            realActivity = (Activity) context;
-        }
-        final ContextWrapper contextWrapper = new ContextWrapper(realActivity);
+    // public static ServiceToken startService(final Context context) {
+    //     Activity realActivity = ((Activity) context).getParent();
+    //     if (realActivity == null) {
+    //         realActivity = (Activity) context;
+    //     }
+    //     final ContextWrapper contextWrapper = new ContextWrapper(realActivity);
+    //
+    //     Intent service = new Intent(contextWrapper, MusicService.class);
+    //     contextWrapper.startService(service);
+    //
+    //     return new ServiceToken(contextWrapper);
+    // }
 
-        Intent service = new Intent(contextWrapper, MusicService.class);
-        contextWrapper.startService(service);
-
-        return new ServiceToken(contextWrapper);
-    }
-
-    public static void closeService(final ServiceToken token) {
-        if (token == null) {
-            return;
-        }
-        final ContextWrapper mContextWrapper = token.mWrappedContext;
-        Intent service = new Intent(mContextWrapper, MusicService.class);
-        mContextWrapper.stopService(service);
-    }
+    // public static void closeService(final ServiceToken token) {
+    //     if (token == null) {
+    //         return;
+    //     }
+    //     final ContextWrapper mContextWrapper = token.mWrappedContext;
+    //     Intent service = new Intent(mContextWrapper, MusicService.class);
+    //     mContextWrapper.stopService(service);
+    // }
 
     public static ServiceToken bindToService(final Context context,
             final ServiceConnection callback) {
@@ -79,11 +81,12 @@ public class MusicPlayer {
         final ContextWrapper contextWrapper = new ContextWrapper(realActivity);
 
         Intent service = new Intent(contextWrapper, MusicService.class);
-        // contextWrapper.startService(service);
+        //bind服务,都启动一次服务
+        contextWrapper.startService(service);
 
         final ServiceBinder binder = new ServiceBinder(callback, contextWrapper.getApplicationContext());
 
-        if (contextWrapper.bindService(service, binder, 0)) {
+        if (contextWrapper.bindService(service, binder, BIND_AUTO_CREATE)) {
 
             mConnectionMap.put(contextWrapper, binder);
             return new ServiceToken(contextWrapper);
@@ -103,6 +106,9 @@ public class MusicPlayer {
 
         mContextWrapper.unbindService(mBinder);
         if (mConnectionMap.isEmpty()) {
+            //没有连接停止服务
+            Intent service = new Intent(mContextWrapper, MusicService.class);
+            mContextWrapper.stopService(service);
             mService = null;
         }
     }
@@ -149,7 +155,7 @@ public class MusicPlayer {
         }
     }
 
-    public static final long position() {
+    public static final long getCurrentSeekPosition() {
         if (mService != null) {
             try {
                 return mService.position();
@@ -160,7 +166,29 @@ public class MusicPlayer {
         return 0;
     }
 
-    public static final long duration() {
+    public static final long getCurrentPlaylistPos() {
+        if (mService != null) {
+            try {
+                return mService.getCurrentPlaylistPos();
+            } catch (final IllegalStateException ex) {
+
+            }
+        }
+        return 0;
+    }
+
+    public static final long getCurrentSeekPositionPercent() {
+        if (mService != null) {
+            try {
+                return getCurrentSeekPosition()*100 / getDuration();
+            } catch (final IllegalStateException ex) {
+
+            }
+        }
+        return 0;
+    }
+
+    public static final long getDuration() {
         if (mService != null) {
             try {
                 return mService.duration();
@@ -169,6 +197,24 @@ public class MusicPlayer {
             }
         }
         return 0;
+    }
+
+    public static void gotoNext() {
+        if (mService != null) {
+            mService.gotoNext();
+        }
+    }
+
+    public static void gotoPrev() {
+        if (mService != null) {
+            mService.gotoPrev();
+        }
+    }
+
+    public static void goToPosition(int pos) {
+        if (mService != null) {
+            mService.goToPosition(pos);
+        }
     }
 
     public static final class ServiceBinder implements ServiceConnection {

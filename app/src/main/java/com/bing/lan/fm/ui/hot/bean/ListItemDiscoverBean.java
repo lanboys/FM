@@ -8,10 +8,7 @@ import java.io.Serializable;
  * @author 蓝兵
  * @time 2017/3/5  17:41
  */
-public class ListItemDiscoverBean  implements Serializable {
-
-
-
+public class ListItemDiscoverBean implements Serializable {
 
     private String bubbleText;
     private String contentType;
@@ -25,8 +22,6 @@ public class ListItemDiscoverBean  implements Serializable {
     private String subtitle;
     private String title;
     private String url;
-
-
 
     public String getBubbleText() {
         return bubbleText;

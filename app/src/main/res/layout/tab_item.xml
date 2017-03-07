@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/image"
         android:gravity="center"
-        android:textColor="@drawable/tab_text_orange_selector"
+        android:textColor="@drawable/text_color_selector01"
         android:textSize="10sp"
         tools:text="首页"
     />

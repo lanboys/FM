@@ -1,34 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_child_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="12dp">
-    <!--<ImageView-->
-    <!--android:id="@+id/iv_cover_image1"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--tools:src="@mipmap/account_avatar"/>-->
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/iv_album_episode_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:background="#445"
-        android:gravity="center"
-        android:src="@mipmap/account_avatar"
-        fresco:ImageScaleType="fitCenter"
-        fresco:placeholderImage="@draw/R.drawable.image_default_202"/>
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1.2">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_album_episode_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:fadeDuration="500"
+            fresco:placeholderImage="@drawable/btn_record_prelisten_unable"
+            fresco:progressBarImage="@drawable/btn_record_prelisten_unable"
+            fresco:progressBarImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"
+            tools:src="@mipmap/account_avatar"
+        />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_record_prelisten_unable"/>
+    </FrameLayout>
+    <!--fresco:roundedCornerRadius="10dp"-->
+    <!--app:failureImage="@mipmap/ic_launcher"-->
+    <!--app:failureImageScaleType="centerInside"-->
+    <!--app:retryImage="@mipmap/ic_launcher"-->
+    <!--app:retryImageScaleType="centerCrop"-->
+    <!--app:progressBarImage="@mipmap/ic_launcher"-->
+    <!--app:progressBarImageScaleType="centerCrop"-->
+    <!--app:progressBarAutoRotateInterval="5000"/>-->
+
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/iv_album_episode_image"
+        android:layout_gravity="center"
+        android:layout_marginLeft="6dp"
+        android:layout_weight="5"
         android:orientation="vertical">
 
 
@@ -36,25 +59,86 @@
             android:id="@+id/iv_album_episode_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:drawablePadding="4dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="标题小编推荐推荐荐推荐荐推荐"
-            android:textColor="#292d29"
-            android:textSize="@dimen/hot_track_Title"/>
+            android:textColor="@color/big_title_color"
+            android:textSize="@dimen/hot_track_Title"
+            tools:text="标题小编推荐推荐荐推荐荐推荐荐推荐荐推荐荐推荐荐推荐"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_playtimes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:drawableLeft="@drawable/finding_album_img"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/foot_note_color"
+                android:textSize="@dimen/foot_note_title"
+                android:visibility="gone"
+                tools:text="标题小"/>
+            <TextView
+                android:id="@+id/tv_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:drawableLeft="@drawable/finding_album_img"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/foot_note_color"
+                android:textSize="@dimen/foot_note_title"
+                android:visibility="gone"
+                tools:text="标题小"/>
+            <TextView
+                android:id="@+id/tv_duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:drawableLeft="@drawable/finding_album_img"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/foot_note_color"
+                android:textSize="@dimen/foot_note_title"
+                android:visibility="gone"
+                tools:text="标题小"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="#E5E5E5"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_create_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/finding_album_img"
-            android:drawablePadding="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="标题小编推荐推荐"
-            android:textColor="@color/hot_item_title_text_color"
-            android:textSize="@dimen/foot_note_title"/>
+            android:visibility="gone"
 
-    </LinearLayout>
-</RelativeLayout>
+            android:textColor="@color/foot_note_color"
+            android:textSize="@dimen/foot_note_title"
+            tools:text="标题小"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_create_time"
+            android:paddingTop="15dp"
+            android:src="@drawable/arrow_right_normal"/>
+    </RelativeLayout>
+
+</LinearLayout>

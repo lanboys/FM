@@ -6,13 +6,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.bing.lan.comm.utils.LogUtil;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_CODE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_LIST_CHANGE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_LIST_INIT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NEXT_CUSTOM;
 
 /**
  * @author 蓝兵
@@ -20,9 +31,15 @@ import java.util.List;
  */
 public class MusicService extends Service {
 
+    // private void setBePlaying(boolean value) {
+    //     if (mIsPlaying != value) {
+    //         mIsPlaying = value;
+    //     }
+    // }
+    protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
     public MultiPlayer mPlayer;
-    private boolean mBePlaying = false;
-    private int mCurrentPlayPos = -1;
+    private boolean mIsPlaying = false;
+    private int mCurrentPlaylistPos = -1;
     private int mNextPlayPos = -1;
     private MusicPlayerHandler mPlayerHandler;
     private HandlerThread mHandlerThread;
@@ -33,6 +50,10 @@ public class MusicService extends Service {
             handleCommandIntent(intent);
         }
     };
+
+    public int getCurrentPlaylistPos() {
+        return mCurrentPlaylistPos;
+    }
 
     @Nullable
     @Override
@@ -57,6 +78,7 @@ public class MusicService extends Service {
 
     private void registerCmdReceiver() {
         // Initialize the intent filter and each action
+        //注册广播接收者,接受外界的播放,暂停等等的广播
         final IntentFilter filter = new IntentFilter();
         filter.addAction(MusicServiceCons.SERVICECMD);
         filter.addAction(MusicServiceCons.TOGGLEPAUSE_ACTION);
@@ -88,7 +110,7 @@ public class MusicService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.d(MusicServiceCons.TAG, "Destroying service");
+        log.v("Destroying service");
         super.onDestroy();
         if (mPlayerHandler != null) {
             mPlayerHandler.removeCallbacksAndMessages(null);
@@ -124,7 +146,7 @@ public class MusicService extends Service {
         final String action = intent.getAction();
         final String command = intent.getStringExtra(MusicServiceCons.CMD_NAME);
 
-        Log.d(MusicServiceCons.TAG, "handleCommandIntent: action = " + action + ", command = " + command);
+        log.v("handleCommandIntent: action = " + action + ", command = " + command);
 
         if (MusicServiceCons.CMD_SET_PLAYLIST.equals(command) || MusicServiceCons.SET_PLAYLIST_ACTION.equals(action)) {
             ArrayList<Music> serializableExtra = (ArrayList<Music>) intent.getSerializableExtra(MusicServiceCons.PLAYLIST_URL);
@@ -160,36 +182,56 @@ public class MusicService extends Service {
             mPlaylist.clear();
             mPlaylist.addAll(playlist);
 
-            mCurrentPlayPos = 0;
+            mCurrentPlaylistPos = 0;
+            mNextPlayPos = mCurrentPlaylistPos + 1;
             if (!mPlayer.isInitialized()) {
-                mPlayer.setDataSource(mPlaylist.get(mCurrentPlayPos).Url);
+                //首次设置的操作
+                mPlayer.setDataSource(mPlaylist.get(mCurrentPlaylistPos).Url);
+                mPlayer.setNextDataSource(mPlaylist.get(mNextPlayPos).Url);
+
+                sendStatusBroadcast(STATUS_LIST_INIT);
+            } else {
+                //更改列表时的操作
+                stop();
+                play();
+                sendStatusBroadcast(STATUS_LIST_CHANGE);
             }
         }
     }
 
+    public void sendStatusBroadcast(int statusCode) {
+        Intent intent = new Intent(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES_BROADCAST);
+        if (statusCode >= 0) {
+            intent.putExtra(STATUS_CODE, statusCode);
+        }
+        sendBroadcast(intent);
+    }
+
     public void play() {
         if (!mPlayer.isInitialized()) {
-            mPlayer.setDataSource(mPlaylist.get(mCurrentPlayPos).Url);
+            mPlayer.setDataSource(mPlaylist.get(mCurrentPlaylistPos).Url);
         }
 
         if (mPlayer.isInitialized()) {
             mPlayer.start();
+            mIsPlaying = true;
             mPlayerHandler.removeMessages(MusicServiceCons.FADEDOWN);
             mPlayerHandler.sendEmptyMessage(MusicServiceCons.FADEUP);
-            setBePlaying(true);
         }
     }
 
     public void setNextTrack() {
+        // mCurrentPlaylistPos++;
+        mNextPlayPos = mCurrentPlaylistPos + 1;
         //默认情况就是列表的下一首
-        setNextTrack(getNextPosition());
+        setNextTrack(mNextPlayPos);
     }
 
     private void setNextTrack(int position) {
-        mNextPlayPos = position;
-        Log.d(MusicServiceCons.TAG, "setNextTrack: next play position = " + mNextPlayPos);
-        if (mNextPlayPos >= 0 && mPlaylist != null && mNextPlayPos < mPlaylist.size()) {
-            mPlayer.setNextDataSource(mPlaylist.get(mNextPlayPos).Url);
+        // mNextPlayPos = position;
+        log.v("setNextTrack: next play position = " + position);
+        if (position >= 0 && mPlaylist != null && position < mPlaylist.size()) {
+            mPlayer.setNextDataSource(mPlaylist.get(position).Url);
         }
     }
 
@@ -197,43 +239,39 @@ public class MusicService extends Service {
         if (mPlaylist == null || mPlaylist.isEmpty()) {
             return -1;
         }
-        return mCurrentPlayPos + 1;
+        return mNextPlayPos;
     }
 
     private void stop() {
 
         if (mPlayer.isInitialized()) {
+            mIsPlaying = false;
             mPlayer.stop();
         }
     }
 
-    private void setBePlaying(boolean value) {
-        if (mBePlaying != value) {
-            mBePlaying = value;
-        }
-    }
-
     public void pause() {
-        Log.d(MusicServiceCons.TAG, "Pausing playback");
+        log.v("Pausing playback");
         synchronized (this) {
             mPlayerHandler.removeMessages(MusicServiceCons.FADEUP);
+            mIsPlaying = false;
             mPlayer.pause();
-            setBePlaying(false);
         }
     }
 
     public boolean isPlaying() {
-        return mBePlaying;
+        return mIsPlaying;
     }
 
     public void gotoNext() {
-        goToPosition(mCurrentPlayPos + 1);
+        goToPosition(mCurrentPlaylistPos + 1);
     }
 
     public void gotoPrev() {
-        goToPosition(mCurrentPlayPos - 1);
+        goToPosition(mCurrentPlaylistPos - 1);
     }
 
+    //如果没启动也能启动
     public void goToPosition(int pos) {
         synchronized (this) {
             int size = mPlaylist.size();
@@ -242,25 +280,32 @@ public class MusicService extends Service {
                 return;
             }
             if (pos < 0) {
-                Log.i(MusicServiceCons.TAG, "currentPlayPos: " + mCurrentPlayPos);
+                Log.i(MusicServiceCons.TAG, "currentPlayPos: " + mCurrentPlaylistPos);
                 return;
             }
             if (pos > size) {
-                Log.i(MusicServiceCons.TAG, "Playlist.Size: " + size + ", currentPlayPos: " + mCurrentPlayPos);
+                Log.i(MusicServiceCons.TAG, "Playlist.Size: " + size + ", currentPlayPos: " + mCurrentPlaylistPos);
                 return;
             }
 
-            if (pos == mCurrentPlayPos) {
+            if (pos == mCurrentPlaylistPos) {
                 if (!isPlaying()) {
                     play();
                 }
                 return;
             }
-
+            //更新当前播放位置
+            mCurrentPlaylistPos = pos;
+            mNextPlayPos = mCurrentPlaylistPos + 1;
+            //将要播放的歌曲重新设置为下一首歌曲
             setNextTrack(pos);
-            mCurrentPlayPos = pos;
-            mNextPlayPos = mCurrentPlayPos + 1;
-            mPlayer.gotoNext();
+            //播放指定的某一首歌曲
+            mPlayer.gotoPosition();
+            //直接启动播放下一首(在服务中已经设置)
+            play();
+            //启动后再次设置下一首
+            mPlayerHandler.sendEmptyMessage(MusicServiceCons.TRACK_WENT_TO_NEXT);
+            mPlayerHandler.obtainMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES, STATUS_NEXT_CUSTOM).sendToTarget();
         }
     }
 
@@ -311,6 +356,73 @@ public class MusicService extends Service {
     }
 
     void changCurrentPlayPosition() {
-        mCurrentPlayPos++;
+        mCurrentPlaylistPos++;
+        mNextPlayPos = mCurrentPlaylistPos + 1;
+    }
+
+    public final static class MusicPlayerHandler extends Handler {
+
+        private final WeakReference<MusicService> mService;
+        private float mCurrentVolume = 1.0f;
+
+        public MusicPlayerHandler(final MusicService service, final Looper looper) {
+            super(looper);
+            mService = new WeakReference<>(service);
+        }
+
+        @Override
+        public void handleMessage(final Message msg) {
+            final MusicService service = mService.get();
+            if (service == null) {
+                return;
+            }
+
+            synchronized (service) {
+                switch (msg.what) {
+                    //降低音量
+                    case MusicServiceCons.FADEDOWN:
+                        mCurrentVolume -= .05f;
+                        if (mCurrentVolume > .2f) {
+                            sendEmptyMessageDelayed(MusicServiceCons.FADEDOWN, 10);
+                        } else {
+                            mCurrentVolume = .2f;
+                        }
+                        service.mPlayer.setVolume(mCurrentVolume);
+                        break;
+                    //提高音量
+                    case MusicServiceCons.FADEUP:
+                        mCurrentVolume += .01f;
+                        if (mCurrentVolume < 1.0f) {
+                            sendEmptyMessageDelayed(MusicServiceCons.FADEUP, 10);
+                        } else {
+                            mCurrentVolume = 1.0f;
+                        }
+                        service.mPlayer.setVolume(mCurrentVolume);
+                        break;
+
+                    case MusicServiceCons.TRACK_ENDED:
+
+                        // service.gotoNext( );
+
+                        break;
+                    //播放下一首时处理(发送广播)
+                    case MusicServiceCons.TRACK_WENT_TO_NEXT:
+
+                        service.setNextTrack();
+
+                        break;
+                    //改变当前播放位置(第几首)
+                    case MusicServiceCons.HANDLER_CHANGE_CURR_POS:
+                        service.changCurrentPlayPosition();
+                        break;
+                    //状态改变,发送广播,让有需要的接受消息
+                    case MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES:
+                        service.sendStatusBroadcast(msg.arg1);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

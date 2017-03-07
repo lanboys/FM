@@ -22,7 +22,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/main_background"
+        android:background="@color/main_orange_background"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp">
         <!-- appbar里面的元素才能滚动 -->

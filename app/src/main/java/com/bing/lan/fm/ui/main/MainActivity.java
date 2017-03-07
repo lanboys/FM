@@ -1,7 +1,10 @@
 package com.bing.lan.fm.ui.main;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.TypedArray;
+import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -73,7 +76,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
         BaseApplication.sBus.unregister(this);
 
         //    关闭音乐服务
-        MusicPlayer.closeService(mServiceToken);
+        MusicPlayer.unbindFromService(mServiceToken);
     }
 
     @Override
@@ -122,7 +125,17 @@ public class MainActivity extends BaseActivity<IMainContract.IMainPresenter>
     @Override
     protected void readyStartPresenter() {
 
-        mServiceToken = MusicPlayer.startService(this);
+        mServiceToken = MusicPlayer.bindToService(this, new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        });
 
         //启动p层逻辑
         // mPresenter.onStart();

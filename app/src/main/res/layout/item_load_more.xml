@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:background="@color/main_white_background"
+             android:background="@color/main_white_background_10"
              android:orientation="vertical">
     <LinearLayout
         android:id="@+id/item_loadmore_container_retry"

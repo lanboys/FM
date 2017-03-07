@@ -82,4 +82,9 @@ public class ServiceStub extends Binder implements IMusicService {
     public long duration() {
         return mService.get().duration();
     }
+
+    @Override
+    public int getCurrentPlaylistPos() {
+        return mService.get().getCurrentPlaylistPos();
+    }
 }

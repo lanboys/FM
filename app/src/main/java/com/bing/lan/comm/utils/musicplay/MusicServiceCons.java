@@ -8,7 +8,6 @@ import android.provider.MediaStore;
  */
 public class MusicServiceCons {
 
-
     public static final String SERVICECMD = "com.naman14.timber.musicservicecommand";
     public static final String TOGGLEPAUSE_ACTION = "com.naman14.timber.togglepause";
     public static final String PAUSE_ACTION = "com.naman14.timber.pause";
@@ -23,6 +22,23 @@ public class MusicServiceCons {
     public static final String FROM_MEDIA_BUTTON = "frommediabutton";
     public static final String REFRESH = "com.naman14.timber.refresh";
     public static final String UPDATE_LOCKSCREEN = "com.naman14.timber.updatelockscreen";
+
+    //状态发生改变的广播
+    public static final String MUSIC_SERVICE_STATUS_CHANGES_BROADCAST = "com.naman14.timber.status_changes";
+    public static final String STATUS_CODE = "status_code";
+
+
+    public static final int STATUS_NULL =100;//默认状态
+    public static final int STATUS_NEXT = 0;//下一首
+    public static final int STATUS_PREV = 1;//上一首
+    public static final int STATUS_NEXT_CUSTOM = 2;//自定义下一首(上一首)
+    public static final int STATUS_NO_NEXT = 3;//没有下一首
+    public static final int STATUS_START = 4;//开始播放
+    public static final int STATUS_PAUSE = 5;//暂停
+    public static final int STATUS_STOP = 6;//停止
+    public static final int STATUS_LIST_INIT = 7;//播放列表初始化
+    public static final int STATUS_LIST_CHANGE = 8;//播放列表发生改变
+
     public static final String CMD_NAME = "command";
     public static final String CMD_TOGGLEPAUSE = "togglepause";
     public static final String CMD_STOP = "stop";
@@ -56,6 +72,7 @@ public class MusicServiceCons {
     public static final int FADEDOWN = 6;
     public static final int FADEUP = 7;
     public static final int HANDLER_CHANGE_CURR_POS = 8;
+    public static final int MUSIC_SERVICE_STATUS_CHANGES = 9;
 
     public static final int IDLE_DELAY = 5 * 60 * 1000;
     public static final long REWIND_INSTEAD_PREVIOUS_THRESHOLD = 3000;

@@ -27,7 +27,7 @@ public class RealmManager {
         Realm.init(appContext);
         sConfig = new RealmConfiguration.Builder()
                 .name(DB_NAME)
-//                .deleteRealmIfMigrationNeeded()
+               .deleteRealmIfMigrationNeeded()
 //                .schemaVersion(3)
                 .build();
         RealmManager instance = getInstance();

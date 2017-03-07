@@ -37,6 +37,7 @@ interface IMusicService {
     long position();
 
     long duration();
+    int  getCurrentPlaylistPos();
 }
 
 

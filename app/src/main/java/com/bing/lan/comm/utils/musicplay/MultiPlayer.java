@@ -7,8 +7,17 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Log;
 
+import com.bing.lan.comm.utils.LogUtil;
+
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NEXT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NEXT_CUSTOM;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NO_NEXT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_PAUSE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_START;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_STOP;
 
 /**
  * @author 蓝兵
@@ -23,7 +32,7 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
 
     private MediaPlayer mNextMediaPlayer;
 
-    private Handler mHandler;
+    private Handler mPlayerHandler;
 
     private boolean mIsInitialized = false;
 
@@ -48,13 +57,15 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
                     mCurrentMediaPlayer.release();
                     mCurrentMediaPlayer = null;
                 }
-                Log.w("fm","MusicPlay,setDataSource失败");
+                Log.w("fm", "MusicPlay,setDataSource失败");
             }
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
     }
 
+    protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
+    //设置下一首歌资源
     public void setNextDataSource(final String path) {
         mNextMediaPath = null;
         try {
@@ -78,6 +89,7 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
             //判断是否设置成功
             if (setDataSourceImpl(mNextMediaPlayer, path)) {
                 mNextMediaPath = path;
+                log.d("setNextDataSource():mNextMediaPath " + mNextMediaPath);
                 mCurrentMediaPlayer.setNextMediaPlayer(mNextMediaPlayer);
             } else {
                 if (mNextMediaPlayer != null) {
@@ -90,6 +102,7 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
         }
     }
 
+    //设置歌曲资源具体实现
     private boolean setDataSourceImpl(final MediaPlayer player, final String path) {
         try {
             player.reset();
@@ -114,7 +127,7 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
     }
 
     public void setHandler(final Handler handler) {
-        mHandler = handler;
+        mPlayerHandler = handler;
     }
 
     public boolean isInitialized() {
@@ -122,15 +135,17 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
     }
 
     public void start() {
-        if (mNextMediaPlayer == null) {
-            mHandler.sendEmptyMessage(MusicServiceCons.TRACK_WENT_TO_NEXT);
-        }
+        // if (mNextMediaPlayer == null) {
+        //     mPlayerHandler.sendEmptyMessage(MusicServiceCons.TRACK_WENT_TO_NEXT);
+        // }
         mCurrentMediaPlayer.start();
+        mPlayerHandler.obtainMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES, STATUS_START).sendToTarget();
     }
 
     public void stop() {
         mCurrentMediaPlayer.reset();
         mIsInitialized = false;
+        mPlayerHandler.obtainMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES, STATUS_STOP).sendToTarget();
     }
 
     public void release() {
@@ -139,6 +154,7 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
 
     public void pause() {
         mCurrentMediaPlayer.pause();
+        mPlayerHandler.obtainMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES, STATUS_PAUSE).sendToTarget();
     }
 
     public long duration() {
@@ -175,8 +191,8 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
         //         mCurrentMediaPlayer.release();
         //         mCurrentMediaPlayer = new MediaPlayer();
         //         mCurrentMediaPlayer.setWakeMode(service, PowerManager.PARTIAL_WAKE_LOCK);
-        //         Message msg = mHandler.obtainMessage(SERVER_DIED, errorInfo);
-        //         mHandler.sendMessageDelayed(msg, 2000);
+        //         Message msg = mPlayerHandler.obtainMessage(SERVER_DIED, errorInfo);
+        //         mPlayerHandler.sendMessageDelayed(msg, 2000);
         //         return true;
         //     default:
         //         break;
@@ -191,24 +207,36 @@ public final class MultiPlayer implements MediaPlayer.OnErrorListener,
             mCurrentMediaPlayer = mNextMediaPlayer;
             mNextMediaPath = null;
             mNextMediaPlayer = null;
-            mHandler.sendEmptyMessage(MusicServiceCons.HANDLER_CHANGE_CURR_POS);//注意顺序
-            mHandler.sendEmptyMessage(MusicServiceCons.TRACK_WENT_TO_NEXT);
+            mPlayerHandler.sendEmptyMessage(MusicServiceCons.HANDLER_CHANGE_CURR_POS);//注意顺序
+            mPlayerHandler.sendEmptyMessage(MusicServiceCons.TRACK_WENT_TO_NEXT);
+            // mPlayerHandler.sendEmptyMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES);
+            mPlayerHandler.obtainMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES, STATUS_NEXT).sendToTarget();
         } else {
-            mHandler.sendEmptyMessage(MusicServiceCons.TRACK_ENDED);
-            // mHandler.sendEmptyMessage(RELEASE_WAKELOCK);
+            mPlayerHandler.sendEmptyMessage(MusicServiceCons.TRACK_ENDED);
+            // mPlayerHandler.sendEmptyMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES);
+            mPlayerHandler.obtainMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES, STATUS_NO_NEXT).sendToTarget();
+
+            // mPlayerHandler.sendEmptyMessage(RELEASE_WAKELOCK);
         }
     }
 
     //强制设置下一首(不一定是列表的)
-    public void gotoNext() {
-        if (mCurrentMediaPlayer != null && mCurrentMediaPlayer.isPlaying() && mNextMediaPlayer != null) {
-            mCurrentMediaPlayer.stop();
+    public void gotoPosition() {
+        if (mCurrentMediaPlayer != null && mNextMediaPlayer != null) {
+            if (mCurrentMediaPlayer.isPlaying()) {
+                mCurrentMediaPlayer.stop();
+            }
             mCurrentMediaPlayer.release();
             mCurrentMediaPlayer = mNextMediaPlayer;
             mNextMediaPath = null;
             mNextMediaPlayer = null;
-            start();
-            // mHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
+            //直接启动播放下一首(在服务中已经设置)
+            // start();
+            mPlayerHandler.sendEmptyMessage(MusicServiceCons.TRACK_WENT_TO_NEXT);
+            // mPlayerHandler.sendEmptyMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES);
+            // mPlayerHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
+
+            mPlayerHandler.obtainMessage(MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES, STATUS_NEXT_CUSTOM).sendToTarget();
         }
     }
 }
