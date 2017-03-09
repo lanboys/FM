@@ -24,9 +24,9 @@
           android:orderInCategory="100"
           android:title="@string/day_night"
           app:showAsAction="never"/>
-    <item android:id="@+id/action_test_otto"
-          android:orderInCategory="100"
-          android:title="@string/test_otto"
-          app:showAsAction="never"/>
+    <!--<item android:id="@+id/action_test_otto"-->
+          <!--android:orderInCategory="100"-->
+          <!--android:title="@string/test_otto"-->
+          <!--app:showAsAction="never"/>-->
 
 </menu>

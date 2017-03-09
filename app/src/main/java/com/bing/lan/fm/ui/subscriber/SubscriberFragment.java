@@ -29,13 +29,14 @@ import io.realm.RealmResults;
  *
  */
 public class SubscriberFragment extends BaseFragment<ISubscriberContract.ISubscriberPresenter>
-        implements ISubscriberContract.ISubscriberView{
+        implements ISubscriberContract.ISubscriberView, SwipeRefreshLayout.OnRefreshListener {
 
 
     @BindView(R.id.recyclerView_subscber)
     RecyclerView mRecyclerViewSubscber;
     @BindView(R.id.refresh_subscber)
     SwipeRefreshLayout mRefreshSubscber;
+
     private List<SubscriberItemBean> mRecyclerViewData;
     private MultiItemTypeAdapter<Music> mMultiItemTypeAdapter;
     private FullDelDemoAdapter mFullAdapter;
@@ -49,19 +50,25 @@ public class SubscriberFragment extends BaseFragment<ISubscriberContract.ISubscr
         return fragment;
     }
 
+    /**
+     * @return 返回布局
+     */
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_subscber;
     }
-
+    //依赖注入
     @Override
     protected void startInject(FragmentComponent fragmentComponent) {
         fragmentComponent.inject(this);
     }
 
+    /**
+     * 设置初始
+     */
     @Override
     protected void readyStartPresenter() {
-
+        mRefreshSubscber.setOnRefreshListener(this);
         mPresenter.onStart();
         setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
     }
@@ -82,11 +89,15 @@ public class SubscriberFragment extends BaseFragment<ISubscriberContract.ISubscr
     private void initTwoData() {
         RealmResults<Music> musics =  MusicPlayDao.queryAllMusicInfo();
         log.d("mTwoRecyclerViewData===  "+musics);
-        mTwoRecyclerViewData =  new ArrayList<Music>();
+        if(mTwoRecyclerViewData==null) {
+            mTwoRecyclerViewData =  new ArrayList<Music>();
+        }
         for ( Music s : musics) {
             mTwoRecyclerViewData.add(s);
         }
-
+        if(mFullAdapter != null) {
+            mFullAdapter.notifyDataSetChanged();
+        }
     }
 
     /**
@@ -108,12 +119,13 @@ public class SubscriberFragment extends BaseFragment<ISubscriberContract.ISubscr
         mFullAdapter.setOnDelListener(new FullDelDemoAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
-                if (pos > 0 && pos < mTwoRecyclerViewData.size()) {
-                    Toast.makeText(AppUtil.getAppContext(), "删除:" + pos+"条数据成功", Toast.LENGTH_SHORT).show();
-
+                if (pos >= 0 && pos < mTwoRecyclerViewData.size()) {
+                    Toast.makeText(AppUtil.getAppContext(), "删除:第" + pos+"条数据成功", Toast.LENGTH_SHORT).show();
                     mTwoRecyclerViewData.remove(pos);
                     mFullAdapter.notifyItemRemoved(pos);//推荐用这个
+                    // MusicPlayDao.deleteMusicInfo(mTwoRecyclerViewData.get(pos).albumId);
 
+                    mFullAdapter.notifyDataSetChanged();
                     //如果删除时，不使用mAdapter.notifyItemRemoved(pos)，则删除没有动画效果，
                     //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
                     //mAdapter.notifyDataSetChanged();
@@ -140,5 +152,27 @@ public class SubscriberFragment extends BaseFragment<ISubscriberContract.ISubscr
         mMultiItemTypeAdapter.addItemViewDelegate(adapter);
         mRecyclerViewSubscber.setAdapter(mMultiItemTypeAdapter);
         mMultiItemTypeAdapter.notifyDataSetChanged();*/
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onRefresh() {
+        //先清除所有数据
+        mTwoRecyclerViewData.clear();
+        //再重新添加一下数据
+        initTwoData();
+        //再关闭
+        closeRefreshing();
+    }
+
+    /**
+     * 关闭刷新
+     */
+    public void closeRefreshing() {
+        if (mRefreshSubscber != null && mRefreshSubscber.isRefreshing()) {
+            mRefreshSubscber.setRefreshing(false);
+        }
     }
 }

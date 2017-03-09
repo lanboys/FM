@@ -2,6 +2,7 @@ package com.bing.lan.fm.ui.recommend;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,16 +24,16 @@ import java.util.List;
 
 import butterknife.BindView;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
 /**
  *
  */
 public class RecommendFragment extends BaseFragment<IRecommendContract.IRecommendPresenter>
-        implements IRecommendContract.IRecommendView, MultiItemTypeAdapter.OnItemClickListener {
+        implements IRecommendContract.IRecommendView, MultiItemTypeAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     public static final String ALBUM_DETAIL = "album_detail";
 
+    @BindView(R.id.refresh_container)
+    SwipeRefreshLayout mRefreshRecyclerView;
     @BindView(R.id.recyclerView)
     RecyclerView mRecomRecyclerView;
     private ArrayList<Object> mRecyclerViewData;
@@ -59,6 +60,7 @@ public class RecommendFragment extends BaseFragment<IRecommendContract.IRecommen
 
     @Override
     protected void readyStartPresenter() {
+        mRefreshRecyclerView.setOnRefreshListener(this);
         mPresenter.onStart();
     }
 
@@ -82,28 +84,45 @@ public class RecommendFragment extends BaseFragment<IRecommendContract.IRecommen
     }
 
     /**
-     * 回调
+     * 回调数据
      */
     @Override
     public void dataRec(RecBean data) {
         List<DataBean> bean = data.getData();
-        mRecyclerViewData.clear();
-        mRecyclerViewData.addAll(bean);
+        //mRecyclerViewData.clear();
+        
+        mRecyclerViewData.addAll(0,bean);
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
         AlbumBean tag = (AlbumBean) view.getTag();
-        log.d("onItemClick(): " + tag);
-        Intent intent = new Intent(view.getContext(), AlbumActivity.class);
-        intent.putExtra(ALBUM_DETAIL, tag);
-        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
-        view.getContext().startActivity(intent);
+        // log.d("onItemClick(): " + tag);
+        // Intent intent = new Intent(view.getContext(), AlbumActivity.class);
+        // intent.putExtra(ALBUM_DETAIL, tag);
+        // intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        // view.getContext().startActivity(intent);
+        AlbumActivity.startAlbumActivity(getContext(), tag.getAlbumId(), true);
     }
 
     @Override
     public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
         return false;
     }
+
+    /**
+     * 刷新监听
+     */
+    @Override
+    public void onRefresh() {
+        mPresenter.reStartUpdate();
+    }
+
+    public void closeRefreshing() {
+        if (mRefreshRecyclerView != null && mRefreshRecyclerView.isRefreshing()) {
+            mRefreshRecyclerView.setRefreshing(false);
+        }
+    }
+
 }

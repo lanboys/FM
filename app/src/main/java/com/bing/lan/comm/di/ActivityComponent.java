@@ -1,6 +1,8 @@
 package com.bing.lan.comm.di;
 
 import com.bing.lan.fm.ui.album.AlbumActivity;
+import com.bing.lan.fm.ui.anchordetail.AnchorDetailActivity;
+import com.bing.lan.fm.ui.categorydetails.CategoryDetailActivity;
 import com.bing.lan.fm.ui.main.MainActivity;
 import com.bing.lan.fm.ui.music.MusicActivity;
 import com.bing.lan.fm.ui.pic.PictureActivity;
@@ -27,5 +29,9 @@ public interface ActivityComponent {
     void inject(AlbumActivity albumActivity);
 
     void inject(MusicActivity musicActivity);
+
+    void inject(AnchorDetailActivity anchorDetailActivity);
+
+    void inject(CategoryDetailActivity categoryDetailActivity);
 }
 

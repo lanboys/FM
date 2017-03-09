@@ -88,7 +88,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
             mPresenter.onDetachView();
         }
 
-        AppUtil.MemoryLeakCheck(this);
+        // AppUtil.MemoryLeakCheck(this);
     }
 
     protected abstract int getLayoutResId();
@@ -212,6 +212,10 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
     @Override
     public void showDialog(String msg) {
         DialogUtil.showAlertDialog(this, msg);
+    }
+
+    @Override
+    public void dismissDialog() {
     }
 
     @Override
@@ -407,7 +411,6 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
                         sweetAlertDialog.dismissWithAnimation();
                         AppUtil.detailApp(BaseActivity.this, getPackageName());
                         finish();
-
                     }
                 }).show();
     }

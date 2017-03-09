@@ -114,12 +114,25 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
 
     @Override
     protected void updateUIDisplay() {
+        if (mHomeFragment != null) {
+            mHomeFragment.updateUIDisplay();
+        }
+        if (mGirlFragment != null) {
+            mGirlFragment.updateUIDisplay();
+        }
+        if (mSubscriberFragment != null) {
+            mSubscriberFragment.updateUIDisplay();
+        }
+        if (mMineFragment != null) {
+            mMineFragment.updateUIDisplay();
+        }
+
         rotation += 2;
         mCirPlay1.setRotation(rotation);
 
         boolean playing = MusicPlayer.isPlaying();
         mCirPlay2.setSelected(playing);
-        mCirPlay2.setImageResource(playing? R.drawable.icon_rec_preview_pause:R.drawable.icon_rec_preview_play);
+        mCirPlay2.setImageResource(playing ? R.drawable.icon_rec_preview_pause : R.drawable.icon_rec_preview_play);
 
         if (playing) {
             mMainHandler.sendEmptyMessageDelayed(MSG_HIDE_PLAY_BTN, 5 * 1000);
@@ -130,8 +143,11 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
 
     public void queryMusicPlayList() {
         RealmResults<Music> musics = MusicPlayDao.queryAllMusicInfo();
-        Music music = musics.get(0);
-        mAlbumId = music.albumId;
+
+        if (musics.size() > 0) {
+            Music music = musics.get(0);
+            mAlbumId = music.albumId;
+        }
     }
 
     @Override
@@ -342,10 +358,10 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
                 switchNightMode();
                 break;
 
-            case R.id.action_test_otto:
-                BaseApplication.sBus.post(Integer.parseInt("15"));
-                showToast("测试otto");
-                break;
+            // case R.id.action_test_otto:
+            //     BaseApplication.sBus.post(Integer.parseInt("15"));
+            //     showToast("测试otto");
+            //     break;
         }
 
         return super.onOptionsItemSelected(item);

@@ -62,7 +62,7 @@ public class AppUtil {
         sCacheMap = new HashMap<>();
         sResources = sContext.getResources();
         // add leak canary
-        initLeakCanary(sApplication);
+        // initLeakCanary(sApplication);
         // realm init
         RealmManager.initRealm(sContext);
         //ImageLoader init

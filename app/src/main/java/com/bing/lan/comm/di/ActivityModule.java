@@ -8,6 +8,14 @@ import com.bing.lan.fm.ui.album.AlbumActivity;
 import com.bing.lan.fm.ui.album.AlbumModule;
 import com.bing.lan.fm.ui.album.AlbumPresenter;
 import com.bing.lan.fm.ui.album.IAlbumContract;
+import com.bing.lan.fm.ui.anchordetail.AnchorDetailActivity;
+import com.bing.lan.fm.ui.anchordetail.AnchorDetailModule;
+import com.bing.lan.fm.ui.anchordetail.AnchorDetailPresenter;
+import com.bing.lan.fm.ui.anchordetail.IAnchorDetailContract;
+import com.bing.lan.fm.ui.categorydetails.CategoryDetailActivity;
+import com.bing.lan.fm.ui.categorydetails.CategoryDetailModule;
+import com.bing.lan.fm.ui.categorydetails.CategoryDetailPresenter;
+import com.bing.lan.fm.ui.categorydetails.ICategoryDetailContract;
 import com.bing.lan.fm.ui.main.IMainContract;
 import com.bing.lan.fm.ui.main.MainActivity;
 import com.bing.lan.fm.ui.main.MainModule;
@@ -101,6 +109,26 @@ public class ActivityModule {
         splashPresenter.onAttachView((MusicActivity) mActivity);
         return splashPresenter;
     }
+
+    @Provides
+    public IAnchorDetailContract.IAnchorDetailPresenter provideAnchorDetailPresenter() {
+        AnchorDetailPresenter splashPresenter = new AnchorDetailPresenter();
+        splashPresenter.setModule(new AnchorDetailModule());
+        splashPresenter.onAttachView((AnchorDetailActivity) mActivity);
+        return splashPresenter;
+    }
+
+
+
+    @Provides
+    public ICategoryDetailContract.ICategoryDetailPresenter provideCategoryDetailPresenter() {
+        CategoryDetailPresenter splashPresenter = new CategoryDetailPresenter();
+        splashPresenter.setModule(new CategoryDetailModule());
+        splashPresenter.onAttachView((CategoryDetailActivity) mActivity);
+        return splashPresenter;
+    }
+
+
 
     @Provides
     public LogUtil provideLogCat() {

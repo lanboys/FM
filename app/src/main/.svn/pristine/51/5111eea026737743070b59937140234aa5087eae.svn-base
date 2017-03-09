@@ -1,0 +1,625 @@
+package com.bing.lan.fm.ui.music;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
+import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.bing.lan.comm.base.mvp.activity.BaseMusicActivity;
+import com.bing.lan.comm.di.ActivityComponent;
+import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.load.ImageLoader;
+import com.bing.lan.comm.utils.musicplay.Music;
+import com.bing.lan.comm.utils.musicplay.MusicPlayDao;
+import com.bing.lan.comm.utils.musicplay.MusicPlayer;
+import com.bing.lan.comm.view.CircularSeekBar;
+import com.bing.lan.comm.view.DivergeView;
+import com.bing.lan.fm.R;
+import com.bing.lan.fm.ui.album.bean.TracksInfoBean;
+import com.bing.lan.fm.ui.music.bean.TrackInfoBean;
+import com.dl7.player.danmaku.BiliDanmukuParser;
+import com.facebook.fresco.helper.listener.IResult;
+
+import net.steamcrafted.materialiconlib.MaterialIconView;
+
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
+import io.realm.RealmResults;
+import master.flame.danmaku.controller.DrawHandler;
+import master.flame.danmaku.controller.IDanmakuView;
+import master.flame.danmaku.danmaku.loader.ILoader;
+import master.flame.danmaku.danmaku.loader.IllegalDataException;
+import master.flame.danmaku.danmaku.loader.android.DanmakuLoaderFactory;
+import master.flame.danmaku.danmaku.model.BaseDanmaku;
+import master.flame.danmaku.danmaku.model.DanmakuTimer;
+import master.flame.danmaku.danmaku.model.android.DanmakuContext;
+import master.flame.danmaku.danmaku.model.android.Danmakus;
+import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
+import master.flame.danmaku.danmaku.parser.IDataSource;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_CODE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_LIST_CHANGE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_LIST_INIT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_MUSIC_SAVE_DB;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NEXT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NEXT_CUSTOM;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NO_NEXT;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_NULL;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_PAUSE;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_PREV;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_START;
+import static com.bing.lan.comm.utils.musicplay.MusicServiceCons.STATUS_STOP;
+
+public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresenter>
+        implements IMusicContract.IMusicView {
+
+    public static final String ALBUM_POSITION = "track_position";
+    public static final String ALBUM_ID = "album_id";
+    public static final String ALBUM_PLAYLIST = "track_playlist";
+    public static final int MSG_HIDE_PLAY_BTN = 100;
+
+    public Runnable mUpdateSeekBarRunnable;
+    @BindView(R.id.song_progress_circular)
+    CircularSeekBar mCircularSeekBar;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+    @BindView(R.id.sv_danmaku)
+    IDanmakuView mDanmakuView;
+    @BindView(R.id.previous)
+    MaterialIconView mPrevious;
+    @BindView(R.id.cir_play1)
+    CircleImageView mCirPlay1;
+    @BindView(R.id.cir_play)
+    CircleImageView mCirPlay;
+    @BindView(R.id.next)
+    MaterialIconView mNext;
+    @BindView(R.id.divergeView)
+    DivergeView mDivergeView;
+    @BindView(R.id.album_art_blurred)
+    ImageView mAlbumImage;
+
+    private List<Music> mArrayList;
+    private int mFirstPlayPos;
+    private List<TracksInfoBean> mTrackInfos;
+    private long mCurrentTrackId;
+    private BaseDanmakuParser mDanmakuParser;//解析器对象
+    private DanmakuContext mDanmakuContext;
+    private boolean mIsEnableDanmaku = true;
+    // 弹幕加载器
+    private ILoader mDanmakuLoader;
+    private ArrayList<Bitmap> mList;
+    private int mIndex = 0;
+
+    private float rotation = 0;
+    private long mAlbumId;
+    private boolean DanmakuViewPrepare = false;
+
+    /**
+     * 进入专辑页面的入口,需要专辑id
+     *
+     * @param albumId   专辑id
+     * @param isAddFlag 不在activity,内部启动,就需要添加标志(默认先设置false,报错启动不了,设置为true)
+     */
+    public static void startMusicActivity(Context context, boolean isAddFlag,
+            long albumId, int position, ArrayList<TracksInfoBean> tracks) {
+
+        Intent intent = new Intent(context, MusicActivity.class);
+        intent.putExtra(ALBUM_ID, albumId);
+        intent.putExtra(MusicActivity.ALBUM_PLAYLIST, tracks);
+        intent.putExtra(MusicActivity.ALBUM_POSITION, position);
+
+        if (isAddFlag) {
+            intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
+    }
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_music;
+    }
+
+    @Override
+    protected int getMenuId() {
+        return R.menu.menu_music;
+    }
+
+    @Override
+    protected void startInject(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
+    }
+
+    @Override
+    protected void initViewAndData(Intent intent) {
+
+        initToolbar();
+        // initData(intent);
+        // mTrackInfos = (ArrayList<TracksInfoBean>) intent.getSerializableExtra(TRACK_PLAYLIST);
+        // mCurrentPlayPos = intent.getIntExtra(TRACK_POSITION, 0);
+        // updateCurrentTrackId();
+
+        //播放器
+        initMusicPlay12();
+        //弹幕
+        setDanmakuSource(getResources().openRawResource(R.raw.bili));
+        initDanmakuView();
+        //点赞
+        initDivergeView();
+    }
+
+    // private void initData(Intent intent) {
+    //     mTrackInfos = (ArrayList<TracksInfoBean>) intent.getSerializableExtra(TRACK_PLAYLIST);
+    //     mFirstPlayPos = intent.getIntExtra(a_POSITION, 0);
+    //
+    //     // updateCurrentTrackId();
+    //
+    //     if (mTrackInfos != null) {
+    //         TracksInfoBean tracksInfoBean = mTrackInfos.get(mFirstPlayPos);
+    //         mCurrentTrackId = tracksInfoBean.getTrackId();
+    //         mArrayList = new ArrayList<>();
+    //         for (TracksInfoBean infoBean : mTrackInfos) {
+    //             Music music = new Music();
+    //             music.url = infoBean.getPlayUrl32();
+    //             music.albumId = infoBean.getAlbumId();
+    //             mAlbumId = infoBean.getAlbumId();
+    //             music.duration = infoBean.getDuration() * 1000;
+    //             music.coverSmall = infoBean.coverSmall;
+    //             music.coverMiddle = infoBean.coverMiddle;
+    //             music.coverLarge = infoBean.coverLarge;
+    //             music.title = infoBean.title;
+    //             music.trackId = infoBean.trackId;
+    //             mArrayList.add(music);
+    //         }
+    //     } else {
+    //         // TODO: 2017/3/8 请求数据 main 进来
+    //
+    //     }
+    // }
+
+    @Override
+    protected void readyStartPresenter() {
+        // initData(getIntent());
+        // mPresenter.onStart(mCurrentTrackId,mAlbumId);
+        mPresenter.onStart(getIntent());
+    }
+
+    private void initToolbar() {
+        setToolBar(mToolbar, "", true);
+        if (Build.VERSION.SDK_INT >= 19) {
+            mToolbar.post(new Runnable() {
+                @Override
+                public void run() {
+                    int statusHeight = AppUtil.getStatusHeight();
+                    mToolbar.setPadding(0, statusHeight, 0, 0);
+                    ViewGroup.LayoutParams layoutParams = mToolbar.getLayoutParams();
+                    layoutParams.height = mToolbar.getHeight() + statusHeight;
+                }
+            });
+        }
+    }
+
+    private void initDivergeView() {
+        mList = new ArrayList<>();
+        mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_praise_sm1, null)).getBitmap());
+        mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_praise_sm2, null)).getBitmap());
+        mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_praise_sm3, null)).getBitmap());
+        mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_praise_sm4, null)).getBitmap());
+        mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_praise_sm5, null)).getBitmap());
+        mList.add(((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.ic_praise_sm6, null)).getBitmap());
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mIndex == 5) {
+                    mIndex = 0;
+                }
+                mDivergeView.startDiverges(mIndex);
+                mIndex++;
+                queryMusic();
+            }
+        });
+        mDivergeView.post(new Runnable() {
+            @Override
+            public void run() {
+                mDivergeView.setEndPoint(new PointF(mDivergeView.getMeasuredWidth() / 2, 0));
+                mDivergeView.setDivergeViewProvider(new DivergeView.DivergeViewProvider() {
+
+                    @Override
+                    public Bitmap getBitmap(Object obj) {
+                        return mList == null ? null : mList.get((int) obj);
+                    }
+                });
+            }
+        });
+    }
+
+    private void queryMusic() {
+
+        RealmResults<Music> musics = MusicPlayDao.queryAllMusicInfo();
+
+        for (Music music : musics) {
+            log.d("queryMusic(): 数据库查询到的数据总条数:  " + musics.size() + ", 音乐信息: " + music.toString() + "\n");
+        }
+
+        MusicPlayDao.queryAllMusicInfoAsync(new MusicPlayDao.OnMusicQueryListener() {
+            @Override
+            public void onSuccess(RealmResults<Music> musics) {
+
+                for (Music music : musics) {
+                    log.d("queryMusicAsync(): 数据库查询到的数据总条数:  " + musics.size() + ", 音乐信息: " + music.toString() + "\n");
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+        });
+    }
+
+    /**
+     * 设置弹幕资源，默认资源格式需满足 bilibili 的弹幕文件格式，
+     * 配合{ setDanmakuCustomParser}来进行自定义弹幕解析方式，{ setDanmakuCustomParser}必须先调用
+     *
+     * @param stream 弹幕资源
+     * @return
+     */
+    public void setDanmakuSource(InputStream stream) {
+        if (stream == null) {
+            return;
+        }
+        if (!mIsEnableDanmaku) {
+            throw new RuntimeException("Danmaku is disable, use enableDanmaku() first");
+        }
+        if (mDanmakuLoader == null) {
+            mDanmakuLoader = DanmakuLoaderFactory.create(DanmakuLoaderFactory.TAG_BILI);
+        }
+        try {
+            mDanmakuLoader.load(stream);
+        } catch (IllegalDataException e) {
+            e.printStackTrace();
+        }
+        IDataSource<?> dataSource = mDanmakuLoader.getDataSource();
+        if (mDanmakuParser == null) {
+            mDanmakuParser = new BiliDanmukuParser();
+        }
+        mDanmakuParser.load(dataSource);
+    }
+
+    /**
+     * 装载弹幕，在视频按了播放键才装载
+     */
+    private void initDanmakuView() {
+
+        if (mIsEnableDanmaku) {
+            // 设置弹幕
+            mDanmakuContext = DanmakuContext.create();
+            //同步弹幕和video，貌似没法保持同步，可能我用的有问题，先注释掉- -
+            //            mDanmakuContext.setDanmakuSync(new VideoDanmakuSync(this));
+            if (mDanmakuParser == null) {
+                mDanmakuParser = new BaseDanmakuParser() {
+                    @Override
+                    protected Danmakus parse() {
+                        return new Danmakus();
+                    }
+                };
+            }
+            mDanmakuView.setCallback(new DanmakuViewCallback(this));
+            mDanmakuView.enableDanmakuDrawingCache(true);
+            mDanmakuView.prepare(mDanmakuParser, mDanmakuContext);
+        }
+    }
+
+    private void updateCurrentTrackId() {
+        // mCurrentTrackId = mTrackInfos.get((int) MusicPlayer.getCurrentPlaylistPos()).getTrackId();
+        // mCurrentTrackId = mTrackInfos.get(mCurrentPlayPos).getTrackId();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mDanmakuView != null) {
+            // dont forget release!
+            mDanmakuView.release();
+            mDanmakuView = null;
+        }
+
+        if (mList != null) {
+            mList.clear();
+            mList = null;
+        }
+    }
+
+    private void initMusicPlay12() {
+        // mUpdateSeekBarRunnable = new UpdateCircularProgress();
+
+        mCircularSeekBar.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(CircularSeekBar circularSeekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    MusicPlayer.seek(progress);
+                    MusicPlayer.getCurrentSeekPosition();
+                    log.d("onProgressChanged(): seekBar 被手转动了: " + MusicPlayer.getCurrentSeekPosition());
+                }
+            }
+
+            @Override
+            public void onStopTrackingTouch(CircularSeekBar seekBar) {
+                log.d("onStopTrackingTouch(): seekBar 停止触摸了");
+            }
+
+            @Override
+            public void onStartTrackingTouch(CircularSeekBar seekBar) {
+                log.d("onStartTrackingTouch(): seekBar 开始触摸了");
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void updateTrackInfo(TrackInfoBean trackInfoBean) {
+        // ImageLoader.getInstance().loadImage(mCirPlay,trackInfoBean.getCoverSmall());
+
+        ImageLoader
+                .getInstance()
+                .loadImage(AppUtil.getAppContext(), trackInfoBean.getCoverMiddle(), 180, 180, new IResult<Bitmap>() {
+                    @Override
+                    public void onResult(Bitmap bitmap) {
+                        // MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
+                        mCirPlay.setImageBitmap(bitmap);
+                    }
+                });
+
+        ImageLoader
+                .getInstance()
+                .loadImage(AppUtil.getAppContext(), trackInfoBean.getImages().get(0), 640, 640, new IResult<Bitmap>() {
+                    @Override
+                    public void onResult(Bitmap bitmap) {
+                        // MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
+
+                        if (bitmap != null) {
+                            mAlbumImage.setImageBitmap(bitmap);
+                        }
+                    }
+                });
+    }
+
+    @OnClick({R.id.previous, R.id.cir_play, R.id.cir_play1, R.id.next})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.previous:
+                gotoPrev();
+                break;
+            //发播放的消息
+            case R.id.cir_play:
+            case R.id.cir_play1:
+                playOrPause();
+                break;
+            case R.id.next:
+                gotoNext();
+                break;
+        }
+    }
+
+    //主线程的操作(更新ui)
+    protected void handlerMusicMainMessage(Message msg) {
+        super.handlerMusicMainMessage(msg);
+        switch (msg.what) {
+
+            case MSG_HIDE_PLAY_BTN:
+                boolean playing = MusicPlayer.isPlaying();
+                mCirPlay1.setSelected(playing);
+                if (playing) {
+                    mCirPlay1.setVisibility(View.INVISIBLE);
+                } else {
+                    mCirPlay1.setVisibility(View.VISIBLE);
+                }
+
+                break;
+            case MSG_SAVE_DB:
+
+                //保存到数据库
+                saveMusic();
+                break;
+        }
+    }
+
+    private void saveMusic() {
+        log.d("handlerMusicPlayerMessage():run() 保存到数据库");
+
+        Music music = MusicPlayer.getCurrentPlayMusic();
+        log.d("run(): 保存到数据库的音乐是" + music);
+        if (music != null) {
+            log.d("saveMusic(): 保存到数据库线程--------------------------" + Thread.currentThread().getName());
+            MusicPlayDao.saveMusicInfo(music);
+        }
+    }
+
+    //主线程 收到广播后的操作(发消息)
+    protected void handlerOnReceive(Intent intent) {
+        // log.d("onReceive(): 收到了广播,可以更新状态了,当前播放位置: " + MusicPlayer.getCurrentPlaylistPos() + "  "
+        //         + mTrackInfos.get((int) MusicPlayer.getCurrentPlaylistPos()).getTitle());
+
+        int intExtra = intent.getIntExtra(STATUS_CODE, STATUS_NULL);
+        switch (intExtra) {
+
+            case STATUS_NULL:
+                log.d("onReceive(): 收到默认状态的广播");
+                break;
+            case STATUS_NEXT:
+                log.d("onReceive(): 收到下一首的广播");
+
+                break;
+            case STATUS_PREV:
+                log.d("onReceive(): 收到上一首的广播");
+                break;
+            case STATUS_NEXT_CUSTOM:
+                log.d("onReceive(): 收到自定义下一首(上一首)的广播");
+                break;
+            case STATUS_NO_NEXT:
+                log.d("onReceive(): 收到没有下一首的广播");
+                break;
+            case STATUS_START:
+                log.d("onReceive(): 收到开始播放的广播");
+                break;
+            case STATUS_PAUSE:
+                log.d("onReceive(): 收到暂停的广播");
+
+                break;
+            case STATUS_STOP:
+                log.d("onReceive(): 收到停止的广播");
+
+                break;
+            case STATUS_LIST_INIT:
+                log.d("onReceive(): 收到播放列表初始化的广播");
+
+                break;
+            case STATUS_LIST_CHANGE:
+                log.d("onReceive(): 收到播放列表发生改变的广播");
+
+                break;
+            case STATUS_MUSIC_SAVE_DB:
+                log.d("onReceive(): 收到保存数据库的广播");
+                mMainHandler.sendEmptyMessage(MSG_SAVE_DB);
+                break;
+        }
+        // mMainHandler.sendEmptyMessage(MSG_UPDATE_UI);
+
+    }
+
+    public void updateUIDisplay() {
+
+        // startUIUpdate();
+
+        // if (mCircularSeekBar != null) {
+        //     mCircularSeekBar.setMax((int) MusicPlayer.getDuration());
+        //
+        //     log.d("updateUIDisplay():getDuration " + MusicPlayer.getDuration());
+        //
+        //     if (mUpdateSeekBarRunnable != null) {
+        //         mCircularSeekBar.removeCallbacks(mUpdateSeekBarRunnable);
+        //     }
+        //     //时间不能太小,否则,播放器还没准备好,就结束了滚动
+        //     mCircularSeekBar.postDelayed(mUpdateSeekBarRunnable, 10);
+        //     log.d("run(): seekBar 10ms 后开始转动了");
+        // }
+
+        if (DanmakuViewPrepare) {
+            mDanmakuView.start();
+            DanmakuViewPrepare = false;
+        }
+
+        if (mCircularSeekBar != null) {
+            long position = MusicPlayer.getCurrentSeekPosition();
+            mCircularSeekBar.setMax((int) MusicPlayer.getDuration());
+            mCircularSeekBar.setProgress((int) position);
+            log.d("run(): setProgress" + position + ", max: " + mCircularSeekBar.getMax());
+            rotation += 5;
+            mCirPlay.setRotation(rotation);
+        }
+
+        log.d("run():---------------播放状态: " + MusicPlayer.isPlaying());
+
+        log.d("run():当前播放第  " + MusicPlayer.getCurrentPlaylistPos() + "首, 当前播放百分比:" + MusicPlayer.getCurrentSeekPositionPercent());
+
+        if (mCirPlay != null) {
+
+            boolean playing = MusicPlayer.isPlaying();
+            mCirPlay1.setSelected(playing);
+            mCirPlay1.setImageResource(playing ? R.drawable.icon_rec_preview_pause : R.drawable.icon_rec_preview_play);
+            if (playing) {
+                mMainHandler.sendEmptyMessageDelayed(MSG_HIDE_PLAY_BTN, 5 * 1000);
+            } else {
+                mCirPlay1.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    static class DanmakuViewCallback implements DrawHandler.Callback {
+
+        private final WeakReference<MusicActivity> mWeakReference;
+
+        public DanmakuViewCallback(final MusicActivity activity) {
+
+            mWeakReference = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void prepared() {
+            // 这里处理下有时调用 _resumeDanmaku() 时弹幕还没 prepared 的情况
+            // if (mVideoView.isPlaying() && !mIsBufferingStart) {
+
+            if (mWeakReference.get() != null) {
+
+                mWeakReference.get().DanmakuViewPrepare = true;
+            }
+            // }
+        }
+
+        @Override
+        public void updateTimer(DanmakuTimer timer) {
+        }
+
+        @Override
+        public void danmakuShown(BaseDanmaku danmaku) {
+        }
+
+        @Override
+        public void drawingFinished() {
+        }
+    }
+
+    // class UpdateCircularProgress implements Runnable {
+    //
+    //     @Override
+    //     public void run() {
+    //         if (mCircularSeekBar != null) {
+    //             long position = MusicPlayer.getCurrentSeekPosition();
+    //             mCircularSeekBar.setProgress((int) position);
+    //             log.d("run(): setProgress" + position + ", max: " + mCircularSeekBar.getMax());
+    //             rotation += 2;
+    //             mCirPlay.setRotation(rotation);
+    //
+    //             log.d("run():---------------播放状态: " + MusicPlayer.isPlaying());
+    //             if (MusicPlayer.isPlaying()) {
+    //                 mCircularSeekBar.postDelayed(mUpdateSeekBarRunnable, 500);
+    //                 log.d("run():当前播放第  " + MusicPlayer.getCurrentPlaylistPos() + "首, 当前播放百分比:" + MusicPlayer.getCurrentSeekPositionPercent());
+    //                 return;
+    //             }
+    //
+    //             log.d("run(): seekBar 停止转动了");
+    //         }
+    //     }
+    // }
+}

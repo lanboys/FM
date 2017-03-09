@@ -18,6 +18,7 @@
     <color name="main_white_background_200">#ffeeeeee</color>
     <color name="main_white_background_300">#ffe0e0e0</color>
 
+    <color name="category_item_color">#f4efef</color>
 
     <color name="load_pager_background">#f3f3f3</color>
 

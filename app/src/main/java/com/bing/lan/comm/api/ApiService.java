@@ -3,6 +3,7 @@ package com.bing.lan.comm.api;
 import com.bing.lan.fm.ui.album.bean.AlbumResultBean;
 import com.bing.lan.fm.ui.anchor.bean.AnchorResult;
 import com.bing.lan.fm.ui.category.bean.CategoryListBean;
+import com.bing.lan.fm.ui.categorydetails.bean.CategoryDeitailsBean;
 import com.bing.lan.fm.ui.gank.bean.GankBean;
 import com.bing.lan.fm.ui.home.bean.HomeTabsResult;
 import com.bing.lan.fm.ui.hot.bean.HotResult;
@@ -116,6 +117,15 @@ public interface ApiService {
     @GET("mobile/discovery/v1/categories?channel=and-a1&device=android&picVersion=13&scale=2")
     Observable<CategoryListBean> getCategory();
     //http://mobile.ximalaya.com/mobile/discovery/v1/categories?channel=and-a1&device=android&picVersion=13&scale=2
+
+
+    //分类的详情页面
+    @GET("mobile/discovery/v1/category/keywords")
+    Observable<CategoryDeitailsBean> getCategoryDeitails(@Query("categoryId") int categoryId, @Query("contentType") String album);
+    //categoryId=2
+  /*  http://mobile.ximalaya.com/mobile/discovery/v1/category/keywords?categoryId=3
+   &channel=and-a1&contentType=album&device=android&version=5.4.87
+    */
 
 
     //    @POST("login")

@@ -35,7 +35,7 @@ public class MusicPresenter
 
     @Override
     public void onStart(Object... params) {
-
+        mView.showDialog("正在获取音乐资源..");
         initData((Intent) params[0]);
     }
 
@@ -54,14 +54,20 @@ public class MusicPresenter
             mView.gotoPosition(mFirstPlayPos);
             requestData(LOAD_TRACK, mCurrentTrackId, mAlbumId);//???????
         } else if (mAlbumId != 0) {
-            // 不在播放 main,查询数据库进来
+            // 不在播放 main,查询数据库(能拿到数据)进来
             requestData(LOAD_ALBUM, mAlbumId);
         } else {
-            // 正在播放 main进来
+            // 1.正在播放 main进来
+            // 2.第一次安装,查询数据库(不能拿到数据) main 进来
 
             Music music = MusicPlayer.getCurrentPlayMusic();
-            mAlbumId = music.albumId;
-            mCurrentTrackId = music.trackId;
+            if (music != null) {
+                mAlbumId = music.albumId;
+                mCurrentTrackId = music.trackId;
+            } else {
+                mAlbumId = 270535;
+                mCurrentTrackId = 31353083;
+            }
 
             requestData(LOAD_TRACK, mCurrentTrackId, mAlbumId);//???????
         }
@@ -123,6 +129,7 @@ public class MusicPresenter
                 mCurrentTrackId = mTrackInfos.get(0).getTrackId();
                 //播放音乐
                 mView.gotoPosition(mFirstPlayPos);
+
                 requestData(LOAD_TRACK, mCurrentTrackId, mAlbumId);//???????
                 break;
         }
@@ -131,10 +138,14 @@ public class MusicPresenter
     @Override
     public void onError(int action, Throwable e) {
         super.onError(action, e);
+        mView.dismissDialog();
+
     }
 
     @Override
     public void onCompleted(int action) {
         super.onCompleted(action);
+
+        mView.dismissDialog();
     }
 }

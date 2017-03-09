@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bing.lan.comm.base.mvp.activity.BaseMusicActivity;
 import com.bing.lan.comm.di.ActivityComponent;
@@ -27,10 +28,12 @@ import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.album.bean.TracksInfoBean;
 import com.bing.lan.fm.ui.music.bean.TrackInfoBean;
 import com.dl7.player.danmaku.BiliDanmukuParser;
+import com.facebook.fresco.helper.listener.IResult;
 
 import net.steamcrafted.materialiconlib.MaterialIconView;
 
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +94,8 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
     MaterialIconView mNext;
     @BindView(R.id.divergeView)
     DivergeView mDivergeView;
+    @BindView(R.id.album_art_blurred)
+    ImageView mAlbumImage;
 
     private List<Music> mArrayList;
     private int mFirstPlayPos;
@@ -106,15 +111,15 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
 
     private float rotation = 0;
     private long mAlbumId;
+    private boolean DanmakuViewPrepare = false;
 
     /**
      * 进入专辑页面的入口,需要专辑id
      *
-
      * @param albumId   专辑id
      * @param isAddFlag 不在activity,内部启动,就需要添加标志(默认先设置false,报错启动不了,设置为true)
      */
-    public static void startMusicActivity(Context context,  boolean isAddFlag,
+    public static void startMusicActivity(Context context, boolean isAddFlag,
             long albumId, int position, ArrayList<TracksInfoBean> tracks) {
 
         Intent intent = new Intent(context, MusicActivity.class);
@@ -161,13 +166,6 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
         initDivergeView();
     }
 
-    @Override
-    protected void readyStartPresenter() {
-        // initData(getIntent());
-        // mPresenter.onStart(mCurrentTrackId,mAlbumId);
-        mPresenter.onStart(getIntent());
-    }
-
     // private void initData(Intent intent) {
     //     mTrackInfos = (ArrayList<TracksInfoBean>) intent.getSerializableExtra(TRACK_PLAYLIST);
     //     mFirstPlayPos = intent.getIntExtra(a_POSITION, 0);
@@ -196,6 +194,13 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
     //
     //     }
     // }
+
+    @Override
+    protected void readyStartPresenter() {
+        // initData(getIntent());
+        // mPresenter.onStart(mCurrentTrackId,mAlbumId);
+        mPresenter.onStart(getIntent());
+    }
 
     private void initToolbar() {
         setToolBar(mToolbar, "", true);
@@ -323,27 +328,7 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
                     }
                 };
             }
-            mDanmakuView.setCallback(new DrawHandler.Callback() {
-                @Override
-                public void prepared() {
-                    // 这里处理下有时调用 _resumeDanmaku() 时弹幕还没 prepared 的情况
-                    // if (mVideoView.isPlaying() && !mIsBufferingStart) {
-                    mDanmakuView.start();
-                    // }
-                }
-
-                @Override
-                public void updateTimer(DanmakuTimer timer) {
-                }
-
-                @Override
-                public void danmakuShown(BaseDanmaku danmaku) {
-                }
-
-                @Override
-                public void drawingFinished() {
-                }
-            });
+            mDanmakuView.setCallback(new DanmakuViewCallback(this));
             mDanmakuView.enableDanmakuDrawingCache(true);
             mDanmakuView.prepare(mDanmakuParser, mDanmakuContext);
         }
@@ -404,8 +389,33 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
     }
 
     public void updateTrackInfo(TrackInfoBean trackInfoBean) {
-        ImageLoader.getInstance().loadImage(mCirPlay,trackInfoBean.getCoverLarge());
+        // ImageLoader.getInstance().loadImage(mCirPlay,trackInfoBean.getCoverSmall());
 
+        ImageLoader
+                .getInstance()
+                .loadImage(AppUtil.getAppContext(), trackInfoBean.getCoverMiddle(), 180, 180, new IResult<Bitmap>() {
+                    @Override
+                    public void onResult(Bitmap bitmap) {
+                        // MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
+                        if (bitmap != null) {
+                        mCirPlay.setImageBitmap(bitmap);
+                        }
+
+                    }
+                });
+
+        ImageLoader
+                .getInstance()
+                .loadImage(AppUtil.getAppContext(), trackInfoBean.getImages().get(0), 640, 640, new IResult<Bitmap>() {
+                    @Override
+                    public void onResult(Bitmap bitmap) {
+                        // MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
+
+                        if (bitmap != null) {
+                            mAlbumImage.setImageBitmap(bitmap);
+                        }
+                    }
+                });
     }
 
     @OnClick({R.id.previous, R.id.cir_play, R.id.cir_play1, R.id.next})
@@ -528,12 +538,17 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
         //     log.d("run(): seekBar 10ms 后开始转动了");
         // }
 
+        if (DanmakuViewPrepare) {
+            mDanmakuView.start();
+            DanmakuViewPrepare = false;
+        }
+
         if (mCircularSeekBar != null) {
             long position = MusicPlayer.getCurrentSeekPosition();
             mCircularSeekBar.setMax((int) MusicPlayer.getDuration());
             mCircularSeekBar.setProgress((int) position);
             log.d("run(): setProgress" + position + ", max: " + mCircularSeekBar.getMax());
-            rotation += 3;
+            rotation += 5;
             mCirPlay.setRotation(rotation);
         }
 
@@ -543,15 +558,48 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
 
         if (mCirPlay != null) {
 
-
             boolean playing = MusicPlayer.isPlaying();
             mCirPlay1.setSelected(playing);
-            mCirPlay1.setImageResource(playing? R.drawable.icon_rec_preview_pause:R.drawable.icon_rec_preview_play);
+            mCirPlay1.setImageResource(playing ? R.drawable.icon_rec_preview_pause : R.drawable.icon_rec_preview_play);
             if (playing) {
                 mMainHandler.sendEmptyMessageDelayed(MSG_HIDE_PLAY_BTN, 5 * 1000);
             } else {
                 mCirPlay1.setVisibility(View.VISIBLE);
             }
+        }
+    }
+
+    static class DanmakuViewCallback implements DrawHandler.Callback {
+
+        private final WeakReference<MusicActivity> mWeakReference;
+
+        public DanmakuViewCallback(final MusicActivity activity) {
+
+            mWeakReference = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void prepared() {
+            // 这里处理下有时调用 _resumeDanmaku() 时弹幕还没 prepared 的情况
+            // if (mVideoView.isPlaying() && !mIsBufferingStart) {
+
+            if (mWeakReference.get() != null) {
+
+                mWeakReference.get().DanmakuViewPrepare = true;
+            }
+            // }
+        }
+
+        @Override
+        public void updateTimer(DanmakuTimer timer) {
+        }
+
+        @Override
+        public void danmakuShown(BaseDanmaku danmaku) {
+        }
+
+        @Override
+        public void drawingFinished() {
         }
     }
 
