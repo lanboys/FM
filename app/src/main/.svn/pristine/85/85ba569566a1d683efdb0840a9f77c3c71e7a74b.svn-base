@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fff86442</color>
+    <color name="colorPrimaryDark">#fff86442</color>
+    <color name="colorAccent">#f97b5e</color>
+
+    <!-- 妹纸recyclerView 背景色-->
+    <color name="girl_gank_background">#f9f9f9</color>
+    <!-- 主要背景色 -->
+    <!--<color name="main_background">#fff86442</color>-->
+    <color name="main_orange_background">#fff86442</color>
+    <!-- 灰白 -->
+    <color name="main_gray_white_background">#dadada</color>
+    <!-- 白色 -->
+    <color name="main_white_background_10">#fffefe</color>
+    <color name="main_white_background_50">#fffafafa</color>
+    <color name="main_white_background_100">#fff5f5f5</color>
+    <color name="main_white_background_200">#ffeeeeee</color>
+    <color name="main_white_background_300">#ffe0e0e0</color>
+
+
+    <color name="load_pager_background">#f3f3f3</color>
+
+
+    <!-- 灰色分割线 -->
+    <color name="main_gray_line">#6f6f6f</color>
+
+
+    <!-- hot -->
+
+    <!--  item 背景 -->
+    <color name="hot_item_background_white">#ffffffff</color>
+    <!--  猜你喜欢 -->
+    <color name="hot_item_title_text_color">#0e0e0e</color>
+    <!-- item内部大标题 -->
+    <color name="big_title_color">#101010</color>
+    <!-- item内部小标题 -->
+    <color name="little_title_color">#b3b0b0</color>
+    <!-- item内部note -->
+    <color name="foot_note_color">#ff949494</color>
+    <!-- 经典必听 -->
+
+
+    <color name="titleColor">#c9212e</color>
+    <color name="titleColorSelected">#535353</color>
+
+    <color name="otherspace_normal_gray">#ff666666</color>
+
+
+    <!-- 文字选择器的两种颜色 -->
+    <color name="text_color_gray_select">#ffc6c6c6</color>
+    <color name="text_color_gray_unSelect">#fff86442</color>
+
+    <!-- tab 文字的两种颜色 -->
+    <color name="tab_text_color_pressed">#fff86442</color>
+
+
+    <!-- home页面tab颜色 -->
+    <color name="tab_text_color_white">#ffffffff</color>
+    <color name="default_refresh_color_style">#CA0612</color>
+
+
+    <!-- 播放器 -->
+    <color name="pink_transparent">#44700d39</color>
+    <color name="green_transparent">#44375a1f</color>
+    <color name="blue_transparent">#44293576</color>
+    <color name="red_transparent">#447f3907</color>
+    <color name="purple_transparent">#44432677</color>
+    <color name="black_translucent">#66000000</color>
+    <color name="white_translucent">#c8ffffff</color>
+    <!-- 播放器 -->
+
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/anchor_refresh_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/anchor_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_gray_white_background"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+
+

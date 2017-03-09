@@ -1,0 +1,132 @@
+package com.bing.lan.comm.utils.musicplay;
+
+import com.bing.lan.comm.utils.RealmManager;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+/**
+ * @author 蓝兵
+ * @time 2017/3/7  23:39
+ */
+public class MusicPlayDao {
+
+    public static void saveMusicInfo(Music music) {
+        Realm mainRealm = RealmManager.getMainThreadInstance().getMainRealm();
+        mainRealm.beginTransaction();
+        mainRealm.copyToRealmOrUpdate(music);
+        mainRealm.commitTransaction();
+
+        // mainRealm.executeTransaction(new Realm.Transaction() {
+        //     @Override
+        //     public void execute(Realm realm) {
+        //
+        //     }
+        // });
+
+        /**
+         * 注意: ：如果当 Acitivity 或 Fragment 被销毁时，在 OnSuccess 或 OnError
+         * 中执行UI操作，将导致程序奔溃 。用 RealmAsyncTask .cancel();可以取消事务
+         * 在 onStop 中调用，避免 crash。
+         */
+        //
+        // RealmAsyncTask realmAsyncTask = mainRealm.executeTransactionAsync(new Realm.Transaction() {
+        //     @Override
+        //     public void execute(Realm realm) {
+        //        realm.copyToRealmOrUpdate(music);
+        //     }
+        // }, new Realm.Transaction.OnSuccess() {
+        //     @Override
+        //     public void onSuccess() {
+        //
+        //     }
+        // }, new Realm.Transaction.OnError() {
+        //     @Override
+        //     public void onError(Throwable error) {
+        //
+        //     }
+        // });
+    }
+
+    public static Music queryMusicInfoByUrl(String url) {
+        return RealmManager.getMainThreadInstance()
+                .getMainRealm()
+                .where(Music.class)
+                .equalTo("url", url)
+                .findFirst();
+    }
+
+    // public static void queryMusicInfoByUrl12(String url, long albumId) {
+    //     RealmResults<Music> url1 = RealmManager.getMainThreadInstance()
+    //             .getMainRealm()
+    //             .where(Music.class)
+    //             .equalTo("url", url)
+    //             .equalTo("albumId", albumId)
+    //             .findAll();
+    // }
+
+
+
+
+    // RealmResults<Music> musics = MusicPlayDao.queryAllMusicInfo();
+    //
+    // for (Music music : musics) {
+    //     log.d("queryMusic(): 数据库查询到的数据总条数:  " + musics.size() + ", 音乐信息: " + music.toString() + "\n");
+    // }
+
+    /**
+     * 用这个方法查询
+     * @return
+     */
+    public static RealmResults<Music> queryAllMusicInfo() {
+        return RealmManager.getMainThreadInstance()
+                .getMainRealm()
+                .where(Music.class)
+                .findAll();
+    }
+
+    public static void queryAllMusicInfoAsync(final OnMusicQueryListener listener) {
+        Observable<RealmResults<Music>> observable = RealmManager.getMainThreadInstance()
+                .getMainRealm()
+                .where(Music.class)
+                .findAllAsync().asObservable();
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<RealmResults<Music>>() {
+                    @Override
+                    public void onCompleted() {
+                        if (listener != null) {
+                            listener.onCompleted();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (listener != null) {
+                            listener.onError(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(RealmResults<Music> musics) {
+                        if (listener != null) {
+                            listener.onSuccess(musics);
+                        }
+                    }
+                });
+    }
+
+  public   interface OnMusicQueryListener {
+
+        void onSuccess(RealmResults<Music> musics);
+
+        void onError(Throwable e);
+
+        void onCompleted();
+    }
+}

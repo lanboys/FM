@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.bing.lan.fm">
+
+    <!-- 检查网络状态的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 联网权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 读写存储卡权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!-- 二维码 / 直播-->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <!-- 二维码 -->
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+
+    <!-- 直播 申明应用需要用到自动对焦 -->
+    <!--<uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>-->
+    <!-- 直播 申明录音权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+
+    <!--<permission-->
+        <!--android:name="com.bing.lan.fm.permission.JPUSH_MESSAGE"-->
+        <!--android:protectionLevel="signature" />-->
+
+    <!--&lt;!&ndash; Required &ndash;&gt;-->
+    <!--<uses-permission android:name="com.bing.lan.fm.permission.JPUSH_MESSAGE" />-->
+    <!--<uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />-->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
+    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+    <!--<uses-permission android:name="android.permission.VIBRATE" />-->
+    <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>-->
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+
+    <!--&lt;!&ndash; Optional. Required for location feature &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> &lt;!&ndash;-->
+<!--⽤于开启 debug 版本的应⽤在6.0 系统上 层叠窗⼝权限 &ndash;&gt;-->
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />-->
+    <!--<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />-->
+    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
+
+    <!--<uses-permission android:name="android.permission.INTERNET"/>-->
+    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
+
+
+
+
+    <application
+        android:name="com.bing.lan.comm.app.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_ting"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+
+        <!-- 引导界面 -->
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- 主页面 -->
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <!-- 查看图片界面 -->
+        <activity
+            android:name=".ui.pic.PictureActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- android:process=":picture" -->
+        </activity>
+        <!-- 搜索界面 -->
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <!-- 音乐界面 -->
+        <activity
+            android:name=".ui.music.MusicActivity"
+            android:label="@string/title_activity_music"
+            android:theme="@style/AppTheme">
+        </activity>
+        <!-- 专辑详情页面 -->
+        <activity
+            android:name=".ui.album.AlbumActivity"
+            android:label="@string/title_activity_album"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <!-- 直播页面 -->
+        <activity
+            android:name=".ui.live.LiveActivity"
+            android:label="@string/title_activity_album"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <!-- 音乐服务 -->
+        <service android:name="com.bing.lan.comm.utils.musicplay.MusicService"/>
+
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!--&lt;!&ndash; since 1.8.0 option 可选项。⽤于同⼀设备中不同应⽤的JPush服务相互拉起的功能。 &ndash;&gt;-->
+        <!--&lt;!&ndash; 若不启⽤该功能可删除该组件，将不拉起其他应⽤也不能被其他应⽤拉起 &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="cn.jpush.android.service.DaemonService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter >-->
+                <!--<action android:name="cn.jpush.android.intent.DaemonService" />-->
+                <!--<category android:name="com.bing.lan.fm"/>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+        <!--&lt;!&ndash; Required SDK核⼼功能&ndash;&gt;-->
+        <!--<receiver-->
+            <!--android:name="cn.jpush.android.service.PushReceiver"-->
+            <!--android:enabled="true" >-->
+            <!--<intent-filter android:priority="1000">-->
+                <!--<action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />-->
+                <!--<category android:name="com.bing.lan.fm"/>-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+            <!--</intent-filter>-->
+            <!--&lt;!&ndash; Optional &ndash;&gt;-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.PACKAGE_ADDED" />-->
+                <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
+                <!--<data android:scheme="package" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!--&lt;!&ndash; Required SDK核⼼功能&ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name="cn.jpush.android.ui.PushActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden"-->
+            <!--android:theme="@android:style/Theme.NoTitleBar"-->
+            <!--android:exported="false" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="cn.jpush.android.ui.PushActivity" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="com.bing.lan.fm" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <!--&lt;!&ndash; Required SDK核⼼功能&ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="cn.jpush.android.service.DownloadService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false" >-->
+        <!--</service>-->
+
+        <!-- Required SDK核⼼功能-->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+        <!-- User defined. ⽤户⾃定义的⼴播接收器-->
+        <!-- User defined. ⽤户⾃定义的⼴播接收器-->
+        <receiver
+            android:name="com.bing.lan.comm.receiver.JPushReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <!--Required ⽤户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!--Required ⽤户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!--Required ⽤户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!--Required ⽤户打开⾃定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- 接收⽹络变化 连接/断开 since 1.6.3 -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <category android:name="com.bing.lan.fm" />
+            </intent-filter>
+        </receiver>
+
+        <!--&lt;!&ndash; Required. For publish channel feature &ndash;&gt;-->
+        <!--&lt;!&ndash; JPUSH_CHANNEL 是为了⽅便开发者统计APK分发渠道。&ndash;&gt;-->
+        <!--&lt;!&ndash; 例如: &ndash;&gt;-->
+        <!--&lt;!&ndash; 发到 Google Play 的APK可以设置为 google-play; &ndash;&gt;-->
+        <!--&lt;!&ndash; 发到其他市场的 APK 可以设置为 xxx-market。 &ndash;&gt;-->
+        <!--&lt;!&ndash; ⽬前这个渠道统计功能的报表还未开放。&ndash;&gt;-->
+        <!--<meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>-->
+        <!--&lt;!&ndash; Required. AppKey copied from Portal &ndash;&gt;-->
+        <!--<meta-data android:name="JPUSH_APPKEY" android:value="4a2883814591ecf41485e313"/>-->
+
+    </application>
+
+</manifest>

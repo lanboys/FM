@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_child_container"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    app:background="@android:color/white"
+    app:cardBackgroundColor="@color/hot_item_background_white"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    app:contentPadding="1dp">
+
+    <RelativeLayout
+        android:layout_width="445dp"
+        android:layout_height="match_parent">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_cover_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_weight="1.8"
+            android:gravity="center"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:fadeDuration="500"
+            fresco:placeholderImage="@drawable/image_default_202"
+            fresco:progressBarImage="@drawable/image_default_202"
+            fresco:progressBarImageScaleType="centerCrop"
+            fresco:roundAsCircle="true"
+            fresco:roundedCornerRadius="10dp"
+            tools:src="@mipmap/account_avatar"
+            />
+
+        <!--app:failureImage="@mipmap/ic_launcher"-->
+        <!--app:failureImageScaleType="centerInside"-->
+        <!--app:retryImage="@mipmap/ic_launcher"-->
+        <!--app:retryImageScaleType="centerCrop"-->
+        <!--app:progressBarImage="@mipmap/ic_launcher"-->
+        <!--app:progressBarImageScaleType="centerCrop"-->
+        <!--app:progressBarAutoRotateInterval="5000"/>-->
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@id/iv_cover_image"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_big_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/big_title_color"
+                android:textSize="20sp"
+                tools:text="标题小编推荐推荐荐推荐荐推荐"/>
+
+
+            <TextView
+                android:id="@+id/tv_mid_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/finding_album_img"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/titleColorSelected"
+                android:textSize="15sp"
+                tools:text="标题小编推荐推荐"/>
+
+            <TextView
+                android:id="@+id/tv_samlle_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/finding_album_img"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/titleColorSelected"
+                android:textSize="15sp"
+                tools:text="标题小编推荐推荐"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_gray_right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,213 @@
+package com.bing.lan.fm.ui.album;
+
+import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bing.lan.comm.base.mvp.activity.BaseActivity;
+import com.bing.lan.comm.di.ActivityComponent;
+import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.fm.R;
+import com.bing.lan.fm.listener.RecyclerViewScrollListener;
+import com.bing.lan.fm.ui.album.bean.AlbumResultBean;
+import com.bing.lan.fm.ui.album.bean.TracksInfoBean;
+import com.bing.lan.fm.ui.album.delagate.TracksInfoDelagate;
+import com.bing.lan.fm.ui.music.MusicActivity;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static com.bing.lan.fm.ui.hot.delagate.EditorRecomItemDelagate.ALBUM_DETAIL;
+
+public class AlbumActivity extends BaseActivity<IAlbumContract.IAlbumPresenter>
+        implements IAlbumContract.IAlbumView, MultiItemTypeAdapter.OnItemClickListener {
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
+    @BindView(R.id.rlv_album_music)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.iv_album_image)
+    SimpleDraweeView mIvAlbumImage;
+    @BindView(R.id.tv_album_title)
+    TextView mTvAlbumTitle;
+    @BindView(R.id.tv_album_nickname)
+    TextView mTvAlbumNickname;
+    @BindView(R.id.tv_album_playTimes)
+    TextView mTvAlbumPlayTimes;
+    @BindView(R.id.tv_album_categoryName)
+    TextView mTvAlbumCategoryName;
+    @BindView(R.id.ll_child_container)
+    LinearLayout mLlChildContainer;
+    @BindView(R.id.ll_album_subscriber)
+    LinearLayout mLlAlbumSubscriber;
+    @BindView(R.id.ll_album_download)
+    LinearLayout mLlAlbumDownload;
+    @BindView(R.id.content_album1)
+    LinearLayout mContentAlbum1;
+    @BindView(R.id.tv_subscribeCount)
+    TextView mTvSubscribeCount;
+    private long mAlbumId;
+    private List<TracksInfoBean> mRecyclerViewData;
+    private MultiItemTypeAdapter<TracksInfoBean> mMultiItemTypeAdapter;
+
+    /**
+     * 进入专辑页面的入口,需要专辑id
+     *
+     * @param context
+     * @param cls
+     * @param albumId   专辑id
+     * @param isAddFlag 不在activity,内部启动,就需要添加标志(默认先设置false,报错启动不了,设置为true)
+     */
+    public static void startAlbumActivity(Context context, Class<?> cls, long albumId, boolean isAddFlag) {
+        Intent intent = new Intent(context, cls);
+        intent.putExtra(ALBUM_DETAIL, albumId);
+        if (isAddFlag) {
+            intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        }
+        context.startActivity(intent);
+    }
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_album;
+    }
+
+    @Override
+    protected void startInject(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
+    }
+
+    @Override
+    protected void initViewAndData(Intent intent) {
+        setToolBar(mToolbar, "专辑详情", true);
+        // mToolbar.setNavigationIcon(R.drawable.icon_feed_back_head);
+        ActionBar supportActionBar = getSupportActionBar();
+        supportActionBar.setHomeAsUpIndicator(R.drawable.icon_feed_back_head);
+        // supportActionBar.setDisplayHomeAsUpEnabled(true);
+
+        initFab();
+        initData(intent);
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setSmoothScrollbarEnabled(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        mRecyclerViewData = new ArrayList<>();
+
+        mMultiItemTypeAdapter = new MultiItemTypeAdapter<>(AppUtil.getAppContext(), mRecyclerViewData);
+        TracksInfoDelagate editorRecomItemDelagate = new TracksInfoDelagate();
+
+        mMultiItemTypeAdapter.addItemViewDelegate(editorRecomItemDelagate);
+
+        mMultiItemTypeAdapter.setOnItemClickListener(this);
+
+        mRecyclerView.setAdapter(mMultiItemTypeAdapter);
+        mRecyclerView.addOnScrollListener(new RecyclerViewScrollListener() {
+            @Override
+            public int getLastVisiblePosition(RecyclerView.LayoutManager layoutManager) {
+                return ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+            }
+
+            @Override
+            public void loadMore() {
+                log.d("loadMore(): 专辑页面加载更多");
+                mPresenter.requestData(AlbumPresenter.LOAD_MORE);
+            }
+        });
+
+        mRecyclerView.setVisibility(View.GONE);
+    }
+
+    private void initData(Intent intent) {
+        mAlbumId = intent.getLongExtra(ALBUM_DETAIL, 0);
+        // IAlbum editorBean = (IAlbum) intent.getSerializableExtra(ALBUM_DETAIL);
+        // mAlbumId = editorBean.getAlbumId();
+    }
+
+    @Override
+    protected void readyStartPresenter() {
+        mPresenter.onStart(mAlbumId);
+    }
+
+    private void initFab() {
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    @Override
+    public void updateRecyclerView(List<TracksInfoBean> data) {
+        mRecyclerViewData.clear();
+        mRecyclerViewData.addAll(data);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        showToast("为您更新了" + data.size() + "条数据");
+    }
+
+    @Override
+    public void updateAlbumDetail(AlbumResultBean.DataBean.AlbumBean data) {
+        mTvAlbumTitle.setText(data.getTitle());
+        mIvAlbumImage.setImageURI(data.getCoverLarge());
+        mTvAlbumPlayTimes.setText("播放: " + data.getPlayTimes());
+        mTvAlbumNickname.setText("主播: " + data.getNickname());
+        mTvAlbumCategoryName.setText("分类: " + data.getCategoryName());
+        // TODO: 2017/3/6 查询数据库
+        mTvSubscribeCount.setText("订阅(" + data.getSubscribeCount() + ")");
+    }
+
+    @Override
+    public void loadRecyclerView(List<TracksInfoBean> data) {
+        mRecyclerViewData.addAll(data);
+        showToast("为您增加了" + data.size() + "条数据");
+    }
+
+    @Override
+    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+
+        Intent intent = new Intent(view.getContext(), MusicActivity.class);
+        intent.putExtra(MusicActivity.TRACK_PLAYLIST, (ArrayList<TracksInfoBean>) mRecyclerViewData);
+        intent.putExtra(MusicActivity.TRACK_POSITION, position);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+        return false;
+    }
+
+    @OnClick({R.id.ll_album_subscriber, R.id.ll_album_download, R.id.tv_subscribeCount})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_album_subscriber:
+                break;
+            case R.id.ll_album_download:
+                break;
+            case R.id.tv_subscribeCount:
+                break;
+        }
+    }
+}

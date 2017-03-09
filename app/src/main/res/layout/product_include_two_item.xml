@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_child_container"
+    android:layout_width="match_parent"
+    android:layout_height="122dp"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_cover_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:fadeDuration="500"
+            fresco:placeholderImage="@drawable/image_default_202"
+            fresco:progressBarImage="@drawable/image_default_202"
+            fresco:progressBarImageScaleType="centerCrop"
+
+            fresco:roundedCornerRadius="10dp"
+            tools:src="@mipmap/account_avatar"
+            />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="6dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_track_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/big_title_color"
+            android:textSize="@dimen/hot_track_Subtitle"
+            tools:text="描述信息描述信息描述信息描述信息描述信息描述信息描述信息"/>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/tv_tracksCounts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_item_playtimes_count"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/foot_note_color"
+                android:textSize="@dimen/foot_note_title"
+                tools:text="播放数..万"/>
+
+            <TextView
+                android:id="@+id/tv_followersCounts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toLeftOf="@id/tv_tracksCounts"
+                android:drawableLeft="@drawable/ic_item_duration"
+                android:drawablePadding="4dp"
+                android:textColor="@color/foot_note_color"
+                android:textSize="@dimen/foot_note_title"
+                tools:text="时间:19:14"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/anchor_attention"
+            android:textColor="@color/titleColorSelected"
+            android:textSize="9sp"
+            android:layout_centerHorizontal="true"
+            tools:text="6天前"
+            />
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_login_password"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

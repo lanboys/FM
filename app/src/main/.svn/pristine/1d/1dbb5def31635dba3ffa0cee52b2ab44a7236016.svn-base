@@ -1,0 +1,146 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_top_bar"
+    android:layout_width="fill_parent"
+    android:layout_height="48dip"
+    android:clickable="true"
+    android:paddingTop="2dp">
+    <!--android:background="@color/white"-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        android:src="@mipmap/account_avatar"/>
+    <TextView
+        android:id="@+id/tv_search_word"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_toLeftOf="@+id/zxing_qrcode"
+        android:layout_toRightOf="@id/user_image"
+        android:background="@drawable/search_et_shap"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingLeft="35dp"
+        android:paddingRight="7dp"
+        android:textSize="14.0sp"
+        tools:text="this is search"/>
+
+    <ImageButton
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_search_word"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="this is a pic"
+        android:gravity="center"
+        android:paddingLeft="7dp"
+        android:scaleType="center"
+        android:src="@drawable/square_search"/>
+
+
+    <!-- 下载 -->
+    <RelativeLayout
+        android:id="@+id/download_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:id="@+id/ib_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="8.0dp"
+            android:background="@android:color/transparent"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_finding_download"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/ib_download"
+            android:layout_alignRight="@id/ib_download"
+            android:layout_below="@id/ib_download"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center"
+            android:text="下载"
+            android:textColor="#ff949494"
+            android:textSize="9.0sp"/>
+        <TextView
+            android:id="@+id/tv_downloading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/ib_download"
+            android:layout_alignTop="@id/ib_download"
+            android:layout_marginRight="1.0dip"
+            android:layout_marginTop="-8.5dip"
+            android:background="@drawable/badge_bg"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@color/tab_text_color_white"
+            android:textSize="10.0sp"
+            android:translationY="5.0dip"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <!-- 历史 -->
+    <RelativeLayout
+        android:id="@+id/history_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/download_layout">
+        <ImageView
+            android:id="@+id/ib_play_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dip"
+            android:layout_marginTop="8.0dip"
+            android:background="@android:color/transparent"
+            android:paddingLeft="5.0dip"
+            android:paddingRight="5.0dip"
+            android:scaleType="center"
+            android:src="@drawable/ic_navi_history"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/ib_play_history"
+            android:layout_alignRight="@id/ib_play_history"
+            android:layout_below="@id/ib_play_history"
+            android:layout_marginTop="2.0dip"
+            android:gravity="center"
+            android:text="历史"
+            android:textColor="#ff949494"
+            android:textSize="9.0sp"/>
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/zxing_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/history_layout"
+        android:background="@android:color/transparent"
+        android:contentDescription="this is a pic"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:scaleType="center"
+        android:src="@drawable/qrcode"/>
+    <!--<View-->
+        <!--android:id="@+id/title_bar_divide"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="1.0px"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="#ffe8e8e8"/>-->
+</RelativeLayout>
+

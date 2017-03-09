@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#222222</color>
+    <color name="colorPrimaryDark">#222222</color>
+    <color name="colorAccent">#404040</color>
+
+    <!-- 妹纸recyclerView 背景色-->
+    <color name="girl_gank_background">#404040</color>
+    <!-- 主要背景色 -->
+
+    <color name="main_background">#222222</color>
+    <color name="main_orange_background">#222222</color>
+    <!-- 灰白 -->
+    <color name="main_white_background_10">#f3f3f3</color>
+
+    <!-- 灰色分割线 -->
+    <color name="main_gray_line">#f4f1f1</color>
+
+
+    <color name="titleColor">#c9212e</color>
+    <color name="titleColorSelected">#535353</color>
+
+    <color name="otherspace_normal_gray">#ff666666</color>
+    <color name="text_color_gray_select">#ffc6c6c6</color>
+    <color name="text_color_gray_unSelect">#fff86442</color>
+
+    <!-- tab 文字的两种颜色 -->
+    <color name="tab_text_color_pressed">#fff86442</color>
+
+
+    <!-- home页面tab颜色 -->
+    <color name="tab_text_color_white">#ffffffff</color>
+
+    <!--<color name="default_refresh_color_style">#CA0612</color>-->
+
+    <!-- 热门item 背景 -->
+    <color name="hot_item_title_text_color">#faf8f8</color>
+    <color name="hot_item_background_white">#404040</color>
+
+
+</resources>

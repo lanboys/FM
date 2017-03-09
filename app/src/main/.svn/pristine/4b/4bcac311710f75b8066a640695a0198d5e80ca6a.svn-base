@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:drawable="@drawable/icon_rec_preview_pause"
+        android:state_pressed="true"/>
+    <item
+        android:drawable="@drawable/icon_rec_preview_pause"
+        android:state_selected="true"/>
+    <item android:drawable="@drawable/icon_rec_preview_play"/>
+</selector>
+    <!--<item android:drawable="@drawable/icon_rec_preview_pause" android:state_selected="false"/>-->
+    <!--<item android:drawable="@drawable/icon_rec_preview_play" android:state_selected="true"/>-->
+    <!--notify_btn_light_play_normal-->
+    <!--notify_btn_dark_play_selected-->

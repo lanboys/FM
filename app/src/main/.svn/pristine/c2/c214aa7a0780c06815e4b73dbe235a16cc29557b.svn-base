@@ -1,0 +1,51 @@
+package com.bing.lan.comm.utils.musicplay;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+/**
+ * @author 蓝兵
+ * @time 2017/3/1  22:54
+ */
+public class Music extends RealmObject /*implements Serializable*/ {
+    /**
+     * 注意：如果你创建Model并运行过，然后修改了Model。那么就
+     * 需要升级数据库，否则会抛异常。升级方式后面会提到。
+     */
+
+    /**
+     * //@Required  ——表示该字段非空
+     *
+     * 使用@Required可用于用于强行要求其属性不能为空，只能用于
+     * Boolean, Byte, Short, Integer, Long, Float, Double,
+     * String, byte[] 和 Date。在其它类型属性上使用
+     * //@Required  修饰会导致编译失败。
+     */
+    //@PrimaryKey ——表示该字段是主键
+
+    // @Required
+    public String url;
+    public long albumId;
+    public long lastPlayPosition;
+    public long duration;
+    @PrimaryKey
+    public long id;
+
+    public Music( ) {
+
+    }
+    public Music(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Music{" +
+                "albumId=" + albumId +
+                ", url='" + url + '\'' +
+                ", lastPlayPosition=" + lastPlayPosition +
+                ", duration=" + duration +
+                ", id=" + id +
+                '}';
+    }
+}

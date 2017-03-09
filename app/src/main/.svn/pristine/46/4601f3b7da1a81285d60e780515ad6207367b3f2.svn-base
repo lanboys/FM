@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="basic_permissions">
+        <item>android.permission.ACCESS_NETWORK_STATE</item>
+        <item>android.permission.READ_PHONE_STATE</item>
+        <item>android.permission.READ_EXTERNAL_STORAGE</item>
+        <item>android.permission.WRITE_EXTERNAL_STORAGE</item>
+    </string-array>
+
+    <string-array name="main_permissions">
+        <item>android.permission.ACCESS_WIFI_STATE</item>
+        <item>android.permission.ACCESS_NETWORK_STATE</item>
+    </string-array>
+
+
+    <string-array name="main_tab_title">
+        <item>首页</item>
+        <item>妹子</item>
+        <item>发现</item>
+        <item>我的</item>
+    </string-array>
+    <string-array name="home_tab_title">
+        <item>推荐</item>
+        <item>热门</item>
+        <item>主播</item>
+        <item>分类</item>
+        <item>榜单</item>
+
+    </string-array>
+    <string-array name="girl_tab_title">
+        <item>Gank</item>
+        <item>Gank</item>
+        <item>Gank</item>
+        <item>Gank</item>
+    </string-array>
+
+    <integer-array name="main_tab_image">
+        <item>@drawable/tab1_selector</item>
+        <item>@drawable/tab2_selector</item>
+        <item>@drawable/tab3_selector</item>
+        <item>@drawable/tab4_selector</item>
+    </integer-array>
+
+    <!--<array name="indicator_colors">-->
+    <!--<item>@color/indicator_1</item>-->
+    <!--<item>@color/indicator_2</item>-->
+    <!--<item>@color/indicator_3</item>-->
+    <!--<item>@color/indicator_4</item>-->
+    <!--<item>@color/indicator_5</item>-->
+    <!--</array>-->
+
+    <!--<color name="indicator_1">#55B3C2</color>-->
+    <!--<color name="indicator_2">#64A4A4</color>-->
+    <!--<color name="indicator_3">#66D7B9</color>-->
+    <!--<color name="indicator_4">#FDBC7D</color>-->
+    <!--<color name="indicator_5">#FDBC7D</color>-->
+
+    <string-array name="playlist">
+        <item>http://download.xmcdn.com/group25/M0A/B9/F2/wKgJMViyXEOAENQmAAX_MWpQS-w408.aac</item>
+        <item>http://audio.xmcdn.com/group21/M04/C7/5C/wKgJKFi2xGewibmZAEDhOBRUOFg471.mp3</item>
+        <item>http://download.xmcdn.com/group25/M0A/B9/F2/wKgJMViyXEOAENQmAAX_MWpQS-w408.aac</item>
+        <!--<item>http://audio.xmcdn.com/group25/M00/C5/4B/wKgJNli1dDSzrVk0ADt9xhhFD2k023.m4a</item>-->
+        <!--<item>http://audio.xmcdn.com/group23/M07/C1/D6/wKgJNFi0L-azgsIqABqh9L_IXAU735.m4a</item>-->
+
+    </string-array>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--这个是增加一个头部-->
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fresco="http://schemas.android.com/tools"
+        android:id="@+id/iv_category_head_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:src="@mipmap/account_avatar"
+        fresco:ImageScaleType="fitCenter"
+        />
+

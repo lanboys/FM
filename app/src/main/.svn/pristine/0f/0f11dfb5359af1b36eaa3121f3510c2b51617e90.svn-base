@@ -1,0 +1,62 @@
+package com.bing.lan.fm.ui.top;
+
+import com.bing.lan.comm.base.mvp.fragment.BaseFragmentPresenter;
+import com.bing.lan.fm.ui.hot.bean.HotInfoBean;
+import com.bing.lan.fm.ui.top.bean.TopBean;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/**
+ * @author 蓝兵
+ * @time 2017/2/8  10:27
+ */
+public class TopPresenter extends
+        BaseFragmentPresenter<ITopContract.ITopView, ITopContract.ITopModule>
+        implements ITopContract.ITopPresenter {
+    public static final int LOAD_TOP_MAIN = 1;
+    private List<HotInfoBean> mTopInfos = new ArrayList<>(50);
+
+    private boolean isFinishTop = false;
+    private boolean isFinishTop1 = false;
+
+    @Override
+    public void onStart(Object... params) {
+        isFinishTop = false;
+        isFinishTop1 = false;
+        mTopInfos.clear();
+
+        Random random = new Random();
+        int nextInt = random.nextInt(15);
+
+        mModule.requestData(LOAD_TOP_MAIN, this);
+    }
+
+
+    //成功返回的数据到p层
+    @Override
+    @SuppressWarnings("unchecked")
+    public void onSuccess(int action, Object data) {
+        switch (action) {
+            case LOAD_TOP_MAIN:
+             mView.updataTop((TopBean)data);
+                break;
+
+        }
+    }
+
+    private void handleTopData() {
+
+    }
+
+    @Override
+    public void onError(int action, Throwable e) {
+        super.onError(action, e);
+    }
+
+    @Override
+    public void onCompleted(int action) {
+        super.onCompleted(action);
+    }
+}

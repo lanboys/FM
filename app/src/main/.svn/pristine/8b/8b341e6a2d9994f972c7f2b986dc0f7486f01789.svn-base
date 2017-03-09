@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/main_orange_background"
+    tools:context="com.bing.lan.fm.ui.main.MainActivity">
+
+    <!-- 背景色是为了适配api19,api21 不设置都行 -->
+    <!-- fit出来的bar 用的是本身的背景色 -->
+
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:layout_marginTop= "@dimen/status_bar_height"-->
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_orange_background"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
+        <!-- appbar里面的元素才能滚动 -->
+        <!--app:layout_scrollFlags="scroll"-->
+        <!--<FrameLayout-->
+        <!--android:id="@+id/con"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--&gt;-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+                <!--app:layout_scrollFlags="scroll"-->
+
+                <!--<android.support.v7.widget.SearchView-->
+                <!--android:id="@+id/searchView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:queryHint="美女"-->
+                <!--android:visibility="gone"-->
+                <!--app:defaultQueryHint="图片搜索">-->
+                <!--</android.support.v7.widget.SearchView>-->
+            </android.support.v7.widget.Toolbar>
+            <!--<com.lapism.searchview.SearchView-->
+            <!--android:id="@+id/searchView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:search_theme="light"-->
+            <!--app:search_version="menu_item"-->
+            <!--app:search_version_margins="menu_item"-->
+
+            <!--/>-->
+            <!--app:layout_behavior="com.lapism.searchview.SearchBehavior"-->
+        <!--</FrameLayout>-->
+    </android.support.design.widget.AppBarLayout>
+
+
+    <!--Fragment container for home page and all themes -->
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+    </RelativeLayout>
+
+    <com.lapism.searchview.SearchView
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="center"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:search_theme="light"
+        app:search_version="menu_item"
+        app:search_version_margins="menu_item"
+    />
+    <!--app:layout_behavior="com.lapism.searchview.SearchBehavior"-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email"/>
+
+</android.support.design.widget.CoordinatorLayout>

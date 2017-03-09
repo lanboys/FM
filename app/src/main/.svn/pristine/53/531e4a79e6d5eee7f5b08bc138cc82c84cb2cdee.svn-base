@@ -1,0 +1,177 @@
+ package com.bing.lan.fm.ui.anchor.delagate;
+
+ import android.content.Context;
+import android.graphics.drawable.Animatable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.comm.utils.LogUtil;
+import com.bing.lan.comm.utils.load.ImageLoader;
+import com.bing.lan.fm.R;
+import com.bing.lan.fm.ui.anchor.bean.FamousBean;
+import com.bing.lan.fm.ui.anchor.bean.ListBeanA;
+import com.facebook.drawee.controller.BaseControllerListener;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
+
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+ /**
+  * @author lihoujing2ken
+  * @time 2017/3/2  15:48
+  * @desc
+  */
+ public class UpperRecomItemDelagate implements ItemViewDelegate<FamousBean> {
+     //当前的布局
+     @Override
+     public int getItemViewLayoutId() {
+         return R.layout.anchor_item_star;
+     }
+
+     //得到的类型
+     @Override
+     public boolean isForViewType(FamousBean item, int position) {
+         return item.getList().get(0) instanceof ListBeanA;
+     }
+
+     //对数据进行划分操作
+     @Override
+     public void convert(ViewHolder holder, FamousBean famousBean, int position)
+     {
+         //设置头//明星大咖
+        holder.setText(R.id.tv_anchor_item_title,famousBean.getTitle());
+         //第一种类型
+         if(famousBean.getDisplayStyle()==1) {
+             //设置大咖下面List
+             List<ListBeanA> list=famousBean.getList();
+             initChildRecyclerView(holder, list);
+             //第二种类型
+         }else if(famousBean.getDisplayStyle()==2) {
+             List<ListBeanA> list=famousBean.getList();
+             initTowRecyclerView(holder, list);
+         }
+     }
+
+     /**
+      * 设置第二种数据 LinearLayout
+      * @param holder 当前的控件
+      * @param list list数据
+      */
+     private void initTowRecyclerView(ViewHolder holder, List<ListBeanA> list) {
+         //获取布局管理器
+         LinearLayoutManager layoutManager = new LinearLayoutManager(AppUtil.getAppContext()){
+             @Override
+             public boolean canScrollVertically() {
+                 return  false;
+             }
+         };
+         //获取到布局,绑定管理器
+         RecyclerView recycler = holder.getView(R.id.rv_anchor_item_child);
+         recycler.setLayoutManager(layoutManager);
+
+         //关联数据
+         ChildLayoutRecyclerViewAdapter adapter = new ChildLayoutRecyclerViewAdapter(
+                 AppUtil.getAppContext(),R.layout.anchor_item_child_special,list);
+         recycler.setAdapter(adapter);
+
+     }
+
+     /**
+      * 第一种类型的数据 网格布局
+      * @param holder 当前的控件
+      * @param list  list 数据
+      */
+     private void initChildRecyclerView(ViewHolder holder, List<ListBeanA> list) {
+         //网格布局,每行显示3个
+         GridLayoutManager layoutManager = new GridLayoutManager(AppUtil.getAppContext(), 3) {
+             @Override
+             public boolean canScrollVertically() {
+                 return false;
+             }
+         };
+         //当前的ID,绑定rv_anchor_item_child
+         RecyclerView itemRecyclerView = holder.getView(R.id.rv_anchor_item_child);
+         itemRecyclerView.setLayoutManager(layoutManager);
+         //固定个数
+         itemRecyclerView.setHasFixedSize(true);
+
+         //关联数据
+         UpperRecomItemDelagate.ChildRecyclerViewAdapter adapter = new UpperRecomItemDelagate.ChildRecyclerViewAdapter(AppUtil.getAppContext(),
+                 R.layout.anchor_item_child_guess, list);
+         itemRecyclerView.setAdapter(adapter);
+     }
+
+     /**
+      * 第一种类型的数据操作 网格布局
+      */
+     public class ChildRecyclerViewAdapter extends CommonAdapter<ListBeanA> {
+         //打LOG
+         protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
+         //数据的获取和控件的绑定
+         public ChildRecyclerViewAdapter(Context appContext, int discover, List<ListBeanA> lists) {
+             super(appContext,discover,lists);
+         }
+
+         /**
+          * 绑定数据
+          * @param holder 控件
+          * @param listBeanA 数据
+          * @param position 当前的Item
+          */
+         @Override
+         protected void convert(ViewHolder holder, ListBeanA listBeanA, int position) {
+             //为了点击事件做准备
+//             View view = holder.getView(R.id.ll_child_container);
+//             view.setTag(listBeanA);
+             //官方频道
+             holder.setText(R.id.tv_track_Title, listBeanA.getNickname());
+            //验证标题
+             holder.setText(R.id.tv_verifyTitle_Title,listBeanA.getVerifyTitle());
+             //设置图片
+             SimpleDraweeView draweeView= holder.getView(R.id.iv_cover_image);
+             ImageLoader.getInstance().loadImage(draweeView,listBeanA.getMiddleLogo(),new BaseControllerListener<ImageInfo>(){
+                 //TODO 操作图片的监听
+
+                 @Override
+                 public void onFinalImageSet(String id, @Nullable ImageInfo imageInfo, @Nullable Animatable animatable) {
+                    // super.onFinalImageSet(id, imageInfo, animatable);
+                 }
+             });
+
+         }
+     }
+
+     /**
+      * 第二种类型的数据操作
+      */
+     private class ChildLayoutRecyclerViewAdapter extends CommonAdapter<ListBeanA>{
+         //父类实现
+         public ChildLayoutRecyclerViewAdapter(Context appContext, int layout, List<ListBeanA> list) {
+             super(appContext,layout,list);
+         }
+         //操作数据
+         @Override
+         protected void convert(ViewHolder holder, ListBeanA listBeanA, int position) {
+
+             //设置头name
+             holder.setText(R.id.tv_track_Title_name,listBeanA.getNickname());
+             //设置标签(音乐人)
+             holder.setText(R.id.tv_track_subtitle,listBeanA.getVerifyTitle());
+             //设置关注人数
+             holder.setText(R.id.tv_tracksCounts,listBeanA.getTracksCounts()+"");
+             //TODO 需要转换
+             holder.setText(R.id.tv_followersCounts,listBeanA.getFollowersCounts()+"万");
+            //设置图片
+             SimpleDraweeView simpleDraweeView = holder.getView(R.id.iv_cover_image);
+             ImageLoader.getInstance().loadImage(simpleDraweeView,listBeanA.getSmallLogo());
+
+         }
+     }
+ }

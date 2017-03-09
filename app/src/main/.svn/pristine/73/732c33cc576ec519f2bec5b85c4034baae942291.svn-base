@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_child_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_cover_image"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        fresco:actualImageScaleType="fitCenter"
+        fresco:fadeDuration="500"
+        fresco:placeholderImage="@drawable/image_default_202"
+        fresco:progressBarImage="@drawable/image_default_202"
+        fresco:progressBarImageScaleType="centerCrop"
+        fresco:roundAsCircle="true"
+    />
+    <!--fresco:roundedCornerRadius="10dp"-->
+    <!--fresco:roundAsCircle="true"-->
+    <!--app:failureImage="@mipmap/ic_launcher"-->
+    <!--app:failureImageScaleType="centerInside"-->
+    <!--app:retryImage="@mipmap/ic_launcher"-->
+    <!--app:retryImageScaleType="centerCrop"-->
+    <!--app:progressBarImage="@mipmap/ic_launcher"-->
+    <!--app:progressBarImageScaleType="centerCrop"-->
+    <!--app:progressBarAutoRotateInterval="5000"/>-->
+
+    <TextView
+        android:id="@+id/tv_discover_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="#292d29"
+        android:textSize="@dimen/hot_discover_Title"
+        tools:text="经典必听 "/>
+
+
+</LinearLayout>

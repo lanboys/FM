@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_orange_background"
+    android:fitsSystemWindows="true"
+>
+    <com.bing.lan.comm.view.FlexibleScrollView
+        android:id="@+id/fs_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        android:background="@color/main_white_background_10"
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_search_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_history_title"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/search_history_btn"
+                    android:textColor="@color/main_orange_background"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+
+            <com.bing.lan.comm.view.FlowLayout
+                android:id="@+id/flow_container1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+            >
+
+            </com.bing.lan.comm.view.FlowLayout>
+
+            <include layout="@layout/divide_line_gray"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_search_hot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_hot_title"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/search_hot_btn"
+                    android:textColor="@color/main_orange_background"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
+
+            <com.bing.lan.comm.view.FlowLayout
+                android:id="@+id/flow_container2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            >
+
+            </com.bing.lan.comm.view.FlowLayout>
+        </LinearLayout>
+
+
+    </com.bing.lan.comm.view.FlexibleScrollView>
+
+    <com.lapism.searchview.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:search_theme="light"
+        app:search_version="toolbar"
+        app:search_version_margins="toolbar_big"
+    />
+</FrameLayout>

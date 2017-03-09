@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--app:layout_heightPercent="99%"-->
+
+        <!--android:background="@drawable/girl1"-->
+        <ImageView
+            android:id="@+id/album_art_blurred"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/meizi"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#50000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/song_title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:ellipsize="end"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textSize="21sp"
+                android:layout_weight="1.5"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/song_artist"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:ellipsize="end"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:paddingTop="3dp"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                android:visibility="gone"/>
+            <master.flame.danmaku.ui.widget.DanmakuView
+                android:id="@+id/sv_danmaku"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+            />
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <net.steamcrafted.materialiconlib.MaterialIconView
+                    android:id="@+id/previous"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="center"
+                    app:materialIcon="skip_previous"
+                    app:materialIconColor="#fff"
+                    app:materialIconSize="35dp"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cir_play"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:src="@drawable/icon_feed_back_head"
+                    app:layout_heightPercent="60%"
+                    app:layout_widthPercent="60%"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cir_play1"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:src="@drawable/notify_btn_dark_play_selector"
+                    app:layout_heightPercent="60%"
+                    app:layout_widthPercent="60%"/>
+
+                <!--<FrameLayout-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--app:layout_heightPercent="70%"-->
+                <!--app:layout_widthPercent="70%">-->
+
+
+                <!--<com.bing.lan.comm.view.CircleImageView-->
+                <!--android:id="@+id/album_art"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:src="@drawable/icon_feed_back_head"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:background="@android:color/transparent"-->
+                <!--android:scaleType="fitCenter"/>-->
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<include-->
+                <!--android:visibility="gone"-->
+                <!--layout="@layout/song_elapsedtime"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"/>-->
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:paddingTop="10dp">-->
+
+                <!--<ImageView-->
+                <!--android:id="@+id/shuffle"-->
+                <!--android:layout_width="48dp"-->
+                <!--android:layout_height="48dp"-->
+                <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+                <!--android:scaleType="center"-->
+                <!--android:visibility="gone"/>-->
+
+                <!--<ImageView-->
+                <!--android:id="@+id/repeat"-->
+                <!--android:layout_width="48dp"-->
+                <!--android:layout_height="48dp"-->
+                <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+                <!--android:paddingLeft="5dp"-->
+                <!--android:scaleType="center"-->
+                <!--android:visibility="gone"/>-->
+                <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+                <!--</FrameLayout>-->
+
+                <com.bing.lan.comm.view.CircularSeekBar
+                    android:id="@+id/song_progress_circular"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:maxHeight="1dp"
+                    android:progress="30"
+                    app:circle_color="#33000000"
+                    app:circle_stroke_width="2"
+                    app:layout_heightPercent="100%"
+                    app:layout_widthPercent="100%"
+                    app:pointer_halo_border_width="1.5"
+                    app:pointer_halo_width="0.5"/>
+
+
+                <net.steamcrafted.materialiconlib.MaterialIconView
+                    android:id="@+id/next"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="50dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="center"
+                    app:materialIcon="skip_next"
+                    app:materialIconColor="#fff"
+                    app:materialIconSize="35dp"/>
+            </android.support.percent.PercentRelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.percent.PercentFrameLayout>
+
+
+</android.support.percent.PercentRelativeLayout>

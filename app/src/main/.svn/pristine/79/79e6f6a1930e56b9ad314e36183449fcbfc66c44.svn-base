@@ -1,0 +1,146 @@
+package com.bing.lan.fm.ui.category;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.bing.lan.comm.base.mvp.fragment.BaseFragment;
+import com.bing.lan.comm.di.FragmentComponent;
+import com.bing.lan.comm.utils.AppUtil;
+import com.bing.lan.fm.R;
+import com.bing.lan.fm.cons.Constants;
+import com.bing.lan.fm.ui.category.adapter.CategoryInfoDelagate;
+import com.bing.lan.fm.ui.category.adapter.SecendCategoryInfoDelagate;
+import com.bing.lan.fm.ui.category.bean.CategoryListBean;
+import com.bing.lan.fm.ui.pic.PictureActivity;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
+import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+
+import static com.bing.lan.fm.R.id.iv_category_head_image;
+
+/**
+ *
+ */
+public class CategoryFragment extends BaseFragment<ICategoryContract.ICategoryPresenter>
+        implements ICategoryContract.ICategoryView {
+    private HeaderAndFooterWrapper mHeaderAndFooterWrapper;
+    private List<CategoryListBean.ListBean> mRecyclerViewData;
+    @BindView(R.id.recyclerView_categolory)
+    RecyclerView mRecyclerView;
+    SimpleDraweeView mHeadImage;
+    private MultiItemTypeAdapter<CategoryListBean.ListBean> mMultiItemTypeAdapter;
+
+    public static CategoryFragment newInstance(String title) {
+        CategoryFragment fragment = new CategoryFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.FRAGMENT_TITLE, title);
+        fragment.setArguments(args);
+        return fragment;
+    }
+    //这个地方是创建布局的地方.
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.fragment_categolory;
+    }
+    @Override
+    protected void startInject(FragmentComponent fragmentComponent) {
+               fragmentComponent.inject(this);
+    }
+
+
+    @Override
+    protected void initViewAndData(Intent intent, Bundle arguments) {
+        initRecyclerView();
+        //设置fragment的背景色
+
+    }
+    /*-----------设置RecyclerView---------*/
+    private void initRecyclerView() {
+        //设置recyclerview
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(AppUtil.getAppContext(),
+                2);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+        mRecyclerViewData=   new ArrayList<>();
+        mMultiItemTypeAdapter = new MultiItemTypeAdapter<>(AppUtil.getAppContext(), mRecyclerViewData);
+        CategoryInfoDelagate  editorRecomItemDelagate =new CategoryInfoDelagate();
+        SecendCategoryInfoDelagate seceditorRecomItemDelagate=new SecendCategoryInfoDelagate();
+
+        //2.设置普通的数据
+        mMultiItemTypeAdapter.addItemViewDelegate(seceditorRecomItemDelagate);
+        mMultiItemTypeAdapter.addItemViewDelegate(editorRecomItemDelagate);
+        mMultiItemTypeAdapter.notifyDataSetChanged();
+        setCategoryHeader();
+        mMultiItemTypeAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                //设置点击事件,进入一个新的activity
+                Intent intent = new Intent(AppUtil.getAppContext(), CategoryActivity.class);
+                intent.putExtra(PictureActivity.PIC_INDEX, (int) v.getTag());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(PictureActivity.PIC_LIST, (Serializable) mImgList);//注意序列化
+                AppUtil.getAppContext().startActivity(intent);
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
+
+
+
+    }
+
+    void setCategoryHeader() {
+        //1.1通过一个打气筒创建一个view
+        View mHeadView= mLayoutInflater.inflate(R.layout.category_item_head,null);
+        //1.2设置宽和高
+        int viewpageHeight = (int) (AppUtil.getScreenW() * 0.7f);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, viewpageHeight);
+        mHeadView.setLayoutParams(layoutParams);
+        //1.3定义数据
+        mHeadImage= (SimpleDraweeView) mHeadView.findViewById(iv_category_head_image);
+        mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(mMultiItemTypeAdapter);
+        mHeaderAndFooterWrapper.addHeaderView(mHeadView);
+        mHeaderAndFooterWrapper.notifyDataSetChanged();
+        mRecyclerView.setAdapter( mHeaderAndFooterWrapper);
+    }
+
+
+    //抓的包的url需要的
+    @Override
+    protected void readyStartPresenter() {
+
+        //进行网络请求
+        mPresenter.onStart();
+    }
+    /*-----------初始化数据---------*/
+    @Override
+    public void setRecyclerViewDatas(List<CategoryListBean.ListBean> list) {
+        mRecyclerViewData.clear();
+        for (int i = 0; i <list.size() ; i++) {
+          if(i%6==0) {
+              CategoryListBean.ListBean listBean = new CategoryListBean.ListBean();
+              listBean.setNormal(false);
+          }
+
+              mRecyclerViewData.add(list.get(i));
+        }
+        mHeadImage.setImageURI(mRecyclerViewData.get(0).getCoverPath());
+        Log.d("setRecyclerViewDatas: ",mRecyclerViewData.get(0).getCoverPath());
+        mMultiItemTypeAdapter.notifyDataSetChanged();
+        mHeaderAndFooterWrapper.notifyDataSetChanged();
+    }
+}

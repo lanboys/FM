@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bing.lan.fm.ui.music.MusicActivity">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:background="@color/md_blue_100"-->
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <!--android:fitsSystemWindows="true"-->
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+            <!--android:fitsSystemWindows="true"-->
+
+            <include
+                layout="@layout/item_music_play"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_music"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/icon_dianyidian"
+        app:backgroundTint="#FFF"
+        app:fabSize="mini"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"/>
+    <!--android:tint="@color/main_white_background"-->
+    <!--app:srcCompat="@drawable/playpage_icon_like_selector"-->
+
+    <!--android:src 中间的icon-->
+    <!--app:backgroundTint 背景的颜色-->
+    <!--app:rippleColor 点击时的颜色-->
+    <!--app:borderWidth 应该设置为0，否则会在4.1会显示为正方形，而在5.0以后没有阴影效果-->
+    <!--app:fabSize 控件的大小，有两个值 normal和mini-->
+    <!--app:layout_anchor 设置FloatActionButton相对于那个控件-->
+    <!--app:elevation 默认显示的阴影的大小-->
+
+    <com.bing.lan.comm.view.DivergeView
+        android:id="@+id/divergeView"
+        android:layout_width="125dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="140dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="right|bottom"/>
+    />
+
+
+</android.support.design.widget.CoordinatorLayout>

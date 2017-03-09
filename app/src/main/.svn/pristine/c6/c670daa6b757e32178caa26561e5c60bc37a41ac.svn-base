@@ -1,0 +1,9 @@
+package com.bing.lan.fm.ui.top.bean;
+
+/**
+ * @author jk
+ * @time 2017/3/7  17:06
+ * @desc ${TODD}
+ */
+public class ListBeanX {
+}

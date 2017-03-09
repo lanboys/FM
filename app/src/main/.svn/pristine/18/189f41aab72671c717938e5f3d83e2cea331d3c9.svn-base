@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/hot_item_background_white"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    app:contentPadding="1dp">
+
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/rl_root"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/main_simple_drawee_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        fresco:ImageScaleType="fitCenter"
+        fresco:placeholderImage="@draw/R.drawable.image_default_202"/>
+
+    <!--<com.bing.lan.comm.view.RecyclerImageView-->
+    <!--android:id="@+id/iv_girl"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="#eaeaea"/>-->
+
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="36dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_gravity="bottom"-->
+    <!--android:background="#a3181818">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvShowTime"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="36dp"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="时间"-->
+    <!--android:textColor="#FFFFFF"-->
+    <!--android:textSize="14sp"/>-->
+
+    <!--</RelativeLayout>-->
+    <!--</RelativeLayout>-->
+</android.support.v7.widget.CardView>
