@@ -24,7 +24,7 @@ public class LogUtil {
     private static int GLOBAL_LOG_LEVEL = LOG_ERROR;
     /* default prefix of tag */
     private static String TAG_PREFIX = AppConfig.TAG_PREFIX;
-    private static boolean IS_OPEN = false;
+    private static boolean IS_OPEN = true;  
     /* current class log level */
     private int mLogLevel;
     /* current class log tag */

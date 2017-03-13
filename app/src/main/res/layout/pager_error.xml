@@ -14,19 +14,24 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_error_page" />
+            android:src="@drawable/no_net"
+
+        />
+            <!--android:src="@drawable/ic_error_page"-->
 
         <Button
             android:id="@+id/error_btn_retry"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/selector_btn_bg"
+            android:background="@color/load_pager_background"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="加载失败,点击重试"
+            android:text="点击重试"
             android:textColor="#ff717171"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
+        <!--加载失败,点击重试-->
+            <!--android:background="@drawable/selector_btn_bg"-->
     </LinearLayout>
 
 </RelativeLayout>

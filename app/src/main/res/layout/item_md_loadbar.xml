@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:text="玩命加载中..."
+        android:textColor="@color/colorPrimary"
         android:textSize="14sp"/>
 
 </LinearLayout>

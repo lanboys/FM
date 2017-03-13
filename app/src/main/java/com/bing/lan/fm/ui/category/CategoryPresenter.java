@@ -40,6 +40,7 @@ public class CategoryPresenter extends
         super.onCompleted(action);
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
 
+        mView.setHaveData(true);
 
 
     }

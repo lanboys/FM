@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/load_pager_background">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/load_pager_background"
+              android:gravity="center"
+
+              android:orientation="vertical"
+>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_empty_page"/>
+        android:src="@drawable/no_content"
 
-</RelativeLayout>
+    />
+    <!--android:src="@drawable/ic_empty_page"-->
+
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="3dp"-->
+    <!--android:text="没有加载到数据了哦..."-->
+    <!--android:textSize="14sp"/>-->
+
+
+</LinearLayout>

@@ -15,7 +15,7 @@ public class RecommendModule extends BaseFragmentModule
         implements IRecommendContract.IRecommendModule {
 
 
-    private String url = "http://192.168.33.193:8080/fm/reco";
+    private String url = "http://192.168.100.104:8080/fm/reco";
 
     private  int index =-1;
 

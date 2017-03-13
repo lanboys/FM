@@ -56,5 +56,7 @@ public class TopPresenter extends
         super.onCompleted(action);
         mView.closeRefreshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
+        mView.setHaveData(true);
+
     }
 }

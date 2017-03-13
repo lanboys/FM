@@ -110,7 +110,6 @@ public class GuessItemDelagate implements
             View view = holder.getView(R.id.ll_child_container);
 
             view.setTag(listItemEditorBean);
-            log.d("convert(): " + listItemEditorBean);
 
             holder.setText(R.id.tv_track_Title, listItemEditorBean.getTitle());
             // holder.setText(R.id.tv_track_subtitle, listItemEditorBean.getSubtitle());

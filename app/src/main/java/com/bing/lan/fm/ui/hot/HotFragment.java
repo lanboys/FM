@@ -255,6 +255,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         notifyDataSetChanged();
 
         mGirlViewpager.setVisibility(View.VISIBLE);
+        mHotRecyclerView.scrollToPosition(0);
+
     }
 
     @Override
@@ -263,6 +265,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
         mRecyclerViewData.addAll(data);
         notifyDataSetChanged();
         mHotRecyclerView.setVisibility(View.VISIBLE);
+        mHotRecyclerView.scrollToPosition(0);
+
         showToast("为您更新了" + data.size() + "条数据");
     }
 

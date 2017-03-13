@@ -62,5 +62,7 @@ public class RecommendPresenter extends
 
         mView.closeRefreshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
+        mView.setHaveData(true);
+
     }
 }

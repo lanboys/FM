@@ -20,6 +20,7 @@
 
     <color name="category_item_color">#f4efef</color>
 
+    <!-- 加载页面颜色 -->
     <color name="load_pager_background">#f3f3f3</color>
 
 
@@ -70,11 +71,6 @@
     <color name="black_translucent">#66000000</color>
     <color name="white_translucent">#c8ffffff</color>
     <!-- 播放器 -->
-
-
-
-
-
 
 
     <color name="orange">#fff86442</color>

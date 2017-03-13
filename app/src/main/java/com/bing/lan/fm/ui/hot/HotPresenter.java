@@ -29,13 +29,18 @@ public class HotPresenter extends
     private static final int LOAD_PAGE = 4;
     private static final int MAX_PAGE = -1;
 
-    private int loadCompleted = 0;
+    // private int loadCompleted = 0;
+    private int loadFail = 0;
+
     private List<HotInfoBean> mHotInfos = new ArrayList<>();
     private boolean isFinishHot = false;
     private boolean isFinishHot1 = false;
+    private boolean isFinishGirl = false;
 
     @Override
     public void onStart(Object... params) {
+
+        loadFail = 0;
         isFinishHot = false;
         isFinishHot1 = false;
         mHotInfos.clear();
@@ -63,6 +68,7 @@ public class HotPresenter extends
                 break;
             case LOAD_GANK:
                 mView.updateGirlViewPager((List<GankBean.ResultsBean>) data);
+                isFinishGirl = true;
                 break;
         }
     }
@@ -86,9 +92,9 @@ public class HotPresenter extends
 
     private void handleHotData(HotResult hotResult) {
         //小编推荐
-        mHotInfos.add( hotResult.getEditorRecommendAlbums());
+        mHotInfos.add(hotResult.getEditorRecommendAlbums());
         //精品听单
-        mHotInfos.add( hotResult.getSpecialColumn());
+        mHotInfos.add(hotResult.getSpecialColumn());
 
         //轮播图
         HotInfoBean<ListItemFocusImageBean> focusImages = hotResult.getFocusImages();
@@ -105,26 +111,49 @@ public class HotPresenter extends
         super.onError(action, e);
         //下拉刷新,之前有数据,就不显示错误页面
         if (!mView.isHaveData()) {
-            mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
+            // if (!(isFinishHot || isFinishHot1 || isFinishGirl) ){
+            //     mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
+            // }
+
+            switch (action) {
+                case LOAD_HOT_MAIN:
+                case LOAD_HOT_MAIN1:
+                case LOAD_GANK:
+                    loadFail++;
+                    break;
+            }
+            if (loadFail == 3) {
+                    mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_ERROR);
+
+            }
         }
     }
 
     @Override
     public void onCompleted(int action) {
         super.onCompleted(action);
-        mView.closeRefreshing();
-        mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
 
-        if (isFinishHot && isFinishHot1) {
-            mView.updateRecyclerView(mHotInfos);
+        switch (action) {
+            case LOAD_HOT_MAIN:
+            case LOAD_HOT_MAIN1:
+                if (isFinishHot && isFinishHot1) {
+                    mView.updateRecyclerView(mHotInfos);
+                    mView.closeRefreshing();
+                    mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
+                }
+                break;
         }
 
-        loadCompleted++;
-        log.d("onCompleted(): " + loadCompleted);
-
-        if (loadCompleted == 2) {
+        if (isFinishHot && isFinishHot1 && isFinishGirl) {
             //全部加载成功才设置为有数据状态,否则再次可见时,自动重新加载数据
             mView.setHaveData(true);
         }
+
+        // loadCompleted++;
+        // log.d("onCompleted(): " + loadCompleted);
+        //
+        // if (loadCompleted == 2) {
+        //     mView.setHaveData(true);
+        // }
     }
 }
