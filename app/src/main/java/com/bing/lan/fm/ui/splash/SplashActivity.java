@@ -10,6 +10,8 @@ import com.bing.lan.comm.di.ActivityComponent;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.main.MainActivity;
 
+import java.lang.ref.WeakReference;
+
 import butterknife.BindView;
 
 public class SplashActivity extends BaseActivity<ISplashContract.ISplashPresenter>
@@ -44,15 +46,26 @@ public class SplashActivity extends BaseActivity<ISplashContract.ISplashPresente
     }
 
     public void startAnimation() {
-        mSplashContainer.animate().alpha(1.0f).setDuration(3000).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                mPresenter.animationFinished();
-            }
-        });
+        mSplashContainer.animate().alpha(1.0f).setDuration(3000).setListener(new Listener(this));
     }
 
     public void animationFinished() {
         startActivity(MainActivity.class, true, true);
+    }
+
+    static class Listener extends AnimatorListenerAdapter {
+
+        WeakReference<SplashActivity> mSplashActivityWeakReference;
+
+        Listener(SplashActivity splashActivity) {
+            mSplashActivityWeakReference = new WeakReference<>(splashActivity);
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            if (mSplashActivityWeakReference.get() != null) {
+                mSplashActivityWeakReference.get().mPresenter.animationFinished();
+            }
+        }
     }
 }

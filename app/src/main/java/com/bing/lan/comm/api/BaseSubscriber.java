@@ -17,12 +17,11 @@ public class BaseSubscriber<T> extends Subscriber<T> {
     private String mDescription;
     private int action;
 
-    public BaseSubscriber(int action, IBaseContract.OnDataChangerListener listener,
-            LogUtil log, String mDescription) {
-        this.action = action;
-        this.listener = listener;
-        this.mDescription = mDescription;
-        this.log = log;
+    public BaseSubscriber(Builder builder) {
+        this.action = builder.action;
+        this.listener = builder.listener;
+        this.mDescription = builder.mDescription;
+        this.log = builder.log;
     }
 
     public static Builder newBuilder() {
@@ -68,7 +67,7 @@ public class BaseSubscriber<T> extends Subscriber<T> {
         IBaseContract.OnDataChangerListener listener;
         String mDescription;
         int action;
-        private LogUtil log;
+        LogUtil log;
 
         private Builder() {
 
@@ -79,7 +78,7 @@ public class BaseSubscriber<T> extends Subscriber<T> {
             return this;
         }
 
-        public Builder dataChangelistener(IBaseContract.OnDataChangerListener listener) {
+        public Builder dataChangeListener(IBaseContract.OnDataChangerListener listener) {
             this.listener = listener;
             return this;
         }
@@ -95,7 +94,7 @@ public class BaseSubscriber<T> extends Subscriber<T> {
         }
 
         public <M> Subscriber<M> build() {
-            return new BaseSubscriber<M>(action, listener, log, mDescription);
+            return new BaseSubscriber<M>(this);
         }
     }
 }

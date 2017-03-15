@@ -299,6 +299,8 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
         return result;
     }
 
+
+
     /**
      * 检查是否有被拒绝过的权限
      */

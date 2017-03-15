@@ -117,6 +117,10 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.6'
     //superToast
     compile 'com.github.johnpersano:supertoasts:2.0'
+    //图片加载
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //图片加载
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     //glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //最强大的图片加载框架
@@ -139,10 +143,8 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     //    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
     // ok http
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     // circle image
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //zxing

@@ -68,12 +68,7 @@ public final class MusicPlayerHandler extends Handler {
                 case MusicServiceCons.MUSIC_SERVICE_STATUS_CHANGES:
                     service.sendStatusBroadcast(msg.arg1);
                     break;
-                //保存当前播放音乐到数据库
-                // case MusicServiceCons.MUSIC_SAVE_TO_DB:
-                    // service.sendStatusBroadcast(msg.arg1);
-                    // log.d("handleMessage(): 发送保存到数据库的广播");
-                    // service.saveMusic2Db();
-                    // break;
+
                 default:
                     break;
             }

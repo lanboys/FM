@@ -36,7 +36,7 @@ public class LogUtil {
     }
 
     public static void setTagPrefix(String tagPrefix) {
-        TAG_PREFIX = tagPrefix;   
+        TAG_PREFIX = tagPrefix;
     }
 
     /**

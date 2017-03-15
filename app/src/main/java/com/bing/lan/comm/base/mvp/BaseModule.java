@@ -73,7 +73,7 @@ public abstract class BaseModule implements IBaseContract.IBaseModule {
                 .subscribe(BaseSubscriber.newBuilder()
                         .action(action)
                         .log(log)
-                        .dataChangelistener(listener)
+                        .dataChangeListener(listener)
                         .description(onNextString)
                         .build());
         mSubscriptions.put(String.valueOf(action), subscribe);
