@@ -32,7 +32,7 @@ public class ApiManager {
     protected final LogUtil log = LogUtil.getLogUtil(getClass(), LogUtil.LOG_VERBOSE);
     private Retrofit mRetrofit;
 
-    private ApiManager() {
+    protected ApiManager() {
         OkHttpClient httpClient = getClientBuilder().build();
         Gson gson = getGsonBuilder().create();
 

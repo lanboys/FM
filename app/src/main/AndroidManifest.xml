@@ -73,6 +73,17 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
 
+
+        <!-- 友盟 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="58cb5d2e3eae2574d10001eb"/>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}"/>
+
+
+
         <!-- 引导界面 -->
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -121,7 +132,7 @@
 
         <!-- 直播页面 -->
         <activity
-            android:name=".ui.live.LiveActivity"
+            android:name="com.bing.lan.inke.ui.live.LiveActivity"
             android:label="@string/title_activity_album"
             android:theme="@style/AppTheme">
         </activity>

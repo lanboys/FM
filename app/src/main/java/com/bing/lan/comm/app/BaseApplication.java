@@ -37,7 +37,7 @@ public class BaseApplication extends Application {
         // Fresco.initialize(this);
 
         //错误报告
-        // ErrorReport.getInstance().init(this);
+  ErrorReport.getInstance().init(this);
 
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);

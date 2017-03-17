@@ -299,8 +299,6 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
         return result;
     }
 
-
-
     /**
      * 检查是否有被拒绝过的权限
      */
@@ -388,7 +386,28 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
      * 权限请求成功时调用
      */
     protected void requestPermissionSucceed() {
+
+        //友盟(注意: 16的模拟器一用就卡死 )
+        // MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        //友盟
+
         readyStartPresenter();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //友盟
+        // MobclickAgent.onResume(this);
+        //友盟
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //友盟
+        // MobclickAgent.onPause(this);
+        //友盟
     }
 
     /**

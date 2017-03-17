@@ -28,7 +28,7 @@ import com.bing.lan.comm.utils.musicplay.MusicPlayer;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.girl.GirlFragment;
 import com.bing.lan.fm.ui.home.HomeFragment;
-import com.bing.lan.fm.ui.live.LiveActivity;
+import com.bing.lan.inke.ui.live.LiveActivity;
 import com.bing.lan.fm.ui.mine.MineFragment;
 import com.bing.lan.fm.ui.music.MusicActivity;
 import com.bing.lan.fm.ui.search.SearchActivity;

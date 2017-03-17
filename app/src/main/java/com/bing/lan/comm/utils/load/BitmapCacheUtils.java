@@ -12,8 +12,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-
-
 public class BitmapCacheUtils {
 
     public static boolean checkCacheBitmap(String md5) {

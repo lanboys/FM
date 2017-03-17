@@ -1,6 +1,5 @@
 package com.bing.lan.fm.ui.splash;
 
-import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.widget.RelativeLayout;
@@ -45,6 +44,19 @@ public class SplashActivity extends BaseActivity<ISplashContract.ISplashPresente
         mPresenter.onStart();
     }
 
+    // public void startAnimation() {
+    //     mSplashContainer.animate().alpha(1.0f).setDuration(3000).setListener(new AnimatorListenerAdapter() {
+    //         @Override
+    //         public void onAnimationEnd(android.animation.Animator animation) {
+    //             mPresenter.animationFinished();
+    //         }
+    //     });
+    // }
+    //
+    // public void animationFinished() {
+    //     startActivity(MainActivity.class, true, true);
+    // }
+
     public void startAnimation() {
         mSplashContainer.animate().alpha(1.0f).setDuration(3000).setListener(new Listener(this));
     }
@@ -62,7 +74,7 @@ public class SplashActivity extends BaseActivity<ISplashContract.ISplashPresente
         }
 
         @Override
-        public void onAnimationEnd(Animator animation) {
+        public void onAnimationEnd(android.animation.Animator animation) {
             if (mSplashActivityWeakReference.get() != null) {
                 mSplashActivityWeakReference.get().mPresenter.animationFinished();
             }
