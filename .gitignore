@@ -7,4 +7,5 @@
 /build
 /captures
 .externalNativeBuild
-
+/app/src/main/java/com/bing/lan/comm/api/ApiService.java
+/app/src/main/java/com/bing/lan/inke/yingke/Constance.java

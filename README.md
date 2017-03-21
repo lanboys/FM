@@ -1,13 +1,8 @@
 #FM
 
-## ScreenShot
+## Api声明
 
-<img src="img/device-2017-03-21-155810.png"  width="200" height="370" ><img src="img/device-2017-03-21-155943.png"  width="200" height="370" ><img src="img/device-2017-03-21-160014.png"  width="200" height="370" ><img src="img/device-2017-03-21-160058.png"  width="200" height="370" ><img src="img/device-2017-03-21-160429.png"  width="200" height="370" ><img src="img/device-2017-03-21-160618.png"  width="200" height="370" ><img src="img/device-2017-03-21-161839.png"  width="200" height="370" ><img src="img/device-2017-03-21-161921.png"  width="200" height="370"><img src="img/device-2017-03-21-164248.png"  width="200" height="370" ><img src="img/device-2017-03-21-164438.png"  width="200" height="370" ><img src="img/device-2017-03-21-162059.png"  width="200" height="370" ><img src="img/device-2017-03-21-162303.png"  width="200" height="370" ><img src="img/device-2017-03-21-162412.png"  width="200" height="370" ><img src="img/device-2017-03-21-162434.png"  width="200" height="370" >
-
-
-## Api 
-
-* app所有的api都来 [喜马拉雅FM](http://www.ximalaya.com/explore/)/[映客直播](http://www.inke.cn/)/[干货集中营](http://gank.io/api);一切数据都以上三者所有。
+* app所有的api都来 [喜马拉雅FM](http://www.ximalaya.com/explore/)/[映客直播](http://www.inke.cn/)/[干货集中营](http://gank.io/api);一切数据都归以上三者所有。
 
 * 该项目仅供交流学习使用，如果该项目有侵犯版权问题，或被告知需停止共享与使用，本人会及时删除此页面与整个项目。
 
@@ -27,6 +22,11 @@
 * inke模块, 具备观看直播功能 创建直播间功能等
 
 * 待续..
+
+## 截图
+
+<img src="img/device-2017-03-21-155810.png"  width="200" height="370" ><img src="img/device-2017-03-21-155943.png"  width="200" height="370" ><img src="img/device-2017-03-21-160014.png"  width="200" height="370" ><img src="img/device-2017-03-21-160058.png"  width="200" height="370" ><img src="img/device-2017-03-21-160429.png"  width="200" height="370" ><img src="img/device-2017-03-21-160618.png"  width="200" height="370" ><img src="img/device-2017-03-21-161839.png"  width="200" height="370" ><img src="img/device-2017-03-21-161921.png"  width="200" height="370"><img src="img/device-2017-03-21-164248.png"  width="200" height="370" ><img src="img/device-2017-03-21-164438.png"  width="200" height="370" ><img src="img/device-2017-03-21-162059.png"  width="200" height="370" ><img src="img/device-2017-03-21-162303.png"  width="200" height="370" ><img src="img/device-2017-03-21-162412.png"  width="200" height="370" ><img src="img/device-2017-03-21-162434.png"  width="200" height="370" >
+
 
 ## 说明
 

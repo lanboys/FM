@@ -50,36 +50,9 @@ public class PullZoomView extends ScrollView {
     private int touchSlop;
 
     private OnScrollListener scrollListener;  //滚动的监听
-
-    public void setOnScrollListener(OnScrollListener scrollListener) {
-        this.scrollListener = scrollListener;
-    }
-
-    /** 滚动的监听，范围从 0 ~ maxY */
-    public static abstract class OnScrollListener {
-        public void onScroll(int l, int t, int oldl, int oldt) {
-        }
-
-        public void onHeaderScroll(int currentY, int maxY) {
-        }
-
-        public void onContentScroll(int l, int t, int oldl, int oldt) {
-        }
-    }
-
     private OnPullZoomListener pullZoomListener; //下拉放大的监听
-
-    public void setOnPullZoomListener(OnPullZoomListener pullZoomListener) {
-        this.pullZoomListener = pullZoomListener;
-    }
-
-    public static abstract class OnPullZoomListener {
-        public void onPullZoom(int originHeight, int currentHeight) {
-        }
-
-        public void onZoomFinish() {
-        }
-    }
+    private boolean scrollFlag = false;  //该标记主要是为了防止快速滑动时，onScroll回调中可能拿不到最大和最小值
+    private boolean isStartScroll = false;          //当前是否下拉过
 
     public PullZoomView(Context context) {
         this(context, null);
@@ -87,62 +60,7 @@ public class PullZoomView extends ScrollView {
 
     public PullZoomView(Context context, AttributeSet attrs) {
         this(context, attrs, android.R.attr.scrollViewStyle);
-
-        // <img src="img/device-2017-03-21-155810.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-155943.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-160014.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-160058.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-160429.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-160618.png"  width="200" height="370" >
-
-        // <img src="img/device-2017-03-21-161839.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-161921.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-162059.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-162303.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-162412.png"  width="200" height="370" >
-        // <img src="img/device-2017-03-21-162434.png"  width="200" height="370" >
-
-
-        <img src="img/device-2017-03-21-164248.png"  width="200" height="370" ><img src="img/device-2017-03-21-164438.png"  width="200" height="370" >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public PullZoomView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -166,6 +84,14 @@ public class PullZoomView extends ScrollView {
         });
     }
 
+    public void setOnScrollListener(OnScrollListener scrollListener) {
+        this.scrollListener = scrollListener;
+    }
+
+    public void setOnPullZoomListener(OnPullZoomListener pullZoomListener) {
+        this.pullZoomListener = pullZoomListener;
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -178,7 +104,9 @@ public class PullZoomView extends ScrollView {
         smoothScrollTo(0, 0);//如果是滚动到最顶部，默认最顶部是ListView的顶部
     }
 
-    /** 递归遍历所有的View，查询Tag */
+    /**
+     * 递归遍历所有的View，查询Tag
+     */
     private void findTagViews(View v) {
         if (v instanceof ViewGroup) {
             ViewGroup vg = (ViewGroup) v;
@@ -186,9 +114,12 @@ public class PullZoomView extends ScrollView {
                 View childView = vg.getChildAt(i);
                 String tag = (String) childView.getTag();
                 if (tag != null) {
-                    if (TAG_CONTENT.equals(tag) && contentView == null) contentView = childView;
-                    if (TAG_HEADER.equals(tag) && headerView == null) headerView = childView;
-                    if (TAG_ZOOM.equals(tag) && zoomView == null) zoomView = childView;
+                    if (TAG_CONTENT.equals(tag) && contentView == null)
+                        contentView = childView;
+                    if (TAG_HEADER.equals(tag) && headerView == null)
+                        headerView = childView;
+                    if (TAG_ZOOM.equals(tag) && zoomView == null)
+                        zoomView = childView;
                 }
                 if (childView instanceof ViewGroup) {
                     findTagViews(childView);
@@ -197,30 +128,37 @@ public class PullZoomView extends ScrollView {
         } else {
             String tag = (String) v.getTag();
             if (tag != null) {
-                if (TAG_CONTENT.equals(tag) && contentView == null) contentView = v;
-                if (TAG_HEADER.equals(tag) && headerView == null) headerView = v;
-                if (TAG_ZOOM.equals(tag) && zoomView == null) zoomView = v;
+                if (TAG_CONTENT.equals(tag) && contentView == null)
+                    contentView = v;
+                if (TAG_HEADER.equals(tag) && headerView == null)
+                    headerView = v;
+                if (TAG_ZOOM.equals(tag) && zoomView == null)
+                    zoomView = v;
             }
         }
     }
 
-    private boolean scrollFlag = false;  //该标记主要是为了防止快速滑动时，onScroll回调中可能拿不到最大和最小值
-
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
-        if (scrollListener != null) scrollListener.onScroll(l, t, oldl, oldt);
+        if (scrollListener != null)
+            scrollListener.onScroll(l, t, oldl, oldt);
         if (t >= 0 && t <= maxY) {
             scrollFlag = true;
-            if (scrollListener != null) scrollListener.onHeaderScroll(t, maxY);
+            if (scrollListener != null)
+                scrollListener.onHeaderScroll(t, maxY);
         } else if (scrollFlag) {
             scrollFlag = false;
-            if (t < 0) t = 0;
-            if (t > maxY) t = maxY;
-            if (scrollListener != null) scrollListener.onHeaderScroll(t, maxY);
+            if (t < 0)
+                t = 0;
+            if (t > maxY)
+                t = maxY;
+            if (scrollListener != null)
+                scrollListener.onHeaderScroll(t, maxY);
         }
         if (t >= maxY) {
-            if (scrollListener != null) scrollListener.onContentScroll(l, t - maxY, oldl, oldt - maxY);
+            if (scrollListener != null)
+                scrollListener.onContentScroll(l, t - maxY, oldl, oldt - maxY);
         }
         if (isParallax) {
             if (t >= 0 && t <= headerHeight) {
@@ -254,7 +192,8 @@ public class PullZoomView extends ScrollView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        if (!isZoomEnable) return super.onTouchEvent(ev);
+        if (!isZoomEnable)
+            return super.onTouchEvent(ev);
 
         float currentX = ev.getX();
         float currentY = ev.getY();
@@ -288,7 +227,8 @@ public class PullZoomView extends ScrollView {
                         }
                         headerParams.height = height;
                         headerView.setLayoutParams(headerParams);
-                        if (pullZoomListener != null) pullZoomListener.onPullZoom(headerHeight, headerParams.height);
+                        if (pullZoomListener != null)
+                            pullZoomListener.onPullZoom(headerHeight, headerParams.height);
                     }
                 }
                 break;
@@ -305,8 +245,6 @@ public class PullZoomView extends ScrollView {
         return isZooming || super.onTouchEvent(ev);
     }
 
-    private boolean isStartScroll = false;          //当前是否下拉过
-
     @Override
     public void computeScroll() {
         super.computeScroll();
@@ -314,7 +252,8 @@ public class PullZoomView extends ScrollView {
             isStartScroll = true;
             headerParams.height = scroller.getCurrY();
             headerView.setLayoutParams(headerParams);
-            if (pullZoomListener != null) pullZoomListener.onPullZoom(headerHeight, headerParams.height);
+            if (pullZoomListener != null)
+                pullZoomListener.onPullZoom(headerHeight, headerParams.height);
             ViewCompat.postInvalidateOnAnimation(this);
         } else {
             if (pullZoomListener != null && isStartScroll) {
@@ -342,5 +281,29 @@ public class PullZoomView extends ScrollView {
 
     public void setZoomTime(int zoomTime) {
         this.zoomTime = zoomTime;
+    }
+
+    /**
+     * 滚动的监听，范围从 0 ~ maxY
+     */
+    public static abstract class OnScrollListener {
+
+        public void onScroll(int l, int t, int oldl, int oldt) {
+        }
+
+        public void onHeaderScroll(int currentY, int maxY) {
+        }
+
+        public void onContentScroll(int l, int t, int oldl, int oldt) {
+        }
+    }
+
+    public static abstract class OnPullZoomListener {
+
+        public void onPullZoom(int originHeight, int currentHeight) {
+        }
+
+        public void onZoomFinish() {
+        }
     }
 }
