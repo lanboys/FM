@@ -119,6 +119,7 @@ public class RecommendFragment extends BaseFragment<IRecommendContract.IRecommen
         mPresenter.reStartUpdate();
     }
 
+    @Override
     public void closeRefreshing() {
         if (mRefreshRecyclerView != null && mRefreshRecyclerView.isRefreshing()) {
             mRefreshRecyclerView.setRefreshing(false);

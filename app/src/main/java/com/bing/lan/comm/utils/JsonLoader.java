@@ -1,6 +1,6 @@
 package com.bing.lan.comm.utils;
 
-import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -9,16 +9,18 @@ import java.io.InputStreamReader;
 
 public class JsonLoader {
 
-    Context mContext;
+    // Context mContext;
+    //
+    // public JsonLoader(Context context) {
+    //     mContext = context;
+    // }
 
-    public JsonLoader(Context context) {
-        mContext = context;
-    }
+    private static String loadAssetsJson(String fileName) {
 
-    private String loadLocalJson(String fileName) {
+        AssetManager assets = AppUtil.getAssets();
         try {
 
-            InputStreamReader isr = new InputStreamReader(mContext.getAssets().open(fileName), "utf-8");
+            InputStreamReader isr = new InputStreamReader(assets.open(fileName), "utf-8");
             //从assets获取json文件
             BufferedReader bfr = new BufferedReader(isr);
             String line;
@@ -30,6 +32,8 @@ public class JsonLoader {
             return stringBuilder.toString();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            assets.close();
         }
         return "error";
     }

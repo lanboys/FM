@@ -17,7 +17,7 @@ import com.facebook.imagepipeline.image.ImageInfo;
 public class FrescoLoadStrategy implements IBaseLoaderStrategy {
 
     public static void init(Context context) {
-        Phoenix.init(context);
+          Phoenix.init(context);
     }
 
     @Override

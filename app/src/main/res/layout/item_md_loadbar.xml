@@ -10,7 +10,6 @@
     android:padding="8dp">
 
     <android.support.v4.widget.ContentLoadingProgressBar
-        android:id="@+id/progressbar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

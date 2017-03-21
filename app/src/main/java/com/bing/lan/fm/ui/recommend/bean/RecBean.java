@@ -22,7 +22,7 @@ public class RecBean {
     private String msg;
     private String msg_content;
     private int msg_pos;
-    private int ret;
+    private int ret=-1;
     private List<DataBean> data;
 
 

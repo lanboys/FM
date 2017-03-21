@@ -1,0 +1,286 @@
+<com.bing.lan.inke.yingke.widght.ResizeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rz_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <com.bing.lan.inke.yingke.widght.DivergeView
+        android:id="@+id/divergeView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="50dp"
+        android:background="@android:color/transparent"
+    />
+    <RelativeLayout
+        android:id="@+id/space"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+
+
+        <com.bing.lan.inke.yingke.widght.MyRecyclerView
+            android:id="@+id/chat"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="55dp"
+            android:background="@android:color/transparent"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/show_gifts"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_above="@id/chat"
+            android:layout_marginBottom="30dp"
+        />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp">
+
+        <LinearLayout
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/black_round_back"
+            android:paddingBottom="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="7dp"
+            android:paddingTop="3dp">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/login_logo_new"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="直播"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_online_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="18328"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="13dp"
+
+            >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/white_conner_back"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="5dp"
+                    android:text="关注"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <com.bing.lan.inke.yingke.widght.MyRecyclerView
+            android:id="@+id/recyle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignBottom="@id/left"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/left"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/black_round_back"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:paddingTop="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="映票："
+            android:textColor="@android:color/white"
+            android:textSize="11sp"/>
+
+        <TextView
+            android:id="@+id/tv_gold_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="31333662"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/payeco_plugin_rightarr"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/send"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:src="@drawable/room_down_publicchat_selector"/>
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="60dp"
+            android:clickable="true"
+            android:src="@drawable/room_down_share_selector"/>
+
+        <ImageView
+            android:id="@+id/shop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/share"
+            android:clickable="true"
+            android:src="@drawable/room_down_gift_selector"
+
+        />
+
+        <ImageView
+            android:id="@+id/p_chat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/shop"
+            android:clickable="true"
+            android:src="@drawable/room_down_privatechat_selector"
+
+        />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/infor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/top"
+        android:layout_marginRight="10dp"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/info_numer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="映客号：12344556"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2016.12.28"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/edid_outer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/white20"
+        android:visibility="invisible"
+    >
+
+        <ImageView
+            android:id="@+id/status"
+            android:layout_width="40dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/message_barrage_off"
+        />
+
+
+        <TextView
+            android:id="@+id/send_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="发送"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/send_msg"
+            android:layout_toRightOf="@id/status"
+            android:background="@android:color/transparent"
+            android:hint="和大家说点什么吧"
+            android:textColorHint="@android:color/darker_gray"
+        />
+    </RelativeLayout>
+
+
+</com.bing.lan.inke.yingke.widght.ResizeLayout>

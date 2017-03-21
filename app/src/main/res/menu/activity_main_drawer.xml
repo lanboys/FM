@@ -6,6 +6,12 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/tab4_down"
             android:title="@string/nv_home_title"/>
+
+        <item android:id="@+id/nav_inke"
+              android:icon="@drawable/tab5_down"
+              android:title="@string/nv_home_inke"
+           />
+
         <item
             android:id="@+id/nav_girl"
             android:icon="@drawable/tab2_down"

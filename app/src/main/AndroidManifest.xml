@@ -83,7 +83,6 @@
             android:value="${UMENG_CHANNEL_VALUE}"/>
 
 
-
         <!-- 引导界面 -->
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -246,6 +245,30 @@
         <!--<meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>-->
         <!--&lt;!&ndash; Required. AppKey copied from Portal &ndash;&gt;-->
         <!--<meta-data android:name="JPUSH_APPKEY" android:value="4a2883814591ecf41485e313"/>-->
+
+
+        <!-- ====================== inke ====================== -->
+
+        <activity
+            android:name="com.bing.lan.inke.yingke.IndexActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+        <!--创建直播间界面，推流界面-->
+        <activity android:name="com.bing.lan.inke.yingke.StreamingActivity"
+                  android:launchMode="singleTop"/>
+        <!--收索界面-->
+        <activity android:name="com.bing.lan.inke.yingke.SearchActivity"
+                  android:launchMode="singleTop"/>
+        <!--观看直播界面-->
+        <activity android:name="com.bing.lan.inke.yingke.PlayActivity"
+                  android:launchMode="singleTop"/>
+
+        <!--MainActivity-->
+        <activity android:name="com.bing.lan.inke.yingke.MainActivity"
+                  android:launchMode="singleTop"/>
+
+
+        <!-- ====================== inke ====================== -->
+
 
     </application>
 

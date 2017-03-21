@@ -283,7 +283,6 @@ public abstract class BaseMusicActivity<T extends IBaseActivityContract.IBaseAct
         @Override
         public void handleMessage(Message msg) {
             if (mBaseMusicActivity.get() != null) {
-
                 mBaseMusicActivity.get().handlerMusicPlayerMessage(msg);
             }
         }

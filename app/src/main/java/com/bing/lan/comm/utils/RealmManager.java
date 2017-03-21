@@ -2,20 +2,20 @@ package com.bing.lan.comm.utils;
 
 import android.content.Context;
 
+import com.bing.lan.comm.config.AppConfig;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 public class RealmManager {
-
-    private static final String DB_NAME = "fm.db";
     private static RealmConfiguration sConfig;
     private static RealmManager instance;
-    private static int code;
+    private static int code;//只在初始化中生成
 
-    private Realm mainRealm;
+    private Realm mRealm;//必须是非静态的
 
     private RealmManager() {
-        mainRealm = Realm.getInstance(sConfig);
+        mRealm = Realm.getInstance(sConfig);
     }
 
     /**
@@ -42,7 +42,7 @@ public class RealmManager {
     public static void initRealm(Context appContext) {
         Realm.init(appContext);
         sConfig = new RealmConfiguration.Builder()
-                .name(DB_NAME)   //文件名
+                .name(AppConfig.DB_NAME)   //文件名
                 .deleteRealmIfMigrationNeeded()
                 .schemaVersion(0)
                 // .migration(new RealmMigration() {
@@ -52,8 +52,8 @@ public class RealmManager {
                 //     }
                 // })
                 .build();
-        RealmManager instance = getMainThreadInstance();
-        code = instance.mainRealm.hashCode();
+        RealmManager instance = getMainRealmManager();
+        code = instance.mRealm.hashCode();
     }
 
     /**
@@ -61,7 +61,7 @@ public class RealmManager {
      *
      * @return
      */
-    public static RealmManager getMainThreadInstance() {
+    public static RealmManager getMainRealmManager() {
         if (instance == null) {
             synchronized (RealmManager.class) {
                 if (instance == null)
@@ -76,26 +76,30 @@ public class RealmManager {
      *
      * @return
      */
-    // public static RealmManager getAsyncInstance() {
-    //     return new RealmManager();
-    // }
+    public static RealmManager getAsyncInstance() {
+        return new RealmManager();
+    }
 
     /**
      * 关闭异步线程的Realm实例
      */
     public void close() {
-        if (mainRealm.hashCode() == code) {
+        if (mRealm.hashCode() == code) {
             throw new RuntimeException("主线程实例不能关闭");
         }
-        mainRealm.close();
+
+        if (mRealm != null && !mRealm.isClosed()) {
+            mRealm.close();
+            mRealm = null;//todo 不知是否会报错,暂时未测试
+        }
     }
 
-    public Realm getMainRealm() {
-        return mainRealm;
+    public Realm getRealmInstance() {
+        return mRealm;
     }
 
     public String getRealmDBFilePath() {
-        return mainRealm.getPath();
+        return mRealm.getPath();
     }
 
     /**
@@ -106,7 +110,7 @@ public class RealmManager {
 
     //
     //    public boolean isRead(long id) {
-    //        RealmResults<ReadStateBean> results = mainRealm
+    //        RealmResults<ReadStateBean> results = mRealm
     //                .where(ReadStateBean.class).equalTo("id", id)
     //                .equalTo("isRead", true).findAll();
     //        return results.size() > 0;

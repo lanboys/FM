@@ -8,8 +8,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="carlink_title_bar_height">38.0dip</dimen>
-
     <!-- hot -->
     <!--  猜你喜欢 -->
     <dimen name="hot_item_title">14sp</dimen>
@@ -22,19 +20,13 @@
     <!-- 经典必听 -->
     <dimen name="hot_discover_Title">14sp</dimen>
 
-    <dimen name="status_bar_height">0dp</dimen>
     <dimen name="app_bar_height">400dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
     <!-- 播放器 -->
-    <dimen name="toolbarElevation">4dp</dimen>
-    <dimen name="appBarTopMargin">5dp</dimen>
-    <dimen name="statusBarHeight">5dp</dimen>
     <!-- 播放器 -->
 
 
     <!--分类详情的内部标题-->
-    <dimen name="category_fontsize">10sp</dimen>
-    <dimen name="category_track_Title">13sp</dimen>
 
 </resources>

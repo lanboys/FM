@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <string-array name="title">
+       <item>关注</item>
+       <item>热门</item>
+       <item>附近</item>
+       <item>才艺</item>
+   </string-array>
+</resources>

@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--<cn.bingoogolapple.refreshlayout.BGARefreshLayout-->
-    <!--android:id="@+id/rl_modulename_refresh"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#fcfafc">-->
+<!--android:id="@+id/rl_modulename_refresh"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:background="#fcfafc">-->
 
-    <com.yalantis.phoenix.PullToRefreshView
+<!--<com.yalantis.phoenix.PullToRefreshView-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--android:id="@+id/pull_to_refresh"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent">-->
+
+
+<!--<ScrollView-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="0dp"-->
+<!--android:layout_weight="1"-->
+<!--android:background="#0a5ee4">-->
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/pull_to_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/i3"
+    />
 
-
-
-
-    <!--<ScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="#0a5ee4">-->
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/i3"
-        />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="小M正在努力开发中.."
-            android:textSize="25dp"/>
-        <android.support.v7.widget.RecyclerView
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="小M正在努力开发中.."
+        android:textSize="25dp"/>
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
-    </LinearLayout>
+    />
+</LinearLayout>
     <!--</ScrollView>-->
-<!--</cn.bingoogolapple.refreshlayout.BGARefreshLayout>-->
+    <!--</cn.bingoogolapple.refreshlayout.BGARefreshLayout>-->
 
-</com.yalantis.phoenix.PullToRefreshView>
+    <!--</com.yalantis.phoenix.PullToRefreshView>-->

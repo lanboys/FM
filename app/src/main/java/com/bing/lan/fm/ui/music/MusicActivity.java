@@ -398,9 +398,8 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
                     public void onResult(Bitmap bitmap) {
                         // MLog.i("Thread.currentThread().getId() = " + Thread.currentThread().getId());
                         if (bitmap != null) {
-                        mCirPlay.setImageBitmap(bitmap);
+                            mCirPlay.setImageBitmap(bitmap);
                         }
-
                     }
                 });
 
@@ -435,6 +434,17 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
         }
     }
 
+    private void saveMusic() {
+        log.d("handlerMusicPlayerMessage():run() 保存到数据库");
+
+        Music music = MusicPlayer.getCurrentPlayMusic();
+        log.d("run(): 保存到数据库的音乐是" + music);
+        if (music != null) {
+            log.d("saveMusic(): 保存到数据库线程--------------------------" + Thread.currentThread().getName());
+            MusicPlayDao.saveMusicInfo(music);
+        }
+    }
+
     //主线程的操作(更新ui)
     protected void handlerMusicMainMessage(Message msg) {
         super.handlerMusicMainMessage(msg);
@@ -451,21 +461,12 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
 
                 break;
             case MSG_SAVE_DB:
-
                 //保存到数据库
+                // Realm access from incorrect thread. Realm objects can only
+                // be accessed on the thread they were created.
                 saveMusic();
+
                 break;
-        }
-    }
-
-    private void saveMusic() {
-        log.d("handlerMusicPlayerMessage():run() 保存到数据库");
-
-        Music music = MusicPlayer.getCurrentPlayMusic();
-        log.d("run(): 保存到数据库的音乐是" + music);
-        if (music != null) {
-            log.d("saveMusic(): 保存到数据库线程--------------------------" + Thread.currentThread().getName());
-            MusicPlayDao.saveMusicInfo(music);
         }
     }
 
@@ -482,7 +483,6 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
                 break;
             case STATUS_NEXT:
                 log.d("onReceive(): 收到下一首的广播");
-
                 break;
             case STATUS_PREV:
                 log.d("onReceive(): 收到上一首的广播");
@@ -498,19 +498,15 @@ public class MusicActivity extends BaseMusicActivity<IMusicContract.IMusicPresen
                 break;
             case STATUS_PAUSE:
                 log.d("onReceive(): 收到暂停的广播");
-
                 break;
             case STATUS_STOP:
                 log.d("onReceive(): 收到停止的广播");
-
                 break;
             case STATUS_LIST_INIT:
                 log.d("onReceive(): 收到播放列表初始化的广播");
-
                 break;
             case STATUS_LIST_CHANGE:
                 log.d("onReceive(): 收到播放列表发生改变的广播");
-
                 break;
             case STATUS_MUSIC_SAVE_DB:
                 log.d("onReceive(): 收到保存数据库的广播");

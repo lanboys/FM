@@ -36,7 +36,6 @@
         android:textSize="18sp"/>
 
     <LinearLayout
-        android:id="@+id/ll_action_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -46,7 +45,6 @@
         android:showDividers="middle">
 
         <TextView
-            android:id="@+id/tv_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,7 +55,6 @@
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/tv_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

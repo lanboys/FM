@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -22,12 +23,16 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.bing.lan.comm.utils.load.ImageLoader;
 import com.google.gson.Gson;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +71,7 @@ public class AppUtil {
         // realm init
         RealmManager.initRealm(sContext);
         //ImageLoader init
-        com.bing.lan.comm.utils.load.ImageLoader.init(application);
+        ImageLoader.init(application);
     }
 
     private static void initLeakCanary(Application application) {
@@ -139,6 +144,10 @@ public class AppUtil {
         return sResources;
     }
 
+    public static AssetManager getAssets() {
+        return sResources.getAssets();
+    }
+
     public static String getPackageName() {
         return getAppContext().getPackageName();
     }
@@ -151,9 +160,10 @@ public class AppUtil {
         return sResources.getString(strId);
     }
 
-    public static  InputStream openRawResource(@RawRes int id) {
+    public static InputStream openRawResource(@RawRes int id) {
         return sResources.openRawResource(id);
     }
+
     public static String getString(int strId, String format) {
         return sResources.getString(strId, format);
     }
@@ -174,7 +184,32 @@ public class AppUtil {
         return sResources.getColor(colorId);
     }
 
-    public static void startActivity(Context c, Class<? extends Activity> clazz, boolean ifFinish,boolean addFlags) {
+    public static String loadAssetsJson(String fileName) {
+
+        AssetManager assets = getAssets();
+        BufferedReader bfr = null;
+        try {
+
+            InputStreamReader isr = new InputStreamReader(assets.open(fileName), "utf-8");
+            //从assets获取json文件
+            bfr = new BufferedReader(isr);
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ((line = bfr.readLine()) != null) {
+                stringBuilder.append(line);
+            }//将JSON数据转化为字符串
+            Log.d("qh", stringBuilder.toString());
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // assets.close();不能close,不然后面的资源就解析不了了
+            IOUtils.close(bfr);
+        }
+        return "";
+    }
+
+    public static void startActivity(Context c, Class<? extends Activity> clazz, boolean ifFinish, boolean addFlags) {
         Intent intent = new Intent(c, clazz);
         if (addFlags) {
             intent.setFlags(FLAG_ACTIVITY_NEW_TASK);

@@ -106,7 +106,6 @@
             android:src="@drawable/notify_btn_close"/>
 
         <ImageView
-            android:id="@+id/iv_download"
             android:layout_width="25dp"
             android:layout_height="20dp"
             android:layout_alignParentBottom="true"

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+    <com.bing.lan.inke.yingke.widght.AutoImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/room_change_bg"/>
+
+    <!--android:background="@android:color/holo_green_dark"-->
+    <com.bing.lan.inke.widght.IjkVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
+
+    <!-- android:tag="all"-->
+    <fragment
+        android:name="com.bing.lan.inke.yingke.fragment.InPutFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="InPutFragment"/>
+
+
+    <RelativeLayout
+        android:id="@+id/buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:src="@drawable/room_down_close_selector"/>
+
+
+    </RelativeLayout>
+
+    <!--送礼物的布局-->
+    <fragment
+        android:name="com.bing.lan.inke.yingke.fragment.StoreFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:tag="StoreFragment"/>
+
+</RelativeLayout>

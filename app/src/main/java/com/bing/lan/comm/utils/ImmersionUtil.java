@@ -55,19 +55,23 @@ public class ImmersionUtil {
             // 2.给最外层布局根据版本调价padding值
 
         }
-        }
+    }
 
-    public  static void initImmersionSmallApi19(Activity activity) {
+    /**
+     * api < 19 的沉浸式设置方法
+     */
+    public static void initImmersionSmallApi19(Activity activity) {
         //在onCreate中调用
         if (Build.VERSION.SDK_INT < 19) {
             activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
     }
-    public  static void initImmersion(Activity activity) {
+
+    public static void initImmersion(Activity activity) {
         //必须在onWindowFocusChanged这个方法中请求,否则从其他app跳转过来后,沉浸式效果就消失了
         // 系统StatusBar 灰色透明 ,自动隐藏,轻触就显示出来
-        if ( Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= 19) {
             View decorView = activity.getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE  //具体不知道什么用

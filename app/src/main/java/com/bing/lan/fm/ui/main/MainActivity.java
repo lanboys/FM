@@ -28,11 +28,11 @@ import com.bing.lan.comm.utils.musicplay.MusicPlayer;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.girl.GirlFragment;
 import com.bing.lan.fm.ui.home.HomeFragment;
-import com.bing.lan.inke.ui.live.LiveActivity;
 import com.bing.lan.fm.ui.mine.MineFragment;
 import com.bing.lan.fm.ui.music.MusicActivity;
 import com.bing.lan.fm.ui.search.SearchActivity;
 import com.bing.lan.fm.ui.subscriber.SubscriberFragment;
+import com.bing.lan.inke.yingke.IndexActivity;
 import com.lapism.searchview.SearchAdapter;
 import com.lapism.searchview.SearchHistoryTable;
 import com.lapism.searchview.SearchItem;
@@ -320,6 +320,8 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
 
         if (id == R.id.nav_home) {
             jumpHomeFragment();
+        } else if (id == R.id.nav_inke) {
+            jumpInke();
         } else if (id == R.id.nav_girl) {
             jumpGirlFragment();
         } else if (id == R.id.nav_subscriber) {
@@ -350,10 +352,7 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
             case R.id.action_search:
                 mSearchView.open(true, item);
                 break;
-            case R.id.action_live:
-                Intent intent1 = new Intent(this, LiveActivity.class);
-                startActivity(intent1);
-                break;
+
             case R.id.action_day_night:
                 switchNightMode();
                 break;
@@ -365,6 +364,11 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void jumpInke() {
+        Intent intent1 = new Intent(this, IndexActivity.class);
+        startActivity(intent1);
     }
 
     private void jumpHomeFragment() {

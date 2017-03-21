@@ -14,9 +14,6 @@
     <!-- 白色 -->
     <color name="main_white_background_10">#fffefe</color>
     <color name="main_white_background_50">#fffafafa</color>
-    <color name="main_white_background_100">#fff5f5f5</color>
-    <color name="main_white_background_200">#ffeeeeee</color>
-    <color name="main_white_background_300">#ffe0e0e0</color>
 
     <color name="category_item_color">#f4efef</color>
 
@@ -25,7 +22,6 @@
 
 
     <!-- 灰色分割线 -->
-    <color name="main_gray_line">#6f6f6f</color>
 
 
     <!-- hot -->
@@ -43,10 +39,7 @@
     <!-- 经典必听 -->
 
 
-    <color name="titleColor">#c9212e</color>
     <color name="titleColorSelected">#535353</color>
-
-    <color name="otherspace_normal_gray">#ff666666</color>
 
 
     <!-- 文字选择器的两种颜色 -->
@@ -59,20 +52,12 @@
 
     <!-- home页面tab颜色 -->
     <color name="tab_text_color_white">#ffffffff</color>
-    <color name="default_refresh_color_style">#CA0612</color>
 
 
     <!-- 播放器 -->
-    <color name="pink_transparent">#44700d39</color>
-    <color name="green_transparent">#44375a1f</color>
-    <color name="blue_transparent">#44293576</color>
-    <color name="red_transparent">#447f3907</color>
-    <color name="purple_transparent">#44432677</color>
-    <color name="black_translucent">#66000000</color>
     <color name="white_translucent">#c8ffffff</color>
     <!-- 播放器 -->
 
 
     <color name="orange">#fff86442</color>
-    <color name="text_disable">#c8ffffff</color>
 </resources>

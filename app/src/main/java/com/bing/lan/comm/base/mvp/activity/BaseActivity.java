@@ -394,21 +394,21 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
         readyStartPresenter();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    // @Override
+    // public void onResume() {
+    //     super.onResume();
         //友盟
         // MobclickAgent.onResume(this);
         //友盟
-    }
+    // }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    // @Override
+    // public void onPause() {
+    //     super.onPause();
         //友盟
         // MobclickAgent.onPause(this);
         //友盟
-    }
+    // }
 
     /**
      * 权限请求失败时调用

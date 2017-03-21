@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--<color name="colorPrimary">#fff86442</color>-->
+    <!--<color name="colorPrimaryDark">#fff86442</color>-->
+    <!--<color name="colorAccent">#f97b5e</color>-->
+
+    <color name="gray60">#99BFBFBF</color>
+    <color name="line">#F2F2F2</color>
+    <color name="dark_gray">#F5FBFB</color>
+    <!--<color name="top_gray">#25D7C8</color>-->
+    <color name="top_gray">#fff86442</color>
+    <color name="top_mes_back">#F5569E</color>
+    <!--<color name="top_title_back">#24D7C8</color>-->
+    <color name="top_title_back">#fff86442</color>
+    <color name="search_blank">#4dBFBFBF</color>
+    <color name="black20">#4c000000</color>
+    <color name="black10">#19000000</color>
+    <color name="white20">#4cffffff</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="black50">#7d000000</color>
+    <color name="black80">#cc000000</color>
+
+
+</resources>

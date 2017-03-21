@@ -1,27 +1,20 @@
 package com.bing.lan.comm.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ScrollView;
 
-import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.fm.R;
-
-import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 
 /**
  * @author 蓝兵
  * @time 2017/1/10  18:42
  */
-public abstract class LoadPageView extends FrameLayout implements BGARefreshLayout.BGARefreshLayoutDelegate {
+public abstract class LoadPageView extends FrameLayout   {
 
     private static final int STATE_EMPTY = 0;
     private static final int STATE_ERROR = 1;
@@ -41,7 +34,7 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
 
     private OnErrorButtonListener mErrorButtonListener;
     private int mErrorCount;
-    private BGARefreshLayout mRefreshLayout;
+    // private BGARefreshLayout mRefreshLayout;
 
     public LoadPageView(Context context) {
         this(context, true);
@@ -96,14 +89,17 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
                 this.addView(mSuccessPager, 0);
             }
         } else {
-            mSuccessPager = View.inflate(context, R.layout.pager_refresh, null);
-            mRefreshLayout = (BGARefreshLayout) mSuccessPager.findViewById(R.id.load_page_refresh_container);
-            ScrollView scrollView = (ScrollView) mSuccessPager.findViewById(R.id.scroll_container);
-            initRefreshLayout(mRefreshLayout);
-            View view = initSuccessView(inflater, scrollView);
-            if (view != null) {
-                scrollView.addView(view, 0);
-            }
+            // mSuccessPager = View.inflate(context, R.layout.pager_refresh, null);
+            // mRefreshLayout = (BGARefreshLayout) mSuccessPager.findViewById(R.id.load_page_refresh_container);
+            // ScrollView scrollView = (ScrollView) mSuccessPager.findViewById(R.id.scroll_container);
+            // initRefreshLayout(mRefreshLayout);
+            // View view = initSuccessView(inflater, scrollView);
+            // if (view != null) {
+            //     scrollView.addView(view, 0);
+            // }
+
+            // TODO: 2017/3/17 添加下拉刷新
+            mSuccessPager = initSuccessView(inflater, this);
             if (mSuccessPager != null) {
                 this.addView(mSuccessPager, 0);
             }
@@ -127,22 +123,22 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
     }
 
     // protected abstract void initRefreshLayout(BGARefreshLayout refreshLayout) ;
-    protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
-        // 为BGARefreshLayout 设置代理
-        refreshLayout.setDelegate(this);
-        // 设置下拉刷新和上拉加载更多的风格
-        refreshLayout.setRefreshViewHolder(getRefreshViewHolder());
-    }
+    // protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
+    //     // 为BGARefreshLayout 设置代理
+    //     refreshLayout.setDelegate(this);
+    //     // 设置下拉刷新和上拉加载更多的风格
+    //     refreshLayout.setRefreshViewHolder(getRefreshViewHolder());
+    // }
 
-    @NonNull
-    protected BGARefreshViewHolder getRefreshViewHolder() {
-
-        // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
-        moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
-        moocStyleRefreshViewHolder.setUltimateColor(R.color.colorPrimary);
-        return moocStyleRefreshViewHolder;
-    }
+    // @NonNull
+    // protected BGARefreshViewHolder getRefreshViewHolder() {
+    //
+    //     // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
+    //     BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
+    //     moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
+    //     moocStyleRefreshViewHolder.setUltimateColor(R.color.colorPrimary);
+    //     return moocStyleRefreshViewHolder;
+    // }
 
     private void refreshViewByState() {
 
@@ -187,11 +183,11 @@ public abstract class LoadPageView extends FrameLayout implements BGARefreshLayo
         mErrorCount = 0;
     }
 
-    @Override
-    public abstract void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout);
-
-    @Override
-    public abstract boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout);
+    // @Override
+    // public abstract void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout);
+    //
+    // @Override
+    // public abstract boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout);
 
     public enum LoadDataResult {
 

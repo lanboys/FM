@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bing.lan.inke.yingke.widght.ResizeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context="com.it520.yingke.com.bing.lan.inke.yingke.MainActivity">
+
+
+    <com.bing.lan.inke.widght.IjkVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@android:color/holo_green_dark"
+    />
+
+
+    <TableLayout
+        android:id="@+id/hud_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="right|center_vertical"
+        android:background="@android:color/darker_gray"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+    />
+
+</com.bing.lan.inke.yingke.widght.ResizeLayout>

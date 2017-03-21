@@ -18,14 +18,11 @@ import com.bing.lan.comm.utils.DialogUtil;
 import com.bing.lan.comm.utils.LogUtil;
 import com.bing.lan.comm.utils.ToastUtil;
 import com.bing.lan.comm.view.LoadPageView;
-import com.bing.lan.fm.R;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.bingoogolapple.refreshlayout.BGAMoocStyleRefreshViewHolder;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
  * @author 蓝兵
@@ -34,7 +31,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragmentPresenter>
         extends Fragment
         implements IBaseFragmentContract.IBaseFragmentView<T>,
-        LoadPageView.OnErrorButtonListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+        LoadPageView.OnErrorButtonListener/*, BGARefreshLayout.BGARefreshLayoutDelegate*/ {
 
     @Inject
     protected LogUtil log;
@@ -190,19 +187,19 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
 
     protected abstract void readyStartPresenter();
 
-    protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
-
-        // 为BGARefreshLayout 设置代理
-        refreshLayout.setDelegate(this);
-        // 设置下拉刷新和上拉加载更多的风格
-        BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
-        moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
-        moocStyleRefreshViewHolder.setUltimateColor(R.color.colorPrimary);
-
-        moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
-        // 设置下拉刷新和上拉加载更多的风格
-        refreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
-    }
+    // protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
+    //
+    //     // 为BGARefreshLayout 设置代理
+    //     refreshLayout.setDelegate(this);
+    //     // 设置下拉刷新和上拉加载更多的风格
+    //     BGAMoocStyleRefreshViewHolder moocStyleRefreshViewHolder = new BGAMoocStyleRefreshViewHolder(AppUtil.getAppContext(), true);
+    //     moocStyleRefreshViewHolder.setOriginalImage(R.mipmap.defult_refresh_img_style);
+    //     moocStyleRefreshViewHolder.setUltimateColor(R.color.colorPrimary);
+    //
+    //     moocStyleRefreshViewHolder.setLoadingMoreText("正在加载中...");
+    //     // 设置下拉刷新和上拉加载更多的风格
+    //     refreshLayout.setRefreshViewHolder(moocStyleRefreshViewHolder);
+    // }
 
     // protected BGARefreshViewHolder getRefreshViewHolder(   ) {
     //
@@ -217,12 +214,12 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
     //     return moocStyleRefreshViewHolder;
     // }
 
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-    }
-
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        return true;
-    }
+    // public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+    // }
+    //
+    // public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+    //     return true;
+    // }
 
     /**
      * 默认打开加载页面(空页面,错误页面,正在加载页面)
@@ -270,25 +267,25 @@ public abstract class BaseFragment<T extends IBaseFragmentContract.IBaseFragment
 
     private void initLoadPager() {
         mLoadPage = new LoadPageView(AppUtil.getAppContext(), isOpenRefresh()) {
-            @Override
-            protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
-                BaseFragment.this.initRefreshLayout(refreshLayout);
-            }
+            // @Override
+            // protected void initRefreshLayout(BGARefreshLayout refreshLayout) {
+            //     BaseFragment.this.initRefreshLayout(refreshLayout);
+            // }
 
             @Override
             protected View initSuccessView(LayoutInflater inflater, ViewGroup parent) {
                 return BaseFragment.this.initSuccessView(inflater, parent);
             }
 
-            @Override
-            public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-                BaseFragment.this.onBGARefreshLayoutBeginRefreshing(refreshLayout);
-            }
-
-            @Override
-            public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-                return BaseFragment.this.onBGARefreshLayoutBeginLoadingMore(refreshLayout);
-            }
+            // @Override
+            // public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+            //     BaseFragment.this.onBGARefreshLayoutBeginRefreshing(refreshLayout);
+            // }
+            //
+            // @Override
+            // public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+            //     return BaseFragment.this.onBGARefreshLayoutBeginLoadingMore(refreshLayout);
+            // }
         };
         //点击错误页面的的加载按钮重新加载
         mLoadPage.setErrorButtonListener(this);

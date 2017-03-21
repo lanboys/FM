@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:id="@+id/ll_item"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_weight="10"
+        android:layout_height="match_parent"
+        android:background="@drawable/black_round_back"
+        android:layout_margin="5dp"
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_icon"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher"
+            android:padding="5dp"
+            android:layout_margin="3dp"
+            />
+
+        <LinearLayout
+            android:layout_toRightOf="@id/img_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="left"
+            android:layout_marginLeft="5dp"
+            >
+            <TextView
+                android:id="@+id/tv_name"
+                android:text="userName"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:text="送爱心"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                />
+
+        </LinearLayout>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/img_gift"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher"
+            android:padding="5dp"
+            android:layout_margin="3dp"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_num"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:text="X25"
+            android:textSize="35sp"
+            android:textColor="@android:color/holo_orange_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

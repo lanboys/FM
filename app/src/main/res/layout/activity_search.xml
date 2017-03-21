@@ -21,7 +21,6 @@
             android:padding="20dp">
 
             <RelativeLayout
-                android:id="@+id/rl_search_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
@@ -53,7 +52,6 @@
             <include layout="@layout/divide_line_gray"/>
 
             <RelativeLayout
-                android:id="@+id/rl_search_hot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"

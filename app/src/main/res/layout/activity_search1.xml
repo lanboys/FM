@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/top_title_back"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="取消"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/cancle"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round_back"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            >
+       <ImageView
+           android:layout_width="20dp"
+           android:layout_height="20dp"
+           android:src="@drawable/icon_search_gray"
+           android:id="@+id/searchicon"
+           android:layout_centerVertical="true"
+           android:layout_marginLeft="5dp"
+           />
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/searchicon"
+            android:background="@null"
+
+            android:hint="请输入昵称/映客号"
+            android:textColorHint="@android:color/darker_gray"
+            android:singleLine="true"
+            android:textSize="15sp"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/pops_up_close"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@id/search"
+            android:layout_marginRight="10dp"
+            android:id="@+id/clean"
+            android:visibility="gone"
+            />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:visibility="gone"
+            />
+    </FrameLayout>
+</LinearLayout>

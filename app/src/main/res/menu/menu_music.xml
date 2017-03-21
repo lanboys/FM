@@ -6,8 +6,8 @@
           android:orderInCategory="100"
           android:title="@string/action_settings"
           app:showAsAction="never"/>
-    <item android:id="@+id/star_music"
-          android:icon="@drawable/playpage_icon_like_selector"
+    <item
+        android:icon="@drawable/playpage_icon_like_selector"
           android:orderInCategory="100"
           android:title="@string/action_settings"
           app:showAsAction="ifRoom"/>

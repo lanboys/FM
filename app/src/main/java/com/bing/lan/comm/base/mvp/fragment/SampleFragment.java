@@ -1,33 +1,27 @@
 package com.bing.lan.comm.base.mvp.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.bing.lan.comm.utils.AppUtil;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.cons.Constants;
-import com.yalantis.phoenix.PullToRefreshView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
  * Created by lean on 16/10/28.
  */
 
-public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefreshLayoutDelegate {
+public class SampleFragment extends Fragment /*implements BGARefreshLayout.BGARefreshLayoutDelegate*/ {
 
     private View mView;
-    private PullToRefreshView mPullToRefreshView;
+    // private PullToRefreshView mPullToRefreshView;
     public static SampleFragment newInstance(String title) {
         SampleFragment fragment = new SampleFragment();
         Bundle args = new Bundle();
@@ -67,18 +61,18 @@ public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefr
     }
 
     private void initPullToRefreshView(View view) {
-        mPullToRefreshView = (PullToRefreshView) view.findViewById(R.id.pull_to_refresh);
-        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mPullToRefreshView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mPullToRefreshView.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
+        // mPullToRefreshView = (PullToRefreshView) view.findViewById(R.id.pull_to_refresh);
+        // mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+        //     @Override
+        //     public void onRefresh() {
+        //         mPullToRefreshView.postDelayed(new Runnable() {
+        //             @Override
+        //             public void run() {
+        //                 mPullToRefreshView.setRefreshing(false);
+        //             }
+        //         }, 2000);
+        //     }
+        // });
     }
 
     private void initRefreshLayout() {
@@ -111,19 +105,19 @@ public class SampleFragment extends Fragment implements BGARefreshLayout.BGARefr
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(AppUtil.getAppContext(), "客观没有更多的数据了哦", Toast.LENGTH_SHORT).show();
-                // mRefreshLayout.endRefreshing();
-            }
-        }, 2000);
-    }
-
-    @Override
-    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
-        return true;
-    }
+    // @Override
+    // public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+    //     new Handler().postDelayed(new Runnable() {
+    //         @Override
+    //         public void run() {
+    //             Toast.makeText(AppUtil.getAppContext(), "客观没有更多的数据了哦", Toast.LENGTH_SHORT).show();
+    //             // mRefreshLayout.endRefreshing();
+    //         }
+    //     }, 2000);
+    // }
+    //
+    // @Override
+    // public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+    //     return true;
+    // }
 }

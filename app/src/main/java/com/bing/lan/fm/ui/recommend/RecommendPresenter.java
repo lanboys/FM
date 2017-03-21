@@ -32,7 +32,6 @@ public class RecommendPresenter extends
         int nextInt = random.nextInt(15);
 
         mModule.requestData(LOAD_RECOMD_MAIN, this);
-
     }
 
     @Override
@@ -42,7 +41,6 @@ public class RecommendPresenter extends
             case LOAD_RECOMD_MAIN:
                 mView.dataRec((RecBean) data);
                 break;
-
         }
     }
 
@@ -54,6 +52,7 @@ public class RecommendPresenter extends
     @Override
     public void onError(int action, Throwable e) {
         super.onError(action, e);
+        mView.closeRefreshing();
     }
 
     @Override
@@ -63,6 +62,5 @@ public class RecommendPresenter extends
         mView.closeRefreshing();
         mView.setViewState2LoadPage(LoadPageView.LoadDataResult.LOAD_SUCCESS);
         mView.setHaveData(true);
-
     }
 }

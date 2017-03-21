@@ -15,17 +15,69 @@ import rx.schedulers.Schedulers;
  */
 public class MusicPlayDao {
 
+    private static RealmManager sAsyncRealmInstance;
+
+    private static Realm getMainRealmInstance() {
+        return RealmManager.getMainRealmManager().getRealmInstance();
+    }
+
+    /**
+     * 异步的用完后必须记得关闭
+     */
+    private static Realm getAsyncRealmInstance() {
+
+        if (sAsyncRealmInstance == null) {
+            sAsyncRealmInstance = RealmManager.getAsyncInstance();
+        }
+        return sAsyncRealmInstance.getRealmInstance();
+    }
+
+    /**
+     * 异步的用完后必须记得关闭
+     */
+    public static void closeAsyncRealm() {
+        if (sAsyncRealmInstance != null) {
+            sAsyncRealmInstance.close();
+            sAsyncRealmInstance = null;
+        }
+    }
+
+    private static void closeByThread(boolean isMainThread) {
+        if (isMainThread) {
+            closeAsyncRealm();
+        }
+    }
+
+    private static Realm getRealmByThread(boolean isMainThread) {
+        Realm mainRealm;
+        if (isMainThread) {
+            mainRealm = getMainRealmInstance();
+        } else {
+            mainRealm = getAsyncRealmInstance();
+        }
+        return mainRealm;
+    }
+
     public static void saveMusicInfo(Music music) {
-        Realm mainRealm = RealmManager.getMainThreadInstance().getMainRealm();
+        saveMusicInfo(true, music);
+    }
+
+    // TODO: 2017/3/19 其他方法还需要封装
+    public static void saveMusicInfo(boolean isMainThread, Music music) {
+
+        Realm mainRealm = getRealmByThread(isMainThread);
+
         mainRealm.beginTransaction();
         mainRealm.copyToRealmOrUpdate(music);
         mainRealm.commitTransaction();
+
+        closeByThread(isMainThread);
     }
 
     public static void deleteMusicInfo(long albumId) {
 
         Music music = queryMusicInfoByAlbumId(albumId);
-        Realm mainRealm = RealmManager.getMainThreadInstance().getMainRealm();
+        Realm mainRealm = getMainRealmInstance();
         mainRealm.beginTransaction();
         music.deleteFromRealm();
         mainRealm.commitTransaction();
@@ -62,24 +114,21 @@ public class MusicPlayDao {
     // });
     // }
     public static Music queryMusicInfoByUrl(String url) {
-        return RealmManager.getMainThreadInstance()
-                .getMainRealm()
+        return getMainRealmInstance()
                 .where(Music.class)
                 .equalTo("url", url)
                 .findFirst();
     }
 
     public static Music queryMusicInfoByAlbumId(long albumId) {
-        return RealmManager.getMainThreadInstance()
-                .getMainRealm()
+        return getMainRealmInstance()
                 .where(Music.class)
                 .equalTo("albumId", albumId)
                 .findFirst();
     }
 
     // public static void queryMusicInfoByUrl12(String url, long albumId) {
-    //     RealmResults<Music> url1 = RealmManager.getMainThreadInstance()
-    //             .getMainRealm()
+    //     RealmResults<Music> url1 = getMainRealmInstance()
     //             .where(Music.class)
     //             .equalTo("url", url)
     //             .equalTo("albumId", albumId)
@@ -98,15 +147,13 @@ public class MusicPlayDao {
      * @return
      */
     public static RealmResults<Music> queryAllMusicInfo() {
-        return RealmManager.getMainThreadInstance()
-                .getMainRealm()
+        return getMainRealmInstance()
                 .where(Music.class)
                 .findAll();
     }
 
     public static void queryAllMusicInfoAsync(final OnMusicQueryListener listener) {
-        Observable<RealmResults<Music>> observable = RealmManager.getMainThreadInstance()
-                .getMainRealm()
+        Observable<RealmResults<Music>> observable = getMainRealmInstance()
                 .where(Music.class)
                 .findAllAsync().asObservable();
 
