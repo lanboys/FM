@@ -87,7 +87,51 @@ public class PullZoomView extends ScrollView {
 
     public PullZoomView(Context context, AttributeSet attrs) {
         this(context, attrs, android.R.attr.scrollViewStyle);
+
+        <img src="img/device-2017-03-21-155810.png"  width="200" height="370" >
+        <img src="img/device-2017-03-21-155943.png"  width="200" height="370" >
+        <img src="img/device-2017-03-21-160014.png"  width="200" height="370" >
+        <img src="img/device-2017-03-21-160058.png"  width="200" height="370" >
+        <img src="img/device-2017-03-21-160429.png"  width="200" height="370" >
+        <img src="img/device-2017-03-21-160618.png"  width="200" height="370" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public PullZoomView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
