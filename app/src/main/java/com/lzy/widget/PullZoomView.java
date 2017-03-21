@@ -95,12 +95,16 @@ public class PullZoomView extends ScrollView {
         // <img src="img/device-2017-03-21-160429.png"  width="200" height="370" >
         // <img src="img/device-2017-03-21-160618.png"  width="200" height="370" >
 
-        <img src="img/device-2017-03-21-161839.png"  width="200" height="370" >
-        <img src="img/device-2017-03-21-161921.png"  width="200" height="370" >
-        <img src="img/device-2017-03-21-162059.png"  width="200" height="370" >
-        <img src="img/device-2017-03-21-162303.png"  width="200" height="370" >
-        <img src="img/device-2017-03-21-162412.png"  width="200" height="370" >
-        <img src="img/device-2017-03-21-162434.png"  width="200" height="370" >
+        // <img src="img/device-2017-03-21-161839.png"  width="200" height="370" >
+        // <img src="img/device-2017-03-21-161921.png"  width="200" height="370" >
+        // <img src="img/device-2017-03-21-162059.png"  width="200" height="370" >
+        // <img src="img/device-2017-03-21-162303.png"  width="200" height="370" >
+        // <img src="img/device-2017-03-21-162412.png"  width="200" height="370" >
+        // <img src="img/device-2017-03-21-162434.png"  width="200" height="370" >
+
+
+        <img src="img/device-2017-03-21-164248.png"  width="200" height="370" ><img src="img/device-2017-03-21-164438.png"  width="200" height="370" >
+
 
 
 
