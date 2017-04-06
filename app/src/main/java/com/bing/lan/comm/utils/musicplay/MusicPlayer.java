@@ -113,6 +113,13 @@ public class MusicPlayer {
         }
     }
 
+    public static List<Music> getPlaylist() {
+        if (mService != null) {
+            return mService.getPlaylist();
+        }
+        return null;
+    }
+
     public static void setPlaylist(List<Music> playlist) {
         if (mService != null && playlist != null && playlist.size() > 0) {
             mService.setPlaylist(playlist);

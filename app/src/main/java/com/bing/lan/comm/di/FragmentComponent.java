@@ -8,6 +8,7 @@ import com.bing.lan.fm.ui.home.HomeFragment;
 import com.bing.lan.fm.ui.hot.HotFragment;
 import com.bing.lan.fm.ui.mine.MineFragment;
 import com.bing.lan.fm.ui.recommend.RecommendFragment;
+import com.bing.lan.fm.ui.splash1.SplashFragment;
 import com.bing.lan.fm.ui.subscriber.SubscriberFragment;
 import com.bing.lan.fm.ui.top.TopFragment;
 
@@ -35,4 +36,6 @@ public interface FragmentComponent {
     void inject(RecommendFragment recommendFragment);
 
     void inject(AnchorFragment anchorFragment);
+
+    void inject(SplashFragment splashFragment);
 }

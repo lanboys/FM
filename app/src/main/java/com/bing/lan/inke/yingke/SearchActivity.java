@@ -47,7 +47,6 @@ import retrofit2.Response;
 
 /**
  * 收索界面
- * Created by kay on 16/12/8.
  */
 
 public class SearchActivity extends AppCompatActivity {

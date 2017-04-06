@@ -2,9 +2,7 @@ package com.bing.lan.inke.yingke.bean;
 
 import java.util.List;
 
-/**
- * Created by kay on 17/1/3.
- */
+
 
 public class Gifts {
 

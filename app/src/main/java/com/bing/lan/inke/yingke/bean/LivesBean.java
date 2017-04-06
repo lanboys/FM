@@ -2,9 +2,7 @@ package com.bing.lan.inke.yingke.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by kay on 16/11/14.
- */
+
 public class LivesBean implements Serializable {
 
     /**

@@ -32,9 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by kay on 16/11/15.
- */
+
 public class NearFragment extends Fragment {
     YRecyclerView list;
     View loading;

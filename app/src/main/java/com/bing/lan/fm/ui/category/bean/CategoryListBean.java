@@ -3,11 +3,7 @@ package com.bing.lan.fm.ui.category.bean;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author Holly
- * @time 2017/3/7  10:39
- * @desc ${TODD}
- */
+
 public class CategoryListBean {
 
     /**

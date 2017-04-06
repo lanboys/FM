@@ -9,9 +9,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-/**
- * Created by kay on 16/12/29.
- */
+
 
 public class RoundImage extends View {
 

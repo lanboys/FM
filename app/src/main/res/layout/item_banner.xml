@@ -6,6 +6,5 @@
        android:layout_width="match_parent"
        android:layout_height="150dp"
        android:id="@+id/viewPager"
-       android:background="@color/top_mes_back"
        />
 </LinearLayout>

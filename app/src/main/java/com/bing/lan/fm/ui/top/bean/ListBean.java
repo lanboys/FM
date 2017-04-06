@@ -1,10 +1,6 @@
 package com.bing.lan.fm.ui.top.bean;
 
-/**
- * @author jk
- * @time 2017/3/8  20:07
- * @desc ${TODD}
- */
+
 public class ListBean {
     /**
      * activityId : 153

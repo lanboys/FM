@@ -5,9 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 
-/**
- * Created by kay on 16/12/20.
- */
+
 
 public interface ISearchKeyWord {
     @GET

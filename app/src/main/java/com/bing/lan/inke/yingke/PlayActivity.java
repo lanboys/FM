@@ -47,7 +47,6 @@ import static com.bing.lan.inke.yingke.util.JsonUtil.parse;
 
 /**
  * 进入直播间
- * Created by kay on 16/12/22.
  */
 
 public class PlayActivity extends AppCompatActivity implements ProxyPlayActivity {

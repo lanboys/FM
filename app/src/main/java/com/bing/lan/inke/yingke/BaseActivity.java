@@ -7,32 +7,29 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by kay on 16/12/8.
- */
+
 
 public abstract class BaseActivity extends AppCompatActivity {
-    MyHandler handler;
 
-    public static  final int INIT_SUCCESS = 0;
-    public static  final int DOWN_SUCCESS = 1;
-    public static  final int LOAD_MORE = 2;
+    public static final int INIT_SUCCESS = 0;
+    public static final int DOWN_SUCCESS = 1;
+    public static final int LOAD_MORE = 2;
+    MyHandler handler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(useHandle()){
+        if (useHandle()) {
             handler = getHandler();
         }
-
     }
 
     public abstract boolean useHandle();
 
-    public abstract  MyHandler getHandler();
+    public abstract MyHandler getHandler();
 
-    static class  MyHandler extends Handler{
+    static class MyHandler extends Handler {
 
         WeakReference<BaseActivity> baseActivity;
 
@@ -40,11 +37,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             this.baseActivity = new WeakReference<BaseActivity>(activity);
         }
 
-
         @Override
         public void handleMessage(Message msg) {
-            BaseActivity activity =  baseActivity.get();
-            if(activity == null){
+            BaseActivity activity = baseActivity.get();
+            if (activity == null) {
                 return;
             }
         }

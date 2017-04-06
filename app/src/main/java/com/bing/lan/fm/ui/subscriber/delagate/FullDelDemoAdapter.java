@@ -16,18 +16,12 @@ import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
 import java.util.List;
 
-
-/**
- * 介绍：
- * 作者：zhangxutong
- * 邮箱：zhangxutong@imcoming.com
- * 时间： 2016/9/12.
- */
-
 public class FullDelDemoAdapter extends RecyclerView.Adapter<FullDelDemoAdapter.FullDelDemoVH> {
+
     private Context mContext;
     private LayoutInflater mInfalter;
     private List<Music> mDatas;
+    private onSwipeListener mOnSwipeListener;
 
     public FullDelDemoAdapter(Context context, List<Music> mDatas) {
         mContext = context;
@@ -48,10 +42,7 @@ public class FullDelDemoAdapter extends RecyclerView.Adapter<FullDelDemoAdapter.
         holder.ivCoverImage.setImageURI(mDatas.get(position).getCoverSmall());
         holder.tvTrackTitleName.setText(mDatas.get(position).getTitle());
         holder.tvTrackSubtitle.setText(mDatas.get(position).getNickname());
-        holder.tvTracksCounts.setText("播放时间"+ mDatas.get(position).getLastPlayPosition());
-
-
-
+        holder.tvTracksCounts.setText("播放时间" + mDatas.get(position).getLastPlayPosition());
 
         //验证长按
         holder.llChildContainer.setOnLongClickListener(new View.OnLongClickListener() {
@@ -70,7 +61,7 @@ public class FullDelDemoAdapter extends RecyclerView.Adapter<FullDelDemoAdapter.
                     //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
                     //((CstSwipeDelMenu) holder.itemView).quickClose();
                     mOnSwipeListener.onDel(position);
-//                    mOnSwipeListener.onDel(holder.getAdapterPosition());
+                    //                    mOnSwipeListener.onDel(holder.getAdapterPosition());
                 }
             }
         });
@@ -81,15 +72,6 @@ public class FullDelDemoAdapter extends RecyclerView.Adapter<FullDelDemoAdapter.
         return null != mDatas ? mDatas.size() : 0;
     }
 
-    /**
-     * 和Activity通信的接口
-     */
-    public interface onSwipeListener {
-        void onDel(int pos);
-    }
-
-    private onSwipeListener mOnSwipeListener;
-
     public onSwipeListener getOnDelListener() {
         return mOnSwipeListener;
     }
@@ -98,7 +80,16 @@ public class FullDelDemoAdapter extends RecyclerView.Adapter<FullDelDemoAdapter.
         this.mOnSwipeListener = mOnDelListener;
     }
 
+    /**
+     * 和Activity通信的接口
+     */
+    public interface onSwipeListener {
+
+        void onDel(int pos);
+    }
+
     class FullDelDemoVH extends RecyclerView.ViewHolder {
+
         private LinearLayout llChildContainer;
 
         private SimpleDraweeView ivCoverImage;
@@ -107,8 +98,6 @@ public class FullDelDemoAdapter extends RecyclerView.Adapter<FullDelDemoAdapter.
         private TextView tvTracksCounts;
 
         private TextView btnDelete;
-
-
 
         public FullDelDemoVH(View itemView) {
             super(itemView);

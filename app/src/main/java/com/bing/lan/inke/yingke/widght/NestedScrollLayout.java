@@ -8,12 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/11 0011
- */
+
 public class NestedScrollLayout extends LinearLayout implements NestedScrollingParent {
 
     private static final String TAG = "NestedScrollLayout";

@@ -19,9 +19,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by kay on 16/11/19.
- */
+
 public class NearAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     static final int HEAD = 0;

@@ -8,11 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * @author Holly
- * @time 2017/3/9  14:09
- * @desc ${TODD}
- */
+
 public  class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     private int leftRight;
     private int topBottom;

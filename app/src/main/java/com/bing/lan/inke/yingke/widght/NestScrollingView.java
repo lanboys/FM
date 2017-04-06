@@ -6,12 +6,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.FrameLayout;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/14 0014
- */
+
 
 public class NestScrollingView extends FrameLayout implements NestedScrollingChild {
     private static final String TAG ="NestScrollingView" ;

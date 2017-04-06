@@ -1,8 +1,6 @@
 package com.bing.lan.inke.yingke.bean;
 
-/**
- * Created by kay on 16/11/13.
- */
+
 public class TickerBean {
     private String image;
     private String link;

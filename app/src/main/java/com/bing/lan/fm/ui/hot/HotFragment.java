@@ -120,6 +120,26 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
 
         mBanner = (Banner) mBannerView.findViewById(R.id.item_banner);
 
+        // mBanner.setBannerStyle(BannerConfig.);
+        // mBanner.setBannerAnimation(CubeOutTransformer.class);
+
+        // transformers.add(DefaultTransformer.class);
+        // transformers.add(AccordionTransformer.class);
+        // transformers.add(BackgroundToForegroundTransformer.class);
+        // transformers.add(ForegroundToBackgroundTransformer.class);
+        // transformers.add(CubeInTransformer.class);
+        // transformers.add(CubeOutTransformer.class);
+        // transformers.add(DepthPageTransformer.class);
+        // transformers.add(FlipHorizontalTransformer.class);
+        // transformers.add(FlipVerticalTransformer.class);
+        // transformers.add(RotateDownTransformer.class);
+        // transformers.add(RotateUpTransformer.class);
+        // transformers.add(ScaleInOutTransformer.class);
+        // transformers.add(StackTransformer.class);
+        // transformers.add(TabletTransformer.class);
+        // transformers.add(ZoomInTransformer.class);
+        // transformers.add(ZoomOutTranformer.class);
+        // transformers.add(ZoomOutSlideTransformer.class);
         //设置图片加载器(低版本没有此方法)
         mBanner.setImageLoader(new ImageLoader() {
             @Override
@@ -211,8 +231,8 @@ public class HotFragment extends BaseFragment<IHotContract.IHotPresenter>
 
     @Override
     public void updateBanner(List<String> imageUrls) {
-        mBanner.setImages(imageUrls);
-        mBanner.start();
+        mBanner.update(imageUrls);
+        // mBanner.start();
         notifyDataSetChanged();
         mBanner.setVisibility(View.VISIBLE);
         mHotRecyclerView.scrollToPosition(0);

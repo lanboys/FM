@@ -4,12 +4,7 @@ import com.bing.lan.fm.bean.ResultBean;
 
 import java.util.List;
 
-/**
- * @author lihoujing2ken
- * @time 2017/3/1  17:23
- * @desc Anchor的总数据入口
- *
- */
+
 public class AnchorResult extends ResultBean{
     private AnchorResult relation;
     private List<FamousBean> famous;//1级数据

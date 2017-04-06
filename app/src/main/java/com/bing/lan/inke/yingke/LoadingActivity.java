@@ -5,9 +5,7 @@ import android.os.Bundle;
 
 import com.bing.lan.fm.R;
 
-/**
- * Created by kay on 17/1/2.
- */
+
 
 public class LoadingActivity extends Activity {
 

@@ -1,10 +1,6 @@
 package com.bing.lan.fm.ui.anchor.bean;
 
-/**
- * @author lihoujing2ken
- * @time 2017/3/2  15:13
- * @desc 1级数据的下级数据
- */
+
 public class ListBeanA {
     /**
      * uid : 71241360

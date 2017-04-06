@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_child_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:background="@android:color/white"
     app:cardBackgroundColor="@color/hot_item_background_white"
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
-    app:contentPadding="1dp"
-    android:id="@+id/ll_child_container"
-    android:layout_width="match_parent"
-    android:layout_height="160dp"
-    app:background="@android:color/white">
+    app:contentPadding="3dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <FrameLayout
-            android:clickable="true"
             android:id="@+id/cir_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:background="@color/white_translucent"
-            >
+            android:clickable="true"
+        >
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/iv_cover_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:padding="5dp"
-            android:layout_weight="1.8"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            fresco:actualImageScaleType="fitCenter"
-            fresco:fadeDuration="500"
-            fresco:placeholderImage="@drawable/image_default_202"
-            fresco:progressBarImage="@drawable/image_default_202"
-            fresco:progressBarImageScaleType="centerCrop"
-            fresco:roundAsCircle="true"
-            fresco:roundedCornerRadius="10dp"
-            android:background="@drawable/liveaudio_play"
-            tools:src="@mipmap/account_avatar"
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/iv_cover_image"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/liveaudio_play"
+                android:gravity="center"
+                fresco:actualImageScaleType="fitCenter"
+                fresco:fadeDuration="500"
+                fresco:placeholderImage="@drawable/image_default_202"
+                fresco:progressBarImage="@drawable/image_default_202"
+                fresco:progressBarImageScaleType="centerCrop"
+                fresco:roundAsCircle="true"
+                fresco:roundedCornerRadius="10dp"
+                tools:src="@mipmap/account_avatar"
             />
 
-        <!--app:failureImage="@mipmap/ic_launcher"-->
-        <!--app:failureImageScaleType="centerInside"-->
-        <!--app:retryImage="@mipmap/ic_launcher"-->
-        <!--app:retryImageScaleType="centerCrop"-->
-        <!--app:progressBarImage="@mipmap/ic_launcher"-->
-        <!--app:progressBarImageScaleType="centerCrop"-->
-        <!--app:progressBarAutoRotateInterval="5000"/>-->
+            <!--app:failureImage="@mipmap/ic_launcher"-->
+            <!--app:failureImageScaleType="centerInside"-->
+            <!--app:retryImage="@mipmap/ic_launcher"-->
+            <!--app:retryImageScaleType="centerCrop"-->
+            <!--app:progressBarImage="@mipmap/ic_launcher"-->
+            <!--app:progressBarImageScaleType="centerCrop"-->
+            <!--app:progressBarAutoRotateInterval="5000"/>-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/cir_play1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:clickable="true"
                 android:src="@drawable/liveaudio_play"/>
 
         </FrameLayout>
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:layout_toRightOf="@id/cir_play"
             android:layout_alignTop="@id/cir_play"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:layout_toRightOf="@id/cir_play"
             android:orientation="vertical">
 
 
@@ -80,8 +80,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textColor="@color/big_title_color"
-                android:textSize="20sp"
-                tools:text="标题小编推荐推荐荐推荐荐推荐"/>
+                android:textSize="@dimen/text_margin"
+                tools:text="标题小编推荐标题小编推荐标题小编推荐推荐荐推荐荐推荐"/>
 
 
             <TextView
@@ -92,12 +92,15 @@
                 android:drawablePadding="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/titleColorSelected"
-                android:textSize="15sp"
+                android:textColor="@color/foot_note_color"
+                android:textSize="@dimen/hot_item_title"
+
                 tools:text="标题小编推荐推荐"/>
         </LinearLayout>
 
         <ImageView
+            android:visibility="gone"
+
             android:id="@+id/iv_nolike"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -105,28 +108,40 @@
             android:layout_margin="5dp"
             android:src="@drawable/notify_btn_close"/>
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/iv_nolike"
-            android:layout_margin="5dp"
-            android:src="@drawable/ic_finding_download"/>
 
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/tag_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cir_play"
-            app:cardBackgroundColor="@android:color/white">
+            android:orientation="horizontal"
+            android:padding="2dp">
 
-            <TextView
-                android:id="@+id/cv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="tags发放大是"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="15sp"/>
-        </android.support.v7.widget.CardView>
+            <!--<include layout="@layout/item_recomd_child"/>-->
+
+        </LinearLayout>
+        <ImageView
+android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/tag_container"
+            android:layout_alignRight="@id/tag_container"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_finding_download"/>
+
+        <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/cir_play"-->
+        <!--app:cardBackgroundColor="@android:color/white">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/cv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="tags发放大是"-->
+        <!--android:textColor="@android:color/darker_gray"-->
+        <!--android:textSize="15sp"/>-->
+        <!--</android.support.v7.widget.CardView>-->
     </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -1,10 +1,6 @@
 package com.bing.lan.fm.ui.recommend.bean;
 
-/**
- * @author jk
- * @time 2017/3/6  16:27
- * @desc ${TODD}
- */
+
 public class TrackBean {
     /**
      * count_comment : 24

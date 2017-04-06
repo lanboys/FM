@@ -11,7 +11,6 @@ import com.bing.lan.fm.R;
 
 /**
  * 个人中心
- * Created by kay on 16/11/9.
  */
 public class MineFragment extends Fragment {
     @Nullable

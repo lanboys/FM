@@ -2,11 +2,7 @@ package com.bing.lan.fm.ui.top.bean;
 
 import java.util.List;
 
-/**
- * @author jk
- * @time 2017/3/7  17:06
- * @desc ${TODD}
- */
+
 public class ListBeanX {
     /**
      * calcPeriod : 日榜

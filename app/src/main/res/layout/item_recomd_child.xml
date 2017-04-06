@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.v7.widget.CardView-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:id="@+id/ll_child_container"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_margin="3dp"-->
+<!--app:background="@android:color/white"-->
+<!--app:cardBackgroundColor="@color/hot_item_background_white"-->
+<!--app:cardCornerRadius="3dp"-->
+<!--app:cardElevation="1dp"-->
+<!--app:contentPadding="1dp"-->
+<!--&gt;-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<TextView
+    android:id="@+id/cv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:paddingRight="4dp"
+    android:paddingLeft="4dp"
+    android:background="@drawable/shape_recomend_tags_background"
+    android:textColor="@android:color/darker_gray"
+    android:textSize="11sp"
+    tools:text="百家讲坛"/>
+    <!--</android.support.v7.widget.CardView>-->
+
+</FrameLayout>
+

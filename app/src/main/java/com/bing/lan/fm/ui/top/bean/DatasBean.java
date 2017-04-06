@@ -2,11 +2,7 @@ package com.bing.lan.fm.ui.top.bean;
 
 import java.util.List;
 
-/**
- * @author jk
- * @time 2017/3/7  19:39
- * @desc ${TODD}
- */
+
 public class DatasBean {
 
     private int count;

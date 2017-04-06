@@ -10,9 +10,7 @@ import com.orhanobut.logger.Logger;
 
 import java.io.File;
 
-/**
- * Created by kay on 16/11/17.
- */
+
 public class YKApplication extends Application {
 
     @Override

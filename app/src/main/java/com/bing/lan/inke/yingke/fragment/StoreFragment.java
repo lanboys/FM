@@ -44,9 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by kay on 17/1/7.
- */
+
 
 public class StoreFragment extends Fragment implements  View.OnClickListener{
 

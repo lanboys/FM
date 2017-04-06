@@ -2,11 +2,7 @@ package com.bing.lan.fm.ui.anchor.bean;
 
 import java.util.List;
 
-/**
- * @author lihoujing2ken
- * @time 2017/3/2  15:10
- * @desc 1级数据
- */
+
 public class FamousBean {
     private int id;
     private String title;

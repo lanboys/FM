@@ -2,12 +2,7 @@ package com.bing.lan.inke.yingke.bean;
 
 import java.util.List;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/6 0006
- */
+
 
 public class SocketDate {
 

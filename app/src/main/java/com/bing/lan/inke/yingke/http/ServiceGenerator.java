@@ -6,9 +6,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by kay on 16/11/13.
- */
+
 public class ServiceGenerator {
 
     public  static final String API_BASE_URL = Constance.SERVER_IP;

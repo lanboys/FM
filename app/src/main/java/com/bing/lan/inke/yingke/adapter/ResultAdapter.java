@@ -16,9 +16,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
-/**
- * Created by kay on 16/12/20.
- */
+
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ContentHolder> {
 

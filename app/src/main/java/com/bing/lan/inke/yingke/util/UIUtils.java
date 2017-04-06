@@ -5,12 +5,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/13 0013
- */
+
 
 public class UIUtils {
 

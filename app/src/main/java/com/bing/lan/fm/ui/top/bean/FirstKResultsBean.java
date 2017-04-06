@@ -1,10 +1,6 @@
 package com.bing.lan.fm.ui.top.bean;
 
-/**
- * @author jk
- * @time 2017/3/7  17:05
- * @desc ${TODD}
- */
+
 public class FirstKResultsBean {
     /**
      * contentType : track

@@ -2,11 +2,7 @@ package com.bing.lan.fm.ui.top.bean;
 
 import java.util.List;
 
-/**
- * @author jk
- * @time 2017/3/7  11:58
- * @desc ${TODD}
- */
+
 public class TopBean {
 
 

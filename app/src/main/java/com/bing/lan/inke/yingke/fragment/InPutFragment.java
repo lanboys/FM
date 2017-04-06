@@ -62,9 +62,7 @@ import de.tavendo.autobahn.WebSocketException;
 import de.tavendo.autobahn.WebSocketHandler;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
-/**
- * Created by kay on 16/12/25.
- */
+
 
 public class InPutFragment extends Fragment implements View.OnClickListener {
 

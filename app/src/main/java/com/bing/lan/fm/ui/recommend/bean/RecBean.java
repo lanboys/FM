@@ -2,11 +2,7 @@ package com.bing.lan.fm.ui.recommend.bean;
 
 import java.util.List;
 
-/**
- * @author jk
- * @time 2017/3/6  16:09
- * @desc ${TODD}
- */
+
 public class RecBean {
 
     /**

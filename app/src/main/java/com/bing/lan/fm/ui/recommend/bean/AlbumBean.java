@@ -4,11 +4,7 @@ import com.bing.lan.fm.ui.hot.bean.IAlbum;
 
 import java.io.Serializable;
 
-/**
- * @author jk
- * @time 2017/3/6  16:26
- * @desc ${TODD}
- */
+
 public class AlbumBean implements Serializable,IAlbum {
     /**
      * albumId : 248886

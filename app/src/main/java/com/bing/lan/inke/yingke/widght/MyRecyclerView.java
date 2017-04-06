@@ -6,12 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/3 0003
- */
+
 
 public class MyRecyclerView extends RecyclerView {
     private ResizeLayout resizeLayout;

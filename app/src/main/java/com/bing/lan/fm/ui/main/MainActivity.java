@@ -1,5 +1,6 @@
 package com.bing.lan.fm.ui.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Message;
@@ -10,9 +11,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -31,6 +35,7 @@ import com.bing.lan.fm.ui.home.HomeFragment;
 import com.bing.lan.fm.ui.mine.MineFragment;
 import com.bing.lan.fm.ui.music.MusicActivity;
 import com.bing.lan.fm.ui.search.SearchActivity;
+import com.bing.lan.fm.ui.splash1.SplashFragment;
 import com.bing.lan.fm.ui.subscriber.SubscriberFragment;
 import com.bing.lan.inke.yingke.IndexActivity;
 import com.lapism.searchview.SearchAdapter;
@@ -44,7 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.realm.RealmResults;
 
@@ -56,6 +61,7 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
         implements IMainContract.IMainView<IMainContract.IMainPresenter>,
         NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener, SearchAdapter.OnItemClickListener, SearchView.OnVoiceClickListener, View.OnClickListener {
 
+    private static final int MSG_REMOVE_SPLASH_FRAGMENT = 333;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
     @BindView(R.id.toolbar)
@@ -84,6 +90,8 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
     private int mFirstPlayPos = 0;
     private long mAlbumId;
     private int rotation;
+    private SplashFragment mSplashFragment;
+    private ViewStub mViewStub;
 
     @Override
     protected void onDestroy() {
@@ -93,6 +101,13 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
 
         // //    关闭音乐服务
         // MusicPlayer.unbindFromService(mServiceToken);
+    }
+
+    protected void initWindowUI() {
+        //初始化布局
+        setContentView(getLayoutResId());
+        //绑定控件
+        // mViewBind = ButterKnife.bind(this);
     }
 
     @Override
@@ -109,6 +124,11 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
                 } else {
                     mCirPlay2.setVisibility(View.VISIBLE);
                 }
+
+                break;
+            // case MSG_REMOVE_SPLASH_FRAGMENT:
+            //     removeSplashFragment();
+            //     break;
         }
     }
 
@@ -166,13 +186,13 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
     }
 
     @Override
-    protected int getMenuId() {
-        return R.menu.menu_main;
+    protected boolean isTranslucentStatus() {
+        return true;
     }
 
     @Override
-    protected boolean isTranslucentStatus() {
-        return true;
+    protected int getMenuId() {
+        return R.menu.menu_main;
     }
 
     @Override
@@ -184,17 +204,17 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
     protected void initViewAndData(Intent intent) {
         // 获得Fragment管理器
         mFragmentManager = getSupportFragmentManager();
-        initTabData();
-
-        setToolBar(mToolbar, "", false);
-
-        initCirPlay();
-
-        initDrawerLayout();
-
-        initNavigation();
-
-        initSearchView();
+        // initTabData();
+        //
+        // setToolBar(mToolbar, "", false);
+        //
+        // initCirPlay();
+        //
+        // initDrawerLayout();
+        //
+        // initNavigation();
+        //
+        // initSearchView();
     }
 
     @Override
@@ -215,9 +235,58 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
         //启动p层逻辑
         // mPresenter.onStart();
 
+        // //注册事件总线
+        // BaseApplication.sBus.register(this);
+        // jumpHomeFragment();
+
+        jumpSplashFragment();
+
+        queryMusicPlayList();
+
+        mMainHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mViewStub != null) {
+                    mViewStub.setVisibility(View.VISIBLE);
+                    removeSplashFragment();
+                }
+            }
+        }, 4000);
+
+        initViewStub();
+    }
+
+    public void initViewStub() {
+
+        getWindow().getDecorView().post(new Runnable() {
+            @Override
+            public void run() {
+
+                mViewStub = (ViewStub) findViewById(R.id.app_bar_main_content);
+                mViewStub.inflate();
+                mViewStub.setVisibility(View.GONE);// INVISIBLE  会导致HomeFragment 不显示最上面内容????
+
+                mViewBind = ButterKnife.bind(MainActivity.this);
+
+                initTabData();
+
+                setToolBar(mToolbar, "", false);
+
+                initCirPlay();
+
+                initDrawerLayout();
+
+                initNavigation();
+
+                initSearchView();
+
+                jumpHomeFragment();
+            }
+        });
+
         //注册事件总线
         BaseApplication.sBus.register(this);
-        jumpHomeFragment();
+        // jumpSplashFragment();
 
         queryMusicPlayList();
     }
@@ -379,6 +448,27 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
         updateTitle(mHomeFragment.getTitle());
     }
 
+    private void jumpSplashFragment() {
+        if (mSplashFragment == null) {
+            mSplashFragment = SplashFragment.newInstance("");
+
+            // start transaction
+            FragmentTransaction transaction = mFragmentManager.beginTransaction();
+
+            // mSplashFragment = (SplashFragment) mFragmentManager.findFragmentById(R.id.fragment_splash);
+            transaction.add(R.id.drawer_layout, mSplashFragment);
+            transaction.commit();
+        }
+    }
+
+    private void removeSplashFragment() {
+        // start transaction
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        transaction.remove(mSplashFragment);
+        transaction.commit();
+        mSplashFragment = null;
+    }
+
     private void jumpGirlFragment() {
         if (mGirlFragment == null) {
             mGirlFragment = GirlFragment.newInstance(mTabTitles[1]);
@@ -473,32 +563,58 @@ public class MainActivity extends BaseMusicActivity<IMainContract.IMainPresenter
         // back to the home fragment or finish the activity
         Fragment forehand = getForehand();
         if (forehand == null || forehand.getClass() == HomeFragment.class) {
+            // super.onBackPressed();
             createExitDialog().show();
         } else {
             jumpHomeFragment();
         }
     }
 
-    private SweetAlertDialog createExitDialog() {
+    private AlertDialog createExitDialog() {
 
-        return new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                .setCustomImage(R.drawable.exit_pic)
-                .setTitleText(AppUtil.getString(R.string.exit_tips))
-                .setCancelText(AppUtil.getString(R.string.ok_btn))
-                .setConfirmText(AppUtil.getString(R.string.cancel_btn))
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+        // return new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+        //         .setCustomImage(R.drawable.exit_pic)
+        //         .setTitleText(AppUtil.getString(R.string.exit_tips))
+        //         .setCancelText(AppUtil.getString(R.string.ok_btn))
+        //         .setConfirmText(AppUtil.getString(R.string.cancel_btn))
+        //         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+        //             @Override
+        //             public void onClick(SweetAlertDialog sDialog) {
+        //                 sDialog.dismissWithAnimation();
+        //             }
+        //         }).setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+        //             @Override
+        //             public void onClick(SweetAlertDialog sweetAlertDialog) {
+        //                 sweetAlertDialog.dismissWithAnimation();
+        //                 finish();
+        //                 // sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        //             }
+        //         });
+
+        TextView view = new TextView(this);
+        view.setText(R.string.exit_tips);
+        int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                20, AppUtil.getDisplayMetrics());
+        view.setPadding(padding, padding, padding, padding);
+        // view.setTextColor(AppUtil.getColor(R.color.itemFontColor));
+        view.setTextSize(16);
+        return new AlertDialog.Builder(this)
+                // .setTitle(AppUtil.getString(R.string.exit_tips))
+                .setView(view)
+                .setNegativeButton(AppUtil.getString(R.string.ok_btn), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(SweetAlertDialog sDialog) {
-                        sDialog.dismissWithAnimation();
-                    }
-                }).setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        sweetAlertDialog.dismissWithAnimation();
+                    public void onClick(DialogInterface dialog, int which) {
+                        dismissDialog();
                         finish();
-                        // sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
                     }
-                });
+                })
+                .setPositiveButton(AppUtil.getString(R.string.cancel_btn),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dismissDialog();
+                            }
+                        }).create();
     }
 
     @Override

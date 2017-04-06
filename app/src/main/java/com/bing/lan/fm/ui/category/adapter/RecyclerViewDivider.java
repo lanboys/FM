@@ -1,11 +1,5 @@
 package com.bing.lan.fm.ui.category.adapter;
 
-/**
- * @author Holly
- * @time 2017/3/9  13:58
- * @desc ${TODD}
- */
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -17,16 +11,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Created by ${火龙裸先生} on 2016/10/29.
- * 邮箱：791335000@qq.com
- */
 public class RecyclerViewDivider extends RecyclerView.ItemDecoration {
+
+    private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
     private Paint mPaint;
     private Drawable mDivider;
     private int mDividerHeight = 2;//分割线高度，默认为1px
     private int mOrientation;//列表的方向：LinearLayoutManager.VERTICAL或LinearLayoutManager.HORIZONTAL
-    private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
 
     /**
      * 默认分割线：高度为2px，颜色为灰色
@@ -73,7 +64,6 @@ public class RecyclerViewDivider extends RecyclerView.ItemDecoration {
         mPaint.setColor(dividerColor);
         mPaint.setStyle(Paint.Style.FILL);
     }
-
 
     //获取分割线尺寸
     @Override
@@ -132,5 +122,4 @@ public class RecyclerViewDivider extends RecyclerView.ItemDecoration {
             }
         }
     }
-
 }

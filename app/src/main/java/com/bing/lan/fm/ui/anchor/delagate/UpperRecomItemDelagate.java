@@ -25,11 +25,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
- /**
-  * @author lihoujing2ken
-  * @time 2017/3/2  15:48
-  * @desc
-  */
+
  public class UpperRecomItemDelagate implements ItemViewDelegate<FamousBean>, MultiItemTypeAdapter.OnItemClickListener {
      //当前的布局
      @Override

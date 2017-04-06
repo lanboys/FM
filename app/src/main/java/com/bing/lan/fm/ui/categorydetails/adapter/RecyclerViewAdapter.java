@@ -8,11 +8,7 @@ import android.view.ViewGroup;
 
 import com.bing.lan.fm.R;
 
-/**
- * @author Holly
- * @time 2017/3/9  9:31
- * @desc ${TODD}
- */
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private Context mContext;

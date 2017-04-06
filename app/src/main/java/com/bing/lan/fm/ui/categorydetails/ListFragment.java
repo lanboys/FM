@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 import com.bing.lan.fm.R;
 import com.bing.lan.fm.ui.categorydetails.adapter.RecyclerViewAdapter;
 
-/**
- * @author Holly
- * @time 2017/3/9  9:33
- * @desc ${TODD}
- */
+
 public class ListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     @Override

@@ -7,11 +7,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
-/**
- * @author Holly
- * @time 2017/3/7  14:25
- * @desc ${TODD}
- */
+
 public class CategoryInfoDelagate implements ItemViewDelegate<CategoryListBean.ListBean> {
 
 

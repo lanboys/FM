@@ -1,11 +1,6 @@
 package com.bing.lan.inke.yingke.bean;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/11 0011
- */
+
 
 public class GiftReceive extends  Gift {
 

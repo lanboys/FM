@@ -3,12 +3,7 @@ package com.bing.lan.inke.yingke.util;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/4 0004
- */
+
 
 public class TimerUtil {
 

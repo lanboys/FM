@@ -2,9 +2,7 @@ package com.bing.lan.inke.yingke.bean;
 
 import java.util.List;
 
-/**
- * Created by kay on 16/11/14.
- */
+
 public class LiveDates {
 
 

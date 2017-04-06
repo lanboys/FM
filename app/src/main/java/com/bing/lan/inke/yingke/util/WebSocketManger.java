@@ -2,12 +2,6 @@ package com.bing.lan.inke.yingke.util;
 
 import de.tavendo.autobahn.WebSocketConnection;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/8 0008
- */
 
 public class WebSocketManger {
 

@@ -19,11 +19,7 @@ import java.util.List;
 
 import static com.bing.lan.fm.R.id.rv_anchor_item_child;
 
-/**
- * @author jk
- * @time 2017/3/7  16:21
- * @desc ${TODD}
- */
+
 public class TopAdapter implements ItemViewDelegate<DatasBean> {
     @Override
     public int getItemViewLayoutId() {

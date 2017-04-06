@@ -6,9 +6,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-/**
- * Created by kay on 16/11/15.
- */
+
 public interface SearchAllClient {
     @GET(Constance.SEARCH_ALL)
     Call<ResponseBody> getRecomed();

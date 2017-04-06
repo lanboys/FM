@@ -4,9 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-/**
- * Created by kay on 17/1/2.
- */
+
 
 public class UnScrollGridView extends GridView {
     public UnScrollGridView(Context context) {

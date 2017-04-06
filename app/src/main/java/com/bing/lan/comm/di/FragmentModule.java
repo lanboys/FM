@@ -36,6 +36,10 @@ import com.bing.lan.fm.ui.recommend.IRecommendContract;
 import com.bing.lan.fm.ui.recommend.RecommendFragment;
 import com.bing.lan.fm.ui.recommend.RecommendModule;
 import com.bing.lan.fm.ui.recommend.RecommendPresenter;
+import com.bing.lan.fm.ui.splash1.ISplashContract;
+import com.bing.lan.fm.ui.splash1.SplashFragment;
+import com.bing.lan.fm.ui.splash1.SplashModule;
+import com.bing.lan.fm.ui.splash1.SplashPresenter;
 import com.bing.lan.fm.ui.subscriber.ISubscriberContract;
 import com.bing.lan.fm.ui.subscriber.SubscriberFragment;
 import com.bing.lan.fm.ui.subscriber.SubscriberModule;
@@ -73,6 +77,15 @@ public class FragmentModule {
         homePresenter.setParams(initParams);
         homePresenter.setModule(new HomeModule());
         homePresenter.onAttachView((HomeFragment) mFragment);
+        return homePresenter;
+    }
+
+    @Provides
+    public ISplashContract.ISplashPresenter provideSplashPresenter() {
+        SplashPresenter homePresenter = new SplashPresenter();
+        homePresenter.setParams(initParams);
+        homePresenter.setModule(new SplashModule());
+        homePresenter.onAttachView((SplashFragment) mFragment);
         return homePresenter;
     }
 

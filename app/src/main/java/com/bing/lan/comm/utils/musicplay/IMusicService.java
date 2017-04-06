@@ -45,6 +45,9 @@ interface IMusicService {
     boolean addPlaylist(List<Music> playlist);
 
     boolean addPlaylist(Music play);
+
+    List<Music> getPlaylist();
+
 }
 
 

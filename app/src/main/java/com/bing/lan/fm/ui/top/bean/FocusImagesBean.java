@@ -2,11 +2,7 @@ package com.bing.lan.fm.ui.top.bean;
 
 import java.util.List;
 
-/**
- * @author jk
- * @time 2017/3/7  12:03
- * @desc ${TODD}
- */
+
 public class FocusImagesBean {
     /**
      * list : [{"activityId":153,"focusCurrentId":9488,"id":3791,"isShare":true,"is_External_url":false,"longTitle":"全球华语播客巅峰榜（第89期）","pic":"http://fdfs.xmcdn.com/group18/M06/B5/5C/wKgJKli8y-2j6ipLAAEW5hv2d7A403_android_large.jpg","shortTitle":"全球华语播客巅峰榜","type":8,"url":"http://m.ximalaya.com/xmposter/top_list?app=iting"}]

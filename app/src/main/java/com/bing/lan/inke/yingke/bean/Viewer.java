@@ -1,8 +1,6 @@
 package com.bing.lan.inke.yingke.bean;
 
-/**
- * Created by kay on 17/1/18.
- */
+
 
 public class Viewer {
 

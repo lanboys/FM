@@ -16,12 +16,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Description :
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/11 0011
- */
 
 public class ShowGiftsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

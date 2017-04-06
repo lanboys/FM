@@ -32,20 +32,19 @@ import retrofit2.Response;
 
 /**
  * 热门
- * Created by kay on 16/11/15.
  */
 public class HotFragment extends Fragment {
 
+    static final int BANNEER = 0;
+    static final int ITEM = 1;
+    static final int ERROR = 2;
     private static final String TAG = "HotFragment";
     View loading;
     HotAdapter adapter;
     LiveDates dates;
     IndexImage image;
     YRecyclerView list;
-    static final int BANNEER = 0;
-    static final int ITEM = 1;
-    static final int ERROR = 2;
-    InnerHandler handler ;
+    InnerHandler handler;
     private LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -61,7 +60,7 @@ public class HotFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hots, container, false);
         list = (YRecyclerView) view.findViewById(R.id.list);
-         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         list.setLayoutManager(linearLayoutManager);
         loading = view.findViewById(R.id.loading);
         loading.setVisibility(View.GONE);
@@ -76,29 +75,26 @@ public class HotFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        list.setLoadingListener(new YRecyclerView.LoadingListener(){
+        list.setLoadingListener(new YRecyclerView.LoadingListener() {
 
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable(){
+                new Handler().postDelayed(new Runnable() {
                     public void run() {
-
 
                         list.refreshComplete();
                     }
-
                 }, 1000);            //refresh data here
             }
 
             @Override
             public void onLoadMore() {
 
-                new Handler().postDelayed(new Runnable(){
-                        public void run() {
-                            list.loadMoreComplete();
-                        }
-                    }, 1000);
-
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        list.loadMoreComplete();
+                    }
+                }, 1000);
             }
         });
     }
@@ -107,7 +103,7 @@ public class HotFragment extends Fragment {
      * 显示Home Bottom
      */
     private void showHomeBottom() {
-        ProxyIndexActivity mProxyIndexActivity= (ProxyIndexActivity)getActivity();
+        ProxyIndexActivity mProxyIndexActivity = (ProxyIndexActivity) getActivity();
         mProxyIndexActivity.showBottom();
     }
 
@@ -115,7 +111,7 @@ public class HotFragment extends Fragment {
      * 隐藏Home Bottom
      */
     private void hideHomeBottom() {
-        ProxyIndexActivity mProxyIndexActivity= (ProxyIndexActivity)getActivity();
+        ProxyIndexActivity mProxyIndexActivity = (ProxyIndexActivity) getActivity();
         mProxyIndexActivity.hideBottom();
     }
 
@@ -123,10 +119,10 @@ public class HotFragment extends Fragment {
 
     }
 
-
     private void onScrollUp() {
 
     }
+
     //获取首页的banner数据
     private void getBannerDate() {
         // Create a very simple REST adapter which points the GitHub API endpoint.
@@ -135,13 +131,12 @@ public class HotFragment extends Fragment {
         // Fetch and print a list of the contributors to this library.
         Call<IndexImage> call = client.contributors();
 
-
         call.enqueue(new Callback<IndexImage>() {
 
             @Override
             public void onResponse(Call<IndexImage> call, Response<IndexImage> response) {
                 if (response.isSuccessful()) {
-                    Message message  = handler.obtainMessage(BANNEER);
+                    Message message = handler.obtainMessage(BANNEER);
                     message.obj = response.body();
                     handler.sendMessage(message);
                 }
@@ -164,13 +159,12 @@ public class HotFragment extends Fragment {
         // Fetch and print a list of the contributors to this library.
         Call<LiveDates> call = client.getAllDate();
 
-
         call.enqueue(new Callback<LiveDates>() {
 
             @Override
             public void onResponse(Call<LiveDates> call, Response<LiveDates> response) {
                 if (response.isSuccessful()) {
-                    Message message  = handler.obtainMessage(ITEM);
+                    Message message = handler.obtainMessage(ITEM);
                     message.obj = response.body();
                     handler.sendMessage(message);
                 }
@@ -195,11 +189,11 @@ public class HotFragment extends Fragment {
             @Override
             public void onClickHotItem(int index) {
                 Object click_item = adapter.getDataByIndex(index);
-                if(index > 0){
-                    Log.d(TAG,"click_item="+click_item.toString());
+                if (index > 0) {
+                    Log.d(TAG, "click_item=" + click_item.toString());
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), PlayActivity.class);
-                    intent.putExtra(PlayActivity.DATA,(LivesBean)click_item);
+                    intent.putExtra(PlayActivity.DATA, (LivesBean) click_item);
                     startActivity(intent);
                 }
             }
@@ -213,11 +207,10 @@ public class HotFragment extends Fragment {
             list.setAdapter(adapter);
         }
         adapter.setBANNER(image.getTicker());
-
     }
 
-
     static class InnerHandler extends Handler {
+
         WeakReference<HotFragment> hot;
 
         public InnerHandler(HotFragment hotFragment) {

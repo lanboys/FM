@@ -9,10 +9,7 @@ import android.view.View;
 import com.bing.lan.fm.R;
 import com.bing.lan.inke.yingke.fragment.StoreFragment;
 
-/**
- *
- * Created by kay on 16/12/22.
- */
+
 
 public class Demo2Activity extends AppCompatActivity {
 

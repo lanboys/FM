@@ -15,9 +15,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
-/**
- * Created by kay on 17/1/2.
- */
+
 
 public class StoreAdapter extends BaseAdapter {
 

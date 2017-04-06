@@ -2,9 +2,7 @@ package com.bing.lan.fm.ui.splash;
 
 import com.bing.lan.comm.base.mvp.activity.IBaseActivityContract;
 
-/**
- * Created by 520 on 2017/1/11.
- */
+
 
 public interface ISplashContract {
 

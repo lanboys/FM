@@ -5,7 +5,7 @@ public class AppConfig {
     /**
      * sharePreference 文件名
      */
-    public static final String SHARED_PREFER_FILE = "shared_prefer_file";
+    public static final String SHARED_PREFER_FILE = "shared_prefer_file";  
     /**
      * 缓存过期时间
      */

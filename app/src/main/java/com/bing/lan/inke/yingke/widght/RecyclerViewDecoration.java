@@ -9,12 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Description :RecyclerView 的分割线
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/3 0003
- */
+
 
 public class RecyclerViewDecoration  extends RecyclerView.ItemDecoration{
 

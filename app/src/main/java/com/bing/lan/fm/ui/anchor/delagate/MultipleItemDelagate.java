@@ -18,11 +18,7 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
-/**
- * @author lihoujing2ken
- * @time 2017/3/7  12:45
- * @desc ${TODD}
- */
+
 public class MultipleItemDelagate implements ItemViewDelegate<NormalBean>, MultiItemTypeAdapter.OnItemClickListener {
 
 

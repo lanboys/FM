@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 /**
  * 首页（热门）
- * Created by kay on 16/11/12.
  */
 public class LiveFragment extends Fragment implements ViewPager.OnPageChangeListener{
     ViewPager viewPager;

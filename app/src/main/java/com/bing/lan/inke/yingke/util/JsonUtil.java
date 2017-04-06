@@ -4,9 +4,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 
-/**
- * Created by kay on 16/12/8.
- */
+
 
 public class JsonUtil {
     static Gson gson;

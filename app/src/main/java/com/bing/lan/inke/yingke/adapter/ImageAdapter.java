@@ -12,9 +12,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
-/**
- * Created by kay on 16/11/18.
- */
+
 public class ImageAdapter extends PagerAdapter {
     ArrayList<View> images;
     ArrayList<TickerBean> urls;

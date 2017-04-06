@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bing.lan.fm.R;
+import com.bing.lan.inke.ui.live.LiveActivity;
 import com.bing.lan.inke.yingke.fragment.LiveFragment;
 import com.bing.lan.inke.yingke.fragment.MineFragment;
 import com.bing.lan.inke.yingke.http.GiftAllClient;
@@ -33,7 +34,6 @@ import retrofit2.Response;
 
 /**
  * 映客的首页
- * Created by kay on 16/11/9.
  */
 public class IndexActivity extends FragmentActivity implements ProxyIndexActivity {
 
@@ -116,8 +116,12 @@ public class IndexActivity extends FragmentActivity implements ProxyIndexActivit
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(IndexActivity.this, StreamingActivity.class);
+                Intent intent = new Intent(IndexActivity.this, LiveActivity.class);
+                // Intent intent = new Intent(IndexActivity.this, StreamingActivity.class);
                 startActivity(intent);
+
+                // Toast.makeText(AppUtil.getAppContext(), "直播间功能还在开发中哦", Toast.LENGTH_SHORT).show();
+                
             }
         });
 

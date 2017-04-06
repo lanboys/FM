@@ -8,9 +8,6 @@ import com.bing.lan.inke.yingke.bean.FragmentInfor;
 
 import java.util.ArrayList;
 
-/**
- * Created by kay on 16/11/15.
- */
 public class LiveAdapter extends FragmentPagerAdapter {
 
     ArrayList<FragmentInfor> infors;

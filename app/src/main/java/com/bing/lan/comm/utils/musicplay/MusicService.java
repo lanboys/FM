@@ -39,6 +39,11 @@ public class MusicService extends Service {
     private int mNextPlayPos = -1;
     private MusicPlayerHandler mPlayerHandler;
     private HandlerThread mHandlerThread;
+
+    public List<Music> getPlaylist() {
+        return mPlaylist;
+    }
+
     private List<Music> mPlaylist = new ArrayList<>();
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
         @Override

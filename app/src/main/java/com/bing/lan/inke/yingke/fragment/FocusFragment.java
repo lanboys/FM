@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import com.bing.lan.fm.R;
 
-/**
- * Created by kay on 16/11/15.
- */
+
 public class FocusFragment extends Fragment {
     @Nullable
     @Override

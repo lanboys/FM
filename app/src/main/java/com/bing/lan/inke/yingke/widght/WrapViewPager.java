@@ -5,9 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by kay on 17/1/2.
- */
+
 
 public class WrapViewPager extends ViewPager {
     public WrapViewPager(Context context) {

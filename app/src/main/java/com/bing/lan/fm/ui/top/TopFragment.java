@@ -31,9 +31,7 @@ import butterknife.BindView;
 import static com.bing.lan.fm.R.id.iv_category_head_image;
 import static com.bing.lan.fm.R.id.refresh_container;
 
-/**
- *
- */
+
 public class TopFragment extends BaseFragment<ITopContract.ITopPresenter>
         implements ITopContract.ITopView, SwipeRefreshLayout.OnRefreshListener {
 

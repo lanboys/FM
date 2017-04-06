@@ -27,12 +27,7 @@ import com.bing.lan.fm.R;
 
 import java.util.TimerTask;
 
-/**
- * Description : 创建一个直播间
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/1 0001
- */
+
 
 public class StreamingActivity extends AppCompatActivity
         implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {

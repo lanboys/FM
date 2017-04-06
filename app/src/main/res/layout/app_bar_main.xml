@@ -93,12 +93,12 @@
 
 
     <FrameLayout
-        android:clickable="true"
         android:id="@+id/cir_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin">
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/cir_play1"

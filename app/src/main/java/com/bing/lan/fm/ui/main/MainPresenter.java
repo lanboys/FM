@@ -9,15 +9,10 @@ import com.bing.lan.comm.base.mvp.activity.BaseActivityPresenter;
 public class MainPresenter extends BaseActivityPresenter<IMainContract.IMainView, IMainContract.IMainModule>
         implements IMainContract.IMainPresenter<IMainContract.IMainView, IMainContract.IMainModule> {
 
-
     @Override
     public void onStart(Object... params) {
 
-
-
-
     }
-
 
     @Override
     @SuppressWarnings("unchecked")

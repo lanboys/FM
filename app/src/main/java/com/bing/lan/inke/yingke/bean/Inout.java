@@ -2,9 +2,7 @@ package com.bing.lan.inke.yingke.bean;
 
 import java.io.Serializable;
 
-/**
- * Created by kay on 17/1/18.
- */
+
 
 public class Inout implements Serializable{
 

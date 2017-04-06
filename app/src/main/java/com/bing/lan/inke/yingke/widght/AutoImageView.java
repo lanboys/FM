@@ -10,9 +10,7 @@ import android.widget.ImageView;
 
 import java.lang.reflect.Method;
 
-/**
- * Created by kay on 16/12/25.
- */
+
 
 public class AutoImageView extends ImageView {
 

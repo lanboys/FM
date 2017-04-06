@@ -49,6 +49,7 @@ public class MusicPresenter
 
         // updateCurrentTrackId();
 
+        //album进来
         if (mTrackInfos != null) {
             handTrackInfo(mTrackInfos);
             mView.gotoPosition(mFirstPlayPos);
@@ -120,6 +121,28 @@ public class MusicPresenter
                 PlayResult playResult = (PlayResult) data;
                 mView.updateTrackInfo(playResult.getTrackInfo());
 
+                // List<Music> playlist1 = MusicPlayer.getPlaylist();
+                //
+                // if (playlist1 != null && playlist1.size() < 1) {
+                //
+                //     Music music = new Music(playResult.getTrackInfo().getPlayUrl32());
+                //     if (music != null) {
+                //         music.albumId = mAlbumId;
+                //         music.trackId = mCurrentTrackId;
+                //     }
+                //
+                //     ArrayList<Music> musics = new ArrayList<>();
+                //     musics.add(music);
+                //     mView.setMusicPlaylist(musics);
+                // }
+                //
+                // List<Music> playlist = MusicPlayer.getPlaylist();
+                // log.d("onSuccess(): playlist.size()" + playlist.size());
+                //
+                // if (!MusicPlayer.isPlaying()) {
+                //     mView.gotoPosition(0);
+                // }
+
                 break;
             case LOAD_ALBUM:
                 // TODO: 2017/3/8 处理数据
@@ -139,7 +162,6 @@ public class MusicPresenter
     public void onError(int action, Throwable e) {
         super.onError(action, e);
         mView.dismissDialog();
-
     }
 
     @Override

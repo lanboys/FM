@@ -2,11 +2,7 @@ package com.bing.lan.fm.ui.categorydetails.bean;
 
 import java.util.List;
 
-/**
- * @author Holly
- * @time 2017/3/9  10:41
- * @desc ${TODD}
- */
+
 public class CategoryDeitailsBean {
 
     @Override

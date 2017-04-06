@@ -102,4 +102,9 @@ public class ServiceStub extends Binder implements IMusicService {
     public boolean addPlaylist(Music play) {
         return mService.get().addPlaylist(play);
     }
+
+    @Override
+    public List<Music> getPlaylist() {
+        return mService.get().getPlaylist();
+    }
 }

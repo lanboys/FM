@@ -9,12 +9,7 @@ import android.widget.Toast;
 
 import com.bing.lan.fm.R;
 
-/**
- * Description :自定义Toast
- * Author : liujun
- * Email  : liujin2son@163.com
- * Date   : 2017/3/9 0009
- */
+
 
 public class MyToast {
 

@@ -1,10 +1,6 @@
 package com.bing.lan.fm.ui.recommend.bean;
 
-/**
- * @author jk
- * @time 2017/3/6  16:24
- * @desc ${TODD}
- */
+
 public class DataBean {
     /**
      * album : {"albumId":248886,"category_id":4,"coverLarge":"http://fdfs.xmcdn.com/group15/M04/04/29/wKgDZVbFih_RIPSfAAC51SmGivk452.jpg","coverMiddle":"http://fdfs.xmcdn.com/group15/M04/04/29/wKgDZVbFih_RIPSfAAC51SmGivk452.jpg","cover_path":"http://fdfs.xmcdn.com/group15/M04/04/29/wKgDZVbFih_RIPSfAAC51SmGivk452.jpg","info":"都市的喧嚣，热闹的街道，坐下来喝杯茶，静下心来，享受小武带给你的轻松与惬意。都市聊聊吧，撩拨你的心弦！ 第一期节目：马文婚变，谁是谁非；京东一哥，恋上女神；武大校花赏樱花，清秀淡雅文艺范儿。 ","isDeleted":false,"isFinished":0,"tags":"热门评述,十里铺人民广播,热点话题,娱乐八卦,明星","title":"名人风范","tracks":118,"uid":3121164}

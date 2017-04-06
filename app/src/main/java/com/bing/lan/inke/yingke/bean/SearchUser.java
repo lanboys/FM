@@ -1,8 +1,6 @@
 package com.bing.lan.inke.yingke.bean;
 
-/**
- * Created by kay on 16/12/8.
- */
+
 
 public class SearchUser {
 

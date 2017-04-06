@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import com.bing.lan.fm.R;
 
-/**
- * Created by kay on 16/11/10.
- */
+
 public class RingTextView extends TextView {
 
     public RingTextView(Context context) {
