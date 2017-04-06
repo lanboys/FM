@@ -45,7 +45,10 @@ public class RecommendModule extends BaseFragmentModule
         }
     }
 
-    public RecBean getRecBean() {
+    /**
+     * 接口有问题  所以只能放在本地
+     */
+    private RecBean getRecBean() {
 
         String json = AppUtil.loadAssetsJson(getUrl());
         if (!TextUtils.isEmpty(json)) {
