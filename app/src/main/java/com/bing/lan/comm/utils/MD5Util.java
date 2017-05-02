@@ -1,9 +1,10 @@
 package com.bing.lan.comm.utils;
 
+import android.support.annotation.NonNull;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-
+import java.util.Arrays;
 
 /**
  * @author 蓝兵

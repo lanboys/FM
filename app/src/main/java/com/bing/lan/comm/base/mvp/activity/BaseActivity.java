@@ -62,6 +62,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //沉浸式
         initImmersion();
         //透明状态栏
         initTranslucentStatus();
@@ -88,7 +89,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
             mPresenter.onDetachView();
         }
 
-        // AppUtil.MemoryLeakCheck(this);
+        AppUtil.MemoryLeakCheck(this);
     }
 
     protected abstract int getLayoutResId();
@@ -225,7 +226,7 @@ public abstract class BaseActivity<T extends IBaseActivityPresenter>
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (getMenuId() == 0) {
+        if (getMenuId() <= 0) {
             return super.onCreateOptionsMenu(menu);
         }
         getMenuInflater().inflate(getMenuId(), menu);
